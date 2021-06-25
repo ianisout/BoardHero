@@ -12,6 +12,7 @@ body {
   max-width: 1366px;
   max-width: 100%;
   overflow-x: hidden;
+  color: #45a0d4;
 }
 
 .lp-character {
@@ -31,6 +32,15 @@ body {
   align-self: flex-end;
 }
 
+.frog {
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  right: 0;
+  height: 150px;
+}
+
+
 .container {
   display: flex;
   justify-content: center;
@@ -46,7 +56,7 @@ body {
   width: 550px;
   height: 600px;
   background-color: rgba(247, 247, 247, 0.85);
-  border-radius: 15px;
+  border-radius: 10px;
   margin: 5px;
   padding: 30px 0;
   font-size: 25px;

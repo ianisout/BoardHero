@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-image: url("../img/background//bg-selection-landingpg.png");
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
@@ -19,29 +19,79 @@ body {
 
 .landing-option-container {
   display: flex;
-  flex-direction: column;
-  justify-content:space-around;
-  align-items: center;
   width: 80vw;
   height: 80vh;
   background-color: rgba(247, 247, 247, 0.95);
-  border-radius: 15px;
+  border-radius: 5px;
   margin: 5px;
-  padding: 30px 0;
+  padding: 30px;
   font-size: 25px;
 }
 
-.questions{
+h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.example-character {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  width: 40vw;
+  border-right: solid #8929bb 2px;
+}
+
+.example-character img {
+  width: 250px;
+  background-color: #8829bb49;
+  border: #8929bb solid 2px;
+  border-radius: 4px;
+  margin: 15px;
+}
+
+.example-character button {
+  border: none;
+  width: fit-content; /* o botao fica do tamanho do texto dentro */
+  height: fit-content;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 4px;
+  color: #fafafa;
+  background-color: #8929bb;
+  margin: 15px;
+  white-space: nowrap; /* nao deixa o texto quebrar dentro do botao - sempre uma linha */
+}
+
+.no-character {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-size: 20px;
   line-height: 35px;
+  width: 40vw;
+  padding: 30px;
+  margin: 15px
 }
 
-.logo {
-  width: 300px;
-}
-
-.subtitle {
+.no-character button {
+  border: #8929bb solid 1px;
+  width: fit-content;
+  height: fit-content;
+  white-space: nowrap;
+  padding: 9px 18px; /* para bater com os mesmos 10px do tamanho do outro botao -- esse tem borda de 1px */
   font-size: 18px;
+  font-weight: 600;
+  border-radius: 4px;
+  color: #8929bb;
+  background-color: #fafafa;
+  margin: 15px;
+}
+
+.no-character button a {
+  text-decoration: none;
+  color: #8929bb;
 }
