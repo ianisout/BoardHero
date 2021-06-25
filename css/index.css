@@ -10,6 +10,8 @@ body {
   background-repeat: no-repeat;
   text-align: center;
   max-width: 1366px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .lp-character {
@@ -86,25 +88,28 @@ body {
   position: absolute;
   animation-name: fly;
   animation-duration: 50s;
+  visibility: hidden;
 }
 
 .birds img {
   width: 75px;
 }
 
+
 @keyframes fly {
   0% {
+    visibility: visible;
     opacity: 1;
     left: -75px;
     top: 100px;
   }
   50% {
-    opacity: 0.8;
+    opacity: 1;
+    left: 100vw;
+    top: 200px;
   }
   100% {
-    visibility: hidden;
-    opacity: 0;
-    left: 90vw;
-    top: 100px;
+    left: -75px;
+    top: 300px;
   }
 }
