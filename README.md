@@ -7,7 +7,7 @@ Create your best pixel-self and have a little fun while getting the work done
 - Add tasks, tag teammates, organize the workload in an easy-access, easy-filter dashboard
 - Earn points, unlock new items and clothing, and unleash your working warrior ⚔
 
-Nothing wrong with a bit of fun to boost productivity
+Nothing wrong with a bit of enjoyment to boost productivity
 
 ____
 
