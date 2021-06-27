@@ -15,8 +15,6 @@ body {
 
 .container {
   display: flex;
-  height: 100vh;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   width: 550px;
@@ -31,11 +29,15 @@ body {
   border: #8929bb solid 2px;
 }
 
-.container img {
+img.logo {
   max-width: 250px;
   width: 100%;
   align-self: center;
   padding: 10px;
+}
+
+.login img.logo {
+  margin-bottom: 40px;
 }
 
 form {
@@ -57,7 +59,13 @@ input {
   border-radius: 1.7;
 }
 
-.container button {
+#password-recovery {
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+button#submit {
   border: none;
   align-self: center;
   width: 150px;
@@ -67,6 +75,9 @@ input {
   border-radius: 5px;
   color: #fafafa;
   background-color: #8929bb;
-  justify-self: flex-start;
   margin-top: 25px;
+}
+
+.login button#submit {
+  margin-top: 40px;
 }

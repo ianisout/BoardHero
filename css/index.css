@@ -40,6 +40,25 @@ body {
   height: 150px;
 }
 
+.login-button {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 105px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fafafa;
+  padding-top: 6px;
+}
+
+.login-button a {
+  text-decoration: none;
+  text-align: center;
+  color: #8929bb;
+  font-size: 20px;
+  font-weight: 600;
+}
 
 .container {
   display: flex;

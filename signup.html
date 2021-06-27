@@ -10,19 +10,18 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Tomorrow:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/signup.css" />
+    <link rel="stylesheet" href="css/signup-login.css" />
     <link rel="icon" type="image/png" href="img/fav.icon.png" />
     <title>Sign up | Board Hero</title>
 </head>
 <body>
-  <main>
-    <div class="container">
+  <main class="container">
       <img
             class="logo"
             src="img/logo/logo-purple.png"
             alt="Board Hero logo"
           />
-      <form>
+      <form action="" method="POST">
         <label for="name">Name</label>
         <input type="text" id="nome" name="name" required/>
         <label for="nickname">Nickname</label>
@@ -32,13 +31,12 @@
         <label for="email">Confirm Email</label>
         <input type="email" id="email" name="email" required/>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" />
+        <input type="password" id="password" name="password" required/>
         <label for="re-password">Confirm password</label>
-        <input type="password" id="re-password" name="re-password" />
+        <input type="password" id="re-password" name="re-password" required/>
 
-        <button>Confirm</button>
+        <button type="submit" id="submit">Confirm</button>
       </form>
-    </div>
   </main>
   
 </body>
