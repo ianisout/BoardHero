@@ -9,6 +9,11 @@ Create your best pixel-self and have a little fun while getting the work done
 
 Nothing wrong with a bit of enjoyment to boost productivity
 
+
+### Hosting
+
+GitHub Pages: https://ianisout.github.io/BoardHero/
+
 ____
 
 This project is intended as an experiment for the Full Stack Web Development course at Digital House from Brazil
