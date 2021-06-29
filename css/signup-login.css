@@ -29,10 +29,13 @@ body {
   border: #8929bb solid 2px;
 }
 
+a.logo {
+  align-self: center;
+}
+
 img.logo {
   max-width: 250px;
   width: 100%;
-  align-self: center;
   padding: 10px;
 }
 
