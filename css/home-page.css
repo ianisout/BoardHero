@@ -25,6 +25,40 @@
   top: 0;
 }
 
+.progress-container {
+  margin-left: 4px;
+  margin-bottom: 0.5em;
+  height: 24px;
+}
+
+.progress-container {
+  margin-left: 4px;
+  margin-bottom: 0.5em;
+  height: 24px;
+}
+
+.progress {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.progress-bar {
+  border-radius: 1px;
+  height: 12px;
+  min-width: 0;
+}
+
+.bg-health {
+  background: #f74e52;
+}
+
+.progress-container > span {
+  color: #d5c8ff;
+  margin-left: 8px;
+  font-style: normal;
+  line-height: 1;
+}
+
 a[data-toggle="collapse"] {
   position: relative;
 }
@@ -72,10 +106,6 @@ a:focus {
 #sidebar ul.components {
   padding: 20px 0;
   border-bottom: 1px solid #070707;
-}
-
-#sidebar ul img {
-  padding: 50px;
 }
 
 #sidebar ul li a {
