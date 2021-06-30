@@ -211,7 +211,7 @@ ul ul a {
   margin: 0;
   font-size: 18px;
   line-height: 1;
-  color: #131c2e;
+  color: black;
   font-weight: 700;
 }
 
@@ -483,7 +483,6 @@ ul ul a {
 .topbar-user-box > a > i {
   margin-right: 5px;
   font-family: "simple-line-icons";
-  speak: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
