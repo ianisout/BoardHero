@@ -2,12 +2,11 @@
   display: flex;
   width: 100%;
   align-items: stretch;
-  width: 100%;
 }
 
 .sidebar-header img {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
 }
 
 #sidebar.active {
@@ -38,17 +37,8 @@ a[data-toggle="collapse"] {
   transform: translateY(-50%);
 }
 
-@media (max-width: 768px) {
-  #sidebar {
-    margin-left: -250px;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-}
-
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Open sans", sans-serif;
   background: #fafafa;
 }
 
@@ -69,7 +59,6 @@ a:focus {
 }
 
 #sidebar {
-  /* don't forget to add all the previously mentioned styles here too */
   background: #8929bb;
   color: #fff;
   transition: all 0.3s;
@@ -140,7 +129,7 @@ ul ul a {
 }
 
 .enlarged .side-menu .topbar-left .button-menu-mobile i:before {
-  /* display: none; */
+  display: none;
   transform: rotate(180deg);
 }
 
@@ -160,6 +149,11 @@ ul ul a {
   text-align: center;
   font-size: 10px;
   color: black;
+  transition: all 100ms ease-out;
+  -webkit-transition: all 100ms ease-out;
+  -moz-transition: all 100ms ease-out;
+  opacity: 1;
+  visibility: visible;
 }
 
 .content-page {
@@ -488,5 +482,12 @@ ul ul a {
 @media (max-width: 1024px) {
   .content-page {
     padding: 0;
+  }
+
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
   }
 }
