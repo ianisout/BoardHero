@@ -29,10 +29,13 @@ body {
   border: #8929bb solid 2px;
 }
 
+a.logo {
+  align-self: center;
+}
+
 img.logo {
   max-width: 250px;
   width: 100%;
-  align-self: center;
   padding: 10px;
 }
 
@@ -75,7 +78,7 @@ button#submit {
   border-radius: 5px;
   color: #fafafa;
   background-color: #8929bb;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .login button#submit {
