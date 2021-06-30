@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  background-color: #fafafa;
+  background-size: 100vw 100vh;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1366px;
+  max-width: 100%;
+  overflow-x: hidden;
+  color: #45a0d4;
+}
+
+.logo {
+  position: relative;
+  width: 120px;
+  align-self: flex-start;
+  margin: 20px;
+}
+
+.container {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: space-around;
+  align-self: center;
+  align-items: center;
+  max-width: 1366px;
+  max-height: 80vh;
+  width: 100%;
+  height: 100%;
+  background-color: #fafafa;
+  border-radius: 5px;
+}
+
+.character-visual {
+  width: 300px;
+  height: 300px;
+  border: #8929bb solid 1px;
+  background-image: url("../img/characters/lookalike.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-self: center;
+  justify-self: center;
+}
+
+.categories {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.categories button {
+  border: #8929bb solid 1px;
+  font-weight: 400;
+  width: fit-content;
+  height: fit-content;
+  white-space: nowrap;
+  padding: 7px 18px; /* para bater com os mesmos 10px do tamanho do outro botao -- esse tem borda de 1px */
+  font-size: 18px;
+  border-radius: 4px;
+  color: #8929bb;
+  background-color: #fafafa;
+  margin: 15px;
+}
+
+.categories button:hover {
+  border: #8929bb solid 1px;
+  color: #fafafa;
+  background-color: #8929bb;
+}
+
+.option-list {
+  display: flex;
+  border: #8929bb solid 1px;
+  width: calc(100% - 300px);
+  overflow-x: scroll;
+  overflow-y: hidden;
+  font-size: 14px;
+}
+
+.item-description {
+  margin: 5px;
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #8929bb;
+  font-weight: 500;
+  padding: 5px;
+}
+
+.choice:hover {
+  background-color: #8929bb;
+  color: #fafafa;
+  font-weight: 600;
+}
+
+.choice:hover .item-of-choice {
+  background-color: #fafafa;
+}
+
+/* width */
+::-webkit-scrollbar {
+  height: 8px;
+}
+
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #8829bba6; 
+}
+
+.container button {
+  white-space: nowrap; /* nao deixa o texto quebrar dentro do botao - sempre uma linha */
+  width: fit-content; /* o botao fica do tamanho do texto dentro */
+  height: fit-content;
+}
+
+.done-button {
+  border: #8929bb solid 1px;
+  width: fit-content;
+  height: fit-content;
+  white-space: nowrap;
+  position: relative;
+  padding: 9px 18px; /* para bater com os mesmos 10px do tamanho do outro botao -- esse tem borda de 1px */
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 4px;
+  color: #fafafa;
+  background-color: #8929bb;
+  margin: 15px;
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+
+.done-button:hover {
+  border: #8929bb solid 1px;
+  color: #8929bb;
+  background-color: #fafafa;
+}
