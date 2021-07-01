@@ -1,0 +1,13 @@
+body,
+html {
+  font-family: "Open Sans", sans-serif;
+}
+
+#header {
+    width: 100%;
+    transition: background ease-out 0.2s;
+}
+
+#header .navbar-collapse {
+    width: auto;
+}
