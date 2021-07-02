@@ -5,3 +5,7 @@
 @import url(./responsive.css);
 @import url(./sidebars.css);
 @import url(./navbar.css);
+
+main {
+    height: 100%;
+}
