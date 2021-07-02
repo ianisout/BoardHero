@@ -4,11 +4,26 @@ html {
 }
 
 #header {
-    width: 100%;
-    transition: background ease-out 0.2s;
+  width: 100%;
+  transition: background ease-out 0.2s;
 }
 
 #header .navbar-collapse {
-    width: auto;
+  width: auto;
+}
+
+.coins {
+  display: flex;
+}
+.coins span {
+  margin-right: 5px;
+}
+
+.coins i {
+  flex-grow: 1;
+}
+
+#character {
+  padding-left: 50px;
 }
 
