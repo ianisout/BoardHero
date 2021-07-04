@@ -47,7 +47,7 @@ body {
   width: 105px;
   height: 40px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   background-color: #fafafa;
   padding-top: 6px;
 }
@@ -97,18 +97,19 @@ body {
   font-size: 18px;
 }
 
-.landing-container button {
+.get-started-button {
   border: none;
   width: 200px;
   height: 50px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 600;
   border-radius: 5px;
   color: #fafafa;
   background-color: #8929bb;
+  padding-top: 10px;
 }
 
-.landing-container button a {
+.get-started-button a {
   text-decoration: none;
   color: #fafafa;
 }

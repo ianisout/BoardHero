@@ -13,6 +13,10 @@ body {
   font-weight: 400;
 }
 
+button {
+  font-family: "Open Sans", sans-serif;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -78,7 +82,7 @@ button#submit {
   border-radius: 5px;
   color: #fafafa;
   background-color: #8929bb;
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .login button#submit {

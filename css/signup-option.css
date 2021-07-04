@@ -17,6 +17,10 @@ body {
   height: 100vh;
 }
 
+button {
+  font-family: "Open Sans", sans-serif;
+}
+
 .landing-option-container {
   display: flex;
   width: 80vw;
@@ -59,10 +63,14 @@ h2 {
   font-size: 18px;
   font-weight: 600;
   border-radius: 4px;
-  color: #fafafa;
   background-color: #8929bb;
   margin: 15px;
   white-space: nowrap; /* nao deixa o texto quebrar dentro do botao - sempre uma linha */
+}
+
+.example-character button a {
+  text-decoration: none;
+  color: #fafafa;
 }
 
 .no-character {
