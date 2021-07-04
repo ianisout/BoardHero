@@ -104,9 +104,8 @@ body {
   font-size: 22px;
   font-weight: 600;
   border-radius: 5px;
-  color: #fafafa;
   background-color: #8929bb;
-  padding-top: 10px;
+  padding-top: 8px;
 }
 
 .get-started-button a {
