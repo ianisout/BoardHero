@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  button {
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  .container {
+    width: 800px;
+    max-height: 850px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: 400;
+    background-color: rgba(247, 247, 247, 0.85);
+    border: #8929bb solid 2px;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 0 30px;
+    z-index: 1;
+  }
+  
+  .background-effect {
+    background-color: #2B2031;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    opacity: .3;
+    z-index: -1;
+  }
+
+  .dialog-heading h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #8929bb;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 25px;
+  }
+  
+  label {
+    font-size: 14px;
+    padding-bottom: 3px;
+  }
+  
+  input {
+    font-size: 16px;
+    padding: 5px;
+    margin-bottom: 8px;
+    border-style: solid 1px gray;
+    border-radius: 1.7;
+  }
+
+  textarea {
+      height: 250px;
+  }
+
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: scroll; */
+    /* overflow-x: hidden; */
+  }
+
+  .form-columns {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .form-details {
+    display: flex;
+    flex-direction: column;
+    padding-right: 60px;
+  }
+
+  .form-flags {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-flags > label {
+    color: #8929bb;
+    font-weight: bold;
+  }
+
+  .task-dates {
+    margin: 8px 0;
+  }
+
+  .attachments {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .attachments button {
+    border: none;
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 3px;
+    color: #8929bb;
+    background-color: #fafafa;
+    margin-top: 10px;
+    transition: all 0.5s;
+  }
+  
+  .attachments button:hover {
+    border: #8929bb solid 1px;
+  }
+
+  .form-footer {
+    align-self: flex-end;
+  }
+
+  button#submit {
+    border: none;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    color: #fafafa;
+    background-color: #8929bb;
+    padding-bottom: 2px;
+    margin-top: 18px;
+  }
+
+  .form-footer a {
+    color: #8929bb;
+    text-decoration: none;
+    font-size: 16px;
+    padding-left: 10px;
+  }
+
+  .form-footer a:hover {
+    text-decoration: underline;
+  }

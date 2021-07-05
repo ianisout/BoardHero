@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Tomorrow:wght@300;400;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/create-task.css" />
+    <link rel="icon" type="image/png" href="img/fav.icon.png" />
+    <title>Create New Task | Board Hero</title>
+</head>
+<body>
+  <main>
+        <div class="background-effect"></div>
+        <section class="container">
+            <div class="dialog-heading">
+                <h2>Create task</h2>
+            </div>
+
+            <form action="" method="POST">
+            <div class="form-content">
+                <div class="form-columns">
+                    <div class="form-details">
+                        <label for="task-name">Task name</label>
+                        <input type="text" id="task-name" name="task-name" required/>
+            
+                        <label for="participants">Participants</label>
+                        <input type="text" id="participants" name="participants" required/>
+            
+                        <label for="tags">Tags</label>
+                        <input type="text" id="tags" name="tags" required/>
+            
+                        <div class="task-dates">
+                            <label for="start-date">Start date</label>
+                            <input type="date" id="start-date" name="start-date"/>
+            
+                            <label for="due-date">Due date</label>
+                            <input type="date" id="due-date" name="due-date"/>
+                        </div>
+                    </div>
+                    <div class="form-flags">
+                        <label>Actions:</label>
+                        <div class="options">
+                            <div class="flag">
+                                <input type="checkbox" name="task-flags" id="option-need-to-do">
+                                <label for="option-need-to-do">Need to do</label>
+                            </div>
+                            <div class="flag">
+                                <input type="checkbox" name="task-flags" id="option-pending-tests">
+                                <label for="option-pending-tests">Pending tests</label>
+                            </div>
+                            <div class="flag">
+                                <input type="checkbox" name="task-flags" id="option-pending-approval">
+                                <label for="option-pending-approval">Pending approval</label>
+                            </div>
+                            <div class="flag">
+                                <input type="checkbox" name="task-flags" id="option-approved">
+                                <label for="option-approved">Approved</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+                <div class="attachments">
+                    <label>Attachments</label>
+                    <button type="button" id="button">Upload</button>
+                </div>
+            </div>
+            <div class="form-footer">
+                <button type="submit" id="submit">Create</button>
+                <a href="#">Cancel</a>
+            </div>
+            </form>
+        </section>
+  </main>
+</body>
+</html>
