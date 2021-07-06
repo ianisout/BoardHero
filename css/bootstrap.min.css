@@ -3709,7 +3709,7 @@ fieldset:disabled .btn {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #4c126d;
+  background-color: #0d6efd;
 }
 .nav-fill .nav-item,
 .nav-fill > .nav-link {
@@ -6840,7 +6840,7 @@ fieldset:disabled .btn {
   background-color: #f8f9fa !important;
 }
 .bg-dark {
-  background-color: #8929bb !important;
+  background-color: #212529 !important;
 }
 .bg-body {
   background-color: #fff !important;

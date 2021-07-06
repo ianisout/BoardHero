@@ -1,0 +1,25 @@
+@import url(/css/sidebars.css);
+@import url(/css/navbar.css);
+@import url(/css/sidebars.css);
+
+.container {
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.container-md {
+    padding-left: 0px;
+}
+
+.sidebar-content {
+    margin-right: 0px;
+}
+
+#sidebar-content {
+    background-color: #8929bb;
+    color: white;
+}
+
+.navbar {
+    background-color: #8929bb;
+}

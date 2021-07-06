@@ -1,9 +1,0 @@
-/* para alterar as cores sem precisar alterar em todos os CSS 
-para usar essa variavel de cores temos que colocar um var(--secondary); por exemplo
-*/
-
-:root {
-    --primary: white;
-    --secondary: black;
-
-}
