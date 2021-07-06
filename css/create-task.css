@@ -18,7 +18,7 @@
   
   .container {
     width: 800px;
-    max-height: 850px;
+    max-height: 750px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -70,14 +70,16 @@
   }
 
   textarea {
-      height: 250px;
+      height: 200px;
+      resize: vertical;
   }
 
   .form-content {
     display: flex;
     flex-direction: column;
-    /* overflow-y: scroll; */
+    height: 550px;
     /* overflow-x: hidden; */
+    /* overflow-y: scroll; */
   }
 
   .form-columns {
@@ -112,8 +114,8 @@
   }
 
   .attachments button {
-    border: none;
-    width: 150px;
+    border: #8929bb dashed 1px;;
+    width: 250px;
     height: 30px;
     font-size: 14px;
     font-weight: 600;
