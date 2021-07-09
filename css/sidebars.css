@@ -20,6 +20,33 @@ main {
   overflow-y: hidden;
 }
 
+
+/* #col_sidebar.active {
+  width: 240px;
+} */
+
+
+/* #col_sidebar.active #btn {
+  left: 90%;
+} */
+
+/* #col_sidebar.active ~ #col_contentpage {
+  width: calc(100% - 240px);
+  left: 240px;
+
+} */
+
+/* sidebar.sidebar.active .logo_content .logo {
+  opacity: 1;
+  pointer-events: none;
+} */
+
+/* .sidebar.active .links_name{
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.5s ease;
+} */
+
 .b-example-divider {
   visibility: hidden;
   flex-shrink: 0;
@@ -45,6 +72,7 @@ main {
 
 .btn-toggle {
   display: inline-flex;
+  justify-content: flex-end;
   align-items: center;
   padding: .25rem .5rem;
   font-weight: 600;
@@ -93,3 +121,15 @@ main {
 .lh-tight { line-height: 1.25; }
 
 
+#character_coins {
+  display: flex;
+  justify-content: space-between;
+}
+
+#character_coins i{
+  flex-grow: 1;
+}
+
+#character_coins span {
+  margin-right: 5px;
+}
