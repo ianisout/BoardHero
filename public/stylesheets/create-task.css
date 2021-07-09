@@ -4,21 +4,32 @@
   
   body {
     margin: 0;
+    height: 100vh;
     font-family: "Open Sans", sans-serif;
     background-color: #fafafa;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: center; */
   }
   
   button {
     font-family: "Open Sans", sans-serif;
   }
   
-  .container {
+  .background-effect {
+    background-color: #2B2031;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    opacity: .3;
+    z-index: -15;
+  }
+
+  .container-create-task {
     width: 800px;
-    max-height: 750px;
+    max-height: 720px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -31,17 +42,9 @@
     margin: 5px;
     padding: 0 30px;
     z-index: 1;
-  }
-  
-  .background-effect {
-    background-color: #2B2031;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    opacity: .3;
-    z-index: -1;
+    top: calc((100% - 720px)/2);
+    left: calc((100% - 800px)/2);
   }
 
   .dialog-heading h2 {
@@ -70,8 +73,9 @@
   }
 
   textarea {
-      height: 200px;
-      resize: vertical;
+    min-height: 200px;
+    width: 700px;
+    resize: vertical;
   }
 
   .form-content {
