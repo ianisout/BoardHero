@@ -5,7 +5,7 @@
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
-  background-image: url("../img/background/bg-landing-page.png");
+  background-image: url("/images/background/bg-landing-page.png");
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
   text-align: center;
