@@ -9,13 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Tomorrow:wght@300;400;600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="/stylesheets/create-task.css" />
     <link rel="icon" type="image/png" href="img/fav.icon.png" />
+
+    <!-- %- include('./partials/bootstrap-css-head') % -->
+
     <title>Create New Task | Board Hero</title>
 </head>
 
-<!-- %- include('./partials/sidebar') % -->
-
 <body>
-  <main>
+    <header>
+        <%- include('./partials/sidebar') %>
+        <%- include('./partials/navbar') %>
+    </header>
+
+    <main>
         <div class="background-effect"></div>
         <section class="container-create-task">
             <div class="dialog-heading">
@@ -81,5 +87,11 @@
             </form>
         </section>
   </main>
+
+
+  <script src="../../js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/navbar.js"></script>
+  <script src="../../js/sidebars.js"></script>
+
 </body>
 </html>
