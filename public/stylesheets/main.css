@@ -1,6 +1,6 @@
-@import url(/css/bootstrap.min.css);
-@import url(/css/navbar.css);
-@import url(/css/sidebars.css);
+@import url(./bootstrap.min.css);
+@import url(./navbar.css);
+@import url(./sidebars.css);
 
 .container {
     padding-left: 0px;
