@@ -1,26 +1,44 @@
 @import url(./bootstrap.min.css);
 @import url(./navbar.css);
 @import url(./sidebars.css);
+@import url(./setting.css);
 
 .container {
-    padding-left: 0px;
-    margin-left: 0px;
+  padding-left: 0px;
+  margin-left: 0px;
 }
 
 .container-md {
-    padding-left: 0px;
+  padding-left: 0px;
 }
 
 .sidebar-content {
-    margin-right: 0px;
+  margin-right: 0px;
 }
 
 #sidebar-content {
-    background-color: #8929bb;
-    color: white;
+  background-color: #8929bb;
+  color: white;
 }
 
 .navbar {
-    background-color: #8929bb;
+  background-color: #8929bb;
 }
 
+.container-settings {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 200px;
+  left: 200px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-feedback {
+    display: flex;
+    flex-direction: column;
+}

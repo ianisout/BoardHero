@@ -17,8 +17,8 @@ router.get("/create-task", function (req, res, next) {
 });
 
 /* GET settings function */
-router.get("/setting", function (req, res, next) {
-  res.render("setting");
+router.get("/settings", function (req, res, next) {
+  res.render("settings");
 });
 
 /* GET character or signup options page  */
