@@ -16,6 +16,11 @@ router.get("/create-task", function (req, res, next) {
   res.render("create-task");
 });
 
+/* GET settings function */
+router.get("/settings", function (req, res, next) {
+  res.render("settings");
+});
+
 /* GET character or signup options page  */
 router.get("/char-login", function (req, res, next) {
   res.render("char-login");
