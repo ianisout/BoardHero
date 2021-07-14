@@ -1,7 +1,18 @@
 @import url(./bootstrap.min.css);
+@import url(./setting.css);
 @import url(./navbar.css);
 @import url(./sidebars.css);
-@import url(./setting.css);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  background-color: #fafafa;
+}
 
 .container {
   padding-left: 0px;
@@ -23,22 +34,4 @@
 
 .navbar {
   background-color: #8929bb;
-}
-
-.container-settings {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 200px;
-  left: 200px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.about-feedback {
-    display: flex;
-    flex-direction: column;
 }
