@@ -41,6 +41,11 @@ router.get("/login", function (req, res, next) {
   res.render("login");
 });
 
+/* GET inventory/store page */
+router.get("/inventory", function (req, res, next) {
+  res.render("inventory-store");
+});
+
 /* GET reference page for sidebar and navbar components (TEST) */
 router.get("/homepage", function (req, res, next) {
   res.render("homepage");

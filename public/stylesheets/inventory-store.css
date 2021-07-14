@@ -1,0 +1,118 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  background-color: #fafafa;
+}
+
+.container-inventory-store {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 80px;
+  left: 300px;
+  background-color: #fafafa;
+  height: 85%;
+  max-width: 45vw;
+  width: 100%;
+  color:#8929bb;
+}
+
+/* INVENTORY + BADGES */
+
+h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.badges h3 {
+  /* font-size: 20px; */
+  margin-top: 25px;
+}
+
+.container-inventory {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
+}
+
+.character {
+  max-width: 220px;
+  max-height: 220px;
+  width: 100%;
+  height: 100%;
+  align-self: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.items-list {
+  display: flex;
+  width: calc(100% - 50px);
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.items-list:hover {
+  overflow-x: visible;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #8929bb;
+  font-weight: 500;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.item-description {
+  margin: 0px;
+  padding: 4px 0;
+}
+
+.item img {
+  width: 80px;
+}
+
+.container-store {
+  display: grid;
+}
+
+.item:hover {
+  background-color: #8929bb;
+  color: #fafafa;
+  font-weight: 600;
+}
+
+.item:hover img {
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+/* width */
+::-webkit-scrollbar {
+  height: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #8829bba6;
+}
+
+.container-store {
+  padding-left: 20px;
+  margin-left: 20px;
+  border-left: #8929bb solid 1px;
+}
