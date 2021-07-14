@@ -3,7 +3,7 @@
   flex-direction: column;
   position: absolute;
   top: calc((100% - 720px)/2);
-  left: calc((68% - 900px)/2);
+  left: calc((90% - 1024px)/2);
   z-index: 1;
 }
 
