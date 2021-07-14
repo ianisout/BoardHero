@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  background-color: #fafafa;
+}
+
+button {
+  font-family: "Open Sans", sans-serif;
+}
+
+
