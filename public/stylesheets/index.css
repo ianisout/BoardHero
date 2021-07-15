@@ -10,7 +10,6 @@ body {
   background-repeat: no-repeat;
   text-align: center;
   max-width: 1366px;
-  max-width: 100%;
   overflow-x: hidden;
   color: #45a0d4;
 }
@@ -39,6 +38,7 @@ body {
   right: 0;
   height: 150px;
 }
+
 
 .login-button {
   position: absolute;
@@ -95,6 +95,7 @@ body {
 
 .subtitle {
   font-size: 18px;
+  margin: 0 10px;
 }
 
 .get-started-button {
@@ -124,7 +125,6 @@ body {
   width: 75px;
 }
 
-
 @keyframes fly {
   0% {
     visibility: visible;
@@ -142,3 +142,61 @@ body {
     top: 300px;
   }
 }
+
+@media (max-width: 460px ) {
+  body {
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    text-align: center;
+    max-width: 460px;
+    background-size: cover;
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .landing-container {
+    max-width: 350px;
+    width: 100%;
+    margin: 10px;
+    padding: 20px 10px;
+    max-height: 400px;
+  }
+
+  .lp-character {
+    padding: 0;
+    height: 95vh;
+  }
+
+  .lp-character img {
+    width: 100px;
+    height: 100px;
+    align-self: flex-end;
+  }
+
+  .frog {
+    z-index: 5;
+    bottom: 0;
+    right: 0;
+    height: 100px;
+  }
+
+  .questions {
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .logo {
+    width: 200px;
+  }
+
+  .get-started-button {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .productivity-gamification {
+    font-size: 18px;
+  }
+}
+
