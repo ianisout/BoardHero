@@ -56,4 +56,9 @@ router.get("/homepagecopy", function (req, res, next) {
 });
 
 
+router.get("/settingscopy", function (req, res, next) {
+  res.render("settingscopy");
+});
+
+
 module.exports = router;
