@@ -51,5 +51,9 @@ router.get("/homepage", function (req, res, next) {
   res.render("homepage");
 });
 
+router.get("/homepagecopy", function (req, res, next) {
+  res.render("homepagecopy");
+});
+
 
 module.exports = router;

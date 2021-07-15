@@ -1,15 +1,13 @@
 .container-settings {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: calc((100% - 720px)/2);
-  left: calc((90% - 1024px)/2);
-  z-index: 1;
+  /* position: absolute; */
 }
 
 form {
   display: flex;
   flex-direction: column;
+  width: 10vw;
 }
 
 .about-feedback {
