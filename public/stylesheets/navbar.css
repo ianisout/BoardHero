@@ -2,8 +2,9 @@ body {
   padding-top: 0px;
 }
 
-.navbar {
+#navbar {
   margin-bottom: 20px;
+  background-color: #8929bb;
 }
 
 
