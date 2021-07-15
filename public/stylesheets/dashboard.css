@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box;
+}
+
+.tasks-dashboard {
+    border: 1px solid; 
+    margin-bottom: 10px;
+    display: flex; 
+    flex-direction: column; 
+    background: rgba(200, 200, 200, 25%); 
+    border-radius: 0.5rem; 
+    padding: 0.75rem
+
+    
+}
+
+
+  .tasks-dashboard button {
+    border: none;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    color: #fafafa;
+    background-color: #8929bb;
+    padding-bottom: 2px;
+    margin-top: 18px;
+  }
+
+
+  .tasks-dashboard input {
+    max-width: 75%; 
+    height: 1.75rem;
+  }
+
+
+  .tasks-dashboar-button-align-info {
+    display: flex; 
+    align-items: flex-end;
+  }
+  .tasks-dashboar-button-align-info button {
+    height: 1.75rem; margin-left: 1rem; margin-top:0
+  }
+
+  @media screen and (min-width: 992px) {
+    #menulinks {
+       display: block;
+    }
+ 
+    #shmenulinks {
+       display: none;
+    }
+ 
+ }
+ 
+ @media (max-width:856px) {
+  #navbar{display: none;}
+  .btn-toggle{display: block;}
+  }
+
+
+  
+
+
+
+
+
