@@ -1,8 +1,6 @@
 @import url(./bootstrap.min.css);
-@import url(./setting.css);
 @import url(./navbar.css);
 @import url(./sidebars.css);
-@import url(./inventory-store.css);
 
 * {
   box-sizing: border-box;
