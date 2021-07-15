@@ -156,3 +156,71 @@ body {
   color: #8929bb;
   background-color: #fafafa;
 }
+
+@media (max-width: 460px) {
+  body {
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+  }
+
+  .logo {
+    width: 130px;
+    justify-self: center;
+    margin: 0;
+  }
+
+  .character-visual {
+    max-width: 180px;
+    max-height: 180px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .categories {
+    width: 50%;
+    overflow-x: scroll;
+  }
+
+  .categories button {
+    padding: 6px 12px; /* para bater com os mesmos 10px do tamanho do outro botao -- esse tem borda de 1px */
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 4px;
+    margin: 5px;
+  }
+
+  .option-list {
+    width: calc(100% - 15px);
+    font-size: 12px;
+  }
+
+  .item-description {
+    margin: 2px;
+  }
+
+  .choice {
+    font-weight: 400;
+  }
+
+  .choice img {
+    width: 80px;
+  }
+
+  ::-webkit-scrollbar {
+    height: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #8829bbcc;
+  }
+
+  .done-button {
+    width: fit-content;
+    height: fit-content;
+    white-space: nowrap;
+    padding: 6px 16px; /* para bater com os mesmos 10px do tamanho do outro botao -- esse tem borda de 1px */
+    font-size: 16px;
+    margin: 12px;
+  }
+}
