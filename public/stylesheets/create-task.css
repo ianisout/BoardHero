@@ -1,16 +1,6 @@
-* {
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    height: 100vh;
-    font-family: "Open Sans", sans-serif;
-    background-color: #fafafa;
-  }
-  
-  button {
-    font-family: "Open Sans", sans-serif;
+
+  main {
+    margin-top: 50px;
   }
   
   .background-effect {
@@ -35,13 +25,13 @@
     justify-content: center;
     width: 800px;
     height: 100%;
-    max-height: 720px;
+    max-height: 700px;
     margin: 5px;
     padding: 0 30px;
-    position: absolute;
+    /* position: absolute;
     z-index: 1;
     top: calc((100% - 720px)/2);
-    left: calc((100% - 800px)/2);
+    left: calc((100% - 800px)/2); */
   }
 
   .dialog-heading h2 {
@@ -73,7 +63,7 @@
 
   .container-create-task textarea {
     font-size: 14px;
-    min-height: 185px;
+    min-height: 142px;
     width: 700px;
     resize: vertical;
   }
@@ -81,7 +71,7 @@
   .form-content {
     display: flex;
     flex-direction: column;
-    height: 550px;
+    height: 500px;
     overflow: scroll;
     overflow-x: hidden;
   }

@@ -1,101 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Tomorrow:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/stylesheets/inventory-store.css" />
-
+    <!-- General Settings and Fonts -->
+    <%- include('./partials/head-general-settings') %>    
+    <!-- CSS Links -->
     <%- include('./partials/bootstrap-css-head') %>
-
-    <link rel="icon" type="image/png" href="images/fav.icon.png" />
+    <link rel="stylesheet" href="/stylesheets/inventory-store.css" />
     <title>Inventory | Board Hero</title>
   </head>
 
   <body>
-    <header><%- include('./partials/sidebar-and-navbar') %></header>
-    <main>
-      <div class="container-inventory-store">
-        <div class="container-inventory">
-          <h1>Inventory</h1>
+    <div class="global">
+      <%- include('./partials/sidebar') %>
 
-          <div class="character">
-            <img src="images/characters/lookalike.svg" alt="" />
-            <p>Lv.12</p>
-          </div>
+      <div class="col_contentpage">
+        <main>
+          <div class="container-inventory-store">
+            <div class="container-inventory">
+              <h1>Inventory</h1>
 
-          <h3>Items</h3>
-          <div class="items-list">
-            <div class="item">
-              <img src="images/clothing-items/dress/dress1.svg" alt="" />
-              <p class="item-description">ITEM</p>
-            </div>
-            <div class="item">
-              <img src="images/clothing-items/eyes/eyes1.svg" alt="" />
-              <p class="item-description">ITEM</p>
-            </div>
-            <div class="item">
-              <img src="images/clothing-items/glasses/glass1.svg" alt="" />
-              <p class="item-description">ITEM</p>
-            </div>
-            <div class="item">
-              <img src="images/clothing-items/hair/hair1.svg" alt="" />
-              <p class="item-description">ITEM</p>
-            </div>
-            <div class="item">
-              <img src="images/clothing-items/hair/hair2.svg" alt="" />
-              <p class="item-description">ITEM</p>
-            </div>
-            <div class="item">
-              <img src="images/clothing-items/hair/hair-back1.svg" alt="" />
-              <p class="item-description">ITEM</p>
-            </div>
-            <div class="item">
-              <img src="images/clothing-items/mouth/mouth1.svg" alt="" />
-              <p class="item-description">ITEM</p>
-            </div>
-            <div class="item">
-              <img src="images/clothing-items/shield/shield1.svg" alt="" />
-              <p class="item-description">ITEM</p>
-            </div>
-            <div class="item">
-              <img src="images/clothing-items/sword/sword1.svg" alt="" />
-              <p class="item-description">ITEM</p>
-            </div>
-            <div class="item">
-              <img src="images/clothing-items/tie/tie1.svg" alt="" />
-              <p class="item-description">ITEM</p>
-            </div>
-          </div>
-
-          <div class="badges">
-            <h3>Badges</h3>
-            <div class="items-list">
-              <div class="item">
-                <img src="images/clothing-items/dress/dress1.svg" alt="" />
-                <p class="item-description">ITEM</p>
+              <div class="character">
+                <img src="images/characters/lookalike.svg" alt="" />
+                <p>Lv.12</p>
               </div>
-              <div class="item">
-                <img src="images/clothing-items/eyes/eyes1.svg" alt="" />
-                <p class="item-description">ITEM</p>
+
+              <h3>Items</h3>
+              <div class="items-list">
+                <div class="item">
+                  <img src="images/clothing-items/dress/dress1.svg" alt="" />
+                  <p class="item-description">ITEM</p>
+                </div>
+                <div class="item">
+                  <img src="images/clothing-items/eyes/eyes1.svg" alt="" />
+                  <p class="item-description">ITEM</p>
+                </div>
+                <div class="item">
+                  <img src="images/clothing-items/glasses/glass1.svg" alt="" />
+                  <p class="item-description">ITEM</p>
+                </div>
+                <div class="item">
+                  <img src="images/clothing-items/hair/hair1.svg" alt="" />
+                  <p class="item-description">ITEM</p>
+                </div>
+                <div class="item">
+                  <img src="images/clothing-items/hair/hair2.svg" alt="" />
+                  <p class="item-description">ITEM</p>
+                </div>
+                <div class="item">
+                  <img src="images/clothing-items/hair/hair-back1.svg" alt="" />
+                  <p class="item-description">ITEM</p>
+                </div>
+                <div class="item">
+                  <img src="images/clothing-items/mouth/mouth1.svg" alt="" />
+                  <p class="item-description">ITEM</p>
+                </div>
+                <div class="item">
+                  <img src="images/clothing-items/shield/shield1.svg" alt="" />
+                  <p class="item-description">ITEM</p>
+                </div>
+                <div class="item">
+                  <img src="images/clothing-items/sword/sword1.svg" alt="" />
+                  <p class="item-description">ITEM</p>
+                </div>
+                <div class="item">
+                  <img src="images/clothing-items/tie/tie1.svg" alt="" />
+                  <p class="item-description">ITEM</p>
+                </div>
+              </div>
+
+              <div class="badges">
+                <h3>Badges</h3>
+                <div class="items-list">
+                  <div class="item">
+                    <img src="images/clothing-items/dress/dress1.svg" alt="" />
+                    <p class="item-description">ITEM</p>
+                  </div>
+                  <div class="item">
+                    <img src="images/clothing-items/eyes/eyes1.svg" alt="" />
+                    <p class="item-description">ITEM</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div class="container-store">
-          <h1>Store</h1>
-          
-        </div>
+            <div class="container-store">
+              <h1>Store</h1>
+              
+            </div>
+          </div>
+        </main>
       </div>
-    </main>
+    </div>
 
-    <%- include('./partials/bootstrap-js-head') %>
+    <%- include('./partials/bootstrap-js-scripts') %>
   </body>
 </html>

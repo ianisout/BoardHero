@@ -89,3 +89,14 @@ button#submit {
 .login button#submit {
   margin-top: 40px;
 }
+
+@media (max-width: 460px) {
+  img.logo {
+    width: 150px;
+  }
+
+  .container {
+    border: none;
+  }
+
+}
