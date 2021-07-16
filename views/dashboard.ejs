@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Tomorrow:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
+    <!-- General Settings and Fonts -->
+    <%- include('./partials/head-general-settings') %> 
 
+    <!-- CSS Links -->
     <link rel="stylesheet" href="/stylesheets/dashboard.css" />
     <link rel="stylesheet" href="/stylesheets/sidebars.css">
     <link rel="stylesheet" href="/stylesheets/navbar.css">
@@ -21,8 +12,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
-
-    <link rel="icon" type="image/png" href="images/fav.icon.png" />
 
     <title>Dashboard</title>
   </head>
@@ -421,5 +410,8 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+
+    <%- include('./partials/bootstrap-js-scripts') %>
+
   </body>
 </html>

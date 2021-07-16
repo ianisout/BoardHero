@@ -13,3 +13,17 @@ body {
   background-color: #fafafa;
 }
 
+button {
+  font-family: "Open Sans", sans-serif;
+}
+
+.global {
+  display: flex;
+}
+
+.col_contentpage {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
