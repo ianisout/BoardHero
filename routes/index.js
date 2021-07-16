@@ -16,10 +16,6 @@ router.get("/create-task", function (req, res, next) {
   res.render("create-task");
 });
 
-/* GET settings function */
-router.get("/settings", function (req, res, next) {
-  res.render("settings");
-});
 
 /* GET character or signup options page  */
 router.get("/char-login", function (req, res, next) {
@@ -56,8 +52,8 @@ router.get("/homepagecopy", function (req, res, next) {
 });
 
 
-router.get("/settingscopy", function (req, res, next) {
-  res.render("settingscopy");
+router.get("/settings", function (req, res, next) {
+  res.render("settings");
 });
 
 /* GET dashboard page */
