@@ -65,4 +65,9 @@ router.get("/dashboard", function (req, res, next) {
   res.render("dashboard");
 });
 
+/* GET view-task-details page */
+router.get("/task-details", function (req, res, next) {
+  res.render("view-task-details");
+});
+
 module.exports = router;

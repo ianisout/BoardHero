@@ -1,0 +1,208 @@
+main {
+  margin-top: 10px;
+}
+
+.background-effect {
+  background-color: #2b2031;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.3;
+  z-index: -15;
+}
+
+.container-view-task {
+  background-color: rgba(247, 247, 247, 0.85);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  padding-right: 5px;
+  margin-top: 5px;
+}
+
+.dialog-heading h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #8929bb;
+  margin-top: 10px;
+}
+
+.container-view-task form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.container-view-task label {
+  font-size: 14px;
+  padding-bottom: 3px;
+}
+
+/* precisa ser alterado para poder dar um "tag" nos itens dentro */
+.container-view-task input {
+  font-style: italic;
+  font-size: 14px;
+  height: 30px;
+  padding: 5px;
+  margin-bottom: 8px;
+  border-style: solid 1px gray;
+  border-radius: 1.7;
+}
+
+.container-view-task textarea {
+  font-size: 14px;
+  min-height: 142px;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  overflow-x: hidden;
+  padding: 0 25px;
+}
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background: #8829bba6;
+}
+
+.form-columns {
+  display: flex;
+}
+
+.form-details {
+  display: flex;
+  flex-direction: column;
+  padding-right: 40px;
+  flex-grow: 4;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+.actions > label {
+  color: #8929bb;
+  font-weight: bold;
+}
+
+.form-actions .flag {
+  display: flex;
+  align-items: center;
+}
+
+.form-actions .flag label {
+  padding-bottom: 8px;
+  padding-left: 10px;
+}
+
+.attachments-reminders-flags {
+  margin-top: 10px;
+  display: flex;
+}
+
+.attachments-reminders-flags a {
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+  text-decoration: none;
+  color: #2b2031;
+  font-size: 10px;
+  align-items: center;
+  align-self: flex-start;
+}
+
+.attachments-reminders-flags p {
+  padding-top: 3px;
+}
+
+#finish-task {
+  border: none;
+  width: 100px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fafafa;
+  background-color: #8929bb;
+  padding-bottom: 2px;
+  margin-top: 18px;
+}
+
+#delete-task {
+  color: #8929bb;
+  text-decoration: none;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+#delete-task:hover {
+  text-decoration: underline;
+}
+
+.description-section {
+  margin: 10px 0;
+}
+
+#description {
+  border: #8929bb solid 0.5px;
+  margin-top: 10px;
+  font-size: 14px;
+  background-color: #fafafa;
+  padding: 10px;
+  color: black;
+  margin: 10px 0;
+}
+
+.form-subtitle {
+  color: #8929bb;
+  font-size: 18px;
+}
+
+.comment-section {
+  margin: 10px 0;
+}
+
+.single-comment {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  border: #8929bb solid 0.5px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.commentator-name {
+  color: #8929bb;
+  font-weight: 600;
+}
+
+.comment-text {
+  border: #8929bb solid 0.5px;
+  font-size: 14px;
+  background-color: #fafafa;
+  padding: 10px;
+}
+
+.comment-text p {
+  margin: 0;
+}
