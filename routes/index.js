@@ -27,16 +27,6 @@ router.get("/character-creation", function (req, res, next) {
   res.render("character-creation");
 });
 
-/* GET signup page */
-router.get("/signup", function (req, res, next) {
-  res.render("signup");
-});
-
-/* GET login page */
-router.get("/login", function (req, res, next) {
-  res.render("login");
-});
-
 /* GET inventory/store page */
 router.get("/inventory", function (req, res, next) {
   res.render("inventory-store");
