@@ -1,14 +1,14 @@
 .container-settings {
   display: flex;
   flex-direction: column;
-  /* position: absolute; */
+  padding: 50px 100px;
 }
 
 
 form {
   display: flex;
   flex-direction: column;
-  width: 10vw;
+  width: 25vw;
 }
 
 .about-feedback {

@@ -3,403 +3,337 @@
   <head>
     <!-- General Settings and Fonts -->
     <%- include('./partials/head-general-settings') %> 
-
     <!-- CSS Links -->
+    <%- include('./partials/bootstrap-css-head') %>    
     <link rel="stylesheet" href="/stylesheets/dashboard.css" />
-    <link rel="stylesheet" href="/stylesheets/sidebars.css">
-    <link rel="stylesheet" href="/stylesheets/navbar.css">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
-
     <title>Dashboard</title>
   </head>
+
   <body>
-    <nav id="navbar">
-      <div class="sidebar">
-        <div class="logo-details">
-          <a href="/homepage"><img src="#" alt=""></a>
-          <div class="logo_name">BoardHero </div>
-          <i class='bx bx-menu' id="btn"></i>
-        </div>
-        <div class="character-info">
-          <div class="character-image">
-          </div>
-          <div class="characterprogress">
-            <div id="exp_progress">
-              <span>EXP</span>
-              <span>50/100</span>
-              <div class="progress mb-2">
-                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%"
-                  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div id="character_coins">
-              <span> Hero Coins</span>
-              <i class="bi bi-coin"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-coin" viewBox="0 0 16 16">
-                  <path
-                    d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z" />
-                  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path fill-rule="evenodd"
-                    d="M8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
-                </svg></i>
-              <span>0</span>
-            </div>
-          </div>
-        </div>
-        <div class="sidebar-content">
-          <ul class="nav-list" style="padding: 0 0;">
-            <li>
-              <a href="/dashboard">
-                <img src="/images/icons/tasks.svg" alt="">
-                <span class="links_name">Dashboard</span>
-              </a>
-              <span class="tooltip">Dashboard</span>
-            </li>
-            <li>
-              <a href="/inventory">
-                <img src="/images/icons/inventory.svg" alt="">
-                <span class="links_name">Inventory</span>
-              </a>
-              <span class="tooltip">Inventory</span>
-            </li>
-            <li>
-              <a href="/settings">
-                <img src="/images/icons/gear.svg" alt="">
-                <span class="links_name">Settings</span>
-              </a>
-              <span class="tooltip">Settings</span>
-            </li>
-            <li class="profile">
-              <div class="profile-details">
-                <!--<img src="profile.jpg" alt="profileImg">-->
-                <div class="name_job">
-                  <div class="name">BoardHero</div>
-                  <div class="job">BoardHero</div>
+    <div>
+      <%- include('./partials/sidebar') %>
+
+      <div class="home-section">
+        <!-- %- include('./partials/navbar') %> -->
+
+        <main>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 col-md-4">
+                <h2>Requested</h2>
+
+                <div class="col-md-12 tasks-dashboard">
+                  <div style="display: flex; align-items: flex-end">
+                    <input type="text" placeholder="Task name" />
+                    <button
+                      type="submit"
+                      style="height: 1.75rem; margin-left: 1rem; margin-top: 0"
+                    >
+                      + Info
+                    </button>
+                  </div>
+                  <div>
+                    <p>#tags #tags #tags</p>
+                  </div>
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: flex-end;
+                    "
+                  >
+                    <button type="submit">Start</button>
+                    <img
+                      src="/images/icons/alert.svg"
+                      alt=""
+                      width="40"
+                      height="40"
+                    />
+                  </div>
                 </div>
               </div>
-              <i class='bx bx-log-out' id="log_out"></i>
-            </li>
-          </ul>
-        </div>
+              <div class="col-12 col-sm-12 col-md-4">
+                <h2>In Progress</h2>
+                <div class="col-md-12 tasks-dashboard">
+                  <div class="box">
+                    <div class="tasks-dashboar-button-align-info">
+                      <input type="text" placeholder="Task name" />
+                      <button type="submit">+ Info</button>
+                    </div>
+                    <div>
+                      <p>#tags #tags #tags</p>
+                    </div>
+                    <div>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: flex-end;
+                        height: 3.5rem;
+                      "
+                    >
+                      <img
+                        src="/images/icons/alert2.svg"
+                        alt=""
+                        width="40"
+                        height="40"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-4">
+                <h2>Done</h2>
+                <div class="col-md-12 tasks-dashboard">
+                  <div style="display: flex; align-items: flex-end">
+                    <input type="text" placeholder="Task name" />
+                    <button
+                      type="submit"
+                      style="height: 1.75rem; margin-left: 1rem; margin-top: 0"
+                    >
+                      + Info
+                    </button>
+                  </div>
+
+                  <div>
+                    <p>#tags #tags #tags</p>
+                  </div>
+
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: flex-end;
+                      align-items: flex-end;
+                      height: 3.5rem;
+                    "
+                  >
+                    <img
+                      src="/images/icons/alert3.svg"
+                      alt=""
+                      width="40"
+                      height="40"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="col-md-12 tasks-dashboard">
+                  <div class="tasks-dashboar-button-align-info">
+                    <input type="text" placeholder="Task name" />
+                    <button type="submit">+ Info</button>
+                  </div>
+
+                  <div>
+                    <p>#tags #tags #tags</p>
+                  </div>
+
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: flex-end;
+                    "
+                  >
+                    <button type="submit">Start</button>
+                    <img
+                      src="/images/icons/alert.svg"
+                      alt=""
+                      width="40"
+                      height="40"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="col-md-12 tasks-dashboard submit">
+                  <div class="tasks-dashboar-button-align-info">
+                    <input type="text" placeholder="Task name" />
+                    <button type="submit">+ Info</button>
+                  </div>
+
+                  <div>
+                    <p>#tags #tags #tags</p>
+                  </div>
+
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: flex-end;
+                      align-items: flex-end;
+                      height: 3.5rem;
+                    "
+                  >
+                    <img
+                      src="/images/icons/alert2.svg"
+                      alt=""
+                      width="40"
+                      height="40"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="col-md-12 tasks-dashboard">
+                  <div class="tasks-dashboar-button-align-info">
+                    <input type="text" placeholder="Task name" />
+                    <button type="submit">+ Info</button>
+                  </div>
+
+                  <div>
+                    <p>#tags #tags #tags</p>
+                  </div>
+
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: flex-end;
+                      align-items: flex-end;
+                      height: 3.5rem;
+                    "
+                  >
+                    <img
+                      src="/images/icons/alert3.svg"
+                      alt=""
+                      width="40"
+                      height="40"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="col-md-12 tasks-dashboard">
+                  <div style="display: flex; align-items: flex-end">
+                    <input type="text" placeholder="Task name" />
+                    <button
+                      type="submit"
+                      style="height: 1.75rem; margin-left: 1rem; margin-top: 0"
+                    >
+                      + Info
+                    </button>
+                  </div>
+
+                  <div>
+                    <p>#tags #tags #tags</p>
+                  </div>
+
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: flex-end;
+                    "
+                  >
+                    <button type="submit">Start</button>
+                    <img
+                      src="/images/icons/alert.svg"
+                      alt=""
+                      width="40"
+                      height="40"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="col-md-12 tasks-dashboard">
+                  <div class="tasks-dashboar-button-align-info">
+                    <input type="text" placeholder="Task name" />
+                    <button type="submit">+ Info</button>
+                  </div>
+
+                  <div>
+                    <p>#tags #tags #tags</p>
+                  </div>
+
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: flex-end;
+                      align-items: flex-end;
+                      height: 3.5rem;
+                    "
+                  >
+                    <img
+                      src="/images/icons/alert2.svg"
+                      alt=""
+                      width="40"
+                      height="40"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="col-md-12 tasks-dashboard">
+                  <div class="tasks-dashboar-button-align-info">
+                    <input type="text" placeholder="Task name" />
+                    <button type="submit">+ Info</button>
+                  </div>
+
+                  <div>
+                    <p>#tags #tags #tags</p>
+                  </div>
+
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: flex-end;
+                      align-items: flex-end;
+                      height: 3.5rem;
+                    "
+                  >
+                    <img
+                      src="/images/icons/alert3.svg"
+                      alt=""
+                      width="40"
+                      height="40"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
       </div>
-    </nav>
-    <main>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 col-md-4">
-            <h2>Requested</h2>
+    </div>
 
-            <div class="col-md-12 tasks-dashboard">
-              <div style="display: flex; align-items: flex-end">
-                <input type="text" placeholder="Task name" />
-                <button
-                  type="submit"
-                  style="height: 1.75rem; margin-left: 1rem; margin-top: 0"
-                >
-                  + Info
-                </button>
-              </div>
-              <div>
-                <p>#tags #tags #tags</p>
-              </div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              </div>
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: flex-end;
-                "
-              >
-                <button type="submit">Start</button>
-                <img
-                  src="/images/icons/alert.svg"
-                  alt=""
-                  width="40"
-                  height="40"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-12 col-md-4">
-            <h2>In Progress</h2>
-            <div class="col-md-12 tasks-dashboard">
-              <div class="box">
-                <div class="tasks-dashboar-button-align-info">
-                  <input type="text" placeholder="Task name" />
-                  <button type="submit">+ Info</button>
-                </div>
-                <div>
-                  <p>#tags #tags #tags</p>
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </div>
-                <div
-                  style="
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: flex-end;
-                    height: 3.5rem;
-                  "
-                >
-                  <img
-                    src="/images/icons/alert2.svg"
-                    alt=""
-                    width="40"
-                    height="40"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-12 col-md-4">
-            <h2>Done</h2>
-            <div class="col-md-12 tasks-dashboard">
-              <div style="display: flex; align-items: flex-end">
-                <input type="text" placeholder="Task name" />
-                <button
-                  type="submit"
-                  style="height: 1.75rem; margin-left: 1rem; margin-top: 0"
-                >
-                  + Info
-                </button>
-              </div>
-
-              <div>
-                <p>#tags #tags #tags</p>
-              </div>
-
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              </div>
-
-              <div
-                style="
-                  display: flex;
-                  justify-content: flex-end;
-                  align-items: flex-end;
-                  height: 3.5rem;
-                "
-              >
-                <img
-                  src="/images/icons/alert3.svg"
-                  alt=""
-                  width="40"
-                  height="40"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="col-md-12 tasks-dashboard">
-              <div class="tasks-dashboar-button-align-info">
-                <input type="text" placeholder="Task name" />
-                <button type="submit">+ Info</button>
-              </div>
-
-              <div>
-                <p>#tags #tags #tags</p>
-              </div>
-
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              </div>
-
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: flex-end;
-                "
-              >
-                <button type="submit">Start</button>
-                <img
-                  src="/images/icons/alert.svg"
-                  alt=""
-                  width="40"
-                  height="40"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="col-md-12 tasks-dashboard submit">
-              <div class="tasks-dashboar-button-align-info">
-                <input type="text" placeholder="Task name" />
-                <button type="submit">+ Info</button>
-              </div>
-
-              <div>
-                <p>#tags #tags #tags</p>
-              </div>
-
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              </div>
-
-              <div
-                style="
-                  display: flex;
-                  justify-content: flex-end;
-                  align-items: flex-end;
-                  height: 3.5rem;
-                "
-              >
-                <img
-                  src="/images/icons/alert2.svg"
-                  alt=""
-                  width="40"
-                  height="40"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="col-md-12 tasks-dashboard">
-              <div class="tasks-dashboar-button-align-info">
-                <input type="text" placeholder="Task name" />
-                <button type="submit">+ Info</button>
-              </div>
-
-              <div>
-                <p>#tags #tags #tags</p>
-              </div>
-
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              </div>
-
-              <div
-                style="
-                  display: flex;
-                  justify-content: flex-end;
-                  align-items: flex-end;
-                  height: 3.5rem;
-                "
-              >
-                <img
-                  src="/images/icons/alert3.svg"
-                  alt=""
-                  width="40"
-                  height="40"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="col-md-12 tasks-dashboard">
-              <div style="display: flex; align-items: flex-end">
-                <input type="text" placeholder="Task name" />
-                <button
-                  type="submit"
-                  style="height: 1.75rem; margin-left: 1rem; margin-top: 0"
-                >
-                  + Info
-                </button>
-              </div>
-
-              <div>
-                <p>#tags #tags #tags</p>
-              </div>
-
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              </div>
-
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: flex-end;
-                "
-              >
-                <button type="submit">Start</button>
-                <img
-                  src="/images/icons/alert.svg"
-                  alt=""
-                  width="40"
-                  height="40"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="col-md-12 tasks-dashboard">
-              <div class="tasks-dashboar-button-align-info">
-                <input type="text" placeholder="Task name" />
-                <button type="submit">+ Info</button>
-              </div>
-
-              <div>
-                <p>#tags #tags #tags</p>
-              </div>
-
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              </div>
-
-              <div
-                style="
-                  display: flex;
-                  justify-content: flex-end;
-                  align-items: flex-end;
-                  height: 3.5rem;
-                "
-              >
-                <img
-                  src="/images/icons/alert2.svg"
-                  alt=""
-                  width="40"
-                  height="40"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="col-md-12 tasks-dashboard">
-              <div class="tasks-dashboar-button-align-info">
-                <input type="text" placeholder="Task name" />
-                <button type="submit">+ Info</button>
-              </div>
-
-              <div>
-                <p>#tags #tags #tags</p>
-              </div>
-
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              </div>
-
-              <div
-                style="
-                  display: flex;
-                  justify-content: flex-end;
-                  align-items: flex-end;
-                  height: 3.5rem;
-                "
-              >
-                <img
-                  src="/images/icons/alert3.svg"
-                  alt=""
-                  width="40"
-                  height="40"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
     <footer></footer>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

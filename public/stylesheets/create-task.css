@@ -1,3 +1,6 @@
+  .navbar {
+    width: 70%;
+  }
 
   main {
     margin-top: 50px;
@@ -28,10 +31,6 @@
     max-height: 700px;
     margin: 5px;
     padding: 0 30px;
-    /* position: absolute;
-    z-index: 1;
-    top: calc((100% - 720px)/2);
-    left: calc((100% - 800px)/2); */
   }
 
   .dialog-heading h2 {
