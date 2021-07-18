@@ -13,13 +13,14 @@ body {
   display: flex;
   justify-content: space-between;
   position: absolute;
-  top: 80px;
+  top: 0px;
   left: 300px;
   background-color: #fafafa;
   height: 85%;
   max-width: 45vw;
   width: 100%;
   color:#8929bb;
+  padding-top: 80px;
 }
 
 /* INVENTORY + BADGES */
@@ -87,7 +88,11 @@ h3 {
 }
 
 .container-store {
-  display: grid;
+  /* display: grid; */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
 }
 
 .item:hover {
