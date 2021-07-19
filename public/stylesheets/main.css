@@ -28,6 +28,10 @@ button {
   align-items: center;
 }
 
+.navbar {
+  width: 100%;
+}
+
 .navbar nav {
   width: 100%;
 }

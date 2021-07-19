@@ -1,9 +1,11 @@
-  .navbar {
-    width: 70%;
+  .home-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   main {
-    margin-top: 50px;
+    margin-top: 5vh;
   }
   
   .background-effect {
@@ -37,13 +39,13 @@
       font-size: 24px;
       font-weight: 600;
       color: #8929bb;
-      margin: 20px 0;
+      margin: 10px 0;
   }
 
   .container-create-task form {
     display: flex;
     flex-direction: column;
-    padding-bottom: 25px;
+    padding-bottom: 15px;
   }
   
   .container-create-task label {
@@ -111,11 +113,15 @@
     align-items: center;
   }
 
-  .form-flags .flag label {
-    padding-bottom: 8px;
-    padding-left: 10px;
+  .form-flags .flag input {
+    margin: 0;
   }
 
+  .form-flags .flag label {
+    padding-bottom: 0;
+    padding-left: 10px;
+  }
+  
   .task-dates {
     margin: 8px 0;
   }
@@ -135,7 +141,7 @@
     border-radius: 3px;
     color: #8929bb;
     background-color: #fafafa;
-    margin-top: 10px;
+    margin-top: 5px;
     transition: all 0.5s;
   }
   
