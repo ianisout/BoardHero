@@ -21,8 +21,8 @@
 
   .container-create-task {
     background-color: rgba(247, 247, 247, 0.85);
-    border: #8929bb solid 2px;
-    border-radius: 10px;
+    border: #8929bb solid 1.5px;
+    border-radius: 8px;
     font-size: 25px;
     font-weight: 400;
     display: flex;
