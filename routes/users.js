@@ -16,6 +16,11 @@ router.get("/login", function (req, res, next) {
   res.render("login");
 });
 
+/* GET forgot-password page */
+router.get("/forgot-password", function (req, res, next) {
+  res.render("forgot-password");
+});
+
 /* GET user settings page */
 router.get("/settings", function (req, res, next) {
   res.render("settings");

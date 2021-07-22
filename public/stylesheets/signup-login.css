@@ -66,7 +66,7 @@ input {
   border-radius: 1.7;
 }
 
-#password-recovery {
+#password-recovery, #return-login {
   text-align: center;
   width: 100%;
   margin-top: 30px;
@@ -89,6 +89,26 @@ button#submit {
 .login button#submit {
   margin-top: 40px;
 }
+
+.forgot-password h2 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 28px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.forgot-password label {
+  width: 90%;
+  align-self: center;
+}
+
+.forgot-password input {
+  width: 90%;
+  align-self: center;
+  margin-bottom: 12px;
+}
+
 
 @media (max-width: 460px) {
   img.logo {
