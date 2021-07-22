@@ -23,7 +23,7 @@
                         <h2>Create task</h2>
                     </div>
         
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
                     <div class="form-content">
                         <div class="form-columns">
                             <div class="form-details">
@@ -72,7 +72,8 @@
         
                         <div class="attachments">
                             <label>Attachments</label>
-                            <button type="button" id="button">Upload</button>
+                            <!-- <input type="file" name="task-files" multiple/> -->
+                            <button type="submit" id="submit-files">Upload</button>
                         </div>
                     </div>
                     <div class="form-footer">
