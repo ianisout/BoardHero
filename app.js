@@ -1,8 +1,10 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const methodOverride = require('method-override');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -16,8 +18,15 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
+app.use(cookieParser());
+
+app.use(session({ 
+  secret: "DH - Projeto Integrador - BoardHero",
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
