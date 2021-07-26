@@ -99,6 +99,10 @@
     padding-right: 50px;
   }
 
+  input[type='checkbox'] {
+    filter: hue-rotate(60deg) grayscale(35%);
+  }
+
   .form-flags {
     display: flex;
     flex-direction: column;
