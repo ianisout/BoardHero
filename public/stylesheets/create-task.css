@@ -133,10 +133,13 @@
     margin-top: 20px;
   }
 
-  .attachments button {
-    border: #8929bb dashed 1px;;
-    width: 250px;
-    height: 30px;
+  .attachments .upload-files {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: #8929bb dashed 1px;
+    width: 350px;
+    height: 50px;
     font-size: 14px;
     font-weight: 600;
     border-radius: 3px;
@@ -146,7 +149,7 @@
     transition: all 0.5s;
   }
   
-  .attachments button:hover {
+  .attachments .upload-files:hover {
     border: #8929bb solid 1px;
   }
 
