@@ -157,6 +157,18 @@
     border: #8929bb solid 1px;
   }
 
+  .upload-files input {
+    margin-bottom: 4px;
+
+  }
+
+  input[type=file]::-webkit-file-upload-button {
+    border: 1px solid #8929bb;
+    border-radius: 3px;
+    background: #8929bb;
+    color: #fafafa;
+  }
+
   .form-footer {
     align-self: flex-end;
   }
