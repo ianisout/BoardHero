@@ -49,25 +49,25 @@
     padding-bottom: 15px;
   }
   
-  .container-create-task label {
-    font-size: 14px;
-    padding-bottom: 3px;
-  }
-  
-  .container-create-task input {
-    font-size: 14px;
-    height: 32px;
-    padding: 5px;
-    margin-bottom: 8px;
-    border-style: solid 1px gray;
-    border-radius: 1.7;
-  }
-
   .container-create-task textarea {
     font-size: 14px;
     min-height: 142px;
     width: 690px;
     resize: vertical;
+  }
+
+  .container-create-task label {
+    font-size: 14px;
+    padding-bottom: 3px;
+  }
+  
+  .form-columns input {
+    font-size: 14px;
+    height: 28px;
+    padding: 5px;
+    margin-bottom: 8px;
+    border-style: solid 1px gray;
+    border-radius: 1.7;
   }
 
   .form-content {
@@ -131,42 +131,31 @@
     margin: 8px 0;
   }
 
-  .attachments {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-  }
-
-  .attachments .upload-files {
+  .upload-files {
     display: flex;
     justify-content: center;
     align-items: center;
     border: #8929bb dashed 1px;
-    width: 350px;
-    height: 50px;
     font-size: 14px;
     font-weight: 600;
     border-radius: 3px;
-    color: #8929bb;
     background-color: #fafafa;
+    width: 50%;
+    padding: 8px;
     margin-top: 5px;
     transition: all 0.5s;
   }
   
-  .attachments .upload-files:hover {
+  .upload-files:hover {
     border: #8929bb solid 1px;
   }
 
-  .upload-files input {
-    margin-bottom: 4px;
-
-  }
-
   input[type=file]::-webkit-file-upload-button {
+    background: #fafafa;
     border: 1px solid #8929bb;
     border-radius: 3px;
-    background: #8929bb;
-    color: #fafafa;
+    color: #8929bb;
+    font-weight: 600;
   }
 
   .form-footer {
