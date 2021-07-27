@@ -231,13 +231,33 @@ span {
   margin: 18px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 420px) {
+
   .sidebar {
-    position: absolute;
-    left: -250px;
+    visibility: hidden;
+    display: none;
+    position: relative;
   }
 
-  .profile{
+  .profile {
     display: none;
+  }
+  .home-section {
+    position: relative;
+    left: 0px;
+    padding-left: 5 0px;
+  }
+  .home-section {
+    width: 100vw;
+  }
+
+  .sidebar .logo-details #btn {
+    color: #000000;
+    visibility: unset;
+    display: unset;
+    position: absolute;
+    left: 250px;
+    top: 250px;
+    z-index: 99;
   }
 }
