@@ -246,9 +246,14 @@ span {
     position: relative;
     left: 0px;
     padding-left: 5 0px;
-  }
-  .home-section {
     width: 100vw;
+  }
+
+  .home-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
   }
 
   .sidebar .logo-details #btn {
