@@ -216,3 +216,37 @@ input[type='checkbox'] {
 .comment-text p {
   margin: 0;
 }
+@media screen and (max-width: 768px) {
+  .sidebar,
+  .background-effect {
+    display: none;
+    visibility: hidden;
+    position: relative;
+  }
+
+  .home-section {
+    position: relative;
+    left: 0px;
+    display: block;
+  }
+
+  .container-view-task {
+    width: 100vw;
+  }
+
+  .form-columns {
+    flex-direction: column;
+  }
+
+  .form-details {
+    padding: 0;
+  }
+
+  .form-actions {
+    align-items: unset;
+  }
+
+  .container-view-task form{
+    width: 100vw;
+  }
+}
