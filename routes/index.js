@@ -40,9 +40,6 @@ router.get("/homepage", function (req, res, next) {
   res.render("homepage");
 });
 
-router.get("/homepagecopy", function (req, res, next) {
-  res.render("homepagecopy");
-});
 
 /* GET dashboard page */
 router.get("/dashboard", function (req, res, next) {

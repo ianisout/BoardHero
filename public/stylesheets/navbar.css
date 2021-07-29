@@ -7,10 +7,17 @@ body {
   background-color: #8929bb;
 }
 
-
-.scrolled-down{
-  transform:translateY(-100%); transition: all 0.3s ease-in-out;
+.scrolled-down {
+  transform: translateY(-100%);
+  transition: all 0.3s ease-in-out;
 }
-.scrolled-up{
-  transform:translateY(0); transition: all 0.3s ease-in-out;
+.scrolled-up {
+  transform: translateY(0);
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 420px) {
+  .navbar .navbar-brand{
+    visibility: hidden;
+  }
 }
