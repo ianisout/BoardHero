@@ -29,6 +29,14 @@ main {
   margin-top: 5px;
 }
 
+.dialog-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  flex-grow: 5;
+}
+
 .dialog-heading h2 {
   font-size: 24px;
   font-weight: 600;
@@ -83,29 +91,45 @@ main {
 
 .form-columns {
   display: flex;
+  flex-direction: column;
 }
 
 .form-details {
   display: flex;
   flex-direction: column;
-  padding-right: 40px;
-  flex-grow: 4;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 5;
 }
 
 input[type='checkbox'] {
   filter: hue-rotate(60deg) grayscale(35%);
 }
 
+.action-buttons {
+  margin-right: 30px;
+}
+
 .form-actions {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  align-items: center;
-  margin-right: 15px;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .actions {
   margin-top: 10px;
+  padding-right: 55px;
 }
 
 .actions > label {
@@ -190,6 +214,11 @@ input[type='checkbox'] {
   margin: 10px 0;
 }
 
+#new-comment {
+  margin-left: 60px;
+  width: 300px;
+}
+
 .single-comment {
   display: flex;
   margin-bottom: 10px;
@@ -216,6 +245,7 @@ input[type='checkbox'] {
 .comment-text p {
   margin: 0;
 }
+
 @media screen and (max-width: 768px) {
   .sidebar,
   .background-effect {
@@ -224,29 +254,43 @@ input[type='checkbox'] {
     position: relative;
   }
 
+  main, .action-buttons, .dialog-heading h2 {
+    margin: 0;
+  }
+
+  .form-content {
+    height: 100vh;
+    margin: 0;
+  }
+
   .home-section {
     position: relative;
     left: 0px;
     display: block;
   }
 
+  .container-view-task form, #finish-task, .form-details {
+    padding: 0;
+  }
+
   .container-view-task {
     width: 100vw;
+    margin: 0;
   }
 
   .form-columns {
     flex-direction: column;
   }
 
-  .form-details {
-    padding: 0;
+  .dialog-heading {
+    padding-bottom: 10px;
   }
 
   .form-actions {
     align-items: unset;
   }
 
-  .container-view-task form{
+  .container-view-task form {
     width: 100vw;
   }
 }
