@@ -115,7 +115,7 @@ main {
   flex-grow: 5;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   filter: hue-rotate(60deg) grayscale(35%);
 }
 
@@ -277,7 +277,9 @@ input[type='checkbox'] {
     font-weight: 800;
   }
 
-  main, .action-buttons, .dialog-heading h2 {
+  main,
+  .action-buttons,
+  .dialog-heading h2 {
     margin: 0;
   }
 
@@ -291,7 +293,9 @@ input[type='checkbox'] {
     display: block;
   }
 
-  .container-view-task form, #finish-task, .form-details {
+  .container-view-task form,
+  #finish-task,
+  .form-details {
     padding: 0;
   }
 
@@ -319,5 +323,11 @@ input[type='checkbox'] {
 
   ::-webkit-scrollbar {
     width: 4px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .left-container {
+    padding-right: 25px;
   }
 }
