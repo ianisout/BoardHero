@@ -12,7 +12,7 @@ Nothing wrong with a bit of enjoyment to boost productivity
 
 ### Hosting
 
-GitHub Pages: https://ianisout.github.io/BoardHero/
+Heroku: https://boardhero.herokuapp.com/
 
 ____
 
