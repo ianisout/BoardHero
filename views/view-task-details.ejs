@@ -21,66 +21,69 @@
                   
                   <form action="" method="POST">
                     <div class="form-content">
-                      <div class="form-columns">
-                        <div class="form-details">
-                              <div class="dialog-heading">
-                                  <h2>Task name</h2>
-                              </div>
-                              <label for="tags">Participants</label>
-                                <input type="text" id="participants" name="participants" value="@felipe, @nath, @ian, @adriano"/>
-                    
-                                <label for="tags">Tags</label>
-                                <input type="text" id="tags" name="tags" value="#devTeam, #frontEnd, #backEnd"/>
-                    
-                                <div class="due-date">
-                                    <label>Due date: <strong>01/01/2000</strong></label>
-                                </div>
+                      <div class="go-back"><a href="/dashboard">&lt</a></div>
 
-                                <div class="attachments-reminders-flags">
-                                  <a class="attachments-reminders-flags-button" href="">
-                                    <img src="/images/icons/attachment.svg" style="width: 20px" alt="">
-                                    <p>Attm.</p>
-                                  </a>
-                                  <a class="attachments-reminders-flags-button" href="">
-                                    <img src="/images/icons/reminder.svg" style="width: 20px" alt="">
-                                    <p>Reminder</p>
-                                  </a>
-                                  <a class="attachments-reminders-flags-button" href="">
-                                    <img src="/images/icons/flag.svg" style="width: 20px" alt="">
-                                    <p>Flags</p>
-                                  </a>
-                              </div>
+                      <div class="form-columns">
+                        <div class="dialog-heading">
+                            <h2>Task name</h2>
+                            <div class="action-buttons">
+                              <button id="finish-task" type="submit" class="task-action">Finish</button>
+                              <a id="delete-task" href="#">Delete</a>
                             </div>
-                            <div class="form-actions">
-                              <div class="action-buttons">
-                                <button id="finish-task" type="submit" class="task-action">Finish</button>
-                                <a id="delete-task" href="#">Delete</a>
+                        </div>
+                        <div class="form-details">
+                          <div class="left-container">
+                            <label for="tags">Participants</label>
+                              <input type="text" id="participants" name="participants" value="@felipe, @nath, @ian, @adriano"/>
+                  
+                              <label for="tags">Tags</label>
+                              <input type="text" id="tags" name="tags" value="#devTeam, #frontEnd, #backEnd"/>
+                  
+                              <div class="due-date">
+                                  <label>Due date: <strong>01/01/2000</strong></label>
                               </div>
-                              <div class="actions">
-                                  <label>Actions:</label>
-                                    <div class="flag">
-                                        <input type="checkbox" name="task-flags" id="option-pending-tests" checked>
-                                        <label for="option-pending-tests">Pending tests</label>
-                                    </div>
-                                    <div class="flag">
-                                        <input type="checkbox" name="task-flags" id="option-pending-approval" checked>
-                                        <label for="option-pending-approval">Pending approval</label>
-                                    </div>
-                                    <div class="flag">
-                                        <input type="checkbox" name="task-flags" id="option-approved">
-                                        <label for="option-approved">Approved</label>
-                                    </div>
-                                </div>
+
+                              <div class="attachments-reminders-flags">
+                                <a class="attachments-reminders-flags-button" href="">
+                                  <img src="/images/icons/attachment.svg" style="width: 20px" alt="">
+                                  <p>Attm.</p>
+                                </a>
+                                <a class="attachments-reminders-flags-button" href="">
+                                  <img src="/images/icons/reminder.svg" style="width: 20px" alt="">
+                                  <p>Reminder</p>
+                                </a>
+                                <a class="attachments-reminders-flags-button" href="">
+                                  <img src="/images/icons/flag.svg" style="width: 20px" alt="">
+                                  <p>Flags</p>
+                                </a>
                             </div>
+                          </div>
+                          <div class="form-actions">
+
+                            <div class="actions">
+                                <label>Actions:</label>
+                                  <div class="flag">
+                                      <input type="checkbox" name="task-flags" id="option-pending-tests" checked>
+                                      <label for="option-pending-tests">Pending tests</label>
+                                  </div>
+                                  <div class="flag">
+                                      <input type="checkbox" name="task-flags" id="option-pending-approval" checked>
+                                      <label for="option-pending-approval">Pending approval</label>
+                                  </div>
+                                  <div class="flag">
+                                      <input type="checkbox" name="task-flags" id="option-approved">
+                                      <label for="option-approved">Approved</label>
+                                  </div>
+                              </div>
+                          </div>
+                          </div>
                         </div>
                         
                         <div class="description-section">
                           <h3 class="form-subtitle">Description</label>
                           <p id="description" cols="30" rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error doloribus saepe eos consequatur, dolore vero dolores dolorum tenetur quidem nostrum recusandae modi nesciunt ex nihil ducimus fuga officiis cupiditate itaque!
                           Odio eaque incidunt, nobis consequuntur illum repudiandae tenetur. Labore possimus fuga fugiat quo tenetur cum numquam illo vel sint debitis? Aut animi nostrum nihil, ea maxime facere iusto eaque possimus.
-                          Illo molestias iste aliquam nulla modi mollitia delectus eaque autem quia culpa, maxime libero maiores dolorum fugiat? Voluptas illum nulla commodi sunt eveniet, labore sint neque! Impedit dolorem quaerat cupiditate? Lorem ipsum dolor sit amet consectetur adipisicing elit. Error doloribus saepe eos consequatur, dolore vero dolores dolorum tenetur quidem nostrum recusandae modi nesciunt ex nihil ducimus fuga officiis cupiditate itaque!
-                          Odio eaque incidunt, nobis consequuntur illum repudiandae tenetur. Labore possimus fuga fugiat quo tenetur cum numquam illo vel sint debitis? Aut animi nostrum nihil, ea maxime facere iusto eaque possimus.
-                          Illo molestias iste aliquam nulla modi mollitia delectus eaque autem quia culpa, maxime libero maiores dolorum fugiat? Voluptas illum nulla commodi sunt eveniet, labore sint neque! Impedit dolorem quaerat cupiditate?</p>
+                          Illo molestias iste aliquam nulla modi mollitia delectus eaque autem quia culpa, maxime libero maiores dolorum fugiat? Voluptas illum nulla commodi sunt eveniet, labore sint neque! Impedit dolorem quaerat cupiditate? Lorem ipsum dolor sit amet consectetur adipisicing elit. Error doloribus saepe eos consequatur, dolore vero dolores dolorum tenetur quidem nostrum recusandae modi nesciunt ex nihil ducimus fuga officiis cupiditate itaque!</p>
                         </div>
 
                         <div class="comment-section">
@@ -107,13 +110,8 @@
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam odit unde sequi distinctio ipsum non facilis voluptas? Obcaecati quo assumenda porro. Doloremque soluta magnam excepturi facilis voluptate optio aperiam molestiae!</p>
                               </div>
                             </div>
-                            <div class="single-comment">
-                              <img class="avatar" src="/images/characters/naked-brown.svg" alt="">
-                              <div class="comment-text">
-                                <p class="commentator-name">Jeff Lebowski</p>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam odit unde sequi distinctio ipsum non facilis voluptas? Obcaecati quo assumenda porro. Doloremque soluta magnam excepturi facilis voluptate optio aperiam molestiae!</p>
-                              </div>
-                            </div>
+                            <input id="new-comment" type="text" class="comment-text" placeholder="Write a comment">
+
                           </div>
                         </div>
         

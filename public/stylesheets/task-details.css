@@ -19,6 +19,10 @@ main {
   z-index: -15;
 }
 
+.go-back {
+  display: none;
+}
+
 .container-view-task {
   background-color: rgba(247, 247, 247, 0.85);
   border-radius: 5px;
@@ -27,6 +31,14 @@ main {
   width: 800px;
   padding-right: 5px;
   margin-top: 5px;
+}
+
+.dialog-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  flex-grow: 5;
 }
 
 .dialog-heading h2 {
@@ -83,29 +95,45 @@ main {
 
 .form-columns {
   display: flex;
+  flex-direction: column;
 }
 
 .form-details {
   display: flex;
   flex-direction: column;
-  padding-right: 40px;
-  flex-grow: 4;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-items: stretch;
+  align-items: stretch;
 }
 
-input[type='checkbox'] {
+.left-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 5;
+}
+
+input[type="checkbox"] {
   filter: hue-rotate(60deg) grayscale(35%);
+}
+
+.action-buttons {
+  margin-right: 30px;
 }
 
 .form-actions {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  align-items: center;
-  margin-right: 15px;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .actions {
   margin-top: 10px;
+  padding-right: 55px;
 }
 
 .actions > label {
@@ -190,6 +218,11 @@ input[type='checkbox'] {
   margin: 10px 0;
 }
 
+#new-comment {
+  margin-left: 60px;
+  width: 300px;
+}
+
 .single-comment {
   display: flex;
   margin-bottom: 10px;
@@ -215,4 +248,86 @@ input[type='checkbox'] {
 
 .comment-text p {
   margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar,
+  .background-effect {
+    display: none;
+    visibility: hidden;
+    position: relative;
+  }
+
+  .go-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: #8829bb7e;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    right: 10px;
+    top: 40%;
+  }
+
+  .go-back a {
+    color: #fafafa;
+    text-decoration: none;
+    font-weight: 800;
+  }
+
+  main,
+  .action-buttons,
+  .dialog-heading h2 {
+    margin: 0;
+  }
+
+  .form-content {
+    height: 100vh;
+  }
+
+  .home-section {
+    position: relative;
+    left: 0px;
+    display: block;
+  }
+
+  .container-view-task form,
+  #finish-task,
+  .form-details {
+    padding: 0;
+  }
+
+  .container-view-task {
+    width: 100vw;
+    margin: 0;
+  }
+
+  .form-columns {
+    flex-direction: column;
+  }
+
+  .dialog-heading {
+    margin-top: 0;
+    padding-bottom: 10px;
+  }
+
+  .form-actions {
+    align-items: unset;
+  }
+
+  .container-view-task form {
+    width: 100vw;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .left-container {
+    padding-right: 25px;
+  }
 }

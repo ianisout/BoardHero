@@ -7,8 +7,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Open Sans", sans-serif;
-  background-image: url("../images/background//bg-selection-landingpg.png");
+  font-family: 'Open Sans', sans-serif;
+  background-image: url('../images/background//bg-selection-landingpg.png');
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
   background-position-x: right;
@@ -22,7 +22,7 @@ body {
 }
 
 button {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .landing-option-container {
@@ -39,6 +39,7 @@ button {
 h2 {
   font-size: 20px;
   margin: 0;
+  text-align: center;
 }
 
 .example-character {
@@ -59,6 +60,10 @@ h2 {
   margin: 15px;
 }
 
+p {
+  margin: 0;
+}
+
 .example-character button {
   border: none;
   width: fit-content; /* o botao fica do tamanho do texto dentro */
@@ -68,7 +73,7 @@ h2 {
   font-weight: 600;
   border-radius: 4px;
   background-color: #8929bb;
-  margin: 15px;
+  margin: 10px 15px;
   white-space: nowrap; /* nao deixa o texto quebrar dentro do botao - sempre uma linha */
 }
 
@@ -136,6 +141,8 @@ h2 {
 
   .no-character {
     width: 100vw;
+    margin: 30px 15px;
+    border-top: #8929bb dashed 2px;
   }
 
   .no-character h2 {
@@ -145,6 +152,10 @@ h2 {
   .example-character {
     border: none;
     width: 100vw;
+  }
+
+  p {
+    display: none;
   }
 }
 
