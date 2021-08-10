@@ -15,7 +15,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    opacity: .3;
+    opacity: 0.3;
     z-index: -15;
   }
 
@@ -35,35 +35,35 @@
     padding-left: 30px;
     padding-right: 10px;
   }
-
+  
   .dialog-heading h2 {
-      font-size: 24px;
-      font-weight: 600;
-      color: #8929bb;
-      margin: 10px 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #8929bb;
+    margin: 10px 0;
   }
-
+  
   .container-create-task form {
     display: flex;
     flex-direction: column;
     padding-bottom: 15px;
   }
-  
+    
   .container-create-task textarea {
     font-size: 14px;
     min-height: 142px;
     width: 690px;
     resize: vertical;
   }
-
+  
   .container-create-task label {
     font-size: 14px;
     padding-bottom: 3px;
   }
   
-  .form-columns input {
+  .container-create-task input {
     font-size: 14px;
-    height: 28px;
+    height: 28px; 
     padding: 5px;
     margin-bottom: 8px;
     border-style: solid 1px gray;
@@ -77,28 +77,28 @@
     overflow: scroll;
     overflow-x: hidden;
   }
-
+  
   /* Scrollbar width */
   ::-webkit-scrollbar {
     width: 10px;
   }
-
+  
   /* Scrollbar handle */
   ::-webkit-scrollbar-thumb {
     background: #8829bba6;
   }
-
+  
   .form-columns {
     display: flex;
     flex-direction: row;
   }
-
+  
   .form-details {
     display: flex;
     flex-direction: column;
     padding-right: 50px;
   }
-
+  
   input[type='checkbox'] {
     filter: hue-rotate(60deg) grayscale(35%);
   }
@@ -161,7 +161,7 @@
   .form-footer {
     align-self: flex-end;
   }
-
+  
   .form-footer button {
     border: none;
     width: 100px;
@@ -174,7 +174,7 @@
     padding-bottom: 2px;
     margin-top: 18px;
   }
-
+  
   .form-footer a {
     color: #8929bb;
     text-decoration: none;
@@ -182,7 +182,44 @@
     padding-left: 10px;
     padding-right: 20px;
   }
-
+  
   .form-footer a:hover {
     text-decoration: underline;
   }
+  
+  @media screen and (max-width: 850px) {
+    .sidebar {
+      display: none;
+      visibility: hidden;
+      position: relative;
+    }
+    .home-section {
+      position: relative;
+      left: 0px;
+      display: block;
+    }
+  
+    .container-create-task {
+      width: 90%;
+    }
+  
+    .task-dates {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    #description {
+      width: 80%;
+    }
+  
+    .form-content {
+      padding-right: 50px;
+    }
+  }
+  
+  @media screen and (max-width: 490px) {
+    .form-columns {
+      flex-direction: column;
+    }
+  }
+  
