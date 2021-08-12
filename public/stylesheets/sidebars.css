@@ -232,16 +232,11 @@ span {
 }
 
 @media (max-width: 420px) {
-
   .sidebar {
     visibility: hidden;
     display: none;
-    position: relative;
   }
 
-  .profile {
-    display: none;
-  }
   .home-section {
     position: relative;
     left: 0px;
@@ -253,15 +248,5 @@ span {
     display: flex;
     justify-content: space-between;
     width: 100%;
-  }
-
-  .sidebar .logo-details #btn {
-    color: #000000;
-    visibility: unset;
-    display: unset;
-    position: absolute;
-    left: 250px;
-    top: 250px;
-    z-index: 99;
   }
 }
