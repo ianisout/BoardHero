@@ -16,8 +16,28 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+.navbar #btn {
+  visibility: hidden;
+  color: #fff;
+  transform: translateY(-50%);
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  top: 50%;
+}
+
 @media (max-width: 420px) {
   .navbar .navbar-brand{
     visibility: hidden;
   }
+  .navbar #btn {
+    position: absolute;
+    visibility: unset;
+    
+  }
+
+  .navbar-toggler {
+    visibility: hidden;
+  }
+
 }

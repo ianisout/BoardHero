@@ -64,8 +64,6 @@ span {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  font-size: 22px;
-  transition: all 0.4s ease;
   font-size: 23px;
   text-align: center;
   cursor: pointer;
