@@ -188,88 +188,68 @@
   }
   
   @media screen and (max-width: 850px) {
-    .sidebar, .background-effect {
+    .sidebar {
       display: none;
       position: relative;
     }
 
-    main {
-      margin: 0;
-    }
-
     .home-section {
-      display: block;
       width: 100%;
       left: 0px;
     }
-
+  
     .container-create-task {
-      justify-content: flex-start;
-      border: none;
-      height: 100vh;
-      max-height: none;
-      width: 100%;
-      margin: 0;
+      width: 490px;
+    }
+  
+    .container-create-task textarea {
+      width: 390px;
+      margin-right: 50px;
     }
 
-    .dialog-heading h2 {
-      margin: 20px 0;
+    .task-dates {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
     }
-
+  
     .form-content {
-      padding-right: 25px;
+      padding-right: 50px;
       padding-bottom: 10px;
-      height: fit-content;
     }
 
     .form-columns {
       flex-direction: column;
       padding-bottom: 10px;
     }
-    
+
     .form-details {
       padding-right: 0;
-    }
-
-    .task-dates {
-      display: flex;
-      flex-direction: column;
-      width: 160px;
-    }
-
-    .container-create-task textarea, .upload-files {
-      width: 100%;
-    }
-
-    ::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    .form-footer {
-      position: absolute;
-      top: 0;
     }
   }
   
   @media screen and (max-width: 490px) {
-    .dialog-heading h2 {
-      font-size: 22px;
+    .background-effect {
+      display: none;
     }
 
-    .form-footer button {
-      width: 70px;
-      height: 35px;
-      font-size: 14px
-    }
-    .form-footer a {
-      font-size: 14px;
-      padding-left: 5px;
-      padding-right: 10px;
+    main {
+      margin: 0;
     }
 
-    input[type=file]::-webkit-file-upload-button {
-      display: flex;
-      flex-direction: column;
+    .container-create-task {
+      border: none;
+      margin: 0;
+      height: 100%;
+    }
+
+    .container-create-task textarea {
+      width: 250px;
+      margin-right: 50px;
+    }
+
+    .form-content {
+      overflow: none;
     }
   }
   
