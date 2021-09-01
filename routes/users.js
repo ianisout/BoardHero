@@ -1,30 +1,16 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const bcryptjs = require("bcryptjs");
-const { request } = require("express");
-const UserController = require("../controllers/UserController");
+const bcryptjs = require('bcryptjs');
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
 });
 
 /* GET signup page */
-router.get("/signup", async function (req, res, next) {
-  const { nome, nickname, email, confirmEmail, password, confirmPassword } =
-    req.body;
-
-  await UserController.createUser(
-    nome,
-    nickname,
-    email,
-    confirmEmail,
-    password,
-    confirmPassword
-  );
-
-  res.status(201).redirect("signup");
+router.get("/signup", function (req, res, next) {
+  res.render("signup");
 });
 
 /* GET login page */

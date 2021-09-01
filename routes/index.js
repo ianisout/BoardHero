@@ -54,7 +54,6 @@ router.get("/create-task", function (req, res, next) {
 /* POST task creation form */
 router.post("/create-task", upload.array('task-files'), function (req, res, next) {
   /* 
-
     Handle form data and files...
   
   */
