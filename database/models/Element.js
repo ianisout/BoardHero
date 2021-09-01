@@ -34,7 +34,7 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Element.associate = (models) => {
-    Element.belongsTo(models.Types_of_element, {
+    Element.belongsTo(models.Type_of_element, {
       foreignKey: "type_of_element_id",
       as: "types",
     });

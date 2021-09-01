@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const Type_of_elements = sequelize.define("Type_of_elements", {
+  const TypeOfElement = sequelize.define("TypeOfElement", {
     id: {
       primaryKey: true,
       autoIncrement: true,
@@ -12,5 +12,5 @@ module.exports = function (sequelize, DataTypes) {
     },
   });
 
-  return Type_of_elements;
+  return TypeOfElement;
 };
