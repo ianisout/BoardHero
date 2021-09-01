@@ -24,14 +24,14 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Character.associate = (models) => {
-    Character.hasMany(models.Badge, {
+    Character.belongsToMany(models.Badge, {
       through: "characters_has_badges",
       as: "badges",
     });
+    Character.belongsToMany(models.Element, {
+      through: "character_has_elements",
+      as: "elements",
+    });
   };
-  Character.belongsToMany(models.Element, {
-    through: "character_has_elements",
-    as: "elements",
-  });
   return Character;
 };

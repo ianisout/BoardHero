@@ -36,12 +36,12 @@ module.exports = function (sequelize, DataTypes) {
       as: "users",
     });
 
-    Task.hasMany(models.Task_tag, {
+    Task.belongsToMany(models.Task_tag, {
       through: "task_has_tags",
       as: "tags",
     });
 
-    Task.hasMany(models.Task_action, {
+    Task.belongsToMany(models.Task_action, {
       through: "task_has_actions",
       as: "actions",
     });

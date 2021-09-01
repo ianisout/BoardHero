@@ -11,10 +11,10 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     description: {
-      type: Sequelize.STRING(100),
+      type: DataTypes.STRING(100),
     },
     image_path: {
-      type: Sequelize.STRING(80),
+      type: DataTypes.STRING(80),
       allowNull: false,
     },
   });

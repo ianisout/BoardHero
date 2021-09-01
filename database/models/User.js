@@ -38,12 +38,12 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   User.associate = (models) => {
-    User.hasMany(models.Task, {
+    User.belongsToMany(models.Task, {
       through: "user_has_tasks",
       as: "tasks",
     });
 
-    User.hasMany(models.Workspace, {
+    User.belongsToMany(models.Workspace, {
       through: "users_has_workspaces",
       as: "workspaces",
     });

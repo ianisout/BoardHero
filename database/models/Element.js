@@ -1,4 +1,4 @@
-module.exports = function (DataTypes, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   const Element = sequelize.define("Element", {
     id: {
       primaryKey: true,
@@ -7,7 +7,7 @@ module.exports = function (DataTypes, DataTypes) {
       type: DataTypes.INTEGER.UNSIGNED,
     },
     image_path: {
-      type: Sequelize.STRING(80),
+      type: DataTypes.STRING(80),
       allowNull: false,
     },
     name: {
