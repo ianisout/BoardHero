@@ -6,7 +6,8 @@ const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
-const userRouter = require("./routes/User");
+const indexRouter = require("./routes/index");
+const userRouter = require("./routes/users");
 
 const app = express();
 
@@ -29,7 +30,9 @@ app.use(
   })
 );
 
-app.use("/User", userRouter);
+app.use("/", indexRouter);
+app.use("/user", userRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

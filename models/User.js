@@ -1,22 +1,22 @@
 const { User } = require("../database/models");
 
-const UserModel = {
-  createUser: ({
-    nome,
-    nickname,
+exports.createUser = (
+  first_name,
+  last_name,
+  email,
+  confirmEmail,
+  password,
+  confirmPassword,
+  position,
+  company
+) =>
+  User.create(
+    first_name,
+    last_name,
     email,
     confirmEmail,
     password,
     confirmPassword,
-  }) =>
-    User.create({
-      nome,
-      nickname,
-      email,
-      confirmEmail,
-      password,
-      confirmPassword,
-    }),
-};
-
-module.exports = UserModel;
+    position,
+    company
+  );
