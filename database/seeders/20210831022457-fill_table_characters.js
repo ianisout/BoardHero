@@ -8,12 +8,14 @@ module.exports = {
       "users",
       [
         {
-          email: "felipe@email.com",
-          first_name: "felipe",
-          last_name: "felipe",
-          password: bcrypt.hashSync("felipe"),
-          position: "dev",
-          company: "DH",
+          first_name:"Felipe",
+          last_name:"felipe",
+          email:"felipe@email.com",
+          confirmEmail:"felipe@email.com",
+          password:"felipe",
+          confirmPassword:"felipe",
+          position:"dev",
+          company:"dh", 
         },
       ],
       {}

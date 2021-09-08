@@ -15,7 +15,7 @@ router.get("/signup", function(request, response, next) {
   return response.render("signup");
 });
 
-router.post("/signup", async (request, response, next) => {
+router.post("/signup", async function(request, response, next) {
   const {
     first_name,
     last_name,
