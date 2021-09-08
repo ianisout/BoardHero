@@ -1,8 +1,8 @@
 module.exports = {
   "development": {
     "username": "root",
-    "password": DB_PASSWORD,
-    "database": "database_development",
+    "password": process.env.DB_PASSWORD,
+    "database": "boardhero_dev",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
