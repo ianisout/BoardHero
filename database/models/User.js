@@ -31,10 +31,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    character_id: {
-      allowNull: false,
-      type: DataTypes.INTEGER.UNSIGNED,
-    },
   });
 
   User.associate = (models) => {

@@ -32,14 +32,6 @@ module.exports = {
       position: {
         type: Sequelize.STRING,
       },
-      character_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER.UNSIGNED,
-        references: {
-          model:"characters",
-          key:"id"
-        }
-      },
       created_at: {
         type: "TIMESTAMP",
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

@@ -20,9 +20,7 @@ router.post("/signup", async function(request, response, next) {
     first_name,
     last_name,
     email,
-    confirmEmail,
     password,
-    confirmPassword,
     position,
     company,
   } = request.body;
@@ -30,9 +28,7 @@ router.post("/signup", async function(request, response, next) {
     first_name,
     last_name,
     email,
-    confirmEmail,
     password,
-    confirmPassword,
     position,
     company
   );

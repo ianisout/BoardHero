@@ -4,9 +4,7 @@ exports.createUser = (
   first_name,
   last_name,
   email,
-  confirmEmail,
   password,
-  confirmPassword,
   position,
   company
 ) =>
@@ -14,9 +12,7 @@ exports.createUser = (
     first_name,
     last_name,
     email,
-    confirmEmail,
     password,
-    confirmPassword,
     position,
     company
   );
