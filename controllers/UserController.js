@@ -24,7 +24,7 @@ exports.createUser = (
     first_name,
     last_name,
     email,
-    password,
+    password: passwordHashed,
     position,
     company,
   };

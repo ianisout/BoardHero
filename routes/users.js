@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { User } = require("../database/models");
+// const { User } = require("../database/models");
 const UserController = require("../controllers/UserController");
 
 const bcryptjs = require('bcryptjs');
@@ -26,7 +26,8 @@ router.post("/signup", async function(request, response, next) {
     position,
     company,
   } = request.body;
-  await UserController.createUser(
+
+  const { password: notUsedPassword, ...userCreated } = await UserController.createUser(
     first_name,
     last_name,
     email,
@@ -36,6 +37,10 @@ router.post("/signup", async function(request, response, next) {
     position,
     company
   );
+
+  request.session.userCreated = userCreated;
+  console.log(request.session)
+
   return response.status(201).redirect("/homepage");
 });
 
