@@ -1,48 +1,68 @@
 const express = require("express");
 const router = express.Router();
-// const { User } = require("../database/models");
 const UserController = require("../controllers/UserController");
-
-const bcryptjs = require('bcryptjs');
+const bcryptjs = require("bcryptjs");
+const validator = require("../middlewares/signupValidation");
+const {
+  nameValidator,
+  LastNameValidator,
+  emailValidator,
+  passwordValidator,
+  positionValidator,
+  companyValidator,
+} = validator;
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get("/", function (req, res, next) {
+  res.send("respond with a resource");
 });
 
 /* GET signup page */
-router.get("/signup", function(request, response, next) {
+router.get("/signup", function (request, response, next) {
   return response.render("signup");
 });
 
-router.post("/signup", async function(request, response, next) {
-  const {
-    first_name,
-    last_name,
-    email,
-    confirmEmail,
-    password,
-    confirmPassword,
-    position,
-    company,
-  } = request.body;
+const userValidation = [
+  nameValidator,
+  LastNameValidator,
+  emailValidator,
+  passwordValidator,
+  positionValidator,
+  companyValidator,
+];
 
-  const userCreated = await UserController.createUser(
-    first_name,
-    last_name,
-    email,
-    confirmEmail,
-    password,
-    confirmPassword,
-    position,
-    company
-  );
+router.post(
+  "/signup",
+  userValidation,
+  async function (request, response, next) {
+    const {
+      first_name,
+      last_name,
+      email,
+      confirmEmail,
+      password,
+      confirmPassword,
+      position,
+      company,
+    } = request.body;
 
-  request.session.user = userCreated;
-  console.log(request.session)
+    const userCreated = await UserController.createUser(
+      first_name,
+      last_name,
+      email,
+      confirmEmail,
+      password,
+      confirmPassword,
+      position,
+      company
+    );
 
-  return response.status(201).redirect("/homepage");
-});
+    request.session.user = userCreated;
+    console.log(request.session);
+
+    return response.status(201).redirect("/homepage");
+  }
+);
 
 /* GET login page */
 router.get("/login", function (req, res, next) {
