@@ -37,7 +37,7 @@ router.get("/inventory", function (req, res, next) {
 
 /* GET reference page for sidebar and navbar components (TEST) */
 router.get("/homepage", function (req, res, next) {
-  res.render("homepage");
+  res.render("homepage", { user: req.session.user});
 });
 
 
@@ -54,7 +54,6 @@ router.get("/create-task", function (req, res, next) {
 /* POST task creation form */
 router.post("/create-task", upload.array('task-files'), function (req, res, next) {
   /* 
-
     Handle form data and files...
   
   */

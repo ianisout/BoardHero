@@ -1,5 +1,7 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+// const { User } = require("../database/models");
+const UserController = require("../controllers/UserController");
 
 const bcryptjs = require('bcryptjs');
 
@@ -9,8 +11,37 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET signup page */
-router.get("/signup", function (req, res, next) {
-  res.render("signup");
+router.get("/signup", function(request, response, next) {
+  return response.render("signup");
+});
+
+router.post("/signup", async function(request, response, next) {
+  const {
+    first_name,
+    last_name,
+    email,
+    confirmEmail,
+    password,
+    confirmPassword,
+    position,
+    company,
+  } = request.body;
+
+  const userCreated = await UserController.createUser(
+    first_name,
+    last_name,
+    email,
+    confirmEmail,
+    password,
+    confirmPassword,
+    position,
+    company
+  );
+
+  request.session.user = userCreated;
+  console.log(request.session)
+
+  return response.status(201).redirect("/homepage");
 });
 
 /* GET login page */
