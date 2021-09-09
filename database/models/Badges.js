@@ -20,7 +20,7 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Badge.associate = (models) => {
-    Badge.belongsTo(models.Character, {
+    Badge.belongsToMany(models.Character, {
       through: "characters_has_badges",
       as: "characters",
     });

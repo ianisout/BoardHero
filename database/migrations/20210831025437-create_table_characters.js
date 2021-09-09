@@ -24,6 +24,14 @@ module.exports = {
         allowNull: false,
         defaultValue: 0,
       },
+      user_id: {
+        type: Sequelize.INTEGER.UNSIGNED,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+      },
       created_at: {
         type: "TIMESTAMP",
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

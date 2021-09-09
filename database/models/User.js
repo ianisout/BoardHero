@@ -38,10 +38,12 @@ module.exports = function (sequelize, DataTypes) {
       through: "user_has_tasks",
       as: "tasks",
     });
-
     User.belongsToMany(models.Workspace, {
       through: "users_has_workspaces",
       as: "workspaces",
+    });
+    User.hasOne(models.Character, {
+      as: 'character'
     });
   };
 

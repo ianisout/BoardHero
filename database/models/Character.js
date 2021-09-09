@@ -21,6 +21,10 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0,
     },
+    user_id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+    }
   });
 
   Character.associate = (models) => {
@@ -32,6 +36,9 @@ module.exports = function (sequelize, DataTypes) {
       through: "character_has_elements",
       as: "elements",
     });
+    Character.belongsTo(models.User, {
+      as: 'user',
+    })
   };
   return Character;
 };
