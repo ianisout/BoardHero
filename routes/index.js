@@ -37,6 +37,10 @@ router.get("/inventory", function (req, res, next) {
 
 /* GET reference page for sidebar and navbar components (TEST) */
 router.get("/homepage", function (req, res, next) {
+  const { session } = req;
+  if (!session.user) {
+    res.status(201).redirect("/user/login");
+  }
   res.render("homepage", { user: req.session.user});
 });
 
