@@ -7,7 +7,7 @@ exports.createUser = async (newUser) => {
 };
 
 exports.getUserByEmail = async (email) => {
-  const userCreated = await User.findOne({ where: { email: email }});
+  const loggedUser = await User.findOne({ where: { email: email }});
 
-  return userCreated.dataValues;
+  return loggedUser.dataValues;
 };
