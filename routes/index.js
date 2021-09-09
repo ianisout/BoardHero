@@ -37,7 +37,7 @@ router.get("/inventory", function (req, res, next) {
 
 /* GET reference page for sidebar and navbar components (TEST) */
 router.get("/homepage", function (req, res, next) {
-  res.render("homepage");
+  res.render("homepage", { user: req.session.user});
 });
 
 

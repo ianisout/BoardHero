@@ -1,7 +1,7 @@
 const UserModel = require("../models/User");
 const bcryptjs = require("bcryptjs");
 
-exports.createUser = (
+exports.createUser = async (
   first_name,
   last_name,
   email,
@@ -28,5 +28,9 @@ exports.createUser = (
     position,
     company,
   };
-  return UserModel.createUser(newUser);
+
+  const { password: notUsedPassword, ...userCreated } = await UserModel.createUser(newUser);
+  console.log(userCreated)
+
+  return userCreated;
 };

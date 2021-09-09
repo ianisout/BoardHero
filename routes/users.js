@@ -27,7 +27,7 @@ router.post("/signup", async function(request, response, next) {
     company,
   } = request.body;
 
-  const { password: notUsedPassword, ...userCreated } = await UserController.createUser(
+  const userCreated = await UserController.createUser(
     first_name,
     last_name,
     email,
@@ -38,7 +38,7 @@ router.post("/signup", async function(request, response, next) {
     company
   );
 
-  request.session.userCreated = userCreated;
+  request.session.user = userCreated;
   console.log(request.session)
 
   return response.status(201).redirect("/homepage");

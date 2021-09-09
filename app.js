@@ -9,6 +9,7 @@ const session = require("express-session");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/users");
 
+
 const app = express();
 
 // view engine setup
@@ -32,6 +33,7 @@ app.use(
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
+
 
 
 // catch 404 and forward to error handler
