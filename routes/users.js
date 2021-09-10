@@ -75,7 +75,11 @@ router.get("/forgot-password", function (req, res, next) {
 
 /* GET user settings page */
 router.get("/settings", function (req, res, next) {
-  res.render("settings");
+  const { session } = req;
+  if (!session.user) {
+    res.status(201).redirect("/user/login");
+  }
+  res.render("settings", { user: session.user});
 });
 
 module.exports = router;
