@@ -5,6 +5,7 @@
     <%- include('./partials/head-general-settings') %>    
     <!-- CSS Links -->
     <link rel="stylesheet" href="/stylesheets/character-creation.css" />
+    <script defer src="/javascripts/createCharacter.js"></script>
     <title>Customize your character | BoardHero</title>
   </head>
   <body>
@@ -13,7 +14,7 @@
       <div class="character-visual-background"><div class="character-visual"></div></div>
       
       <div class="categories">
-        <button>Skin color</button>
+        <button id="skin-color">Skin color</button>
         <button>Hair</button>
         <button>Eyes</button>
         <button>Glasses</button>
@@ -22,8 +23,8 @@
       </div>
       <div class="option-list">
         <div class="choice">
-          <img
-            src="/images/clothing-items/dress/dress1.svg"
+          <img id="image-test"
+            src="/images/clothing-items/dress/dress1.png"
             alt=""
             class="item-of-choice"
           />
@@ -31,7 +32,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/eyes/eyes1.svg"
+            src="/images/clothing-items/shirt/shirt1.png"
             alt=""
             class="item-of-choice"
           />
@@ -39,7 +40,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/glasses/glass1.svg"
+            src="/images/clothing-items/glasses/glass1.png"
             alt=""
             class="item-of-choice"
           />
@@ -47,7 +48,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/hair/hair1.svg"
+            src="/images/clothing-items/hair_front/hair1.png"
             alt=""
             class="item-of-choice"
           />
@@ -55,7 +56,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/hair/hair2.svg"
+            src="/images/clothing-items/hair_back/hair-back2.png"
             alt=""
             class="item-of-choice"
           />
@@ -63,7 +64,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/hair/hair-back1.svg"
+            src="/images/clothing-items/hair_back/hair-back1.png"
             alt=""
             class="item-of-choice"
           />
@@ -71,7 +72,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/mouth/mouth1.svg"
+            src="/images/clothing-items/mouth/mouth2.png"
             alt=""
             class="item-of-choice"
           />
@@ -79,7 +80,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/shield/shield1.svg"
+            src="/images/clothing-items/shield/shield1.png"
             alt=""
             class="item-of-choice"
           />
@@ -87,7 +88,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/sword/sword1.svg"
+            src="/images/clothing-items/sword/sword1.png"
             alt=""
             class="item-of-choice"
           />
@@ -95,7 +96,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/tie/tie1.svg"
+            src="/images/clothing-items/tie/tie1.png"
             alt=""
             class="item-of-choice"
           />
@@ -103,7 +104,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/dress/dress1.svg"
+            src="/images/clothing-items/dress/dress1.png"
             alt=""
             class="item-of-choice"
           />
@@ -111,7 +112,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/dress/dress1.svg"
+            src="/images/clothing-items/dress/dress1.png"
             alt=""
             class="item-of-choice"
           />
@@ -119,7 +120,7 @@
         </div>
         <div class="choice">
           <img
-            src="/images/clothing-items/dress/dress1.svg"
+            src="/images/clothing-items/dress/dress1.png"
             alt=""
             class="item-of-choice"
           />
