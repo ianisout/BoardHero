@@ -12,7 +12,10 @@ router.get('/', function(req, res, next) {
 
 /* GET signup page */
 router.get("/signup", function(request, response, next) {
-  return response.render("signup");
+  if (request.session.user) {
+    response.status(201).redirect("/homepage");
+  }
+  response.render("signup");
 });
 
 /* POST signup form */
@@ -42,11 +45,14 @@ router.post("/signup", async function(request, response, next) {
   request.session.user = userCreated;
   console.log(request.session);
 
-  return response.status(201).redirect("/homepage");
+  response.status(201).redirect("/homepage");
 });
 
 /* GET login page */
 router.get("/login", function (req, res, next) {
+  if (req.session.user) {
+    res.status(201).redirect("/homepage");
+  }
   res.render("login");
 });
 
@@ -59,10 +65,10 @@ router.post("/login", async function(req, res, next) {
   req.session.user = userLogged;
   console.log(req.session);
 
-  return res.status(201).redirect("/homepage");
+  res.status(201).redirect("/homepage");
 });
 
-/* GET logout page */
+/* GET logout */
 router.get("/logout", function (req, res, next) {
   delete req.session.user;
   res.status(201).redirect("/");

@@ -12,11 +12,17 @@ const upload = multer({ dest: tempDir });
 
 /* GET home page */
 router.get("/", function (req, res, next) {
+  if (req.session.user) {
+    res.status(201).redirect("/homepage");
+  }
   res.render("index");
 });
 
 /* GET home page */
 router.get("/index", function (req, res, next) {
+  if (req.session.user) {
+    res.status(201).redirect("/homepage");
+  }
   res.render("index");
 });
 
