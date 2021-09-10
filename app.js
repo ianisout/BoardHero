@@ -8,7 +8,7 @@ const session = require("express-session");
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/users");
-const validator = require("./middlewares/validators/validator");
+
 
 const app = express();
 
@@ -31,7 +31,6 @@ app.use(
   })
 );
 
-app.use("/", validator);
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
