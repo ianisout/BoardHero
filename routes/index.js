@@ -42,7 +42,7 @@ router.get("/homepage", function (req, res, next) {
   if (!session.user) {
     res.status(201).redirect("/user/login");
   }
-  res.render("homepage", { user: session.user});
+  res.render("homepage", { user: session.user });
 });
 
 /* GET dashboard page */
@@ -51,7 +51,7 @@ router.get("/dashboard", function (req, res, next) {
   if (!session.user) {
     res.status(201).redirect("/user/login");
   }
-  res.render("dashboard", { user: session.user});
+  res.render("dashboard", { user: session.user });
 });
 
 /* GET task creation function */
@@ -60,7 +60,7 @@ router.get("/create-task", function (req, res, next) {
   if (!session.user) {
     res.status(201).redirect("/user/login");
   }
-  res.render("create-task", { user: session.user});
+  res.render("create-task", { user: session.user });
 });
 
 /* POST task creation form */
@@ -78,7 +78,7 @@ router.get("/task-details", function (req, res, next) {
   if (!session.user) {
     res.status(201).redirect("/user/login");
   }
-  res.render("view-task-details", { user: session.user});
+  res.render("view-task-details", { user: session.user });
 });
 
 /* GET inventory/store page */
@@ -87,7 +87,7 @@ router.get("/inventory", function (req, res, next) {
   if (!session.user) {
     res.status(201).redirect("/user/login");
   }
-  res.render("inventory-store", { user: session.user});
+  res.render("inventory-store", { user: session.user });
 });
 
 module.exports = router;
