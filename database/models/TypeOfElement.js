@@ -12,5 +12,12 @@ module.exports = function (sequelize, DataTypes) {
     },
   });
 
+  TypeOfElement.associate = (models) => {
+    TypeOfElement.hasMany(models.Element, {
+      foreignKey: 'type_of_element_id',
+      as: 'elements'
+    });
+  };
+
   return TypeOfElement;
 };

@@ -13,12 +13,7 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Task_action.associate = (models) => {
-    Task_action.belongsTo(models.Task, {
-      foreignKey: "tasks_id",
-      as: "actions",
-    });
-
-    Task_action.belongsTo(models.Task, {
+    Task_action.belongsToMany(models.Task, {
       through: "task_has_actions",
       as: "tasks",
     });

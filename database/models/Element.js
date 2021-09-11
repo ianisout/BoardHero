@@ -23,7 +23,7 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: 0,
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER, // talvez seja melhor definir como unsigned (revisar migration)
       allowNull: false,
       defaultValue: 0,
     },
@@ -36,10 +36,10 @@ module.exports = function (sequelize, DataTypes) {
   Element.associate = (models) => {
     Element.belongsTo(models.TypeOfElement, {
       foreignKey: "type_of_element_id",
-      as: "types",
+      as: "type",
     });
     Element.belongsToMany(models.Character, {
-      through: "character_has_elements",
+      through: "characters_has_elements",
       as: "characters",
     });
   };
