@@ -1,17 +1,20 @@
 const express = require("express");
 const router = express.Router();
-// const { User } = require("../database/models");
-const UserController = require("../controllers/UserController");
 
-const bcryptjs = require('bcryptjs');
+const UserController = require("../controllers/UserController");
+const WorkspaceController = require("../controllers/WorkspaceController");
+
+const bcryptjs = require("bcryptjs");
+
+const { log } = console;
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get("/", function (req, res, next) {
+  res.send("respond with a resource");
 });
 
 /* GET signup page */
-router.get("/signup", function(request, response, next) {
+router.get("/signup", function (request, response, next) {
   if (request.session.user) {
     response.status(201).redirect("/homepage");
   }
@@ -19,33 +22,61 @@ router.get("/signup", function(request, response, next) {
 });
 
 /* POST signup form */
-router.post("/signup", async function(request, response, next) {
-  const {
-    first_name,
-    last_name,
-    email,
-    confirmEmail,
-    password,
-    confirmPassword,
-    position,
-    company,
-  } = request.body;
+router.post("/signup", async function (request, response, next) {
+  try {
+    const {
+      first_name,
+      last_name,
+      email,
+      confirmEmail,
+      password,
+      confirmPassword,
+      position,
+      company,
+    } = request.body;
 
-  const userCreated = await UserController.createUser({
-    first_name,
-    last_name,
-    email,
-    confirmEmail,
-    password,
-    confirmPassword,
-    position,
-    company
-  });
+    const userCreated = await UserController.createUser({
+      first_name,
+      last_name,
+      email,
+      confirmEmail,
+      password,
+      confirmPassword,
+      position,
+      company,
+    });
 
-  request.session.user = userCreated;
-  console.log(request.session);
+    if (userCreated) {
+      const isAdmin = true;
+      const workspaceName = `${first_name}'s Workspace`;
+      
+      const workspaceCreated = await WorkspaceController.createWorkspace({
+        workspace: {
+          name: workspaceName,
+        },
+        userId: userCreated.id,
+        isAdmin: isAdmin,
+      });
 
-  response.status(201).redirect("/homepage");
+      const userSession = {
+        ...userCreated,
+        workspaces: [workspaceCreated],
+        activeWorkspace: {
+          id: workspaceCreated.id,
+          isAdmin: isAdmin,
+        },
+      };
+
+      request.session.user = userSession;
+      log(request.session);
+
+      response.status(201).redirect("/homepage");
+    } else {
+      // Send the error message to the view
+    }
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 /* GET login page */
@@ -57,15 +88,33 @@ router.get("/login", function (req, res, next) {
 });
 
 /* POST login form */
-router.post("/login", async function(req, res, next) {
-  const { email, password } = req.body;
+router.post("/login", async function (req, res, next) {
+  try {
+    const { email, password } = req.body;
 
-  const userLogged = await UserController.loginUser({ email, password });
+    const userLogged = await UserController.loginUser({ email, password });
 
-  req.session.user = userLogged;
-  console.log(req.session);
+    if (userLogged) {
+      const defaultWorkspace = userLogged.workspaces[0];
 
-  res.status(201).redirect("/homepage");
+      const userSession = {
+        ...userLogged,
+        activeWorkspace: {
+          id: defaultWorkspace.id,
+          isAdmin: true,
+        },
+      };
+
+      req.session.user = userSession;
+      log(req.session);
+
+      res.status(201).redirect("/homepage");
+    } else {
+      // Send the error message to the view
+    }
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 /* GET logout */
