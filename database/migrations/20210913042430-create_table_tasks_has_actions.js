@@ -2,28 +2,28 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("user_has_tasks", {
+    await queryInterface.createTable("tasks_has_actions", {
       id: {
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
       },
-      user_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER.UNSIGNED,
-        references: {
-          model: "users",
-          key: "id"
-        }
-      },
       task_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: "tasks",
-          key: "id"
-        }
+          key: "id",
+        },
+      },
+      task_action_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: "task_actions",
+          key: "id",
+        },
       },
       created_at: {
         type: "TIMESTAMP",
@@ -39,6 +39,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("user_has_tasks");
+    await queryInterface.dropTable("tasks_has_actions");
   },
 };

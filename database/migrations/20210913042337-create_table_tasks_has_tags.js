@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("task_has_actions", {
+    await queryInterface.createTable("tasks_has_tags", {
       id: {
         primaryKey: true,
         autoIncrement: true,
@@ -17,11 +17,11 @@ module.exports = {
           key: "id",
         },
       },
-      task_action_id: {
+      task_tag_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
-          model: "task_actions",
+          model: "task_tags",
           key: "id",
         },
       },
@@ -39,6 +39,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("task_has_actions");
+    await queryInterface.dropTable("tasks_has_tags");
   },
 };

@@ -2,26 +2,39 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("task_has_tags", {
+    await queryInterface.createTable("elements", {
       id: {
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
       },
-      task_id: {
+      image_path: {
+        type: Sequelize.STRING(80),
         allowNull: false,
-        type: Sequelize.INTEGER.UNSIGNED,
-        references: {
-          model: "tasks",
-          key: "id",
-        },
       },
-      task_tag_id: {
+      name: {
+        type: Sequelize.STRING,
         allowNull: false,
+      },
+      description: {
+        type: Sequelize.STRING(100),
+      },
+      level: {
         type: Sequelize.INTEGER.UNSIGNED,
+        allowNull: false,
+        defaultValue: 0,
+      },
+      price: {
+        type: Sequelize.INTEGER.UNSIGNED,
+        allowNull: false,
+        defaultValue: 0,
+      },
+      type_of_element_id: {
+        type: Sequelize.INTEGER.UNSIGNED,
+        allowNull: false,
         references: {
-          model: "task_tags",
+          model: "types_of_elements",
           key: "id",
         },
       },
@@ -39,6 +52,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("task_has_tags");
+    await queryInterface.dropTable("elements");
   },
 };
