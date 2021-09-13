@@ -1,22 +1,15 @@
 const express = require("express");
 const router = express.Router();
-<<<<<<< HEAD
-const UserController = require("../controllers/UserController");
 const signupValidator = require("../middlewares/signupValidator");
-const { nameValidator, lasNameValidator, emailValidator, passwordValidator } = signupValidator;
-
-const validatorSignup = [nameValidator, lasNameValidator, emailValidator, passwordValidator]
-
-const bcryptjs = require("bcryptjs");
-=======
-
+const { nameValidator, lasNameValidator, emailValidator, passwordValidator } =
+  signupValidator;
 const UserController = require("../controllers/UserController");
 const WorkspaceController = require("../controllers/WorkspaceController");
+const { validationResult } = require("express-validator");
 
 const bcryptjs = require("bcryptjs");
 
 const { log } = console;
->>>>>>> feature
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -25,25 +18,23 @@ router.get("/", function (req, res, next) {
 
 /* GET signup page */
 router.get("/signup", function (request, response, next) {
-<<<<<<< HEAD
-  return response.render("signup");
-});
-
-
-router.post(
-  "/signup",validatorSignup,
-  async function (request, response, next) {
-=======
   if (request.session.user) {
     response.status(201).redirect("/homepage");
   }
   response.render("signup");
 });
 
+router.post(
+  "/signup",
+  nameValidator,
+  lasNameValidator,
+  emailValidator,
+  passwordValidator
+);
+
 /* POST signup form */
 router.post("/signup", async function (request, response, next) {
   try {
->>>>>>> feature
     const {
       first_name,
       last_name,
@@ -66,18 +57,10 @@ router.post("/signup", async function (request, response, next) {
       company,
     });
 
-<<<<<<< HEAD
-    request.session.user = userCreated;
-    console.log(request.session);
-
-    return response.status(201).redirect("/homepage");
-  }
-);
-=======
     if (userCreated) {
       const isAdmin = true;
       const workspaceName = `${first_name}'s Workspace`;
-      
+
       const workspaceCreated = await WorkspaceController.createWorkspace({
         workspace: {
           name: workspaceName,
@@ -106,7 +89,6 @@ router.post("/signup", async function (request, response, next) {
     console.error(error);
   }
 });
->>>>>>> feature
 
 /* GET login page */
 router.get("/login", function (req, res, next) {
@@ -118,16 +100,6 @@ router.get("/login", function (req, res, next) {
 
 /* POST login form */
 router.post("/login", async function (req, res, next) {
-<<<<<<< HEAD
-  const { email, password } = req.body;
-
-  const userLogged = await UserController.loginUser({ email, password });
-
-  req.session.user = userLogged;
-  console.log(req.session);
-
-  return res.status(201).redirect("/homepage");
-=======
   try {
     const { email, password } = req.body;
 
@@ -154,7 +126,6 @@ router.post("/login", async function (req, res, next) {
   } catch (error) {
     console.error(error);
   }
->>>>>>> feature
 });
 
 /* GET logout */

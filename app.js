@@ -9,6 +9,7 @@ const session = require("express-session");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/users");
 const signupValidator = require("./middlewares/signupValidator");
+const signupValidatorMessagre = require("./middlewares/signupErrorMessage");
 
 const app = express();
 
@@ -31,7 +32,8 @@ app.use(
   })
 );
 
-app.use("/user", signupValidator);
+app.use("/", signupValidator);
+app.use("/", signupValidatorMessagre)
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 
