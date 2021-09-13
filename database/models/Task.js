@@ -31,9 +31,29 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Task.associate = (models) => {
+    Task.belongsTo(models.Workspace, {
+      foreignKey: "workspace_id",
+      as: "workspace",
+    });
+
+    Task.belongsTo(models.Task_status, {
+      foreignKey: "task_status_id",
+      as: "task_status",
+    });
+
     Task.belongsToMany(models.User, {
       through: "user_has_tasks",
       as: "users",
+    });
+  
+    Task.belongsToMany(models.User, {
+      through: "comments",
+      as: "user_comments"
+    });
+
+    Task.belongsToMany(models.User, {
+      through: "attachments",
+      as: "user_attachments"
     });
 
     Task.belongsToMany(models.Task_tag, {

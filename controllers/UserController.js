@@ -19,7 +19,11 @@ exports.createUser = async ({
       throw new Error("Password do not match");
     }
 
-    console.log(password);
+    const isExistingUser = await UserModel.getUserByEmail(email);
+
+    if (isExistingUser) {
+      throw new Error("Invalid entry");
+    }
 
     const passwordHashed = bcryptjs.hashSync(password);
   
@@ -31,7 +35,7 @@ exports.createUser = async ({
       position,
       company,
     };
-  
+
     const { password: notUsedPassword, ...userCreated } = await UserModel.createUser(newUser);
     console.log(userCreated);
   
@@ -42,7 +46,7 @@ exports.createUser = async ({
   }
 };
 
-exports.loginUser = async ( { email, password } ) => {
+exports.loginUser = async ({ email, password }) => {
   try {
     const existingUser = await UserModel.getUserByEmail(email);
 
@@ -54,10 +58,14 @@ exports.loginUser = async ( { email, password } ) => {
       throw new Error("Access denied: invalid email or password");
     }
 
-    const { password: notUsedPassword, ...loggedUser } = existingUser;
-    console.log(loggedUser);
+    const { password: notUsedPassword, workspaces, ...loggedUser } = existingUser;
 
-    return loggedUser;
+    const formattedWorkspaces = workspaces.map(workspace => workspace.dataValues);
+
+    const userPlusWorkspaces = { ...loggedUser, workspaces: formattedWorkspaces };
+    console.log(userPlusWorkspaces);
+
+    return userPlusWorkspaces;
   } 
   catch (error) {
     console.error(error);

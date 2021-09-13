@@ -13,10 +13,16 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Workspace.associate = (models) => {
-    Workspace.belongsTo(models.User, {
+    Workspace.belongsToMany(models.User, {
       through: "users_has_workspaces",
       as: "users"
     });
+
+    Workspace.hasMany(models.Task, {
+      foreignKey: 'workspace_id',
+      as: 'tasks'
+    });
   };
+
   return Workspace;
 };
