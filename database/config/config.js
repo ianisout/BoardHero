@@ -4,7 +4,7 @@ module.exports = {
   "development": {
     "username": "root",
     "password": process.env.DB_PASSWORD,
-    "database": "dboardhero",
+    "database": "boardhero_dev",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "define": {

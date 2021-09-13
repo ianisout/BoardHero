@@ -42,7 +42,7 @@ module.exports = function (sequelize, DataTypes) {
       as: "workspaces",
     });
     User.belongsToMany(models.Task, {
-      through: "user_has_tasks",
+      through: "users_has_tasks",
       as: "tasks",
     });
     User.belongsToMany(models.Task, {

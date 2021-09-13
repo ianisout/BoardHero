@@ -42,7 +42,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Task.belongsToMany(models.User, {
-      through: "user_has_tasks",
+      through: "users_has_tasks",
       as: "users",
     });
   
@@ -57,12 +57,12 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Task.belongsToMany(models.Task_tag, {
-      through: "task_has_tags",
+      through: "tasks_has_tags",
       as: "tags",
     });
 
     Task.belongsToMany(models.Task_action, {
-      through: "task_has_actions",
+      through: "tasks_has_actions",
       as: "actions",
     });
   };

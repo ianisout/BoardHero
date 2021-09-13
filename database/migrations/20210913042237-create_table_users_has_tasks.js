@@ -1,42 +1,29 @@
-  "use strict";
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("elements", {
+    await queryInterface.createTable("users_has_tasks", {
       id: {
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
       },
-      image_path: {
-        type: Sequelize.STRING(80),
+      user_id: {
         allowNull: false,
-      },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      description: {
-        type: Sequelize.STRING(100),
-      },
-      level: {
         type: Sequelize.INTEGER.UNSIGNED,
-        allowNull: false,
-        defaultValue: 0,
-      },
-      price: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-      },
-      type_of_element_id: {
-        type: Sequelize.INTEGER.UNSIGNED,
-        allowNull: false,
         references: {
-          model: "types_of_elements",
-          key: "id",
-        },
+          model: "users",
+          key: "id"
+        }
+      },
+      task_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: "tasks",
+          key: "id"
+        }
       },
       created_at: {
         type: "TIMESTAMP",
@@ -52,6 +39,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("elements");
+    await queryInterface.dropTable("users_has_tasks");
   },
 };

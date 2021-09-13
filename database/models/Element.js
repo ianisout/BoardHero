@@ -23,7 +23,7 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: 0,
     },
     price: {
-      type: DataTypes.INTEGER, // talvez seja melhor definir como unsigned (revisar migration)
+      type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       defaultValue: 0,
     },
