@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const UserController = require("../controllers/UserController");
+const signupValidator = require("../middlewares/signupValidator");
+const { nameValidator, lasNameValidator, emailValidator, passwordValidator } = signupValidator;
+
+const validatorSignup = [nameValidator, lasNameValidator, emailValidator, passwordValidator]
+
 const bcryptjs = require("bcryptjs");
 
 /* GET users listing. */
@@ -13,34 +18,38 @@ router.get("/signup", function (request, response, next) {
   return response.render("signup");
 });
 
-router.post("/signup", async function (request, response, next) {
-  const {
-    first_name,
-    last_name,
-    email,
-    confirmEmail,
-    password,
-    confirmPassword,
-    position,
-    company,
-  } = request.body;
 
-  const userCreated = await UserController.createUser({
-    first_name,
-    last_name,
-    email,
-    confirmEmail,
-    password,
-    confirmPassword,
-    position,
-    company
-  });
+router.post(
+  "/signup",validatorSignup,
+  async function (request, response, next) {
+    const {
+      first_name,
+      last_name,
+      email,
+      confirmEmail,
+      password,
+      confirmPassword,
+      position,
+      company,
+    } = request.body;
 
-  request.session.user = userCreated;
-  console.log(request.session);
+    const userCreated = await UserController.createUser({
+      first_name,
+      last_name,
+      email,
+      confirmEmail,
+      password,
+      confirmPassword,
+      position,
+      company,
+    });
 
-  return response.status(201).redirect("/homepage");
-});
+    request.session.user = userCreated;
+    console.log(request.session);
+
+    return response.status(201).redirect("/homepage");
+  }
+);
 
 /* GET login page */
 router.get("/login", function (req, res, next) {
@@ -48,7 +57,7 @@ router.get("/login", function (req, res, next) {
 });
 
 /* POST login form */
-router.post("/login", async function(req, res, next) {
+router.post("/login", async function (req, res, next) {
   const { email, password } = req.body;
 
   const userLogged = await UserController.loginUser({ email, password });
@@ -76,7 +85,7 @@ router.get("/settings", function (req, res, next) {
   if (!session.user) {
     res.status(201).redirect("/user/login");
   }
-  res.render("settings", { user: session.user});
+  res.render("settings", { user: session.user });
 });
 
 module.exports = router;
