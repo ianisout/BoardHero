@@ -1,12 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const signupValidator = require("../middlewares/signupValidator");
-const { nameValidator, lasNameValidator, emailValidator, passwordValidator } =
-  signupValidator;
 const UserController = require("../controllers/UserController");
 const WorkspaceController = require("../controllers/WorkspaceController");
-const { validationResult } = require("express-validator");
-
 const bcryptjs = require("bcryptjs");
 
 const { log } = console;
@@ -23,14 +18,6 @@ router.get("/signup", function (request, response, next) {
   }
   response.render("signup");
 });
-
-router.post(
-  "/signup",
-  nameValidator,
-  lasNameValidator,
-  emailValidator,
-  passwordValidator
-);
 
 /* POST signup form */
 router.post("/signup", async function (request, response, next) {
