@@ -37,12 +37,18 @@
                                 <input type="text" id="tags" name="tags"/>
                     
                                 <div class="task-dates">
-                                    <label for="start_date">Start date</label>
-                                    <input type="date" id="start_date" name="start_date"/>
-                                    
-                                    <label for="end_date">Due date</label>
-                                    <input type="checkbox" name="enable_end_date" id="enable_end_date">
-                                    <input type="date" id="end_date" name="end_date" disabled/>
+                                    <div class="start-date">
+                                        <label for="start_date">Start date</label>
+                                        <input type="date" id="start_date" name="start_date"/>
+                                    </div>
+                                    <div class="end-date">
+                                        <label class="switch">
+                                            <input type="checkbox" name="enable_end_date" id="enable_end_date">
+                                            <span class="slider"></span>
+                                        </label>
+                                        <label for="end_date">Due date</label>
+                                        <input type="date" id="end_date" name="end_date" disabled/>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-flags">
