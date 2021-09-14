@@ -131,6 +131,10 @@
     margin: 8px 0;
   }
 
+  #enable_end_date {
+    height: 13px;
+  }
+
   .upload-files {
     display: flex;
     justify-content: center;
