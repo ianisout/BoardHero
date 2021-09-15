@@ -1,14 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const fs = require("fs");
-const os = require("os");
-const multer = require("multer");
-
-// get path of temp directory
-// example: 'C:/Users/natha/AppData/Local/Temp'
-const tempDir = os.tmpdir(); 
-const upload = multer({ dest: tempDir }); 
+const TaskController = require("../controllers/TaskController");
 
 /* GET home page */
 router.get("/", function (req, res, next) {
@@ -52,33 +45,6 @@ router.get("/dashboard", function (req, res, next) {
     res.status(201).redirect("/user/login");
   }
   res.render("dashboard", { user: session.user });
-});
-
-/* GET task creation function */
-router.get("/create-task", function (req, res, next) {
-  const { session } = req;
-  if (!session.user) {
-    res.status(201).redirect("/user/login");
-  }
-  res.render("create-task", { user: session.user });
-});
-
-/* POST task creation form */
-router.post("/create-task", upload.array('task-files'), function (req, res, next) {
-  /* 
-    Handle form data and files...
-  
-  */
-  res.redirect("/dashboard");
-});
-
-/* GET view-task-details page */
-router.get("/task-details", function (req, res, next) {
-  const { session } = req;
-  if (!session.user) {
-    res.status(201).redirect("/user/login");
-  }
-  res.render("view-task-details", { user: session.user });
 });
 
 /* GET inventory/store page */
