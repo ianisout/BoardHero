@@ -9,7 +9,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
       },
-      equipped: {
+      is_equipped: {
         type: Sequelize.BOOLEAN,
         defaultValue: 0,
       },

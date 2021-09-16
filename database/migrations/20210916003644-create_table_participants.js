@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("users_has_tasks", {
+    await queryInterface.createTable("participants", {
       id: {
         primaryKey: true,
         autoIncrement: true,
@@ -39,6 +39,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("users_has_tasks");
+    await queryInterface.dropTable("participants");
   },
 };

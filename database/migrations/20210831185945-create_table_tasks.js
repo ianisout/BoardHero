@@ -21,7 +21,15 @@ module.exports = {
         type: Sequelize.DATE,
       },
       description: {
-        type: Sequelize.STRING(2000)
+        type: Sequelize.TEXT,
+      },
+      user_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: "users",
+          key: "id"
+        }
       },
       workspace_id: {
         allowNull: false,

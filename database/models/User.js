@@ -41,9 +41,13 @@ module.exports = function (sequelize, DataTypes) {
       through: "users_has_workspaces",
       as: "workspaces",
     });
+    User.hasMany(models.Task, {
+      foreignKey: 'user_id',
+      as: 'tasks'
+    });
     User.belongsToMany(models.Task, {
-      through: "users_has_tasks",
-      as: "tasks",
+      through: "participants",
+      as: "task_participants",
     });
     User.belongsToMany(models.Task, {
       through: "comments",

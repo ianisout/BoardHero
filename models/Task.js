@@ -1,11 +1,10 @@
-const { Task, User, Attachment, Comment } = require("../database/models");
+const { Task, User, Attachment, Comment, Participant } = require("../database/models");
 
-exports.addTaskToUser = async (user_id, newTask) => {
-  const user = await User.findByPk(user_id);
-  const taskCreated = await user.createTask(newTask);
+exports.createTask = async (newTask) => {
+  const taskCreated = await Task.create(newTask);
   /** 
    * 
-   *  Need to implement the 'tags' and 'actions' parts
+   *  Need to implement the 'participants', 'tags', and 'actions' parts
    * 
   **/
   return taskCreated.dataValues;
