@@ -13,16 +13,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      /*table on diagram has tasks_id, but on querry doesnt
-      tasks_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER.UNSIGNED,
-        references: {
-          model: "task",
-          key: "id"
-        }
-      }
-      */
       created_at: {
         type: "TIMESTAMP",
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED,
       },
       image_path: {
-        type: Sequelize.STRING(80),
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       name: {
@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false,
       },
       description: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
       },
       level: {
         type: Sequelize.INTEGER.UNSIGNED,

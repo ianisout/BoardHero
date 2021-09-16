@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("characters_badges", {
+    await queryInterface.createTable("characters_has_badges", {
       id: {
         primaryKey: true,
         autoIncrement: true,
@@ -39,6 +39,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("characters_badges");
+    await queryInterface.dropTable("characters_has_badges");
   },
 };

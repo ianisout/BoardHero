@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED,
       },
       text: {
-        type: Sequelize.STRING(1000),
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       task_id: {

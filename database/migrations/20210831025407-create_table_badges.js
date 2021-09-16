@@ -14,10 +14,10 @@ module.exports = {
         allowNull: false,
       },
       description: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
       },
       image_path: {
-        type: Sequelize.STRING(80),
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       created_at: {

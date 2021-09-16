@@ -7,6 +7,7 @@ exports.createTask = async ({
   start_date,
   end_date,
   description,
+  participants,
   actions,
   tags,
   filesInfo,
@@ -17,17 +18,18 @@ exports.createTask = async ({
       start_date,
       end_date,
       description,
+      user_id,
       workspace_id,
       task_status_id: 1, // default status = open
     };
 
-    const taskCreated = await TaskModel.addTaskToUser(user_id, newTask);
+    const taskCreated = await TaskModel.createTask(newTask);
     console.log(taskCreated);
 
     const task_id = taskCreated.id;
 
     if (filesInfo.length > 0) {
-      const attachments = filesInfo.map((file) => {
+      const attachments = filesInfo.map(file => {
         return {
           file_name: file.originalname,
           file_path: file.path,

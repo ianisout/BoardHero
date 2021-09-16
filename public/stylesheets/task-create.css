@@ -129,7 +129,7 @@
   }
   
   .task-dates {
-    margin: 8px 0;
+    margin-bottom: 10px;
   }
 
   #enable_end_date {
@@ -187,6 +187,10 @@
     -webkit-transform: translateX(24px);
     -ms-transform: translateX(24px);
     transform: translateX(24px);
+  }
+
+  .attachments {
+    margin-bottom: 5px;
   }
 
   .upload-files {

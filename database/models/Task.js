@@ -28,6 +28,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
     },
+    user_id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+    },
   });
 
   Task.associate = (models) => {
@@ -41,9 +45,14 @@ module.exports = function (sequelize, DataTypes) {
       as: "task_status",
     });
 
+    Task.belongsTo(models.User, {
+      foreignKey: "user_id",
+      as: "user",
+    });
+
     Task.belongsToMany(models.User, {
-      through: "users_has_tasks",
-      as: "users",
+      through: "participants",
+      as: "user_participants",
     });
   
     Task.belongsToMany(models.User, {

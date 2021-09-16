@@ -60,6 +60,7 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     start_date,
     end_date,
     description,
+    participants,
     actions,
     tags,
     filesInfo,

@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false
       },
       file_path: {
-        type: Sequelize.STRING(80),
+        type: Sequelize.TEXT,
         allowNull: false
       },
       task_id: {

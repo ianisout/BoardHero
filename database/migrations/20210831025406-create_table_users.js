@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED,
       },
       email: {
-        type: Sequelize.STRING,
+        type: Sequelize.CHAR(126),
         allowNull: false,
         unique: true,
       },
@@ -23,7 +23,7 @@ module.exports = {
         allowNull: false,
       },
       password: {
-        type: Sequelize.STRING(60),
+        type: Sequelize.CHAR(60),
         allowNull: false,
       },
       company: {
