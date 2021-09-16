@@ -1,17 +1,11 @@
 const express = require("express");
 const router = express.Router();
-<<<<<<< HEAD
-const UserController = require("../controllers/UserController");
-const WorkspaceController = require("../controllers/WorkspaceController");
-const bcryptjs = require("bcryptjs");
-=======
 
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
 
 const UserController = require("../controllers/UserController");
 const WorkspaceController = require("../controllers/WorkspaceController");
->>>>>>> feature
 
 const { log } = console;
 
