@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
+
 const TaskController = require("../controllers/TaskController");
 
 const fs = require("fs");
@@ -15,12 +17,8 @@ const upload = multer({ dest: tempDir });
 const { log } = console;
 
 /* GET task creation page */
-router.get("/create", function (req, res, next) {
-  const { session } = req;
-  if (!session.user) {
-    res.status(201).redirect("/user/login");
-  }
-  res.render("task-create", { user: session.user });
+router.get("/create", verifyLoggedUser, function (req, res, next) {
+  res.render("task-create", { user: req.session.user });
 });
 
 /* POST task creation form */
@@ -70,12 +68,8 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
 });
 
 /* GET task details page */
-router.get("/details", function (req, res, next) {
-  const { session } = req;
-  if (!session.user) {
-    res.status(201).redirect("/user/login");
-  }
-  res.render("task-details", { user: session.user });
+router.get("/details", verifyLoggedUser, function (req, res, next) {
+  res.render("task-details", { user: req.session.user });
 });
 
 module.exports = router;
