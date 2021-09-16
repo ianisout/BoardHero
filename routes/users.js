@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
+const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
+const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
+
 const UserController = require("../controllers/UserController");
 const WorkspaceController = require("../controllers/WorkspaceController");
-
-const bcryptjs = require("bcryptjs");
 
 const { log } = console;
 
@@ -14,10 +15,7 @@ router.get("/", function (req, res, next) {
 });
 
 /* GET signup page */
-router.get("/signup", function (request, response, next) {
-  if (request.session.user) {
-    response.status(201).redirect("/homepage");
-  }
+router.get("/signup", verifyNotLoggedUser, function (request, response, next) {
   response.render("signup");
 });
 
@@ -80,10 +78,7 @@ router.post("/signup", async function (request, response, next) {
 });
 
 /* GET login page */
-router.get("/login", function (req, res, next) {
-  if (req.session.user) {
-    res.status(201).redirect("/homepage");
-  }
+router.get("/login", verifyNotLoggedUser, function (req, res, next) {
   res.render("login");
 });
 
@@ -129,12 +124,8 @@ router.get("/forgot-password", function (req, res, next) {
 });
 
 /* GET user settings page */
-router.get("/settings", function (req, res, next) {
-  const { session } = req;
-  if (!session.user) {
-    res.status(201).redirect("/user/login");
-  }
-  res.render("settings", { user: session.user });
+router.get("/settings", verifyLoggedUser, function (req, res, next) {
+  res.render("settings", { user: req.session.user });
 });
 
 module.exports = router;
