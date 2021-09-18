@@ -2,25 +2,20 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("participants", {
+    await queryInterface.createTable("tasks_has_participants", {
       id: {
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
       },
-      email: {
-        type: Sequelize.CHAR(126),
+      participants_id: {
         allowNull: false,
-        unique: true,
-      },
-      first_name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      last_name: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: "participants",
+          key: "id",
+        },
       },
       created_at: {
         type: "TIMESTAMP",
@@ -36,6 +31,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("participants");
+    await queryInterface.dropTable("tasks_has_participants");
   },
 };

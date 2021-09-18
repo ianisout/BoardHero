@@ -22,13 +22,21 @@ router.get("/char-login", verifyNotLoggedUser, function (req, res, next) {
 });
 
 /* GET character creation page */
-router.get("/character-creation", verifyNotLoggedUser, function (req, res, next) {
-  res.render("character-creation");
-});
+router.get(
+  "/character-creation",
+  verifyNotLoggedUser,
+  function (req, res, next) {
+    res.render("character-creation");
+  }
+);
 
 /* GET reference page for sidebar and navbar components (TEST) */
-router.get("/homepage", verifyLoggedUser, function (req, res, next) {
-  res.render("homepage", { user: req.session.user });
+router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
+  const allTasks = await TaskController.getAllTasks();
+  
+  console.log(allTasks);
+
+  return res.render("homepage", { allTasks, user: req.session.user });
 });
 
 /* GET dashboard page */

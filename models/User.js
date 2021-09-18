@@ -11,3 +11,5 @@ exports.getUserByEmail = async (email) => {
 
   return loggedUser ? loggedUser.dataValues : null;
 };
+
+exports.findAllUsers = async () => await User.findAll();

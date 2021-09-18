@@ -28,6 +28,7 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
   const user_id = userSession.id;
   const workspace_id = userSession.activeWorkspace.id;
 
+
   log(req.body);
   log(req.files);
 
@@ -64,12 +65,16 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     filesInfo,
   });
 
-  res.redirect("/dashboard");
+  res.redirect("/homepage");
 });
 
 /* GET task details page */
-router.get("/details", verifyLoggedUser, function (req, res, next) {
-  res.render("task-details", { user: req.session.user });
+router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
+  const { id } = req.params;
+  const taskDetailsGotbyId = await TaskController.getTaskById(id);
+  // const { comments } = await TaskController.allComents(id);
+  log(taskDetailsGotbyId);
+  res.render("task-details", { user: req.session.user, taskDetailsGotbyId });
 });
 
 module.exports = router;
