@@ -34,7 +34,7 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
         references: {
-          model: "types_of_elements",
+          model: "type_of_elements",
           key: "id",
         },
       },

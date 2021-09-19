@@ -16,6 +16,8 @@ router.get("/", function (req, res, next) {
 
 /* GET signup page */
 router.get("/signup", verifyNotLoggedUser, function (request, response, next) {
+  let test = request.cookies;
+  console.log(test)
   response.render("signup");
 });
 
