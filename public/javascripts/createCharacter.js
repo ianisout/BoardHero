@@ -1,56 +1,40 @@
-// const elementsById = [
-//   {
-//     skin_color: {
-//       "black": 1,
-//       "brown": 2,
-//       "white": 4
-//     }
-//   },
-//   {
-//     dress: 2,
-//   },
-//   {
-//     eyes: 4,
-//   },
-//   {
-//     glasses: 5,
-//   },
-//   {
-//     hair_back: 6,
-//   },
-//   {
-//     hair_front: 7,
-//   },
-//   {
-//     mouth: 8,
-//   },
-//   {
-//     pants: 9,
-//   },
-//   {
-//     shirt: 11,
-//   },
-//   {
-//     shoe: 12,
-//   },
-//   {
-//     tie: 14,
-//   }
-// ];
-
 const getElementsById = {
-  skinColor: 1,
+  skincolor: 1,
   dress: 2,
   eyes: 4,
   glasses: 5,
-  hairBack: 6,
-  hairFront: 7,
+  hairback: 6,
+  hairfront: 7,
   mouth: 8,
   pants: 9,
   shirt: 11,
   shoe: 12,
   tie: 14,
 };
+
+// CHARACTER SET
+const characterElements = {
+  "skincolor": "3",
+  "dress": "0",
+  "eyes": "0",
+  "glasses": "0",
+  "hairback": "0",
+  "hairfront": "0",
+  "mouth": "0",
+  "pants": "0",
+  "shirt": "0",
+  "shoe": "0",
+  "tie": "0",
+};
+
+function setCharacterElements(elementType, elementId) {
+  const obj = {}
+  obj[elementType] = elementId;
+  if (elementType in characterElements) {
+    characterElements[elementType] = elementId.substr(elementId.length - 1);
+  }
+  return characterElements;
+}
 
 // CLEAR PREVIOUS ELEMENT SECTIONS DIV
 function manipulateElementsDiv() {
@@ -115,7 +99,6 @@ function setElementByChoice(choice) {
       if (!selectedCategory) return;
       
       const idChoice = choice[i].src.substr(choice[i].src.lastIndexOf('/') + 1).slice(0, -4);
-      console.log(idChoice)
       const classType = choice[i].src.substr(choice[i].src.lastIndexOf('/') + 1).slice(0, -5);
       
       const getType = document.querySelectorAll(`.${classType}`);
@@ -127,13 +110,19 @@ function setElementByChoice(choice) {
       if (!getType || choiceSelected.style.backgroundImage !== `url("${choice[i].src}")`) {
         choiceSelected.style.backgroundImage = `url("${choice[i].src}")`;
         userCharacter.appendChild(choiceSelected);
-        removeElementByClass(classType) 
+        removeElementByClass(classType);
+        setCharacterElements(classType, idChoice);
       }
     });
   }
 }
 
 function saveData() {
-  let data = document.forms[0];
-  // console.log(data)
+  const characterDataInForm = document.createElement("input");
+  characterDataInForm.setAttribute("type", "text");
+  characterDataInForm.setAttribute("name", "CHARACTER_SET");
+  const form = document.getElementById("createdCharacter");
+  characterDataInForm.style.display = "none";
+  characterDataInForm.value = JSON.stringify(characterElements);
+  form.appendChild(characterDataInForm);
 }

@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Customize your character | BoardHero</title>
   </head>
-  <body onunload="saveData()">
+  <body>
     <a href="/index"><img class="logo" src="/images/logo/logo-white.svg" alt="BoardHero logo"/></a>
     <div class="container">
       <div id="character-visual-background"></div>
@@ -19,17 +19,14 @@
         <% typeOfElements.splice(2,1); typeOfElements.splice(8,1); typeOfElements.splice(10,1); typeOfElements.forEach(elem => { %>
           <button class="type-of-element" id="<%= elem.dataValues.type %>" onclick="getImages(this.id)"><%= elem.dataValues.type.replace("skincolor", "Skin color").replace("hair", "hair ") %></button>
           <% }) %>
-        </div>
+      </div>
 
-        <p id="intro-phrase">Select an element above to get started</p>
+      <p id="intro-phrase">Select an element above to get started</p>
 
-        <div class="option-list" id="option-list" style="display: none;">
-        </div>
+      <div class="option-list" id="option-list" style="display: none;"></div>
 
-        <form action="/character-creation/*" method="POST">
-        <input type="text" name="cookiess" class="">
-        <a class="done-button" href="/User/signup"><button type="submit">I'm done. Let's go!</button></a>
-        
+      <form id="createdCharacter" action="/character-creation/" method="POST">
+        <a class="done-button" href="/User/signup" onclick="saveData()"><button type="submit">I'm done. Let's go!</button></a> 
       </form>
     </div>
   </body>

@@ -7,6 +7,7 @@ const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
 const TaskController = require("../controllers/TaskController");
 const ElementController = require("../controllers/ElementController");
 const TypeOfElementController = require("../controllers/TypeOfElementController");
+const CharacterController = require("../controllers/CharacterController");
 
 /* GET home page */
 router.get("/", verifyNotLoggedUser, function (req, res, next) {
@@ -25,18 +26,13 @@ router.get("/char-login", verifyNotLoggedUser, function (req, res, next) {
 
 /* GET character creation page */
 router.get("/character-creation/", verifyNotLoggedUser, async function (req, res) {
-  // const { id } = req.params;
   const typeOfElements = await TypeOfElementController.findAll();
-  console.log(typeOfElements)
-  // const elements = await ElementController.findElementByType(1);
-
   res.render("character-creation", { typeOfElements });
 });
 
 router.post("/character-creation*", async (req, res) => {
-  let {cookiess} = req.body;
-  console.log(cookiess)
-  res.cookie('Character selections', cookiess, {maxAge: 60000});
+  let {CHARACTER_SET} = req.body;
+  res.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});
   res.status(201).redirect("/User/signup")
 })
 

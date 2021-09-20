@@ -149,6 +149,43 @@ body {
   display: none;
 }
 
+.skincolor {
+  z-index: 1;
+}
+.dress {
+  z-index: 11;
+}
+.eyes {
+  z-index: 4;
+}
+.glasses {
+  z-index: 5;
+}
+.hairback {
+  z-index: 6;
+}
+.hairfront {
+  z-index: 12;
+}
+.mouth {
+  z-index: 8;
+}
+.pants {
+  z-index: 10;
+}
+.pants {
+  z-index: 10;
+}
+.shirt {
+  z-index: 11;
+}
+.shoe {
+  z-index: 9;
+}
+.tie {
+  z-index: 14;
+}
+
 /* width */
 ::-webkit-scrollbar {
   height: 8px;
