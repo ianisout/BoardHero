@@ -6,7 +6,7 @@ module.exports = function (sequelize, DataTypes) {
           allowNull: false,
           type: DataTypes.INTEGER.UNSIGNED,
         },
-        equipped: {
+        is_equipped: {
           type: DataTypes.BOOLEAN,
           allowNull: false,
         },

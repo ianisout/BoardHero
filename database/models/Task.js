@@ -18,7 +18,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.DATE,
     },
     description: {
-      type: DataTypes.STRING(2000),
+      type: DataTypes.TEXT,
     },
     workspace_id: {
       type: DataTypes.INTEGER.UNSIGNED,

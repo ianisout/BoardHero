@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     file_path: {
-      type: DataTypes.STRING(80),
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     task_id: {
