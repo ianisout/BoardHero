@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
-
 const TaskController = require("../controllers/TaskController");
 
 const fs = require("fs");
@@ -27,7 +26,6 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
   const userSession = req.session.user;
   const user_id = userSession.id;
   const workspace_id = userSession.activeWorkspace.id;
-
 
   log(req.body);
   log(req.files);
@@ -72,9 +70,16 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
 router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   const { id } = req.params;
   const taskDetailsGotbyId = await TaskController.getTaskById(id);
-  // const { comments } = await TaskController.allComents(id);
   log(taskDetailsGotbyId);
   res.render("task-details", { user: req.session.user, taskDetailsGotbyId });
+});
+
+
+router.delete("/details/:id", async function (req, res) {
+  const { id } = req.params;
+  await TaskController.deleteTask(id);
+  
+  return res.redirect("/homepage")
 });
 
 module.exports = router;

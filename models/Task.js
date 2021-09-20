@@ -25,3 +25,10 @@ exports.addAttachments = async (attachments) => {
 };
 
 exports.addParticipants = async () => await Participant.findAll();
+
+exports.destroy = (id) =>
+  Task.destroy({
+    where: {
+      id,
+    },
+  });

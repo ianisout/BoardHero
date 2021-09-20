@@ -49,3 +49,5 @@ exports.createTask = async ({
 exports.getAllTasks = () => TaskModel.getAllTasks();
 
 exports.getTaskById = (id) => TaskModel.getTaskById(id);
+
+exports.deleteTask = (id) => TaskModel.destroy(id);

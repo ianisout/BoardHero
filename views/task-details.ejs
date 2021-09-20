@@ -28,15 +28,17 @@
                   <div class="dialog-heading">
                     <h2>
                       <%= taskDetailsGotbyId.dataValues.name %>
+                      <%= taskDetailsGotbyId.dataValues.id %>
                     </h2>
                     <div class="action-buttons">
                       <button id="finish-task" type="submit" class="task-action">Finish</button>
-                      <a id="delete-task" href="#">Delete</a>
+                      <form action="/task/details/<%= taskDetailsGotbyId.dataValues.id %>?_method=DELETE" method="POST">
+                        <button type="submit">Deletar</button>
+                      </form>
                     </div>
                   </div>
                   <div class="form-details">
                     <div>
-                      <!-- <%= taskDetailsGotbyId.dataValues.name %> -->
                       <div class="left-container">
                         <label for="tags">Participants</label>
                         <input type="text" id="participants" name="participants" />
