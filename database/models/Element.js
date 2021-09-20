@@ -7,7 +7,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER.UNSIGNED,
     },
     image_path: {
-      type: DataTypes.STRING(80),
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     name: {
@@ -15,7 +15,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING,
     },
     level: {
       type: DataTypes.INTEGER.UNSIGNED,

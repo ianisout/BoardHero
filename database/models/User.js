@@ -7,7 +7,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER.UNSIGNED,
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.CHAR(126),
       allowNull: false,
       unique: true,
     },
@@ -20,7 +20,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     password: {
-      type: DataTypes.STRING(60),
+      type: DataTypes.CHAR(60),
       allowNull: false,
     },
     position: {
