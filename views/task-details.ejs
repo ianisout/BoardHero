@@ -28,7 +28,6 @@
                   <div class="dialog-heading">
                     <h2>
                       <%= taskDetailsGotbyId.dataValues.name %>
-                      <%= taskDetailsGotbyId.dataValues.id %>
                     </h2>
                     <div class="action-buttons">
                       <button id="finish-task" type="submit" class="task-action">Finish</button>
@@ -41,13 +40,14 @@
                     <div>
                       <div class="left-container">
                         <label for="tags">Participants</label>
+                        <p><%= taskDetailsGotbyId.dataValues.participants%></p>
                         <input type="text" id="participants" name="participants" />
-
                         <label for="tags">Tags</label>
                         <input type="text" id="tags" name="tags" value="#devTeam, #frontEnd, #backEnd" />
 
                         <div class="due-date">
-                          <label>Due date: <strong>01/01/2000</strong></label>
+                          <label>Start date: <strong><%= taskDetailsGotbyId.dataValues.start_date %></strong></label>
+                          <label>Due date: <strong><%= taskDetailsGotbyId.dataValues.start_date %></strong></label>
                         </div>
 
                         <div class="attachments-reminders-flags">
