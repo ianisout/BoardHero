@@ -20,6 +20,17 @@ exports.getTaskById = async (id) => {
   return taskGotByID;
 };
 
+exports.getTask = async () => {
+  const uniqueTask = await Task.findOne({
+    where: {
+      id
+    },
+    attributes: ["participants"]
+  });
+
+  return uniqueTask;
+};
+
 exports.addAttachments = async (attachments) => {
   await Attachment.bulkCreate(attachments);
 };
