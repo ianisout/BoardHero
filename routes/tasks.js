@@ -74,6 +74,9 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   res.render("task-details", { user: req.session.user, taskDetailsGotbyId });
 });
 
+router.post("/details/:id", async function (req, res) {
+  res.send(202)
+})
 
 router.delete("/details/:id", async function (req, res) {
   const { id } = req.params;

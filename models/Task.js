@@ -35,8 +35,6 @@ exports.addAttachments = async (attachments) => {
   await Attachment.bulkCreate(attachments);
 };
 
-exports.addParticipants = async () => await Participant.findAll();
-
 exports.destroy = (id) =>
   Task.destroy({
     where: {
