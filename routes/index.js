@@ -7,7 +7,6 @@ const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
 const TaskController = require("../controllers/TaskController");
 const ElementController = require("../controllers/ElementController");
 const TypeOfElementController = require("../controllers/TypeOfElementController");
-const CharacterController = require("../controllers/CharacterController");
 
 /* GET home page */
 router.get("/", verifyNotLoggedUser, function (req, res, next) {
