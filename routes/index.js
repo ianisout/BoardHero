@@ -5,6 +5,8 @@ const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
 
 const TaskController = require("../controllers/TaskController");
+const ElementController = require("../controllers/ElementController");
+const TypeOfElementController = require("../controllers/TypeOfElementController");
 
 /* GET home page */
 router.get("/", verifyNotLoggedUser, function (req, res, next) {
@@ -22,10 +24,16 @@ router.get("/char-login", verifyNotLoggedUser, function (req, res, next) {
 });
 
 /* GET character creation page */
-router.get("/character-creation", verifyNotLoggedUser, function (req, res, next) {
-    res.render("character-creation");
-  }
-);
+router.get("/character-creation/", verifyNotLoggedUser, async function (req, res) {
+  const typeOfElements = await TypeOfElementController.findAll();
+  res.render("character-creation", { typeOfElements });
+});
+
+router.post("/character-creation*", async (req, res) => {
+  let {CHARACTER_SET} = req.body;
+  res.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});
+  res.status(201).redirect("/User/signup")
+})
 
 /* GET reference page for sidebar and navbar components (TEST) */
 router.get("/homepage", verifyLoggedUser, async function (req, res, next) {

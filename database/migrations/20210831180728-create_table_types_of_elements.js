@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("types_of_elements", {
+    await queryInterface.createTable("type_of_elements", {
       id: {
         primaryKey: true,
         autoIncrement: true,
@@ -27,6 +27,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("types_of_elements");
+    await queryInterface.dropTable("type_of_elements");
   },
 };
