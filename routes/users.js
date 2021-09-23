@@ -27,7 +27,7 @@ router.get("/signup", verifyNotLoggedUser, function (request, response, next) {
 });
 
 /* POST signup form */
-router.post("/signup",validationSignUp , async function (request, response, next) {
+router.post("/signup", validationSignUp , async function (request, response, next) {
   try {
     
     const {
