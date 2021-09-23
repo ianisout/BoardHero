@@ -42,7 +42,7 @@ exports.createUser = async ({
     return userCreated;
   } 
   catch (error) {
-    console.error(error);
+    throw (error) ;
   }
 };
 

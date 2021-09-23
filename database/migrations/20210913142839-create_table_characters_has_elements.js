@@ -20,14 +20,18 @@ module.exports = {
           model: "characters",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       element_id: {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
-        references: { 
+        references: {
           model: "elements",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       created_at: {
         type: "TIMESTAMP",

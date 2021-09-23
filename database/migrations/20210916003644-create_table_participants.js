@@ -14,16 +14,20 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: "users",
-          key: "id"
-        }
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       task_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: "tasks",
-          key: "id"
-        }
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       created_at: {
         type: "TIMESTAMP",

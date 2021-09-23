@@ -15,6 +15,8 @@ module.exports = {
         references: {
           model: "tasks",
           key: "id",
+          onUpdate: "cascade",
+          onDelete: "cascade",
         },
       },
       task_action_id: {
@@ -24,6 +26,8 @@ module.exports = {
           model: "task_actions",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       created_at: {
         type: "TIMESTAMP",

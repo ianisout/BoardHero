@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('attachments', { 
+    await queryInterface.createTable("attachments", {
       id: {
         primaryKey: true,
         autoIncrement: true,
@@ -11,27 +11,31 @@ module.exports = {
       },
       file_name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       file_path: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
       },
       task_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: "tasks",
-          key: "id"
-        }
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       user_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: "users",
-          key: "id"
-        }
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       created_at: {
         type: "TIMESTAMP",
@@ -47,6 +51,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-     await queryInterface.dropTable('attachments');
-  }
+    await queryInterface.dropTable("attachments");
+  },
 };

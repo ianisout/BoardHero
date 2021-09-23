@@ -14,16 +14,20 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: "characters",
-          key: "id"
-        }
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       badge_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: "badges",
-          key: "id"
-        }
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       created_at: {
         type: "TIMESTAMP",

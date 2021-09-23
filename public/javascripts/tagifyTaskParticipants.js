@@ -38,9 +38,10 @@ function suggestionItemTemplate(tagData){
 
 async function getWorkspaceUsers(){
     try {
-        const usersList = await axios.get("/task/users-list");
-        console.log(JSON.stringify(usersList.data));
-        return JSON.stringify(usersList.data);
+        const workspaceUsers = await axios.get("/task/users-list");
+        console.log(workspaceUsers.data);
+        const usersList = workspaceUsers.data;
+        return usersList;
     } catch (err) { 
         console.error(err);
     }
@@ -61,7 +62,8 @@ var tagify = new Tagify(inputElm, {
         tag: tagTemplate,
         dropdownItem: suggestionItemTemplate
     },
-    whitelist: [
+    whitelist: // getWorkspaceUsers()
+    [
         {
             "id": 1,
             "name": "Justinian Hattersley",

@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
-
 const TaskController = require("../controllers/TaskController");
 const WorkspaceController = require("../controllers/WorkspaceController");
 
@@ -65,20 +64,32 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     filesInfo,
   });
 
-  res.redirect("/dashboard");
+  res.redirect("/homepage");
 });
 
 /* GET task details page */
-router.get("/details", verifyLoggedUser, function (req, res, next) {
-  res.render("task-details", { user: req.session.user });
+router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
+  const { id } = req.params;
+  const taskDetailsGotbyId = await TaskController.getTaskById(id);
+  log(taskDetailsGotbyId);
+  res.render("task-details", { user: req.session.user, taskDetailsGotbyId,  });
 });
 
+/* DELETE task */
+router.delete("/details/:id", async function (req, res) {
+  const { id } = req.params;
+  await TaskController.deleteTask(id);
+  
+  return res.redirect("/homepage")
+});
+
+/* GET workspace users */
 router.get("/users-list", async function (req, res, next) {
   const userSession = req.session.user;
   const workspace_id = userSession.activeWorkspace.id;
   const workspaceUsers = await WorkspaceController.getWorkspaceUsers(workspace_id);
   
-  res.send(JSON.stringify(workspaceUsers));
+  res.json(workspaceUsers);
 });
 
 module.exports = router;
