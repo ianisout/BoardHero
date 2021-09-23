@@ -4,8 +4,13 @@ const router = express.Router();
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
 
+const validators = require("../middlewares/signupValidation");
+const { firstName, lastName, email, confirmEmail, password, confirmPassword  } = validators;
+const validationSignUp = [firstName, lastName, email, confirmEmail, password, confirmPassword]
+
 const UserController = require("../controllers/UserController");
 const WorkspaceController = require("../controllers/WorkspaceController");
+
 
 const { log } = console;
 
@@ -22,8 +27,9 @@ router.get("/signup", verifyNotLoggedUser, function (request, response, next) {
 });
 
 /* POST signup form */
-router.post("/signup", async function (request, response, next) {
+router.post("/signup",validationSignUp , async function (request, response, next) {
   try {
+    
     const {
       first_name,
       last_name,

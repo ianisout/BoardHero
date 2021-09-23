@@ -61,7 +61,10 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     actions,
     tags,
     filesInfo,
-  });
+  })
+  
+  ;
+  
 
   res.redirect("/homepage");
 });

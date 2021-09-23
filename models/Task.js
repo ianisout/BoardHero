@@ -4,6 +4,7 @@ const {
   Attachment,
   Comment,
   Participant,
+  Task_action,
 } = require("../database/models");
 
 exports.createTask = async (newTask) => {
@@ -23,9 +24,9 @@ exports.getTaskById = async (id) => {
 exports.getTask = async () => {
   const uniqueTask = await Task.findOne({
     where: {
-      id
+      id,
     },
-    attributes: ["participants"]
+    attributes: ["participants"],
   });
 
   return uniqueTask;
@@ -34,6 +35,8 @@ exports.getTask = async () => {
 exports.addAttachments = async (attachments) => {
   await Attachment.bulkCreate(attachments);
 };
+
+exports.taskActions = async (actions) => await Task_action.create(actions);
 
 exports.destroy = (id) =>
   Task.destroy({
