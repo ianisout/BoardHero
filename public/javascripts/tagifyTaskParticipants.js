@@ -36,6 +36,81 @@ function suggestionItemTemplate(tagData){
     `
 }
 
+const exampleWhitelist = [
+    {
+        "value": 1,
+        "name": "Justinian Hattersley",
+        "avatar": "https://i.pravatar.cc/80?img=1",
+        "email": "jhattersley0@ucsd.edu"
+    },
+    {
+        "value": 2,
+        "name": "Antons Esson",
+        "avatar": "https://i.pravatar.cc/80?img=2",
+        "email": "aesson1@ning.com"
+    },
+    {
+        "value": 3,
+        "name": "Ardeen Batisse",
+        "avatar": "https://i.pravatar.cc/80?img=3",
+        "email": "abatisse2@nih.gov"
+    },
+    {
+        "value": 4,
+        "name": "Graeme Yellowley",
+        "avatar": "https://i.pravatar.cc/80?img=4",
+        "email": "gyellowley3@behance.net"
+    },
+    {
+        "value": 5,
+        "name": "Dido Wilford",
+        "avatar": "https://i.pravatar.cc/80?img=5",
+        "email": "dwilford4@jugem.jp"
+    },
+    {
+        "value": 6,
+        "name": "Celesta Orwin",
+        "avatar": "https://i.pravatar.cc/80?img=6",
+        "email": "corwin5@meetup.com"
+    },
+    {
+        "value": 7,
+        "name": "Sally Main",
+        "avatar": "https://i.pravatar.cc/80?img=7",
+        "email": "smain6@techcrunch.com"
+    },
+    {
+        "value": 8,
+        "name": "Grethel Haysman",
+        "avatar": "https://i.pravatar.cc/80?img=8",
+        "email": "ghaysman7@mashable.com"
+    },
+    {
+        "value": 9,
+        "name": "Marvin Mandrake",
+        "avatar": "https://i.pravatar.cc/80?img=9",
+        "email": "mmandrake8@sourceforge.net"
+    },
+    {
+        "value": 10,
+        "name": "Corrie Tidey",
+        "avatar": "https://i.pravatar.cc/80?img=10",
+        "email": "ctidey9@youtube.com"
+    },
+    {
+        "value": 11,
+        "name": "foo",
+        "avatar": "https://i.pravatar.cc/80?img=11",
+        "email": "foo@bar.com"
+    },
+    {
+        "value": 12,
+        "name": "foo",
+        "avatar": "https://i.pravatar.cc/80?img=12",
+        "email": "foo.aaa@foo.com"
+    },
+];
+
 async function getWorkspaceUsers(){
     try {
         const workspaceUsers = await axios.get("/task/users-list");
@@ -62,81 +137,7 @@ var tagify = new Tagify(inputElm, {
         tag: tagTemplate,
         dropdownItem: suggestionItemTemplate
     },
-    whitelist: // getWorkspaceUsers()
-    [
-        {
-            "id": 1,
-            "name": "Justinian Hattersley",
-            "avatar": "https://i.pravatar.cc/80?img=1",
-            "email": "jhattersley0@ucsd.edu"
-        },
-        {
-            "id": 2,
-            "name": "Antons Esson",
-            "avatar": "https://i.pravatar.cc/80?img=2",
-            "email": "aesson1@ning.com"
-        },
-        {
-            "id": 3,
-            "name": "Ardeen Batisse",
-            "avatar": "https://i.pravatar.cc/80?img=3",
-            "email": "abatisse2@nih.gov"
-        },
-        {
-            "id": 4,
-            "name": "Graeme Yellowley",
-            "avatar": "https://i.pravatar.cc/80?img=4",
-            "email": "gyellowley3@behance.net"
-        },
-        {
-            "id": 5,
-            "name": "Dido Wilford",
-            "avatar": "https://i.pravatar.cc/80?img=5",
-            "email": "dwilford4@jugem.jp"
-        },
-        {
-            "id": 6,
-            "name": "Celesta Orwin",
-            "avatar": "https://i.pravatar.cc/80?img=6",
-            "email": "corwin5@meetup.com"
-        },
-        {
-            "id": 7,
-            "name": "Sally Main",
-            "avatar": "https://i.pravatar.cc/80?img=7",
-            "email": "smain6@techcrunch.com"
-        },
-        {
-            "id": 8,
-            "name": "Grethel Haysman",
-            "avatar": "https://i.pravatar.cc/80?img=8",
-            "email": "ghaysman7@mashable.com"
-        },
-        {
-            "id": 9,
-            "name": "Marvin Mandrake",
-            "avatar": "https://i.pravatar.cc/80?img=9",
-            "email": "mmandrake8@sourceforge.net"
-        },
-        {
-            "id": 10,
-            "name": "Corrie Tidey",
-            "avatar": "https://i.pravatar.cc/80?img=10",
-            "email": "ctidey9@youtube.com"
-        },
-        {
-            "id": 11,
-            "name": "foo",
-            "avatar": "https://i.pravatar.cc/80?img=11",
-            "email": "foo@bar.com"
-        },
-        {
-            "id": 12,
-            "name": "foo",
-            "avatar": "https://i.pravatar.cc/80?img=12",
-            "email": "foo.aaa@foo.com"
-        },
-    ]
+    whitelist: exampleWhitelist // getWorkspaceUsers()
 })
 
 tagify.on('dropdown:show dropdown:updated', onDropdownShow)
@@ -167,7 +168,7 @@ function getAddAllSuggestionsElm(){
             class: "addAll",
             name: "Add all",
             email: tagify.whitelist.reduce(function(remainingSuggestions, item){
-                return tagify.isTagDuplicate(item.id) ? remainingSuggestions : remainingSuggestions + 1
+                return tagify.isTagDuplicate(item.value) ? remainingSuggestions : remainingSuggestions + 1
             }, 0) + " Members"
         }]
       )
