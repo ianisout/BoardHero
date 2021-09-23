@@ -9,18 +9,25 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
       },
-      email: {
-        type: Sequelize.CHAR(126),
+      user_id: {
         allowNull: false,
-        unique: true,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: "users",
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
-      first_name: {
-        type: Sequelize.STRING,
+      task_id: {
         allowNull: false,
-      },
-      last_name: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: "tasks",
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       created_at: {
         type: "TIMESTAMP",

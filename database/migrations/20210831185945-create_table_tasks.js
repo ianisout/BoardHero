@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('tasks', { 
+    await queryInterface.createTable("tasks", {
       id: {
         primaryKey: true,
         autoIncrement: true,
@@ -11,14 +11,14 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       start_date: {
         type: Sequelize.DATEONLY,
-        allowNull: false
+        allowNull: false,
       },
       end_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       description: {
         type: Sequelize.TEXT,
@@ -28,24 +28,30 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: "users",
-          key: "id"
-        }
+          key: "id",
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       workspace_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: "workspaces",
-          key: "id"
-        }
+          key: "id",
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       task_status_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: "task_status",
-          key: "id"
-        }
+          key: "id",
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       created_at: {
         type: "TIMESTAMP",
@@ -61,6 +67,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-     await queryInterface.dropTable('tasks');
-  }
+    await queryInterface.dropTable("tasks");
+  },
 };

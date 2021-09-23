@@ -16,6 +16,8 @@ module.exports = {
           model: "tasks",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       task_tag_id: {
         allowNull: false,
@@ -24,6 +26,8 @@ module.exports = {
           model: "task_tags",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       created_at: {
         type: "TIMESTAMP",

@@ -75,7 +75,9 @@ router.post("/signup", async function (request, response, next) {
       // Send the error message to the view
     }
   } catch (error) {
-    console.error(error);
+    console.log(error);
+
+    return response.render('signup', {error: error.message})
   }
 });
 

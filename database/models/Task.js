@@ -15,7 +15,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     end_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
     },
     description: {
       type: DataTypes.TEXT,

@@ -20,6 +20,8 @@ module.exports = {
           model: "users",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       workspace_id: {
         allowNull: false,
@@ -28,6 +30,8 @@ module.exports = {
           model: "workspaces",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       created_at: {
         type: "TIMESTAMP",
