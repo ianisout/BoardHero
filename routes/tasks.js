@@ -4,6 +4,7 @@ const router = express.Router();
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 
 const TaskController = require("../controllers/TaskController");
+const WorkspaceController = require("../controllers/WorkspaceController");
 
 const fs = require("fs");
 const os = require("os");
@@ -70,6 +71,14 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
 /* GET task details page */
 router.get("/details", verifyLoggedUser, function (req, res, next) {
   res.render("task-details", { user: req.session.user });
+});
+
+router.get("/users-list", async function (req, res, next) {
+  const userSession = req.session.user;
+  const workspace_id = userSession.activeWorkspace.id;
+  const workspaceUsers = await WorkspaceController.getWorkspaceUsers(workspace_id);
+  
+  res.send(JSON.stringify(workspaceUsers));
 });
 
 module.exports = router;

@@ -12,3 +12,9 @@ exports.linkWorkspaceToUser = async ({ userId, workspaceId, isAdmin }) => {
     is_admin: isAdmin,
   });
 };
+
+exports.getWorkspaceUsers = async (workspace_id) => {
+  const workspace = await Workspace.findByPk(workspace_id);
+  const userList = await workspace.getUsers();
+  return userList.map(user => user.dataValues);
+};
