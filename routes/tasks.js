@@ -3,6 +3,7 @@ const router = express.Router();
 
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const TaskController = require("../controllers/TaskController");
+const WorkspaceController = require("../controllers/WorkspaceController");
 
 const fs = require("fs");
 const os = require("os");
@@ -77,12 +78,21 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   res.render("task-details", { user: req.session.user, taskDetailsGotbyId,  });
 });
 
-
+/* DELETE task */
 router.delete("/details/:id", async function (req, res) {
   const { id } = req.params;
   await TaskController.deleteTask(id);
   
   return res.redirect("/homepage")
+});
+
+/* GET workspace users */
+router.get("/users-list", async function (req, res, next) {
+  const userSession = req.session.user;
+  const workspace_id = userSession.activeWorkspace.id;
+  const workspaceUsers = await WorkspaceController.getWorkspaceUsers(workspace_id);
+  
+  res.json(workspaceUsers);
 });
 
 module.exports = router;

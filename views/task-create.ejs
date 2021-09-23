@@ -3,9 +3,16 @@
 <head>
     <!-- General Settings and Fonts -->
     <%- include('./partials/head-general-settings') %>    
+
+    <!-- Tagify -->
+    <script src="https://unpkg.com/@yaireo/tagify"></script>
+    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+
     <!-- CSS Links -->
     <%- include('./partials/bootstrap-css-head') %>    
     <link rel="stylesheet" href="/stylesheets/task-create.css" />
+    <link rel="stylesheet" href="/stylesheets/tagify-task-participants.css" />
     <title>Create New Task | Board Hero</title>
 </head>
 
@@ -29,8 +36,8 @@
                                 <input type="text" id="task_name" name="task_name" required/>
                     
                                 <label for="participants">Participants</label>
-                                <input type="text" id="participants" name="participants" required/>
-                    
+                                <input id="participants" name="participants"/>
+
                                 <label for="tags">Tags</label>
                                 <input type="text" id="tags" name="tags"/>
                     
@@ -94,7 +101,9 @@
 
     <%- include('./partials/bootstrap-js-scripts') %>
 
-    <script src="/javascripts/task-create.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/javascripts/taskCreate.js"></script>
+    <script src="/javascripts/tagifyTaskParticipants.js"></script>
 
 </body>
 </html>
