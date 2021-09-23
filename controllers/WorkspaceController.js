@@ -17,7 +17,7 @@ exports.getWorkspaceUsers = async (workspace_id) => {
 
   const userList = workspaceUsers.map(user => {
     return {
-        id: user.id,
+        value: user.id,
         name: `${user.first_name} ${user.last_name}`,
         avatar: "https://i.pravatar.cc/80?img=1",
         email: user.email,
