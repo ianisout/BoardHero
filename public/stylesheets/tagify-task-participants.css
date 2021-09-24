@@ -3,14 +3,19 @@
     background: white;
     font-size: 14px;
     --tags-border-color: gray;
+    --tag-text-color: white;
+    --tag-remove-btn-color: white;
     --tags-focus-border-color: #8929bb;
     --tag-bg: #8929bb;
-    /* need to change the border-color of the dropdown */
   }
   
-  .tagify__dropdown.users-list {
+  .tagify__dropdown__wrapper {
     font-size: 14px;
     border-color: #8929bb;
+  }
+
+  .tagify__dropdown__item:hover {
+    background-color: #8929bb;
   }
   
   /* Suggestions items */
