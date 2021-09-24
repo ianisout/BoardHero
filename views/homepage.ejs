@@ -3,23 +3,40 @@
 
 <head>
   <!-- General Settings and Fonts -->
-  <%- include('./partials/head-general-settings') %>    
-  <!-- CSS Links -->
-  <%- include('./partials/bootstrap-css-head') %>    
-  <title>Board Hero | Home Page</title>
+  <%- include('./partials/head-general-settings') %>
+    <!-- CSS Links -->
+    <%- include('./partials/bootstrap-css-head') %>
+      <title>Board Hero | Home Page</title>
 </head>
 
 <body>
-    <%- include('./partials/sidebar') %>
+  <%- include('./partials/sidebar') %>
 
-    <section class="home-section" >
-        <%- include('./partials/navbar') %>
+    <section class="home-section">
+      <%- include('./partials/navbar') %>
         <div class="home-content">
           Dashboard
           <%- include('./partials/button-add') %>
         </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-4">
+              <% allTasks.forEach(task => { %>
+              <div class="card" style="width: 18rem;">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                  <h5 class="card-title"><%= task.name %></h5>
+                  <p class="card-text"><%= task.description %></p>
+                  <a href="/task/details/<%= task.id%>" class="btn btn-primary">Task details</a>
+                </div>
+              </div>
+              <% }) %>
+            </div>
+          </div>
+        </div>
     </section>
 
-  <%- include('./partials/bootstrap-js-scripts') %>
+    <%- include('./partials/bootstrap-js-scripts') %>
 </body>
+
 </html>
