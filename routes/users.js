@@ -77,13 +77,10 @@ router.post("/signup", validationSignUp , async function (request, response, nex
       log(request.session);
 
       response.status(201).redirect("/homepage");
-    } else {
-      // Send the error message to the view
     }
   } catch (error) {
     console.log(error);
-
-    return response.render('signup', {error: error.message})
+    return response.render('signup', { error: error.message });
   }
 });
 
@@ -114,11 +111,10 @@ router.post("/login", async function (req, res, next) {
       log(req.session);
 
       res.status(201).redirect("/homepage");
-    } else {
-      // Send the error message to the view
     }
   } catch (error) {
-    console.error(error);
+    console.log(error);
+    return res.render('login', { error: error.message });
   }
 });
 

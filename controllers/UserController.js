@@ -42,7 +42,7 @@ exports.createUser = async ({
     return userCreated;
   } 
   catch (error) {
-    throw (error) ;
+    throw (error);
   }
 };
 
@@ -68,6 +68,6 @@ exports.loginUser = async ({ email, password }) => {
     return userPlusWorkspaces;
   } 
   catch (error) {
-    console.error(error);
+    throw (error);
   }
 };

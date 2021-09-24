@@ -38,13 +38,9 @@ exports.createTask = async ({
           user_id,
         };
       });
-   
-
+      TaskModel.addAttachments(attachments);
 
       TaskModel.taskActions(taskActionsByTask); 
-
-      
-      TaskModel.addAttachments(attachments);
     }
   } catch (error) {
     console.error(error);

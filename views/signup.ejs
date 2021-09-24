@@ -15,9 +15,9 @@
       <img src="/images/logo/logo-purple.svg" class="logo" alt="Board Hero logo" />
     </a>
     <form action="/User/signup" method="POST">
-      <% if(typeof errors !='undefined' ) { %>
-        <div>
-          <%= errors %>
+      <% if (typeof error !='undefined' ) { %>
+        <div class="error">
+          <%= error %>
         </div>
         <% } %>
           <label for="first_name">Name</label>
