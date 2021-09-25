@@ -41,6 +41,79 @@ function suggestionItemTemplate(tagData) {
     `;
 }
 
+async function getWorkspaceUsers() {
+  try {
+    const workspaceUsers = await axios.get("/task/users-list");
+    return workspaceUsers.data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+// initialize Tagify on the above input node reference
+
+getWorkspaceUsers().then(function (usersList) {
+  const tagifyOptions = {
+    tagTextProp: "name", // very important since a custom template is used with this property as text
+    enforceWhitelist: true,
+    skipInvalid: true, // do not remporarily add invalid tags
+    dropdown: {
+      closeOnSelect: false,
+      enabled: 0,
+      classname: "users-list",
+      searchKeys: ["name", "email"], // very important to set by which keys to search for suggesttions when typing
+    },
+    templates: {
+      tag: tagTemplate,
+      dropdownItem: suggestionItemTemplate,
+    },
+    whitelist: usersList
+  };
+
+  const tagify = new Tagify(inputElm, tagifyOptions);
+
+  tagify.on("dropdown:show dropdown:updated", onDropdownShow);
+  tagify.on("dropdown:select", onSelectSuggestion);
+
+  var addAllSuggestionsElm;
+
+  function onDropdownShow(e) {
+    var dropdownContentElm = e.detail.tagify.DOM.dropdown.content;
+
+    if (tagify.suggestedListItems.length > 1) {
+      addAllSuggestionsElm = getAddAllSuggestionsElm();
+
+      // insert "addAllSuggestionsElm" as the first element in the suggestions list
+      dropdownContentElm.insertBefore(
+        addAllSuggestionsElm,
+        dropdownContentElm.firstChild
+      );
+    }
+  }
+
+  function onSelectSuggestion(e) {
+    if (e.detail.elm == addAllSuggestionsElm) tagify.dropdown.selectAll();
+  }
+
+  // create a "add all" custom suggestion element every time the dropdown changes
+  function getAddAllSuggestionsElm() {
+    // suggestions items should be based on "dropdownItem" template
+    return tagify.parseTemplate("dropdownItem", [
+      {
+        class: "addAll",
+        name: "Add all",
+        email:
+          tagify.whitelist.reduce(function (remainingSuggestions, item) {
+            return tagify.isTagDuplicate(item.value)
+              ? remainingSuggestions
+              : remainingSuggestions + 1;
+          }, 0) + " Members",
+      },
+    ]);
+  }
+});
+
+/*
 const exampleWhitelist = [
   {
     value: 1,
@@ -115,75 +188,4 @@ const exampleWhitelist = [
     email: "foo.aaa@foo.com",
   },
 ];
-
-async function getWorkspaceUsers() {
-  try {
-    const workspaceUsers = await axios.get("/task/users-list");
-    console.log(workspaceUsers.data);
-    return workspaceUsers.data;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-// initialize Tagify on the above input node reference
-
-getWorkspaceUsers().then(function (usersList) {
-  const tagifyOptions = {
-    tagTextProp: "name", // very important since a custom template is used with this property as text
-    enforceWhitelist: true,
-    skipInvalid: true, // do not remporarily add invalid tags
-    dropdown: {
-      closeOnSelect: false,
-      enabled: 0,
-      classname: "users-list",
-      searchKeys: ["name", "email"], // very important to set by which keys to search for suggesttions when typing
-    },
-    templates: {
-      tag: tagTemplate,
-      dropdownItem: suggestionItemTemplate,
-    },
-    whitelist: usersList
-
-  };
-  const tagify = new Tagify(inputElm, tagifyOptions);
-  tagify.on("dropdown:show dropdown:updated", onDropdownShow);
-  tagify.on("dropdown:select", onSelectSuggestion);
-
-  var addAllSuggestionsElm;
-
-  function onDropdownShow(e) {
-    var dropdownContentElm = e.detail.tagify.DOM.dropdown.content;
-
-    if (tagify.suggestedListItems.length > 1) {
-      addAllSuggestionsElm = getAddAllSuggestionsElm();
-
-      // insert "addAllSuggestionsElm" as the first element in the suggestions list
-      dropdownContentElm.insertBefore(
-        addAllSuggestionsElm,
-        dropdownContentElm.firstChild
-      );
-    }
-  }
-
-  function onSelectSuggestion(e) {
-    if (e.detail.elm == addAllSuggestionsElm) tagify.dropdown.selectAll();
-  }
-
-  // create a "add all" custom suggestion element every time the dropdown changes
-  function getAddAllSuggestionsElm() {
-    // suggestions items should be based on "dropdownItem" template
-    return tagify.parseTemplate("dropdownItem", [
-      {
-        class: "addAll",
-        name: "Add all",
-        email:
-          tagify.whitelist.reduce(function (remainingSuggestions, item) {
-            return tagify.isTagDuplicate(item.value)
-              ? remainingSuggestions
-              : remainingSuggestions + 1;
-          }, 0) + " Members",
-      },
-    ]);
-  }
-});
+*/

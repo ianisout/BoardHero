@@ -5,17 +5,17 @@
     --tags-border-color: gray;
     --tag-text-color: white;
     --tag-remove-btn-color: white;
-    --tags-focus-border-color: #8929bb;
-    --tag-bg: #8929bb;
+    --tags-focus-border-color: #8829bba6;
+    --tag-bg: #8829bba6;
   }
   
   .tagify__dropdown__wrapper {
     font-size: 14px;
-    border-color: #8929bb;
+    border-color: #8829bba6;
   }
 
   .tagify__dropdown__item:hover {
-    background-color: #8929bb;
+    background-color: #8829bba6;
   }
   
   /* Suggestions items */
