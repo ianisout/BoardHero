@@ -6,7 +6,9 @@
     </div>
     <div class="character-info">
       <div class="character-image">
-
+        <% elements.map(element => { %> 
+          <div class="unique-image" style="background-image: url('<%= element %>');"></div>
+        <% }) %> 
       </div>
       <div class="characterprogress">
         <div id="exp_progress">
