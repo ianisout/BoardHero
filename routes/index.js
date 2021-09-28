@@ -5,8 +5,8 @@ const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
 
 const TaskController = require("../controllers/TaskController");
-const ElementController = require("../controllers/ElementController");
 const TypeOfElementController = require("../controllers/TypeOfElementController");
+const CharacterController = require("../controllers/CharacterController");
 
 /* GET home page */
 router.get("/", verifyNotLoggedUser, function (req, res, next) {
@@ -29,7 +29,7 @@ router.get("/character-creation/", verifyNotLoggedUser, async function (req, res
   res.render("character-creation", { typeOfElements });
 });
 
-router.post("/character-creation*", async (req, res) => {
+router.post("/character-creation/", async (req, res) => {
   let {CHARACTER_SET} = req.body;
   res.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});
   res.status(201).redirect("/User/signup")
@@ -38,9 +38,16 @@ router.post("/character-creation*", async (req, res) => {
 /* GET reference page for sidebar and navbar components (TEST) */
 router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   const allTasks = await TaskController.getAllTasks();
-  console.log(allTasks);
+  const { CHARACTER_SET } = req.cookies;
+  const user = req.session.user;
+  const userId = user.id;
+  
+  const character = await CharacterController.getCharacterByUserId(userId);
+  const idsOfElements = await CharacterController.getCharacterElements(character.id);
+  const elements = await TypeOfElementController.findElementsById(idsOfElements);
 
-  return res.render("homepage", { allTasks, user: req.session.user });
+  res.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});
+  return res.render("homepage", { allTasks, user, elements });
 });
 
 /* GET dashboard page */

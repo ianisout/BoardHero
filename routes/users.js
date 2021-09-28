@@ -29,6 +29,8 @@ router.get("/signup", verifyNotLoggedUser, function (request, response, next) {
 router.post("/signup", signupValidations, validationErrorMessage, async function (request, response, next) {
   console.log(validationErrorMessage)
   try {
+    const { CHARACTER_SET } = request.cookies;
+    const characterChoices = JSON.parse(CHARACTER_SET);
     const {
       first_name,
       last_name,
@@ -49,6 +51,7 @@ router.post("/signup", signupValidations, validationErrorMessage, async function
       confirmPassword,
       position,
       company,
+      characterChoices
     });
 
     if (userCreated) {
@@ -73,8 +76,8 @@ router.post("/signup", signupValidations, validationErrorMessage, async function
       };
 
       request.session.user = userSession;
-      log(request.session);
 
+      response.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});
       response.status(201).redirect("/homepage");
     }
   } catch (error) {

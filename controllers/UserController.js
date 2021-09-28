@@ -1,4 +1,6 @@
 const UserModel = require("../models/User");
+const ElementModel = require("../models/Element");
+const CharacterModel = require("../models/Character");
 const bcryptjs = require("bcryptjs");
 
 exports.createUser = async ({
@@ -9,7 +11,8 @@ exports.createUser = async ({
   password,
   confirmPassword,
   position,
-  company
+  company,
+  characterChoices
 }) => {
   try {
     if (email !== confirmEmail) {
@@ -37,8 +40,11 @@ exports.createUser = async ({
     };
 
     const { password: notUsedPassword, ...userCreated } = await UserModel.createUser(newUser);
-    console.log(userCreated);
-  
+
+    const characterCreated = await CharacterModel.createCharacter(userCreated.id);
+
+    await ElementModel.setCharacterElements(characterChoices, characterCreated.id);
+
     return userCreated;
   } 
   catch (error) {

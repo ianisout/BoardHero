@@ -231,6 +231,20 @@
   margin: 18px;
 }
 
+.character-image {
+  width: 200px;
+  height: 200px;
+  background-color: #fafafa;
+}
+
+.unique-image {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  background-position: center;
+  background-size: cover;
+}
+
 @media (max-width: 420px) {
   .sidebar {
     visibility: hidden;
