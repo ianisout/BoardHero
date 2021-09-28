@@ -27,6 +27,7 @@ router.get("/signup", verifyNotLoggedUser, function (request, response, next) {
 
 /* POST signup form */
 router.post("/signup", signupValidations, validationErrorMessage, async function (request, response, next) {
+  console.log(validationErrorMessage)
   try {
     const {
       first_name,
@@ -78,7 +79,7 @@ router.post("/signup", signupValidations, validationErrorMessage, async function
     }
   } catch (error) {
     console.log(error);
-    return response.render('signup', { error: error.message });
+    return response.render('signup');
   }
 });
 

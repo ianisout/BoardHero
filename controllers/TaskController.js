@@ -39,8 +39,6 @@ exports.createTask = async ({
         };
       });
       TaskModel.addAttachments(attachments);
-
-      TaskModel.taskActions(taskActionsByTask); 
     }
   } catch (error) {
     console.error(error);
@@ -52,3 +50,7 @@ exports.getAllTasks = () => TaskModel.getAllTasks();
 exports.getTaskById = (id) => TaskModel.getTaskById(id);
 
 exports.deleteTask = (id) => TaskModel.destroy(id);
+
+exports.addStatusToTask = (id, status) => TaskModel.addStatusToTask(id, status);
+
+exports.actionsToTask = (id, actions) => TaskModel.actionsToTask(id, actions);

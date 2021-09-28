@@ -62,10 +62,7 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     actions,
     tags,
     filesInfo,
-  })
-  
-  ;
-  
+  });
 
   res.redirect("/homepage");
 });
@@ -75,23 +72,25 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   const { id } = req.params;
   const taskDetailsGotbyId = await TaskController.getTaskById(id);
   log(taskDetailsGotbyId);
-  res.render("task-details", { user: req.session.user, taskDetailsGotbyId,  });
+  res.render("task-details", { user: req.session.user, taskDetailsGotbyId });
 });
 
 /* DELETE task */
 router.delete("/details/:id", async function (req, res) {
   const { id } = req.params;
   await TaskController.deleteTask(id);
-  
-  return res.redirect("/homepage")
+
+  return res.redirect("/homepage");
 });
 
 /* GET workspace users */
 router.get("/users-list", async function (req, res, next) {
   const userSession = req.session.user;
   const workspace_id = userSession.activeWorkspace.id;
-  const workspaceUsers = await WorkspaceController.getWorkspaceUsers(workspace_id);
-  
+  const workspaceUsers = await WorkspaceController.getWorkspaceUsers(
+    workspace_id
+  );
+
   res.json(workspaceUsers);
 });
 

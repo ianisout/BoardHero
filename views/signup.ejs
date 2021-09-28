@@ -21,7 +21,7 @@
         <% errors.forEach(error=> { %>
           <div class="alert alert-danger d-flex align-items-center" role="alert">
             <div>
-              <span>
+              <span class="feedback">
                 <%= error.msg %>
               </span>
             </div>
@@ -30,11 +30,11 @@
             <% } %>
 
               <label for="first_name">Name</label>
-              <input type="text" id="first_name" name="first_name" />
+              <input type="text" id="first_name" name="first_name" value="<%= locals.old && old.first_name %>">
               <label for="last_name">Last Name</label>
-              <input type="text" id="last_name" name="last_name" />
+              <input type="text" id="last_name" name="last_name" value="<%= locals.old && old.last_name %>">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" />
+              <input type="email" id="email" name="email" value="<%= locals.old && old.email %>">
               <label for="re-email">Confirm Email</label>
               <input type="email" id="confirmEmail" name="confirmEmail" />
               <label for="password">Password</label>
@@ -42,9 +42,9 @@
               <label for="re-password">Confirm password</label>
               <input type="password" id="confirmPassword" name="confirmPassword" />
               <label for="position">Position</label>
-              <input type="text" id="position" name="position" />
+              <input type="text" id="position" name="position" value="<%= locals.old && old.position %>">
               <label for="company">Company</label>
-              <input type="text" id="company" name="company" />
+              <input type="text" id="company" name="company" value="<%= locals.old && old.company %>">
 
               <button type="submit" id="submit">Confirm</button>
     </form>
