@@ -47,15 +47,15 @@ module.exports = function (sequelize, DataTypes) {
     });
     User.belongsToMany(models.Task, {
       through: "participants",
-      as: "task_participants",
+      as: "taskParticipants",
     });
     User.belongsToMany(models.Task, {
       through: "comments",
-      as: "task_comments"
+      as: "taskComments"
     });
     User.belongsToMany(models.Task, {
       through: "attachments",
-      as: "task_attachments"
+      as: "taskAttachments"
     });
   };
 

@@ -4,6 +4,8 @@ const router = express.Router();
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const TaskController = require("../controllers/TaskController");
 const WorkspaceController = require("../controllers/WorkspaceController");
+const TypeOfElementController = require("../controllers/TypeOfElementController");
+const CharacterController = require("../controllers/CharacterController");
 
 const fs = require("fs");
 const os = require("os");
@@ -17,8 +19,12 @@ const upload = multer({ dest: tempDir });
 const { log } = console;
 
 /* GET task creation page */
-router.get("/create", verifyLoggedUser, function (req, res, next) {
-  res.render("task-create", { user: req.session.user });
+router.get("/create", verifyLoggedUser, async function (req, res, next) {
+  const { user } = req.session;
+  const character = await CharacterController.getCharacterByUserId(user.id);
+  const idsOfElements = await CharacterController.getCharacterElements(character.id);
+  const elements = await TypeOfElementController.findElementsById(idsOfElements);
+  res.render("task-create", { user, elements });
 });
 
 /* POST task creation form */
@@ -51,6 +57,10 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     flag_approved,
   };
 
+  const participantIds = JSON.parse(participants).map(
+    participant => Number(participant.value)
+  );
+
   TaskController.createTask({
     user_id,
     workspace_id,
@@ -58,21 +68,27 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     start_date,
     end_date,
     description,
-    participants,
+    participantIds,
     actions,
     tags,
     filesInfo,
   });
-
+  
   res.redirect("/homepage");
 });
 
 /* GET task details page */
 router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
+  const { user } = req.session;
   const { id } = req.params;
   const taskDetailsGotbyId = await TaskController.getTaskById(id);
   log(taskDetailsGotbyId);
-  res.render("task-details", { user: req.session.user, taskDetailsGotbyId });
+
+  const character = await CharacterController.getCharacterByUserId(user.id);
+  const idsOfElements = await CharacterController.getCharacterElements(character.id);
+  const elements = await TypeOfElementController.findElementsById(idsOfElements);
+
+  res.render("task-details", { user, taskDetailsGotbyId, elements });
 });
 
 /* DELETE task */
