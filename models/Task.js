@@ -7,9 +7,9 @@ const {
   Task_action,
 } = require("../database/models");
 
-exports.createTask = async (newTask) => {
+exports.createTask = async ({ newTask, participantIds }) => {
   const taskCreated = await Task.create(newTask);
-
+  await taskCreated.setUserParticipants(participantIds);
   return taskCreated.dataValues;
 };
 

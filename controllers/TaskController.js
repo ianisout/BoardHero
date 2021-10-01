@@ -8,7 +8,7 @@ exports.createTask = async ({
   start_date,
   end_date,
   description,
-  participants,
+  participantIds,
   actions,
   tags,
   filesInfo,
@@ -24,7 +24,7 @@ exports.createTask = async ({
       task_status_id: 1, // default status = open
     };
 
-    const taskCreated = await TaskModel.createTask(newTask);
+    const taskCreated = await TaskModel.createTask({ newTask, participantIds });
     console.log(taskCreated);
 
     const task_id = taskCreated.id;
@@ -40,7 +40,7 @@ exports.createTask = async ({
       });
       TaskModel.addAttachments(attachments);
 
-      TaskModel.taskActions(taskActionsByTask); 
+      // TaskModel.taskActions(taskActionsByTask); 
     }
   } catch (error) {
     console.error(error);

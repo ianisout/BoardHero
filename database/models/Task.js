@@ -52,17 +52,17 @@ module.exports = function (sequelize, DataTypes) {
 
     Task.belongsToMany(models.User, {
       through: "participants",
-      as: "user_participants",
+      as: "userParticipants",
     });
   
     Task.belongsToMany(models.User, {
       through: "comments",
-      as: "user_comments"
+      as: "userComments"
     });
 
     Task.belongsToMany(models.User, {
       through: "attachments",
-      as: "user_attachments"
+      as: "userAttachments"
     });
 
     Task.belongsToMany(models.Task_tag, {
