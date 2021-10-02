@@ -19,9 +19,10 @@
             <div class="container-inventory">
               <h2>Inventory</h2>
 
-              <div class="character">
-                <img src="/images/characters/lookalike.png" alt="" />
-                <p>Lv.12</p>
+              <div class="character-image">
+                <% user.elements.map(element => { %> 
+                  <div class="unique-image" style="background-image: url('<%= element %>');"></div>
+                <% }) %> 
               </div>
 
               <h3>Items</h3>

@@ -44,10 +44,12 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   
   const character = await CharacterController.getCharacterByUserId(userId);
   const idsOfElements = await CharacterController.getCharacterElements(character.id);
-  const elements = await TypeOfElementController.findElementsById(idsOfElements);
+  const userElements = await TypeOfElementController.findElementsById(idsOfElements);
+
+  user.elements = userElements;
 
   res.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});
-  return res.render("homepage", { allTasks, user, elements });
+  return res.render("homepage", { allTasks, user });
 });
 
 /* GET dashboard page */
