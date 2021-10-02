@@ -30,7 +30,8 @@ router.post("/signup", /*signupValidations, validationErrorMessage,*/ async func
   console.log(validationErrorMessage)
   try {
     const { CHARACTER_SET } = request.cookies;
-    const characterChoices = JSON.parse(CHARACTER_SET);
+    let characterChoices;
+    if (CHARACTER_SET !== "undefined") characterChoices = JSON.parse(CHARACTER_SET);
     const {
       first_name,
       last_name,
@@ -77,7 +78,6 @@ router.post("/signup", /*signupValidations, validationErrorMessage,*/ async func
 
       request.session.user = userSession;
 
-      response.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});
       response.status(201).redirect("/homepage");
     }
   } catch (error) {
