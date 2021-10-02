@@ -46,6 +46,7 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   const idsOfElements = await CharacterController.getCharacterElements(character.id);
   const userElements = await TypeOfElementController.findElementsById(idsOfElements);
 
+  user.character = character;
   user.elements = userElements;
 
   res.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});

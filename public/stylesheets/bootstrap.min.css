@@ -4521,7 +4521,7 @@ fieldset:disabled .btn {
   height: 1rem;
   overflow: hidden;
   font-size: 0.75rem;
-  background-color: #e9ecef;
+  background-color: rgb(244, 209, 255);
   border-radius: 0.25rem;
 }
 .progress-bar {
@@ -6831,6 +6831,9 @@ fieldset:disabled .btn {
 }
 .bg-info {
   background-color: #0dcaf0 !important;
+}
+.bg-bhpurple {
+  background-color: #d992ff !important;
 }
 .bg-warning {
   background-color: #ffc107 !important;
