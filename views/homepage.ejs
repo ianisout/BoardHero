@@ -1,42 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <!-- General Settings and Fonts -->
-  <%- include('./partials/head-general-settings') %>
+  <head>
+    <!-- General Settings and Fonts -->
+    <%- include('./partials/head-general-settings') %>
     <!-- CSS Links -->
     <%- include('./partials/bootstrap-css-head') %>
-      <title>Board Hero | Home Page</title>
-</head>
+    <link rel="stylesheet" href="/stylesheets/homepage.css" />
+    <title>Board Hero | Home Page</title>
+  </head>
 
-<body>
-  <%- include('./partials/sidebar') %>
+  <body>
+    <%- include('./partials/sidebar') %>
 
     <section class="home-section">
       <%- include('./partials/navbar') %>
-        <div class="home-content">
-          Dashboard
-          <%- include('./partials/button-add') %>
+      <div class="home-content"><%- include('./partials/button-add') %></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-md-4"><h2>Requested</h2></div>
+          <div class="col-6 col-md-4"><h2>In progress</h2></div>
+          <div class="col-6 col-md-4"><h2>Done</h2></div>
         </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12 col-md-4">
-              <% allTasks.forEach(task => { %>
-              <div class="card" style="width: 18rem;">
-                <!-- <img src="..." class="card-img-top" alt="..."> -->
-                <div class="card-body">
-                  <h5 class="card-title"><%= task.name %></h5>
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <% allTasks.forEach(task => { %>
+            <div class="card tasks-dashboard" style="width: 18rem">
+              <div class="card-body">
+
+                <div class="top-content">
+                  <div>
+                    <h5 class="task-title"><%= task.name %></h5>
+                  </div>
+                  <div class="task-info">
+                    <a href="/task/details/<%= task.id%>">
+                      <span class="d-block d-lg-none">+</span>
+                      <span class="d-none d-lg-block">+ Info</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div>
+                  <p>#tags #tags #tags</p>
+                </div>
+
+                <div>
                   <p class="card-text"><%= task.description %></p>
-                  <a href="/task/details/<%= task.id%>" class="btn btn-primary">Task details</a>
                 </div>
               </div>
-              <% }) %>
             </div>
+            <% }) %>
           </div>
         </div>
+      </div>
     </section>
 
     <%- include('./partials/bootstrap-js-scripts') %>
-</body>
-
+  </body>
 </html>
