@@ -7,9 +7,11 @@ const {
   Task_status,
 } = require("../database/models");
 
-exports.createTask = async ({ newTask, participantIds }) => {
+exports.createTask = async ({ newTask, participantIds, actions }) => {
   const taskCreated = await Task.create(newTask);
   await taskCreated.setUserParticipants(participantIds);
+  await taskCreated.setActionsTask(actions);
+  
   return taskCreated.dataValues;
 };
 
@@ -23,22 +25,6 @@ exports.getTaskById = async (id) => {
 
 exports.addAttachments = async (attachments) => {
   await Attachment.bulkCreate(attachments);
-};
-
-exports.addStatusToTask = async (id, status) => {
-  const task = await Task.findByPk(id);
-
-  const statusAdded = task.statusAdded(status);
-
-  return statusAdded;
-};
-
-exports.actionsToTask = async (id, actions) => {
-  const task = await Task.findByPk(id);
-
-  const taskActions = task.actionsAdded(actions);
-
-  return taskActions;
 };
 
 exports.destroy = (id) =>

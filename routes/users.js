@@ -26,7 +26,7 @@ router.get("/signup", verifyNotLoggedUser, function (request, response, next) {
 });
 
 /* POST signup form */
-router.post("/signup", signupValidations, validationErrorMessage, async function (request, response, next) {
+router.post("/signup", /*signupValidations, validationErrorMessage,*/ async function (request, response, next) {
   console.log(validationErrorMessage)
   try {
     const { CHARACTER_SET } = request.cookies;
