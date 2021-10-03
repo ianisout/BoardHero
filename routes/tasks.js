@@ -79,7 +79,7 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   const taskDetailsGotbyId = await TaskController.getTaskById(id);
   log(taskDetailsGotbyId);
 
-  res.render("task-details", { user, taskDetailsGotbyId });
+  res.render("task-details", { user, taskDetails: taskDetailsGotbyId });
 });
 
 /* DELETE task */
