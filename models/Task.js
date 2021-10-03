@@ -5,9 +5,11 @@ const {
   Task_has_actions,
 } = require("../database/models");
 
-exports.createTask = async ({ newTask, participantIds }) => {
+exports.createTask = async ({ newTask, participantIds, tags, actions }) => {
   const taskCreated = await Task.create(newTask);
   await taskCreated.setUserParticipants(participantIds);
+  await taskCreated.setTags(tags);
+  await taskCreated.setActions(actions);
 
   return taskCreated.dataValues;
 };

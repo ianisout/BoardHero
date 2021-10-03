@@ -27,6 +27,7 @@ exports.createTask = async ({
     const taskCreated = await TaskModel.createTask({
       newTask,
       participantIds,
+      tags,
       actions,
     });
     console.log(taskCreated);
@@ -44,8 +45,6 @@ exports.createTask = async ({
       });
       TaskModel.addAttachments(attachments);
     }
-
-
   } catch (error) {
     console.error(error);
   }
@@ -56,3 +55,11 @@ exports.getAllTasks = () => TaskModel.getAllTasks();
 exports.getTaskById = (id) => TaskModel.getTaskById(id);
 
 exports.deleteTask = (id) => TaskModel.destroy(id);
+
+exports.taskToTags = ({ taskId, taskTagId }) => {
+  TaskModel.taskToTags({ taskId, taskTagId });
+};
+
+exports.taskToTags = ({ taskId, taskActionId }) => {
+  TaskModel.taskToTags({ taskId, taskActionId });
+};
