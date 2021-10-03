@@ -4,8 +4,6 @@ const router = express.Router();
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const TaskController = require("../controllers/TaskController");
 const WorkspaceController = require("../controllers/WorkspaceController");
-const TypeOfElementController = require("../controllers/TypeOfElementController");
-const CharacterController = require("../controllers/CharacterController");
 
 const fs = require("fs");
 const os = require("os");
@@ -19,12 +17,9 @@ const upload = multer({ dest: tempDir });
 const { log } = console;
 
 /* GET task creation page */
-router.get("/create", verifyLoggedUser, async function (req, res, next) {
+router.get("/create", verifyLoggedUser, function (req, res, next) {
   const { user } = req.session;
-  const character = await CharacterController.getCharacterByUserId(user.id);
-  const idsOfElements = await CharacterController.getCharacterElements(character.id);
-  const elements = await TypeOfElementController.findElementsById(idsOfElements);
-  res.render("task-create", { user, elements });
+  res.render("task-create", { user });
 });
 
 /* POST task creation form */
@@ -84,11 +79,7 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   const taskDetailsGotbyId = await TaskController.getTaskById(id);
   log(taskDetailsGotbyId);
 
-  const character = await CharacterController.getCharacterByUserId(user.id);
-  const idsOfElements = await CharacterController.getCharacterElements(character.id);
-  const elements = await TypeOfElementController.findElementsById(idsOfElements);
-
-  res.render("task-details", { user, taskDetailsGotbyId, elements });
+  res.render("task-details", { user, taskDetails: taskDetailsGotbyId });
 });
 
 /* DELETE task */

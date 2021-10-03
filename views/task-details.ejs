@@ -2,12 +2,16 @@
 <html lang="en">
 
 <head>
-  <!-- General Settings and Fonts -->
-  <%- include('./partials/head-general-settings') %>
+    <!-- General Settings and Fonts -->
+    <%- include('./partials/head-general-settings') %>
+    <!-- Tagify -->    
+    <%- include('./partials/tagify-head') %>
     <!-- CSS Links -->
     <%- include('./partials/bootstrap-css-head') %>
-      <link rel="stylesheet" href="/stylesheets/task-details.css" />
-      <title>Create New Task | Board Hero</title>
+    <link rel="stylesheet" href="/stylesheets/task-details.css" />
+    <link rel="stylesheet" href="/stylesheets/tagify-task-participants.css" />
+    
+    <title>Task Details | Board Hero</title>
 </head>
 
 <body class="body">
@@ -26,14 +30,14 @@
               <div class="form-columns">
                 <div class="dialog-heading">
                   <h2>
-                    <%= taskDetailsGotbyId.dataValues.name %>
+                    <%= taskDetails.name %>
                   </h2>
                   <div class="action-buttons">
                     <form action="finish_task">
                       <button id="finish-task" type="submit" class="task-action">Finish</button>
                     </form>
-                    <form action="/task/details/<%= taskDetailsGotbyId.dataValues.id %>?_method=DELETE" method="POST">
-                      <button type="submit">Deletar</button>
+                    <form action="/task/details/<%= taskDetails.id %>?_method=DELETE" method="POST">
+                      <button type="submit">Delete</button>
                     </form>
                   </div>
                 </div>
@@ -41,20 +45,22 @@
                   <div>
                     <div class="left-container">
                       <label for="tags">Participants</label>
-                      <p>
-                        <%= taskDetailsGotbyId.dataValues.participants%>
-                      </p>
-                      <input type="text" id="participants" name="participants" />
+                      <!-- <p>
+                        <- %= taskDetails.participants %>
+                      </p> -->
+                      <input id="participants" name="participants" value="<%= taskDetails.participants %>"/>
                       <label for="tags">Tags</label>
                       <input type="text" id="tags" name="tags" value="#devTeam, #frontEnd, #backEnd" />
 
                       <div class="due-date">
                         <label>Start date: <strong>
-                            <%= taskDetailsGotbyId.dataValues.start_date %>
+                            <%= taskDetails.start_date %>
                           </strong></label>
-                        <label>Due date: <strong>
-                            <%= taskDetailsGotbyId.dataValues.end_date %>
-                          </strong></label>
+                        <% if (taskDetails.end_date) { %> 
+                          <label>Due date: <strong>
+                              <%= taskDetails.end_date %>
+                            </strong></label>
+                        <% } %> 
                       </div>
 
                       <div class="attachments-reminders-flags">
@@ -101,7 +107,7 @@
               <div class="description-section">
                 <h3 class="form-subtitle">Description</label>
                   <p id="description" cols="30" rows="10">
-                    <%= taskDetailsGotbyId.dataValues.description %>
+                    <%= taskDetails.description %>
                   </p>
               </div>
 
@@ -147,6 +153,9 @@
   </div>
 
   <%- include('./partials/bootstrap-js-scripts') %>
+  
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/javascripts/tagifyTaskParticipants.js"></script>
 
 </body>
 

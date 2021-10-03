@@ -3,16 +3,13 @@
 <head>
     <!-- General Settings and Fonts -->
     <%- include('./partials/head-general-settings') %>    
-
     <!-- Tagify -->
-    <script src="https://unpkg.com/@yaireo/tagify"></script>
-    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-    <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
-
+    <%- include('./partials/tagify-head') %>
     <!-- CSS Links -->
     <%- include('./partials/bootstrap-css-head') %>    
     <link rel="stylesheet" href="/stylesheets/task-create.css" />
     <link rel="stylesheet" href="/stylesheets/tagify-task-participants.css" />
+    
     <title>Create New Task | Board Hero</title>
 </head>
 
