@@ -16,7 +16,7 @@ exports.getCharacterByUserId = async (id) => {
     where: {
       user_id: id,
     },
-    attributes: ['user_id', 'id'],
+    attributes: ['user_id', 'id', 'char_level', 'experience', 'coins'],
   });
 
   return character.dataValues;
