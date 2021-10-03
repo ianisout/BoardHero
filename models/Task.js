@@ -5,6 +5,7 @@ const {
   Comment,
   Participant,
   Task_status,
+  Task_action
 } = require("../database/models");
 
 exports.createTask = async ({ newTask, participantIds, actions }) => {
