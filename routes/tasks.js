@@ -22,8 +22,12 @@ const { log } = console;
 router.get("/create", verifyLoggedUser, async function (req, res, next) {
   const { user } = req.session;
   const character = await CharacterController.getCharacterByUserId(user.id);
-  const idsOfElements = await CharacterController.getCharacterElements(character.id);
-  const elements = await TypeOfElementController.findElementsById(idsOfElements);
+  const idsOfElements = await CharacterController.getCharacterElements(
+    character.id
+  );
+  const elements = await TypeOfElementController.findElementsById(
+    idsOfElements
+  );
   res.render("task-create", { user, elements });
 });
 
@@ -57,8 +61,8 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     flag_approved,
   };
 
-  const participantIds = JSON.parse(participants).map(
-    participant => Number(participant.value)
+  const participantIds = JSON.parse(participants).map((participant) =>
+    Number(participant.value)
   );
 
   TaskController.createTask({
@@ -73,7 +77,7 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     tags,
     filesInfo,
   });
-  
+
   res.redirect("/homepage");
 });
 
@@ -85,8 +89,12 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   log(taskDetailsGotbyId);
 
   const character = await CharacterController.getCharacterByUserId(user.id);
-  const idsOfElements = await CharacterController.getCharacterElements(character.id);
-  const elements = await TypeOfElementController.findElementsById(idsOfElements);
+  const idsOfElements = await CharacterController.getCharacterElements(
+    character.id
+  );
+  const elements = await TypeOfElementController.findElementsById(
+    idsOfElements
+  );
 
   res.render("task-details", { user, taskDetailsGotbyId, elements });
 });
@@ -106,8 +114,12 @@ router.get("/users-list", async function (req, res, next) {
   const workspaceUsers = await WorkspaceController.getWorkspaceUsers(
     workspace_id
   );
-
   res.json(workspaceUsers);
 });
+
+router.get("/", function (req, res){
+  const { user } = req.session;
+  
+})
 
 module.exports = router;

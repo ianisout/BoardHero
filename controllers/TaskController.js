@@ -63,3 +63,14 @@ exports.taskToTags = ({ taskId, taskTagId }) => {
 exports.taskToTags = ({ taskId, taskActionId }) => {
   TaskModel.taskToTags({ taskId, taskActionId });
 };
+
+exports.getTagsTasks = async (tagsId) => {
+  const tagsTasks = await TaskModel.getTagsTask(tagsId);
+
+  const tagsList = tagsTasks.map(tag => {
+    return {
+      
+    };
+  });
+  return tagsList;
+};
