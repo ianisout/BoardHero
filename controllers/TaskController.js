@@ -52,7 +52,14 @@ exports.createTask = async ({
 
 exports.getAllTasks = () => TaskModel.getAllTasks();
 
-exports.getTaskById = (id) => TaskModel.getTaskById(id);
+exports.getTaskById = async (id) => { 
+  const { userParticipants, ...task } = await TaskModel.getTaskById(id);
+  const participantsFormatted = userParticipants.map(user => user.email);
+  
+  task.participants = participantsFormatted;
+
+  return task;
+};
 
 exports.deleteTask = (id) => TaskModel.destroy(id);
 

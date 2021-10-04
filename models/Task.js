@@ -31,9 +31,11 @@ exports.taskToAction = async ({ taskId, taskActionId }) => {
 exports.getAllTasks = () => Task.findAll();
 
 exports.getTaskById = async (id) => {
-  const taskGotByID = await Task.findByPk(id);
+  const taskGotByID = await Task.findByPk(id, {
+    include: ["userParticipants", "userAttachments"],
+  });
 
-  return taskGotByID;
+  return taskGotByID ? taskGotByID.dataValues : null;
 };
 
 exports.getTagsTask = async (tagsId) => {
