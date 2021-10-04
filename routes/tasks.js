@@ -79,19 +79,7 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   const taskDetailsGotbyId = await TaskController.getTaskById(id);
   log(taskDetailsGotbyId);
 
-<<<<<<< HEAD
-  const character = await CharacterController.getCharacterByUserId(user.id);
-  const idsOfElements = await CharacterController.getCharacterElements(
-    character.id
-  );
-  const elements = await TypeOfElementController.findElementsById(
-    idsOfElements
-  );
-
-  res.render("task-details", { user, taskDetailsGotbyId, elements });
-=======
   res.render("task-details", { user, taskDetails: taskDetailsGotbyId });
->>>>>>> feature
 });
 
 /* DELETE task */
