@@ -30,8 +30,8 @@ router.get("/signup", verifyNotLoggedUser, function (request, response, next) {
 router.post("/signup", validationSignUp , async function (request, response, next) {
   try {
     const { CHARACTER_SET } = request.cookies;
-    let characterChoices;
-    if (CHARACTER_SET !== "undefined") characterChoices = JSON.parse(CHARACTER_SET);
+    const characterChoices = (CHARACTER_SET !== "undefined") ? JSON.parse(CHARACTER_SET) : undefined;
+
     const {
       first_name,
       last_name,
