@@ -13,7 +13,11 @@ exports.createTask = async ({ newTask, participantIds }) => {
   return taskCreated.dataValues;
 };
 
-exports.getAllTasks = () => Task.findAll();
+exports.getAllTasks = (workspaceId) => Task.findAll({
+  where: {
+    workspace_id: workspaceId,
+  }
+});
 
 exports.getTaskById = async (id) => {
   const taskGotByID = await Task.findByPk(id, {
