@@ -78,6 +78,7 @@ router.post("/signup", validationSignUp , async function (request, response, nex
 
       request.session.user = userSession;
 
+      response.clearCookie("CHARACTER_SET");
       response.status(201).redirect("/homepage");
     }
   } catch (error) {
