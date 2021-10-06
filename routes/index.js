@@ -66,4 +66,15 @@ router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
   res.render("inventory-store", { user: req.session.user, equips });
 });
 
+
+router.post("/inventory", async function (req, res) {
+
+  const { element_id } = req.body;
+  const characterId = req.session.user.character.id;
+
+  CharacterController.purchaseEquipment(characterId, Number(element_id))
+
+  res.render("inventory-store", { user: req.session.user });
+});
+
 module.exports = router;

@@ -23,3 +23,11 @@ exports.getCharacterElements = async (id) => {
 
   return arrayOfIds;
 };
+
+exports.purchaseEquipment = async (character_id, element_id) => {
+  await Characters_has_element.create({
+    is_equipped: 0,
+    character_id,
+    element_id,
+  });
+}

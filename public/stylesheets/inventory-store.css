@@ -44,7 +44,7 @@ h3 {
   width: 50%;
 }
 
-.character {
+.character, #item-tryout {
   max-height: 220px;
   width: 100%;
   height: 100%;
@@ -56,6 +56,17 @@ h3 {
 
 .character img {
   max-width: 220px;
+}
+
+.character-img {
+  position: relative;
+}
+
+#item-tryout img {
+  z-index: 100;
+  max-width: 220px;
+  position: inherit;
+  top: -33px;
 }
 
 .item-list,
@@ -88,6 +99,10 @@ h3 {
 
 .item img {
   width: 80px;
+}
+
+.item-img{
+  cursor: pointer;
 }
 
 .item:hover {
@@ -181,9 +196,6 @@ h3 {
   margin-left: 3px;
 }
 
-.item-selling:hover {
-  /* border: #8929bb solid 1px; */
-}
 
 .item-selling img {
   width: 100px;

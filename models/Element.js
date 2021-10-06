@@ -12,21 +12,21 @@ exports.findAllEquips = async () => {
     where: {
       type_of_element_id: 3,
     },
-    attributes: [`image_path`, `name`, `description`, `level`, `price`]
+    attributes: [`id`, `image_path`, `name`, `description`, `level`, `price`]
   })
 
   const shields = await Element.findAll({
     where: {
       type_of_element_id: 10,
     },
-    attributes: [`image_path`, `name`, `description`, `level`, `price`]
+    attributes: [`id`, `image_path`, `name`, `description`, `level`, `price`]
   })
 
   const swords = await Element.findAll({
     where: {
       type_of_element_id: 13,
     },
-    attributes: [`image_path`, `name`, `description`, `level`, `price`]
+    attributes: [`id`, `image_path`, `name`, `description`, `level`, `price`]
   })
 
   const allEquips = [generalEquips.map(equip => equip.dataValues), shields.map(equip => equip.dataValues), swords.map(equip => equip.dataValues)].flat()
