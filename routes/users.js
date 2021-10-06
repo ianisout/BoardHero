@@ -30,8 +30,8 @@ router.post("/signup", /*signupValidations, validationErrorMessage,*/ async func
   console.log(validationErrorMessage)
   try {
     const { CHARACTER_SET } = request.cookies;
-    let characterChoices;
-    if (CHARACTER_SET !== "undefined") characterChoices = JSON.parse(CHARACTER_SET);
+    const characterChoices = (CHARACTER_SET !== "undefined") ? JSON.parse(CHARACTER_SET) : undefined;
+
     const {
       first_name,
       last_name,

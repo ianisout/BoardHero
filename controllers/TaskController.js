@@ -50,7 +50,7 @@ exports.createTask = async ({
   }
 };
 
-exports.getAllTasks = () => TaskModel.getAllTasks();
+exports.getAllTasks = (workspaceId) => TaskModel.getAllTasks(workspaceId);
 
 exports.getTaskById = async (id) => { 
   const { userParticipants, ...task } = await TaskModel.getTaskById(id);

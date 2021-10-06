@@ -37,11 +37,12 @@ router.post("/character-creation/", async (req, res) => {
 
 /* GET reference page for sidebar and navbar components (TEST) */
 router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
-  const allTasks = await TaskController.getAllTasks();
-  const { CHARACTER_SET } = req.cookies;
-  const user = req.session.user;
+  const { user } = req.session;
   const userId = user.id;
-  
+  const workspaceId = user.activeWorkspace.id;
+  const allTasks = await TaskController.getAllTasks(workspaceId);
+
+  const { CHARACTER_SET } = req.cookies;
   const character = await CharacterController.getCharacterByUserId(userId);
   const idsOfElements = await CharacterController.getCharacterElements(character.id);
   const userElements = await TypeOfElementController.findElementsById(idsOfElements);

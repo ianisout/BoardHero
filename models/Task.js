@@ -14,21 +14,11 @@ exports.createTask = async ({ newTask, participantIds, tags, actions }) => {
   return taskCreated.dataValues;
 };
 
-exports.taskToTags = async ({ taskId, taskTagId }) => {
-  await Task_has_tags.create({
-    task_id: taskId,
-    task_tag_id: taskTagId,
-  });
-};
-
-exports.taskToAction = async ({ taskId, taskActionId }) => {
-  await Task_has_actions.create({
-    task_id: taskId,
-    task_action_id: taskActionId,
-  });
-};
-
-exports.getAllTasks = () => Task.findAll();
+exports.getAllTasks = (workspaceId) => Task.findAll({
+  where: {
+    workspace_id: workspaceId,
+  }
+});
 
 exports.getTaskById = async (id) => {
   const taskGotByID = await Task.findByPk(id, {
