@@ -1,24 +1,18 @@
-const {
-  Task,
-  Attachment,
-  Task_has_tags,
-  Task_has_actions,
-} = require("../database/models");
+const { Task, Attachment } = require("../database/models");
 
-exports.createTask = async ({ newTask, participantIds, tags, actions }) => {
+exports.createTask = async ({ newTask, participantIds }) => {
   const taskCreated = await Task.create(newTask);
   await taskCreated.setUserParticipants(participantIds);
-  await taskCreated.setTags(tags);
-  await taskCreated.setActions(actions);
 
   return taskCreated.dataValues;
 };
 
-exports.getAllTasks = (workspaceId) => Task.findAll({
-  where: {
-    workspace_id: workspaceId,
-  }
-});
+exports.getAllTasks = (workspaceId) =>
+  Task.findAll({
+    where: {
+      workspace_id: workspaceId,
+    },
+  });
 
 exports.getTaskById = async (id) => {
   const taskGotByID = await Task.findByPk(id, {
