@@ -78,6 +78,7 @@ router.post("/signup", /*signupValidations, validationErrorMessage,*/ async func
 
       request.session.user = userSession;
 
+      response.clearCookie("CHARACTER_SET");
       response.status(201).redirect("/homepage");
     }
   } catch (error) {

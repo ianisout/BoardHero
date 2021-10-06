@@ -42,7 +42,6 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   const workspaceId = user.activeWorkspace.id;
   const allTasks = await TaskController.getAllTasks(workspaceId);
 
-  const { CHARACTER_SET } = req.cookies;
   const character = await CharacterController.getCharacterByUserId(userId);
   const idsOfElements = await CharacterController.getCharacterElements(character.id);
   const userElements = await TypeOfElementController.findElementsById(idsOfElements);
@@ -50,7 +49,6 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   user.character = character;
   user.elements = userElements;
 
-  res.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});
   return res.render("homepage", { allTasks, user });
 });
 
