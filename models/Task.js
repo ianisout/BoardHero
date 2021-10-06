@@ -28,20 +28,6 @@ exports.getTaskById = async (id) => {
   return taskGotByID ? taskGotByID.dataValues : null;
 };
 
-exports.getTagsTask = async (tagsId) => {
-  const tagTask = await Task.findByPk(tagsId);
-  const tagsList = await tagTask.getTags();
-
-  return tagsList.dataValues;
-};
-
-exports.getActionTask = async (actionId) => {
-  const actionTask = await Task.findByPk(actionId);
-  const actionList = await actionTask.getActions();
-
-  return actionList.dataValues;
-};
-
 exports.addAttachments = async (attachments) => {
   await Attachment.bulkCreate(attachments);
 };
