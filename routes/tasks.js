@@ -52,7 +52,7 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     flag_approved,
   };
 
-  const participantIds = JSON.parse(participants).map(
+  const participantIds = (!participants) ? undefined : JSON.parse(participants).map(
     participant => Number(participant.value)
   );
 
