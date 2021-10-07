@@ -55,7 +55,7 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
   const participantIds = JSON.parse(participants).map((participant) =>
     Number(participant.value)
   );
-
+  console.log(participantIds)
   TaskController.createTask({
     user_id,
     workspace_id,
@@ -100,9 +100,9 @@ router.get("/users-list", async function (req, res, next) {
   res.json(workspaceUsers);
 });
 
-router.get("/", function (req, res){
+router.get("/tag", async function (req, res){
   const { user } = req.session;
-  
+    
 })
 
 module.exports = router;

@@ -6,6 +6,10 @@ main {
   padding-top: 15px;
 }
 
+.all-columns {
+  display: flex;
+}
+
 .tasks-dashboard {
   margin-bottom: 10px;
   display: flex;
@@ -24,7 +28,6 @@ main {
 .card-body {
   display: flex;
   flex-direction: column;
-  
 }
 
 .task-title {

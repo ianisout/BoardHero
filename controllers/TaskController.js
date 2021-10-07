@@ -45,6 +45,7 @@ exports.createTask = async ({
       });
       TaskModel.addAttachments(attachments);
     }
+    
   } catch (error) {
     console.error(error);
   }
