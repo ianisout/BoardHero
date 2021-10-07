@@ -10,7 +10,7 @@ exports.createTask = async ({
   description,
   participantIds,
   actions,
-  tags,
+  tagValues,
   filesInfo,
 }) => {
   try {
@@ -24,12 +24,7 @@ exports.createTask = async ({
       task_status_id: 1, // default status = open
     };
 
-    const taskCreated = await TaskModel.createTask({
-      newTask,
-      participantIds,
-      tags,
-      actions,
-    });
+    const taskCreated = await TaskModel.createTask({ newTask, participantIds, tagValues });
     console.log(taskCreated);
 
     const task_id = taskCreated.id;
@@ -54,10 +49,13 @@ exports.createTask = async ({
 exports.getAllTasks = (workspaceId) => TaskModel.getAllTasks(workspaceId);
 
 exports.getTaskById = async (id) => { 
-  const { userParticipants, ...task } = await TaskModel.getTaskById(id);
+  const { userParticipants, tags, ...task } = await TaskModel.getTaskById(id);
+
   const participantsFormatted = userParticipants.map(user => user.email);
-  
   task.participants = participantsFormatted;
+
+  const tagsFormatted = tags.map(tag => tag.label);
+  task.tags = tagsFormatted;
 
   return task;
 };

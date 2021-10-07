@@ -46,7 +46,7 @@
                     <label for="tags">Participants</label>
                     <input id="participants" name="participants" value="<%= taskDetails.participants %>"/>
                     <label for="tags">Tags</label>
-                    <input type="text" id="tags" name="tags" value="#devTeam, #frontEnd, #backEnd" />
+                    <input id="tags" name="tags" value="<%= taskDetails.tags %>" />
 
                     <div class="due-date">
                       <label>Start date: <strong>
@@ -151,6 +151,7 @@
   
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/javascripts/tagifyTaskParticipants.js"></script>
+  <script src="/javascripts/tagifyTaskTags.js"></script>
 
 </body>
 

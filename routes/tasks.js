@@ -52,10 +52,14 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     flag_approved,
   };
 
-  const participantIds = JSON.parse(participants).map((participant) =>
-    Number(participant.value)
+  const participantIds = (!participants) ? undefined : JSON.parse(participants).map(
+    participant => Number(participant.value)
   );
-  console.log(participantIds)
+
+  const tagValues = (!tags) ? undefined : JSON.parse(tags).map(
+    tag => tag.value
+  );
+
   TaskController.createTask({
     user_id,
     workspace_id,
@@ -65,7 +69,7 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     description,
     participantIds,
     actions,
-    tags,
+    tagValues,
     filesInfo,
   });
 
