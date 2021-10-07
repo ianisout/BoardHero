@@ -7,6 +7,7 @@ const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
 const TaskController = require("../controllers/TaskController");
 const TypeOfElementController = require("../controllers/TypeOfElementController");
 const CharacterController = require("../controllers/CharacterController");
+const EquipController = require("../controllers/EquipController");
 
 /* GET home page */
 router.get("/", verifyNotLoggedUser, function (req, res, next) {
@@ -58,7 +59,21 @@ router.get("/dashboard", verifyLoggedUser, function (req, res, next) {
 });
 
 /* GET inventory/store page */
-router.get("/inventory", verifyLoggedUser, function (req, res, next) {
+router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
+
+  const equips = await EquipController.findAllEquips();
+
+  res.render("inventory-store", { user: req.session.user, equips });
+});
+
+
+router.post("/inventory", async function (req, res) {
+
+  const { element_id } = req.body;
+  const characterId = req.session.user.character.id;
+
+  CharacterController.purchaseEquipment(characterId, Number(element_id))
+
   res.render("inventory-store", { user: req.session.user });
 });
 
