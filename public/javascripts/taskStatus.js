@@ -1,17 +1,19 @@
 const statusById = {
-    open: 1,
-    inProgress: 2,
-    done: 3
-}
+  open: 1,
+  inProgress: 2,
+  done: 3,
+};
 
-const taskByStatus = document.querySelector(".all-columns")
-const taskOpen = document.querySelector("#column-requested")
-const taskRequest = document.querySelector("#column-progress")
-const taskDone = document.querySelector("#column-done")
+const taskByStatus = document.querySelector(".all-columns");
+const taskOpen = document.querySelectorAll(".requested");
+const buttonChange = document.querySelector(".button-change-status");
 
-function changeTask () {
-
-    if () {
-
-    }
+function changeStatus(taskId) {
+  fetch("/task-details", {
+    method: "POST",
+    body: JSON.stringify({ taskId }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  }).catch(console.log);
 }

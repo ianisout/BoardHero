@@ -82,6 +82,12 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   res.render("task-details", { user, taskDetails: taskDetailsGotbyId });
 });
 
+router.post("/details/:id", async function(req, res) {
+  const { id } = req.params;
+  const { user } = req.session;
+  
+})
+
 /* DELETE task */
 router.delete("/details/:id", async function (req, res) {
   const { id } = req.params;

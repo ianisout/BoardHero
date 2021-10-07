@@ -35,6 +35,7 @@
                     <form action="finish_task">
                       <button id="finish-task" type="submit" class="task-action">Finish</button>
                     </form>
+                    <button onClick="changeStatus('<%= task.id %>')" class="button-change-status" type="submit">AQUI EU MUDO</button>
                     <form action="/task/details/<%= taskDetails.id %>?_method=DELETE" method="POST">
                       <button type="submit">Delete</button>
                     </form>
