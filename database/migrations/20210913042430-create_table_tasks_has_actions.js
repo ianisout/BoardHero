@@ -15,9 +15,9 @@ module.exports = {
         references: {
           model: "tasks",
           key: "id",
-          onUpdate: "cascade",
-          onDelete: "cascade",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       task_action_id: {
         allowNull: false,
