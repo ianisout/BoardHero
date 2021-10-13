@@ -2,15 +2,15 @@
 <html lang="en">
 
 <head>
-    <!-- General Settings and Fonts -->
-    <%- include('./partials/head-general-settings') %>
-    <!-- Tagify -->    
+  <!-- General Settings and Fonts -->
+  <%- include('./partials/head-general-settings') %>
+    <!-- Tagify -->
     <%- include('./partials/tagify-head') %>
-    <!-- CSS Links -->
-    <%- include('./partials/bootstrap-css-head') %>
-    <link rel="stylesheet" href="/stylesheets/task-details.css" />
-    <link rel="stylesheet" href="/stylesheets/tagify-task-participants.css" />
-    <title>Task Details | Board Hero</title>
+      <!-- CSS Links -->
+      <%- include('./partials/bootstrap-css-head') %>
+        <link rel="stylesheet" href="/stylesheets/task-details.css" />
+        <link rel="stylesheet" href="/stylesheets/tagify-task-participants.css" />
+        <title>Task Details | Board Hero</title>
 </head>
 
 <body class="body">
@@ -32,19 +32,24 @@
                     <%= taskDetails.name %>
                   </h2>
                   <div class="action-buttons">
-                    <form action="finish_task">
-                      <button id="finish-task" type="submit" class="task-action">Finish</button>
+                    <form action="/task/details/<%= taskDetails.id %>&<%= taskDetails.task_status_id %>?_method=PATCH" method="POST">
+                      <button id="finish-task" class="task-action" type="submit">Finish</button>
                     </form>
-                    <button onClick="changeStatus('<%= task.id %>')" class="button-change-status" type="submit">AQUI EU MUDO</button>
+
+                    <form action="/task/details/<%= taskDetails.id %>&<%= taskDetails.task_status_id %>?_method=PATCH" method="POST">
+                      <button id="progress-task" class="button-change-status" type="submit">In
+                        progress</button>
+                    </form>
+
                     <form action="/task/details/<%= taskDetails.id %>?_method=DELETE" method="POST">
-                      <button type="submit">Delete</button>
+                      <button id="delete-task " type="submit">Delete</button>
                     </form>
                   </div>
                 </div>
                 <div class="form-details">
                   <div class="left-container">
                     <label for="tags">Participants</label>
-                    <input id="participants" name="participants" value="<%= taskDetails.participants %>"/>
+                    <input id="participants" name="participants" value="<%= taskDetails.participants %>" />
                     <label for="tags">Tags</label>
                     <input id="tags" name="tags" value="<%= taskDetails.tags %>" />
 
@@ -52,11 +57,11 @@
                       <label>Start date: <strong>
                           <%= taskDetails.start_date %>
                         </strong></label>
-                      <% if (taskDetails.end_date) { %> 
+                      <% if (taskDetails.end_date) { %>
                         <label>Due date: <strong>
                             <%= taskDetails.end_date %>
                           </strong></label>
-                      <% } %> 
+                        <% } %>
                     </div>
 
                     <div class="attachments-reminders-flags">
@@ -148,10 +153,10 @@
   </div>
 
   <%- include('./partials/bootstrap-js-scripts') %>
-  
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="/javascripts/tagifyTaskParticipants.js"></script>
-  <script src="/javascripts/tagifyTaskTags.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/javascripts/tagifyTaskParticipants.js"></script>
+    <script src="/javascripts/tagifyTaskTags.js"></script>
 
 </body>
 

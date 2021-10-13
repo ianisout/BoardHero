@@ -19,10 +19,9 @@ exports.createTask = async ({ newTask, participantIds, tagValues }) => {
     let tagIds = [];
 
     for (let i = 0; i < tagValues.length; i++) {
-      let tagInfo = await Task_tag.findOne({ where: { label: tagValues[i] }});
-      if (!tagInfo) {
-        tagInfo = await Task_tag.create({ label: tagValues[i] });
-      }
+      let tagInfo = await Task_tag.findOne({ where: { label: tagValues[i] } });
+      if (!tagInfo) tagInfo = await Task_tag.create({ label: tagValues[i] });
+      
       tagIds.push(tagInfo.dataValues.id);
     }
 
@@ -49,6 +48,19 @@ exports.getTaskById = async (id) => {
 
 exports.addAttachments = async (attachments) => {
   await Attachment.bulkCreate(attachments);
+};
+
+exports.updateStatus = async (id, task_status_id) => {
+  const taskFound = await Task.findByPk(id);
+
+  if(taskFound.task_status_id === 1){
+    
+
+  }
+
+  await taskFound.save();
+
+  return taskFound;
 };
 
 exports.destroy = (id) =>

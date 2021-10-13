@@ -226,9 +226,9 @@
 }
 
 .home-section .home-content {
-  display: inline-block;
+  display: flex;
   color: #4d1869;
-  font-size: 25px;
+  font-size: 14px;
   font-weight: 500;
   margin: 18px;
 }

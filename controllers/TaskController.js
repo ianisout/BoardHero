@@ -60,4 +60,7 @@ exports.getTaskById = async (id) => {
   return task;
 };
 
+exports.updateStatus = (id, task_status_id) => TaskModel.updateStatus(id, task_status_id);
+
 exports.deleteTask = (id) => TaskModel.destroy(id);
+
