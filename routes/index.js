@@ -70,7 +70,6 @@ router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
 
 
 router.post("/inventory", async function (req, res) {
-
   const { element_id } = req.body;
   const characterId = req.session.user.character.id;
 

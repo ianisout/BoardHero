@@ -79,7 +79,6 @@ h3 {
   width: calc(100% - 50px);
   overflow: hidden;
   font-size: 14px;
-  padding-bottom: 8px;
 }
 
 .item-list:hover {

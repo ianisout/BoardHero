@@ -22,9 +22,10 @@
 
               <div class="character-stats">
                 <div class="character-image">
-                  <% characterVisualElements.map(element => { %> 
-                    <div class="unique-image" style="background-image: url('<%= element %>');"></div>
-                  <% }) %> 
+                  <% characterVisualElements.map(element => { %>
+                    <% if (element.isEquipped === true) { %> 
+                    <div class="unique-image" style="background-image: url('<%= element.imagePath %>');"></div>
+                  <% }}) %> 
                   <div class="character-level">Lv. <p><%= user.character.char_level %></p></div>
                   <div id="item-tryout"><img id="tryout-of-choice" src="" alt=""></div>
                 </div>

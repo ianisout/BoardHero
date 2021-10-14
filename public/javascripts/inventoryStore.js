@@ -30,3 +30,14 @@ const introPhrase = document.getElementById("intro-phrase")
 if (itemList.childNodes.length === 3) {
   introPhrase.style.display = 'unset'
 }
+
+
+const ownedItem = document.querySelectorAll(".item");
+ownedItem.forEach(item => item.onclick = () => {
+  const equipItemDiv = document.createElement("div");
+  equipItemDiv.classList = "unique-image";
+  const imageUrl = item.childNodes[1].currentSrc;
+  equipItemDiv.style.backgroundImage = `url('${imageUrl.substring(21)}')`;
+  const characterDiv = document.getElementsByClassName("character-image");
+  characterDiv[1].insertAdjacentElement("beforebegin", equipItemDiv)
+});
