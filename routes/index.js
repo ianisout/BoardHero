@@ -42,14 +42,11 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   const userId = user.id;
   const workspaceId = user.activeWorkspace.id;
   const allTasks = await TaskController.getAllTasks(workspaceId);
-  console.log(allTasks)
-
   const character = await CharacterController.getCharacterByUserId(userId);
-  const idsOfElements = await CharacterController.getCharacterElements(character.id);
-  const userElements = await TypeOfElementController.findElementsById(idsOfElements);
+  const characterVisualElements = await EquipController.findCharacterElements(character.id);
 
   user.character = character;
-  user.elements = userElements;
+  user.elements = characterVisualElements;
 
   return res.render("homepage", { allTasks, user });
 });
@@ -61,15 +58,15 @@ router.get("/dashboard", verifyLoggedUser, function (req, res, next) {
 
 /* GET inventory/store page */
 router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
-
-  const equips = await EquipController.findAllEquips();
-
-  res.render("inventory-store", { user: req.session.user, equips });
+  const user = req.session.user;
+  const allElements = await EquipController.findAllEquips();
+  const characterVisualElements = await EquipController.findCharacterElements(user.character.id);
+  const ownedEquips = await CharacterController.getOwnedEquipments(user.character.id);
+  
+  res.render("inventory-store", { user, characterVisualElements, allElements, ownedEquips });
 });
 
-
 router.post("/inventory", async function (req, res) {
-
   const { element_id } = req.body;
   const characterId = req.session.user.character.id;
 
