@@ -2,7 +2,6 @@ const tryOutOfChoice = document.getElementById("tryout-of-choice");
 let itemSelectedForBuying;
 
 const itemsForSale = document.querySelectorAll(".item-img");
-console.log('-----------------------------------------------------------')
 for (let i = 0; i < itemsForSale.length; i++) {
   itemsForSale[i].addEventListener('click', equip => {
     tryOutOfChoice.src = itemsForSale[i].currentSrc;
@@ -12,7 +11,6 @@ for (let i = 0; i < itemsForSale.length; i++) {
 }
 
 function makePurchase(element_id) {
-
   fetch("/inventory", {
     method: 'POST',
     body: JSON.stringify({element_id}),
@@ -21,6 +19,7 @@ function makePurchase(element_id) {
     }
   }).catch(console.log);
 
+  window.location.reload();
 }
 
 
@@ -31,4 +30,3 @@ const introPhrase = document.getElementById("intro-phrase")
 if (itemList.childNodes.length === 3) {
   introPhrase.style.display = 'unset'
 }
-

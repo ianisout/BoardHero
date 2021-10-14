@@ -35,7 +35,5 @@ exports.getOwnedEquipments = async character_id => {
     }
   }
 
-  console.log(ownedElements)
-
   return ownedElements;
 }

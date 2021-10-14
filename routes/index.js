@@ -62,12 +62,10 @@ router.get("/dashboard", verifyLoggedUser, function (req, res, next) {
 router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
   const user = req.session.user;
   const allElements = await EquipController.findAllEquips();
-
+  const characterVisualElements = await EquipController.findCharacterElements(user.character.id)
   const ownedEquips = await CharacterController.getOwnedEquipments(user.character.id);
-
-  console.log(ownedEquips)
-
-  res.render("inventory-store", { user, allElements, ownedEquips });
+  
+  res.render("inventory-store", { user, characterVisualElements, allElements, ownedEquips });
 });
 
 

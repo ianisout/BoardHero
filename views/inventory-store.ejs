@@ -22,7 +22,7 @@
 
               <div class="character-stats">
                 <div class="character-image">
-                  <% user.elements.map(element => { %> 
+                  <% characterVisualElements.map(element => { %> 
                     <div class="unique-image" style="background-image: url('<%= element %>');"></div>
                   <% }) %> 
                   <div class="character-level">Lv. <p><%= user.character.char_level %></p></div>
