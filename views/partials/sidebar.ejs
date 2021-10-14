@@ -7,8 +7,9 @@
     <div class="character-info">
       <div class="character-image">
         <% user.elements.map(element => { %> 
-          <div class="unique-image" style="background-image: url('<%= element %>');"></div>
-        <% }) %>
+          <% if (element.isEquipped === true) { %> 
+          <div class="unique-image" style="background-image: url('<%= element.imagePath %>');"></div>
+        <% }}) %>
         <div class="character-level">Lv. <p><%= user.character.char_level %></p></div>
       </div>
       <div class="characterprogress">
