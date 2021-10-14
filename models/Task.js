@@ -53,9 +53,10 @@ exports.addAttachments = async (attachments) => {
 exports.updateStatus = async (id, task_status_id) => {
   const taskFound = await Task.findByPk(id);
 
-  if(taskFound.task_status_id === 1){
-    
-
+  if ( taskFound.task_status_id === 3) {
+    taskFound.task_status_id --;
+  } else {
+    taskFound.task_status_id++;
   }
 
   await taskFound.save();

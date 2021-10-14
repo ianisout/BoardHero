@@ -33,16 +33,18 @@
                   </h2>
                   <div class="action-buttons">
                     <form action="/task/details/<%= taskDetails.id %>&<%= taskDetails.task_status_id %>?_method=PATCH" method="POST">
-                      <button id="finish-task" class="task-action" type="submit">Finish</button>
-                    </form>
+                      
+                      <button id="finish-task" class="task-action" type="submit">
+                        <% if (taskDetails.task_status_id === 1) { %>
+                          Start task
+                          <% } else if (taskDetails.task_status_id === 2) { %>
+                          Finish task
+                          <% } else { %>
+                          Return to <br/> in progress
+                          <% } %>
+                        </button>
 
-                    <form action="/task/details/<%= taskDetails.id %>&<%= taskDetails.task_status_id %>?_method=PATCH" method="POST">
-                      <button id="progress-task" class="button-change-status" type="submit">In
-                        progress</button>
-                    </form>
 
-                    <form action="/task/details/<%= taskDetails.id %>?_method=DELETE" method="POST">
-                      <button id="delete-task " type="submit">Delete</button>
                     </form>
                   </div>
                 </div>
