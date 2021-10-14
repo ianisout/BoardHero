@@ -62,11 +62,15 @@ h3 {
   position: relative;
 }
 
+#intro-phrase {
+  display: none;
+}
+
 #item-tryout img {
   z-index: 100;
-  max-width: 220px;
-  position: inherit;
-  top: -33px;
+  max-width: 200px;
+  position: relative;
+  top: -42px;
 }
 
 .item-list,
@@ -170,7 +174,6 @@ h3 {
 
 .item-description {
   white-space: initial;
-  margin-right: 8px;
 }
 
 .item-name-and-price {
@@ -184,6 +187,7 @@ h3 {
   font-weight: 600;
   margin-right: 5px;
 }
+
 .item-price {
   display: flex;
   align-items: baseline;

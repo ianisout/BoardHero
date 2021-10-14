@@ -52,10 +52,12 @@
               <h3>Items</h3>
               <div class="item-list">
                 <p id="intro-phrase">You don't own any items yet.</p>
-                <!-- <div class="item">
-                  <img src="/images/clothing-items/dress/dress1.png" alt="" />
-                  <p class="item-description">ITEM</p>
-                </div> -->
+                <% ownedEquips.forEach(equip => { %> 
+                <div class="item">
+                  <img src="<%= equip.imagePath %>" alt="<%= equip.elementName %>" />
+                  <p class="item-description"><%= equip.elementName %></p>
+                </div>
+                <% }) %> 
               </div>
 
               <div class="badges">
@@ -78,7 +80,7 @@
 
                 <div class="store-list">
 
-                  <% equips.map(elem => { %> 
+                  <% allElements.map(elem => { %> 
 
                   <div class="item-selling">
                     <img class="item-img" src="<%=elem.image_path%> " alt="<%=elem.name%>" />

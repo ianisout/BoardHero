@@ -23,3 +23,12 @@ function makePurchase(element_id) {
 
 }
 
+
+/* set phrase in case user character doesn't own any items yet */
+const itemList = document.querySelector(".item-list");
+const introPhrase = document.getElementById("intro-phrase")
+
+if (itemList.childNodes.length === 3) {
+  introPhrase.style.display = 'unset'
+}
+
