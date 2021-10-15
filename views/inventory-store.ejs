@@ -22,7 +22,7 @@
 
               <div class="character-stats">
                 <div class="character-image">
-                  <% characterVisualElements.map(element => { %>
+                  <% user.elements.map(element => { %>
                     <% if (element.isEquipped === true) { %> 
                     <div class="unique-image" style="background-image: url('<%= element.imagePath %>');"></div>
                   <% }}) %> 
@@ -53,10 +53,11 @@
               <h3>Items</h3>
               <div class="item-list">
                 <p id="intro-phrase">You don't own any items yet.</p>
-                <% ownedEquips.forEach(equip => { %> 
+                <% ownedEquips.forEach(equip => { %>
                 <div class="item">
                   <img src="<%= equip.imagePath %>" alt="<%= equip.elementName %>" />
                   <p class="item-description"><%= equip.elementName %></p>
+                    <button class="btnEquip" type="submit" onclick="equipUnequip('<%= equip.id %>')"><% if(equip.isEquipped) { %>Unequip<% } else { %>Equip<% } %></butto>
                 </div>
                 <% }) %> 
               </div>

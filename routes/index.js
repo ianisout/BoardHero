@@ -60,10 +60,9 @@ router.get("/dashboard", verifyLoggedUser, function (req, res, next) {
 router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
   const user = req.session.user;
   const allElements = await EquipController.findAllEquips();
-  const characterVisualElements = await EquipController.findCharacterElements(user.character.id);
   const ownedEquips = await CharacterController.getOwnedEquipments(user.character.id);
-  
-  res.render("inventory-store", { user, characterVisualElements, allElements, ownedEquips });
+
+  res.render("inventory-store", { user, allElements, ownedEquips });
 });
 
 router.post("/inventory", async function (req, res) {
@@ -73,6 +72,21 @@ router.post("/inventory", async function (req, res) {
   CharacterController.purchaseEquipment(characterId, Number(element_id))
 
   res.render("inventory-store", { user: req.session.user });
+});
+
+router.patch("/inventory", async function (req, res) {
+  const id = req.body;
+  const user = req.session.user;
+  const ownedEquips = await CharacterController.getOwnedEquipments(user.character.id);
+  const allElements = await EquipController.findAllEquips();
+
+  await EquipController.setEquipmentStatus(Number(id.id));
+
+  const characterVisualElements = await EquipController.findCharacterElements(user.character.id);
+
+  user.elements = characterVisualElements;
+
+  res.render("inventory-store", { user, ownedEquips, allElements });
 });
 
 module.exports = router;

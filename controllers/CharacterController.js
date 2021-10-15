@@ -17,6 +17,7 @@ exports.getOwnedEquipments = async character_id => {
   });
 
   for (let i = 0; i < allElements.length; i++) {
+    const id = allElements[i].dataValues.id;
     const elementId = allElements[i].dataValues.element_id;
     const isEquipped = allElements[i].dataValues.is_equipped;
     const elementData = await ElementModel.findByPk(allElements[i].dataValues.element_id);
@@ -27,6 +28,7 @@ exports.getOwnedEquipments = async character_id => {
 
     if (typeOfElement === 3 || typeOfElement === 10 || typeOfElement === 13) {
       ownedElements.push({
+        id,
         elementId,
         elementName,
         isEquipped,
