@@ -66,6 +66,23 @@ h3 {
   display: none;
 }
 
+.btnEquip {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  display: none;
+  color: #fafafa;
+  border: none;
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: #8929bb;
+  padding: 3px 6px;
+  margin: 4px;
+  text-align: center;
+}
+
 #item-tryout img {
   z-index: 100;
   max-width: 200px;
@@ -88,6 +105,7 @@ h3 {
 
 .item {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   color: #8929bb;
@@ -112,6 +130,10 @@ h3 {
   background-color: #8929bb;
   color: #fafafa;
   font-weight: 600;
+}
+
+.item:hover button{
+  display: unset;
 }
 
 .item:hover img {

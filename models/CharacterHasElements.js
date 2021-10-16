@@ -31,3 +31,17 @@ exports.purchaseEquipment = async (character_id, element_id) => {
     element_id,
   });
 }
+
+exports.setEquipmentStatus = async (id) => {
+  const elementData = await Characters_has_element.findByPk(id);
+
+  if (elementData.dataValues.is_equipped) {
+    await Characters_has_element.update({ is_equipped: false },
+    { where: { id }})
+  } else {
+    await Characters_has_element.update({ is_equipped: true },
+    { where: { id }})
+  }
+
+  return elementData;
+}

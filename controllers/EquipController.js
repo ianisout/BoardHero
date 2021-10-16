@@ -1,5 +1,6 @@
 const { Characters_has_element } = require('../database/models');
 const ElementModel = require('../models/Element');
+const CharacterHasElementsModel = require('../models/CharacterHasElements');
 
 exports.findAllEquips = async () => await ElementModel.findAllEquips();
 
@@ -21,3 +22,5 @@ exports.findCharacterElements = async character_id => {
 
   return characterVisualElements;
 }
+
+exports.setEquipmentStatus = async id => await CharacterHasElementsModel.setEquipmentStatus(id);

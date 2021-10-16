@@ -6,7 +6,6 @@ for (let i = 0; i < itemsForSale.length; i++) {
   itemsForSale[i].addEventListener('click', equip => {
     tryOutOfChoice.src = itemsForSale[i].currentSrc;
     itemSelectedForBuying = itemsForSale[i].currentSrc;
-    console.log(itemSelectedForBuying);
   })
 }
 
@@ -33,11 +32,36 @@ if (itemList.childNodes.length === 3) {
 
 
 const ownedItem = document.querySelectorAll(".item");
+const uniqueImages = document.querySelectorAll(".unique-image");
+const imageToBeInsertedAfter = uniqueImages[uniqueImages.length -1];
+const btnEquip = document.querySelectorAll('.btnEquip');
+
+function changeButtonStatus(btnText) {
+  if (btnText.innerText === "Equip") {
+    btnText.innerText = "Unequip";
+  } else if (btnText.innerText === "Unequip") {
+    btnText.innerText = "Equip";
+  }
+}
+
 ownedItem.forEach(item => item.onclick = () => {
   const equipItemDiv = document.createElement("div");
   equipItemDiv.classList = "unique-image";
   const imageUrl = item.childNodes[1].currentSrc;
   equipItemDiv.style.backgroundImage = `url('${imageUrl.substring(21)}')`;
-  const characterDiv = document.getElementsByClassName("character-image");
-  characterDiv[1].insertAdjacentElement("beforebegin", equipItemDiv)
+  
+  imageToBeInsertedAfter.insertAdjacentElement('afterend', equipItemDiv);
+
+  changeButtonStatus(item.lastChild);
 });
+
+
+function equipUnequip(id) {
+  fetch("/inventory", {
+    method: 'PATCH',
+    body: JSON.stringify({id}),
+    headers: {
+      'Content-type': 'application/json'
+    }
+  }).catch(console.log);
+}
