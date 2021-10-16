@@ -81,8 +81,7 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   const { user } = req.session;
   const { id } = req.params;
   const taskDetailsGotbyId = await TaskController.getTaskById(id);
-  const taskComments = await TaskController.findAllComments(id)
-  log(taskComments);
+  const taskComments = await TaskController.findAllComments(id);
 
   res.render("task-details", { user, taskDetails: taskDetailsGotbyId, taskComments });
 });
@@ -91,13 +90,14 @@ router.post("/details/:id", async function (req, res) {
   const { id } = req.params;
   const { user } = req.session;
   const { text } = req.body;
-  const userId = user.id
-  console.log(text)
-  console.log(user)
+  const taskDetailsGotbyId = await TaskController.getTaskById(id);
+  const userId = user.id;
 
-  await TaskController.addComment(userId, id, text)
+  await TaskController.addComment(userId, id, text);
 
-  return res.send("Wuonderfol!")
+  const taskComments = await TaskController.findAllComments(id);
+
+  res.render("task-details", { user, taskDetails: taskDetailsGotbyId, taskComments });
 });
 
 /* DELETE task */
