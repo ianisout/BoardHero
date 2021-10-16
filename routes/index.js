@@ -61,18 +61,40 @@ router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
   const user = req.session.user;
   const allElements = await EquipController.findAllEquips();
   const ownedEquips = await CharacterController.getOwnedEquipments(user.character.id);
+  const test = []
 
-  for(let i = 0; i < allElements.length; i++) { // NOT WORKING PROPERLY
-    for (let j = 0; j < ownedEquips.length; j++) {
-      if (allElements[i].id === ownedEquips[j].elementId) {
-        allElements[i].is_owned = 'owned';
-        console.log(allElements[i])
-      } else {
-        allElements[i].is_owned = 'notOwned';
-        
+  // for(let i = 0; i < ownedEquips.length; i++) { // NOT WORKING PROPERLY
+  //   for (let j = 0; j < allElements.length; j++) {
+  //     if (ownedEquips[i].id === allElements[j].elementId) {
+  //       allElements[j].is_owned = 'owned';
+  //       test.push(allElements[j])
+  //       console.log(allElements[j])
+  //       console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasd')
+  //     }
+      
+      
+  //     /* else {
+  //       allElements[i].is_owned = 'notOwned'; 
+  //       test.push(allElements[i])
+  //     }
+  //     break; */
+  //   }
+  //   console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasd')
+  // }
+
+
+  for(let i = 0; i < ownedEquips.length; i++) { // NOT WORKING PROPERLY
+    checkIfOwned: {
+      for (let j = 0; j < allElements.length; j++) {
+        if (allElements[j].id === ownedEquips[i].elementId) {
+          allElements[j].is_owned = 'owned';
+          break checkIfOwned;
+        }
       }
     }
   }
+
+  // console.log(test)
 
   res.render("inventory-store", { user, allElements, ownedEquips });
 });
