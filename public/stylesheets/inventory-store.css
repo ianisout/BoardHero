@@ -239,3 +239,12 @@ h3 {
   padding: 5px 10px;
   margin: 5px 5px 5px 15px;
 }
+
+.owned button {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}

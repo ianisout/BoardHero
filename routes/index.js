@@ -62,6 +62,18 @@ router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
   const allElements = await EquipController.findAllEquips();
   const ownedEquips = await CharacterController.getOwnedEquipments(user.character.id);
 
+  for(let i = 0; i < allElements.length; i++) { // NOT WORKING PROPERLY
+    for (let j = 0; j < ownedEquips.length; j++) {
+      if (allElements[i].id === ownedEquips[j].elementId) {
+        allElements[i].is_owned = 'owned';
+        console.log(allElements[i])
+      } else {
+        allElements[i].is_owned = 'notOwned';
+        
+      }
+    }
+  }
+
   res.render("inventory-store", { user, allElements, ownedEquips });
 });
 

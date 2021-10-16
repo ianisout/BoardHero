@@ -23,9 +23,10 @@
               <div class="character-stats">
                 <div class="character-image">
                   <% user.elements.map(element => { %>
-                    <% if (element.isEquipped === true) { %> 
-                    <div class="unique-image" style="background-image: url('<%= element.imagePath %>');"></div>
+                    <% if (element.isEquipped === true) { %>
+                    <div class="unique-image" id="<%= element.imagePath.substr(element.imagePath.lastIndexOf('/') + 1).slice(0, -4) %>" style="background-image: url('<%= element.imagePath %>');"></div>
                   <% }}) %> 
+
                   <div class="character-level">Lv. <p><%= user.character.char_level %></p></div>
                   <div id="item-tryout"><img id="tryout-of-choice" src="" alt=""></div>
                 </div>
@@ -57,7 +58,7 @@
                 <div class="item">
                   <img src="<%= equip.imagePath %>" alt="<%= equip.elementName %>" />
                   <p class="item-description"><%= equip.elementName %></p>
-                    <button class="btnEquip" type="submit" onclick="equipUnequip('<%= equip.id %>')"><% if(equip.isEquipped) { %>Unequip<% } else { %>Equip<% } %></butto>
+                    <button class="btnEquip" type="submit" onclick="equipUnequip('<%= equip.id %>', this)"><% if(equip.isEquipped) { %>Unequip<% } else { %>Equip<% } %></butto>
                 </div>
                 <% }) %> 
               </div>
@@ -82,9 +83,9 @@
 
                 <div class="store-list">
 
-                  <% allElements.map(elem => { %> 
-
-                  <div class="item-selling">
+                  <% allElements.forEach(elem => { %>
+                    <% console.log(elem.is_owned) %> 
+                  <div class="item-selling <%=elem.is_owned%>">
                     <img class="item-img" src="<%=elem.image_path%> " alt="<%=elem.name%>" />
                     <div class="item-info">
                       <div class="item-name-and-price">
@@ -99,7 +100,8 @@
                             d="M8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
                           </svg></i>
                           <p><%=elem.price%></p>
-                          <button class="btn-buy" onclick="makePurchase('<%=elem.id%>')">Buy</button>
+                          
+                          <button class="btn-buy" onclick="makePurchase('<%=elem.id%>')"><% if(elem.is_owned === 'owned') { %>Owned<% } else { %>Buy<% } %></button>
                         </div>
                       </div>
                       <p class="item-description"><%=elem.description%></p>
