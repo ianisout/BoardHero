@@ -13,3 +13,5 @@ exports.getUserByEmail = async (email) => {
 };
 
 exports.findAllUsers = async () => await User.findAll();
+
+exports.findByPk = async (id) => await User.findByPk(id)

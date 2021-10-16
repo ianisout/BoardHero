@@ -32,17 +32,18 @@
                     <%= taskDetails.name %>
                   </h2>
                   <div class="action-buttons">
-                    <form action="/task/details/<%= taskDetails.id %>&<%= taskDetails.task_status_id %>?_method=PATCH" method="POST">
-                      
+                    <form action="/task/details/<%= taskDetails.id %>&<%= taskDetails.task_status_id %>?_method=PATCH"
+                      method="POST">
+
                       <button id="finish-task" class="task-action" type="submit">
-                        <% if (taskDetails.task_status_id === 1) { %>
+                        <% if (taskDetails.task_status_id===1) { %>
                           Start task
-                          <% } else if (taskDetails.task_status_id === 2) { %>
-                          Finish task
-                          <% } else { %>
-                          Return to <br/> in progress
-                          <% } %>
-                        </button>
+                          <% } else if (taskDetails.task_status_id===2) { %>
+                            Finish task
+                            <% } else { %>
+                              Return to <br /> in progress
+                              <% } %>
+                      </button>
 
 
                     </form>
@@ -116,34 +117,24 @@
               <div class="comment-section">
                 <h3 class="form-subtitle">Comments</h3>
                 <div class="comments">
-                  <div class="single-comment">
-                    <img class="avatar" src="/images/characters/naked-brown.svg" alt="">
-                    <div class="comment-text">
-                      <p class="commentator-name">Jeff Lebowski</p>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam odit unde sequi distinctio
-                        ipsum non facilis voluptas? Obcaecati quo assumenda porro. Doloremque soluta magnam excepturi
-                        facilis voluptate optio aperiam molestiae!</p>
+                  <% taskComments.forEach(comment=> { %>
+                    <div class="single-comment">
+                      <img class="avatar" src="/images/characters/naked-brown.svg" alt="">
+                      <div class="comment-text">
+                        <p class="commentator-name">
+                          <%= comment.user_id%>
+                        </p>
+                        <p>
+                          <%= comment.text %>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="single-comment">
-                    <img class="avatar" src="/images/characters/naked-brown.svg" alt="">
-                    <div class="comment-text">
-                      <p class="commentator-name">Jeff Lebowski</p>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam odit unde sequi distinctio
-                        ipsum non facilis voluptas? Obcaecati quo assumenda porro. Doloremque soluta magnam excepturi
-                        facilis voluptate optio aperiam molestiae!</p>
-                    </div>
-                  </div>
-                  <div class="single-comment">
-                    <img class="avatar" src="/images/characters/naked-brown.svg" alt="">
-                    <div class="comment-text">
-                      <p class="commentator-name">Jeff Lebowski</p>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam odit unde sequi distinctio
-                        ipsum non facilis voluptas? Obcaecati quo assumenda porro. Doloremque soluta magnam excepturi
-                        facilis voluptate optio aperiam molestiae!</p>
-                    </div>
-                  </div>
-                  <input id="new-comment" type="text" class="comment-text" placeholder="Write a comment">
+                    <% }) %>
+                    <form method="POST" id="form-comment">
+                      <input name="text" id="new-comment" type="textarea" class="comment-text"
+                        placeholder="Write a comment">
+                      <button type="submit" class="button create-comment" for="form-comment">Add a comment</button>
+                    </form>
 
                 </div>
               </div>

@@ -70,3 +70,19 @@ exports.destroy = (id) =>
       id,
     },
   });
+
+
+exports.addComment = async (comment) => {
+  await Comment.create(comment)
+}
+
+
+exports.findAllComments = async(taskId) => {
+  const comments = await Comment.findAll({
+    where: {
+      task_id: taskId
+    }
+  })
+
+  return comments;
+} 

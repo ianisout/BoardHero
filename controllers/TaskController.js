@@ -24,7 +24,11 @@ exports.createTask = async ({
       task_status_id: 1, // default status = open
     };
 
-    const taskCreated = await TaskModel.createTask({ newTask, participantIds, tagValues });
+    const taskCreated = await TaskModel.createTask({
+      newTask,
+      participantIds,
+      tagValues,
+    });
     console.log(taskCreated);
 
     const task_id = taskCreated.id;
@@ -40,7 +44,6 @@ exports.createTask = async ({
       });
       TaskModel.addAttachments(attachments);
     }
-    
   } catch (error) {
     console.error(error);
   }
@@ -48,19 +51,44 @@ exports.createTask = async ({
 
 exports.getAllTasks = (workspaceId) => TaskModel.getAllTasks(workspaceId);
 
-exports.getTaskById = async (id) => { 
+exports.getTaskById = async (id) => {
   const { userParticipants, tags, ...task } = await TaskModel.getTaskById(id);
 
-  const participantsFormatted = userParticipants.map(user => user.email);
+  const participantsFormatted = userParticipants.map((user) => user.email);
   task.participants = participantsFormatted;
 
-  const tagsFormatted = tags.map(tag => tag.label);
+  const tagsFormatted = tags.map((tag) => tag.label);
   task.tags = tagsFormatted;
 
   return task;
 };
 
-exports.updateStatus = (id, task_status_id) => TaskModel.updateStatus(id, task_status_id);
+exports.updateStatus = (id, task_status_id) =>
+  TaskModel.updateStatus(id, task_status_id);
 
 exports.deleteTask = (id) => TaskModel.destroy(id);
 
+exports.addComment = async (user, task_id, text) => {
+  const comment = {
+    text,
+    task_id,
+    user_id: user,
+  };
+  await TaskModel.addComment(comment);
+};
+
+exports.findAllComments = async (taskId) => {
+  const commentsData = [];
+  
+  const comments = await TaskModel.findAllComments(taskId);
+  console.log(comments);
+  comments.forEach(async (comment) => {
+    const userName = await UserModel.findByPk(comment.dataValues.user_id)
+    commentsData.push({
+      user_id:`${userName.dataValues.first_name} ${userName.dataValues.last_name}`,
+      text: comment.dataValues.text,
+    });
+  });
+  console.log(commentsData);
+  return commentsData;
+};
