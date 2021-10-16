@@ -1,69 +1,104 @@
 const express = require("express");
 const router = express.Router();
 
-const fs = require("fs");
-const os = require("os");
-const multer = require("multer");
+const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
+const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
 
-// get path of temp directory
-// example: 'C:/Users/natha/AppData/Local/Temp'
-const tempDir = os.tmpdir(); 
-const upload = multer({ dest: tempDir }); 
+const TaskController = require("../controllers/TaskController");
+const TypeOfElementController = require("../controllers/TypeOfElementController");
+const CharacterController = require("../controllers/CharacterController");
+const EquipController = require("../controllers/EquipController");
 
 /* GET home page */
-router.get("/", function (req, res, next) {
+router.get("/", verifyNotLoggedUser, function (req, res, next) {
   res.render("index");
 });
 
 /* GET home page */
-router.get("/index", function (req, res, next) {
+router.get("/index", verifyNotLoggedUser, function (req, res, next) {
   res.render("index");
 });
 
 /* GET character or signup options page  */
-router.get("/char-login", function (req, res, next) {
+router.get("/char-login", verifyNotLoggedUser, function (req, res, next) {
   res.render("char-login");
 });
 
 /* GET character creation page */
-router.get("/character-creation", function (req, res, next) {
-  res.render("character-creation");
+router.get("/character-creation/", verifyNotLoggedUser, async function (req, res) {
+  const typeOfElements = await TypeOfElementController.findAll();
+  res.render("character-creation", { typeOfElements });
+});
+
+router.post("/character-creation/", async (req, res) => {
+  let {CHARACTER_SET} = req.body;
+  res.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});
+  res.status(201).redirect("/User/signup")
+})
+
+/* GET reference page for sidebar and navbar components (TEST) */
+router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
+  const { user } = req.session;
+  const userId = user.id;
+  const workspaceId = user.activeWorkspace.id;
+  const allTasks = await TaskController.getAllTasks(workspaceId);
+  const character = await CharacterController.getCharacterByUserId(userId);
+  const characterVisualElements = await EquipController.findCharacterElements(character.id);
+
+  user.character = character;
+  user.elements = characterVisualElements;
+
+  return res.render("homepage", { allTasks, user });
+});
+
+/* GET dashboard page */
+router.get("/dashboard", verifyLoggedUser, function (req, res, next) {
+  res.render("dashboard", { user: req.session.user });
 });
 
 /* GET inventory/store page */
-router.get("/inventory", function (req, res, next) {
-  res.render("inventory-store");
+router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
+  const user = req.session.user;
+  const allElements = await EquipController.findAllEquips();
+  const ownedEquips = await CharacterController.getOwnedEquipments(user.character.id);
+
+  for(let i = 0; i < allElements.length; i++) { // NOT WORKING PROPERLY
+    for (let j = 0; j < ownedEquips.length; j++) {
+      if (allElements[i].id === ownedEquips[j].elementId) {
+        allElements[i].is_owned = 'owned';
+        console.log(allElements[i])
+      } else {
+        allElements[i].is_owned = 'notOwned';
+        
+      }
+    }
+  }
+
+  res.render("inventory-store", { user, allElements, ownedEquips });
 });
 
-/* GET reference page for sidebar and navbar components (TEST) */
-router.get("/homepage", function (req, res, next) {
-  res.render("homepage");
+router.post("/inventory", async function (req, res) {
+  const { element_id } = req.body;
+  const characterId = req.session.user.character.id;
+
+  CharacterController.purchaseEquipment(characterId, Number(element_id))
+
+  res.render("inventory-store", { user: req.session.user });
 });
 
+router.patch("/inventory", async function (req, res) {
+  const id = req.body;
+  const user = req.session.user;
+  const ownedEquips = await CharacterController.getOwnedEquipments(user.character.id);
+  const allElements = await EquipController.findAllEquips();
 
-/* GET dashboard page */
-router.get("/dashboard", function (req, res, next) {
-  res.render("dashboard");
-});
+  await EquipController.setEquipmentStatus(Number(id.id));
 
-/* GET task creation function */
-router.get("/create-task", function (req, res, next) {
-  res.render("create-task");
-});
+  const characterVisualElements = await EquipController.findCharacterElements(user.character.id);
 
-/* POST task creation form */
-router.post("/create-task", upload.array('task-files'), function (req, res, next) {
-  /* 
+  user.elements = characterVisualElements;
 
-    Handle form data and files...
-  
-  */
-  res.redirect("/dashboard");
-});
-
-/* GET view-task-details page */
-router.get("/task-details", function (req, res, next) {
-  res.render("view-task-details");
+  res.render("inventory-store", { user, ownedEquips, allElements });
 });
 
 module.exports = router;

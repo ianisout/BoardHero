@@ -28,14 +28,16 @@
 
 .sidebar.open .character-info {
   visibility: unset;
+  display: flex;
+  flex-direction: column;
 }
 
-span {
+.sidebar span {
   color: #fff;
 }
 
 .tooltip {
-  color: #000000;
+  color: #8929bb !important;
 }
 
 .sidebar .logo-details {
@@ -64,8 +66,6 @@ span {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  font-size: 22px;
-  transition: all 0.4s ease;
   font-size: 23px;
   text-align: center;
   cursor: pointer;
@@ -226,24 +226,60 @@ span {
 }
 
 .home-section .home-content {
-  display: inline-block;
+  display: flex;
   color: #4d1869;
-  font-size: 25px;
+  font-size: 14px;
   font-weight: 500;
   margin: 18px;
 }
 
-@media (max-width: 420px) {
+.character-image {
+  width: 200px;
+  height: 200px;
+  background-color: #fafafa;
+  align-self: center;
+  justify-self: center;
+}
 
+.unique-image {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  background-position: center;
+  background-size: cover;
+}
+
+.character-level {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  position: relative;
+  float: right;
+  margin-right: 5px;
+  color: #8929bb;
+  font-weight: 600;
+}
+
+.character-level p {
+  color: #8929bb;
+  font-size: 18px;
+}
+
+.characterprogress {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.char-exp {
+  font-size: 13px;
+}
+
+@media (max-width: 420px) {
   .sidebar {
     visibility: hidden;
     display: none;
-    position: relative;
   }
 
-  .profile {
-    display: none;
-  }
   .home-section {
     position: relative;
     left: 0px;
@@ -255,15 +291,5 @@ span {
     display: flex;
     justify-content: space-between;
     width: 100%;
-  }
-
-  .sidebar .logo-details #btn {
-    color: #000000;
-    visibility: unset;
-    display: unset;
-    position: absolute;
-    left: 250px;
-    top: 250px;
-    z-index: 99;
   }
 }

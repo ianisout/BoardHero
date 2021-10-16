@@ -173,15 +173,22 @@ input[type="checkbox"] {
 
 #finish-task {
   border: none;
-  width: 100px;
-  height: 40px;
+  width: fit-content;
+  height: fit-content;
   font-size: 16px;
   font-weight: 600;
   border-radius: 5px;
   color: #fafafa;
   background-color: #8929bb;
-  padding-bottom: 2px;
+  padding: 5px 10px;
   margin-top: 18px;
+}
+
+#progress-task {
+  color: #8929bb;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 0 10px;
 }
 
 #delete-task {

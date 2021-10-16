@@ -4483,10 +4483,13 @@ fieldset:disabled .btn {
   color: #523e02;
 }
 .alert-danger {
-  color: #842029;
-  background-color: #f8d7da;
-  border-color: #f5c2c7;
+  color: #ffffff;
+  background-color: #8929bb;
+  border-color: #aaa8a8;
+  width: 25%;
+  font-size: 12px;
 }
+
 .alert-danger .alert-link {
   color: #6a1a21;
 }
@@ -4521,7 +4524,7 @@ fieldset:disabled .btn {
   height: 1rem;
   overflow: hidden;
   font-size: 0.75rem;
-  background-color: #e9ecef;
+  background-color: rgb(244, 209, 255);
   border-radius: 0.25rem;
 }
 .progress-bar {
@@ -6831,6 +6834,9 @@ fieldset:disabled .btn {
 }
 .bg-info {
   background-color: #0dcaf0 !important;
+}
+.bg-bhpurple {
+  background-color: #d992ff !important;
 }
 .bg-warning {
   background-color: #ffc107 !important;
