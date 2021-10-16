@@ -4,8 +4,10 @@
 <head>
   <!-- General Settings and Fonts -->
   <%- include('./partials/head-general-settings') %>
+    <script defer src="/javascripts/taskStatus.js"></script>
     <!-- CSS Links -->
     <%- include('./partials/bootstrap-css-head') %>
+      <link rel="stylesheet" href="/stylesheets/homepage.css" />
       <title>Board Hero | Home Page</title>
 </head>
 
@@ -15,28 +17,134 @@
     <section class="home-section">
       <%- include('./partials/navbar') %>
         <div class="home-content">
-          Dashboard
           <%- include('./partials/button-add') %>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12 col-md-4">
-              <% allTasks.forEach(task => { %>
-              <div class="card" style="width: 18rem;">
-                <!-- <img src="..." class="card-img-top" alt="..."> -->
-                <div class="card-body">
-                  <h5 class="card-title"><%= task.name %></h5>
-                  <p class="card-text"><%= task.description %></p>
-                  <a href="/task/details/<%= task.id%>" class="btn btn-primary">Task details</a>
+            <div class="container">
+              <div class="row">
+                <div class="all-columns">
+
+                  <div class="col-6 col-md-4 requested">
+                    <h2>Requested</h2>
+                  <% allTasks.forEach(task=> { %>
+                    <% if (task.task_status_id === 1) {%>
+                        <div class="card tasks-dashboard" id="<%= task.id %>" style="width: 18rem;">
+                          <div class="card-body">
+
+                            <div class="top-content">
+                              <div class="task-title">
+                                <h5>
+                                  <%= task.name %>
+
+                                </h5>
+                              </div>
+                              <div class="task-info">
+                                <a href="/task/details/<%= task.id %>">
+                                  <span class="d-block d-lg-none">+</span>
+                                  <span class="d-none d-lg-block">+ Info</span>
+                                </a>
+                              </div>
+                            </div>
+
+                            <div>
+                              <p>tags</p>
+                            </div>
+
+                            <div>
+                              <p class="card-text">
+                                <%= task.description %>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <% }%>
+                        <% }) %>
+                      </div>
+
+
+
+                        <div class="col-6 col-md-4 in-progress">
+                          <h2>In progress</h2>
+                        <% allTasks.forEach(task=> { %>
+                          <% if (task.task_status_id === 2) {%>
+                            <div class="card tasks-dashboard" id="<%= task.id %>" style="width: 18rem;">
+                              <div class="card-body">
+    
+                                <div class="top-content">
+                                  <div class="task-title">
+                                    <h5>
+                                      <%= task.name %>
+    
+                                    </h5>
+                                  </div>
+                                  <div class="task-info">
+                                    <a href="/task/details/<%= task.id %>">
+                                      <span class="d-block d-lg-none">+</span>
+                                      <span class="d-none d-lg-block">+ Info</span>
+                                    </a>
+                                  </div>
+                                </div>
+    
+                                <div>
+                                  <p>tags</p>
+                                </div>
+    
+                                <div>
+                                  <p class="card-text">
+                                    <%= task.description %>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <% }%>
+                            <% }) %>
+                          </div>
+
+
+                          <div class="col-6 col-md-4 done">
+                            <h2>Done</h2>
+                          <% allTasks.forEach(task=> { %>
+                            <% if (task.task_status_id === 3) {%>
+                            <div class="card tasks-dashboard" id="<%= task.id %>" style="width: 18rem;">
+                              <div class="card-body">
+    
+                                <div class="top-content">
+                                  <div class="task-title">
+                                    <h5>
+                                      <%= task.name %>
+    
+                                    </h5>
+                                  </div>
+                                  <div class="task-info">
+                                    <a href="/task/details/<%= task.id %>">
+                                      <span class="d-block d-lg-none">+</span>
+                                      <span class="d-none d-lg-block">+ Info</span>
+                                    </a>
+                                  </div>
+                                </div>
+    
+                                <div>
+                                  <p>tags</p>
+                                </div>
+    
+                                <div>
+                                  <p class="card-text">
+                                    <%= task.description %>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <% }%>
+                            <% }) %>
+                          </div>
+
                 </div>
               </div>
-              <% }) %>
             </div>
-          </div>
         </div>
+
     </section>
 
     <%- include('./partials/bootstrap-js-scripts') %>
+
 </body>
 
 </html>

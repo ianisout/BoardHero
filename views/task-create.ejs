@@ -3,16 +3,13 @@
 <head>
     <!-- General Settings and Fonts -->
     <%- include('./partials/head-general-settings') %>    
-
     <!-- Tagify -->
-    <script src="https://unpkg.com/@yaireo/tagify"></script>
-    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-    <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
-
+    <%- include('./partials/tagify-head') %>
     <!-- CSS Links -->
     <%- include('./partials/bootstrap-css-head') %>    
     <link rel="stylesheet" href="/stylesheets/task-create.css" />
     <link rel="stylesheet" href="/stylesheets/tagify-task-participants.css" />
+    
     <title>Create New Task | Board Hero</title>
 </head>
 
@@ -39,7 +36,7 @@
                                 <input id="participants" name="participants"/>
 
                                 <label for="tags">Tags</label>
-                                <input type="text" id="tags" name="tags"/>
+                                <input id="tags" name="tags" placeholder='write some tags' />
                     
                                 <div class="task-dates">
                                     <div class="start-date">
@@ -60,19 +57,19 @@
                                 <label>Actions:</label>
                                 <div class="options">
                                     <div class="flag">
-                                        <input type="checkbox" name="flag_need_to_do" id="option-need-to-do">
+                                        <input type="checkbox" name="actions" id="option-need-to-do">
                                         <label for="option-need-to-do">Need to do</label>
                                     </div>
                                     <div class="flag">
-                                        <input type="checkbox" name="flag_pending_tests" id="option-pending-tests">
+                                        <input type="checkbox" name="actions" id="option-pending-tests">
                                         <label for="option-pending-tests">Pending tests</label>
                                     </div>
                                     <div class="flag">
-                                        <input type="checkbox" name="flag_pending_approval" id="option-pending-approval">
+                                        <input type="checkbox" name="actions" id="option-pending-approval">
                                         <label for="option-pending-approval">Pending approval</label>
                                     </div>
                                     <div class="flag">
-                                        <input type="checkbox" name="flag_approved" id="option-approved">
+                                        <input type="checkbox" name="actions" id="option-approved">
                                         <label for="option-approved">Approved</label>
                                     </div>
                                 </div>
@@ -104,6 +101,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/javascripts/taskCreate.js"></script>
     <script src="/javascripts/tagifyTaskParticipants.js"></script>
+    <script src="/javascripts/tagifyTaskTags.js"></script>
 
 </body>
 </html>

@@ -7,9 +7,9 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
 const indexRouter = require("./routes/index");
+const validationMessage = require("./middlewares/validationMessage")
 const userRouter = require("./routes/users");
 const taskRouter = require("./routes/tasks");
-
 
 const app = express();
 
@@ -33,6 +33,7 @@ app.use(
 );
 
 app.use("/", indexRouter);
+app.use("/", validationMessage);
 app.use("/user", userRouter);
 app.use("/task", taskRouter);
 

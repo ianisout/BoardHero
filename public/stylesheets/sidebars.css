@@ -28,6 +28,8 @@
 
 .sidebar.open .character-info {
   visibility: unset;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar span {
@@ -35,7 +37,7 @@
 }
 
 .tooltip {
-  color: #000000;
+  color: #8929bb !important;
 }
 
 .sidebar .logo-details {
@@ -224,9 +226,9 @@
 }
 
 .home-section .home-content {
-  display: inline-block;
+  display: flex;
   color: #4d1869;
-  font-size: 25px;
+  font-size: 14px;
   font-weight: 500;
   margin: 18px;
 }
@@ -235,6 +237,8 @@
   width: 200px;
   height: 200px;
   background-color: #fafafa;
+  align-self: center;
+  justify-self: center;
 }
 
 .unique-image {
@@ -243,6 +247,31 @@
   position: absolute;
   background-position: center;
   background-size: cover;
+}
+
+.character-level {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  position: relative;
+  float: right;
+  margin-right: 5px;
+  color: #8929bb;
+  font-weight: 600;
+}
+
+.character-level p {
+  color: #8929bb;
+  font-size: 18px;
+}
+
+.characterprogress {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.char-exp {
+  font-size: 13px;
 }
 
 @media (max-width: 420px) {

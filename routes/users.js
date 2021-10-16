@@ -4,13 +4,12 @@ const router = express.Router();
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
 
-const validators = require("../middlewares/signupValidation");
-const { firstName, lastName, email, confirmEmail, password, confirmPassword  } = validators;
-const validationSignUp = [firstName, lastName, email, confirmEmail, password, confirmPassword]
+const { validationResult } = require("express-validator");
+const signupValidations = require("../middlewares/signupValidation");
+const validationErrorMessage = require("../middlewares/validationMessage");
 
 const UserController = require("../controllers/UserController");
 const WorkspaceController = require("../controllers/WorkspaceController");
-
 
 const { log } = console;
 
@@ -22,15 +21,17 @@ router.get("/", function (req, res, next) {
 /* GET signup page */
 router.get("/signup", verifyNotLoggedUser, function (request, response, next) {
   const { CHARACTER_SET } = request.cookies;
-  response.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});
+  response.cookie("CHARACTER_SET", CHARACTER_SET, { maxAge: 60000 });
   response.render("signup");
 });
 
 /* POST signup form */
-router.post("/signup", validationSignUp , async function (request, response, next) {
+router.post("/signup", /*signupValidations, validationErrorMessage,*/ async function (request, response, next) {
+  console.log(validationErrorMessage)
   try {
     const { CHARACTER_SET } = request.cookies;
-    const characterChoices = JSON.parse(CHARACTER_SET);
+    const characterChoices = (CHARACTER_SET !== "undefined") ? JSON.parse(CHARACTER_SET) : undefined;
+
     const {
       first_name,
       last_name,
@@ -77,12 +78,12 @@ router.post("/signup", validationSignUp , async function (request, response, nex
 
       request.session.user = userSession;
 
-      response.cookie('CHARACTER_SET', CHARACTER_SET, {maxAge: 60000});
+      response.clearCookie("CHARACTER_SET");
       response.status(201).redirect("/homepage");
     }
   } catch (error) {
     console.log(error);
-    return response.render('signup', { error: error.message });
+    return response.render('signup');
   }
 });
 

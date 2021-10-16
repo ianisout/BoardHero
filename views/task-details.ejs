@@ -4,10 +4,13 @@
 <head>
   <!-- General Settings and Fonts -->
   <%- include('./partials/head-general-settings') %>
-    <!-- CSS Links -->
-    <%- include('./partials/bootstrap-css-head') %>
-      <link rel="stylesheet" href="/stylesheets/task-details.css" />
-      <title>Create New Task | Board Hero</title>
+    <!-- Tagify -->
+    <%- include('./partials/tagify-head') %>
+      <!-- CSS Links -->
+      <%- include('./partials/bootstrap-css-head') %>
+        <link rel="stylesheet" href="/stylesheets/task-details.css" />
+        <link rel="stylesheet" href="/stylesheets/tagify-task-participants.css" />
+        <title>Task Details | Board Hero</title>
 </head>
 
 <body class="body">
@@ -26,72 +29,77 @@
               <div class="form-columns">
                 <div class="dialog-heading">
                   <h2>
-                    <%= taskDetailsGotbyId.dataValues.name %>
+                    <%= taskDetails.name %>
                   </h2>
                   <div class="action-buttons">
-                    <form action="finish_task">
-                      <button id="finish-task" type="submit" class="task-action">Finish</button>
-                    </form>
-                    <form action="/task/details/<%= taskDetailsGotbyId.dataValues.id %>?_method=DELETE" method="POST">
-                      <button type="submit">Deletar</button>
+                    <form action="/task/details/<%= taskDetails.id %>&<%= taskDetails.task_status_id %>?_method=PATCH" method="POST">
+                      
+                      <button id="finish-task" class="task-action" type="submit">
+                        <% if (taskDetails.task_status_id === 1) { %>
+                          Start task
+                          <% } else if (taskDetails.task_status_id === 2) { %>
+                          Finish task
+                          <% } else { %>
+                          Return to <br/> in progress
+                          <% } %>
+                        </button>
+
+
                     </form>
                   </div>
                 </div>
                 <div class="form-details">
-                  <div>
-                    <div class="left-container">
-                      <label for="tags">Participants</label>
-                      <p>
-                        <%= taskDetailsGotbyId.dataValues.participants%>
-                      </p>
-                      <input type="text" id="participants" name="participants" />
-                      <label for="tags">Tags</label>
-                      <input type="text" id="tags" name="tags" value="#devTeam, #frontEnd, #backEnd" />
+                  <div class="left-container">
+                    <label for="tags">Participants</label>
+                    <input id="participants" name="participants" value="<%= taskDetails.participants %>" />
+                    <label for="tags">Tags</label>
+                    <input id="tags" name="tags" value="<%= taskDetails.tags %>" />
 
-                      <div class="due-date">
-                        <label>Start date: <strong>
-                            <%= taskDetailsGotbyId.dataValues.start_date %>
-                          </strong></label>
+                    <div class="due-date">
+                      <label>Start date: <strong>
+                          <%= taskDetails.start_date %>
+                        </strong></label>
+                      <% if (taskDetails.end_date) { %>
                         <label>Due date: <strong>
-                            <%= taskDetailsGotbyId.dataValues.end_date %>
+                            <%= taskDetails.end_date %>
                           </strong></label>
-                      </div>
-
-                      <div class="attachments-reminders-flags">
-                        <a class="attachments-reminders-flags-button" href="">
-                          <img src="/images/icons/attachment.svg" style="width: 20px" alt="">
-                          <p>Attm.</p>
-                        </a>
-                        <a class="attachments-reminders-flags-button" href="">
-                          <img src="/images/icons/reminder.svg" style="width: 20px" alt="">
-                          <p>Reminder</p>
-                        </a>
-                        <a class="attachments-reminders-flags-button" href="">
-                          <img src="/images/icons/flag.svg" style="width: 20px" alt="">
-                          <p>Flags</p>
-                        </a>
-                      </div>
+                        <% } %>
                     </div>
-                    <div class="form-actions">
 
-                      <div class="actions">
-                        <label>Actions:</label>
-                        <div class="flag">
-                          <input type="checkbox" name="flag_need_to_do" id="option-need-to-do">
-                          <label for="option-need-to-do">Need to do</label>
-                        </div>
-                        <div class="flag">
-                          <input type="checkbox" name="flag_pending_tests" id="option-pending-tests">
-                          <label for="option-pending-tests">Pending tests</label>
-                        </div>
-                        <div class="flag">
-                          <input type="checkbox" name="flag_pending_approval" id="option-pending-approval">
-                          <label for="option-pending-approval">Pending approval</label>
-                        </div>
-                        <div class="flag">
-                          <input type="checkbox" name="flag_approved" id="option-approved">
-                          <label for="option-approved">Approved</label>
-                        </div>
+                    <div class="attachments-reminders-flags">
+                      <a class="attachments-reminders-flags-button" href="">
+                        <img src="/images/icons/attachment.svg" style="width: 20px" alt="">
+                        <p>Attm.</p>
+                      </a>
+                      <a class="attachments-reminders-flags-button" href="">
+                        <img src="/images/icons/reminder.svg" style="width: 20px" alt="">
+                        <p>Reminder</p>
+                      </a>
+                      <a class="attachments-reminders-flags-button" href="">
+                        <img src="/images/icons/flag.svg" style="width: 20px" alt="">
+                        <p>Flags</p>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="form-actions">
+
+                    <div class="actions">
+                      <label>Actions:</label>
+                      <div class="flag">
+                        <input type="checkbox" name="flag_need_to_do" id="option-need-to-do">
+                        <label for="option-need-to-do">Need to do</label>
+                      </div>
+                      <div class="flag">
+                        <input type="checkbox" name="flag_pending_tests" id="option-pending-tests">
+                        <label for="option-pending-tests">Pending tests</label>
+                      </div>
+                      <div class="flag">
+                        <input type="checkbox" name="flag_pending_approval" id="option-pending-approval">
+                        <label for="option-pending-approval">Pending approval</label>
+                      </div>
+                      <div class="flag">
+                        <input type="checkbox" name="flag_approved" id="option-approved">
+                        <label for="option-approved">Approved</label>
                       </div>
                     </div>
                   </div>
@@ -101,7 +109,7 @@
               <div class="description-section">
                 <h3 class="form-subtitle">Description</label>
                   <p id="description" cols="30" rows="10">
-                    <%= taskDetailsGotbyId.dataValues.description %>
+                    <%= taskDetails.description %>
                   </p>
               </div>
 
@@ -147,6 +155,10 @@
   </div>
 
   <%- include('./partials/bootstrap-js-scripts') %>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/javascripts/tagifyTaskParticipants.js"></script>
+    <script src="/javascripts/tagifyTaskTags.js"></script>
 
 </body>
 

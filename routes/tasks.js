@@ -18,7 +18,8 @@ const { log } = console;
 
 /* GET task creation page */
 router.get("/create", verifyLoggedUser, function (req, res, next) {
-  res.render("task-create", { user: req.session.user });
+  const { user } = req.session;
+  res.render("task-create", { user });
 });
 
 /* POST task creation form */
@@ -51,6 +52,14 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     flag_approved,
   };
 
+  const participantIds = !participants
+    ? undefined
+    : JSON.parse(participants).map((participant) => Number(participant.value));
+
+  const tagValues = !tags
+    ? undefined
+    : JSON.parse(tags).map((tag) => tag.value);
+
   TaskController.createTask({
     user_id,
     workspace_id,
@@ -58,41 +67,60 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
     start_date,
     end_date,
     description,
-    participants,
+    participantIds,
     actions,
-    tags,
+    tagValues,
     filesInfo,
-  })
-  
-  ;
-  
+  });
 
   res.redirect("/homepage");
 });
 
 /* GET task details page */
 router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
+  const { user } = req.session;
   const { id } = req.params;
   const taskDetailsGotbyId = await TaskController.getTaskById(id);
   log(taskDetailsGotbyId);
-  res.render("task-details", { user: req.session.user, taskDetailsGotbyId,  });
+
+  res.render("task-details", { user, taskDetails: taskDetailsGotbyId });
+});
+
+router.post("/details/:id", async function (req, res) {
+  const { id } = req.params;
+  const { user } = req.session;
 });
 
 /* DELETE task */
 router.delete("/details/:id", async function (req, res) {
   const { id } = req.params;
   await TaskController.deleteTask(id);
+
+  return res.redirect("/homepage");
+});
+
+router.patch("/details/:id&:task_status_id", async function (req, res) {
+  const { id, task_status_id } = req.params;
+  console.log(id)
+  console.log(task_status_id)
   
-  return res.redirect("/homepage")
+  await TaskController.updateStatus(id, task_status_id);
+
+  return res.redirect("/homepage");
 });
 
 /* GET workspace users */
 router.get("/users-list", async function (req, res, next) {
   const userSession = req.session.user;
   const workspace_id = userSession.activeWorkspace.id;
-  const workspaceUsers = await WorkspaceController.getWorkspaceUsers(workspace_id);
-  
+  const workspaceUsers = await WorkspaceController.getWorkspaceUsers(
+    workspace_id
+  );
   res.json(workspaceUsers);
+});
+
+router.get("/tag", async function (req, res) {
+  const { user } = req.session;
 });
 
 module.exports = router;
