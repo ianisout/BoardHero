@@ -113,6 +113,10 @@ h3 {
   padding: 5px;
 }
 
+.item p {
+  text-align: center;
+}
+
 .item-description {
   margin: 0px;
   padding: 4px 0;
@@ -247,4 +251,12 @@ h3 {
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+
+.equipToggle {
+  display: none;
+}
+
+.show-item {
+  display: unset;
 }

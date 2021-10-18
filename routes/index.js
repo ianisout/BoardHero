@@ -61,27 +61,6 @@ router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
   const user = req.session.user;
   const allElements = await EquipController.findAllEquips();
   const ownedEquips = await CharacterController.getOwnedEquipments(user.character.id);
-  const test = []
-
-  // for(let i = 0; i < ownedEquips.length; i++) { // NOT WORKING PROPERLY
-  //   for (let j = 0; j < allElements.length; j++) {
-  //     if (ownedEquips[i].id === allElements[j].elementId) {
-  //       allElements[j].is_owned = 'owned';
-  //       test.push(allElements[j])
-  //       console.log(allElements[j])
-  //       console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasd')
-  //     }
-      
-      
-  //     /* else {
-  //       allElements[i].is_owned = 'notOwned'; 
-  //       test.push(allElements[i])
-  //     }
-  //     break; */
-  //   }
-  //   console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasd')
-  // }
-
 
   for(let i = 0; i < ownedEquips.length; i++) { // NOT WORKING PROPERLY
     checkIfOwned: {
@@ -93,9 +72,7 @@ router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
       }
     }
   }
-
-  // console.log(test)
-
+  
   res.render("inventory-store", { user, allElements, ownedEquips });
 });
 

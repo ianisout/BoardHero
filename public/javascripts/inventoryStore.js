@@ -16,9 +16,8 @@ function makePurchase(element_id) {
     headers: {
       'Content-type': 'application/json'
     }
-  }).catch(console.log);
-
-  window.location.reload();
+  }).then(() => window.location.href = window.location.href) // ERROR HERE
+  .catch(console.log);
 }
 
 
@@ -33,10 +32,8 @@ if (itemList.childNodes.length === 3) {
 
 /* equip and unequip items front-side */
 
-const ownedItem = document.querySelectorAll(".item");
+const ownedItems = document.querySelectorAll(".item");
 const uniqueImages = document.querySelectorAll(".unique-image");
-const imageToBeInsertedAfter = uniqueImages[uniqueImages.length -1];
-const btnEquip = document.querySelectorAll('.btnEquip');
 
 function changeButtonStatus(btnText) {
   if (btnText.innerText === "Equip") {
@@ -46,68 +43,49 @@ function changeButtonStatus(btnText) {
   }
 }
 
-/* 
-  UNDER DEVELOPMENT - IAN
 
-  function removeImg(url) {
-  console.log('here i received the url: ' + url)
-  divsToBeDeleted = []
-
-  uniqueImages.forEach(item => {
-    if (item.style.backgroundImage === url) {
-      console.log('item addded to the divsToBeDeleted' + item)
-      divsToBeDeleted.push(item);
-      console.log('divs to be deleted = ' + divsToBeDeleted[0])
-    }
-  });
-
-  for (let i = 0; i < divsToBeDeleted.length; i++) {
-    console.log('i should be deleting this: ' + divsToBeDeleted[i])
-    divsToBeDeleted[i].remove();
-  }
-}
-
-btnEquip.forEach(item => item.onclick = () => {
-    const urlImg = `url("${item.parentElement.childNodes[1].currentSrc.substring(21)}")`
-    console.log(item.parentElement.childNodes[1].src)
-
-    removeImg(urlImg)
-})
-
-
-function getNumberOfImgs() {
-  const equipIds = [];
-  const numberNow = document.querySelectorAll(".unique-image");
-  for (let i = 0; i < numberNow.length; i ++) {
-    if(numberNow[i].id) equipIds.push(numberNow[i].id);
-  }
-
-  console.log(equipIds)
-} */
-
-ownedItem.forEach(item => item.onclick = () => {
-  const equipItemDiv = document.createElement("div");
-  const imageUrl = item.childNodes[1].currentSrc;
-  equipItemDiv.classList = "unique-image";
-  equipItemDiv.style.backgroundImage = `url('${imageUrl.substring(21)}')`;
+// ERROR HERE
+ownedItems.forEach(item => item.onclick = () => {
+  const srcBtn = item.childNodes[1].src.substr(item.childNodes[1].src.lastIndexOf('/') + 1).slice(0, -4);
   
-  imageToBeInsertedAfter.insertAdjacentElement('afterend', equipItemDiv);
+  for (let i = 0; i < uniqueImages.length; i ++) {
+    if (srcBtn === uniqueImages[i].id) {
+      console.log('asdasd')
+      uniqueImages[i].classList.remove('show-item');
+      uniqueImages[i].classList.toggle('equipToggle');
+      break;
+    } /* else {
+      uniqueImages[i].classList.contains('show-item');
+      break;
+    } */
+  }
 
-  changeButtonStatus(item.lastChild);
+  
+  changeButtonStatus(item.childNodes[5]);
 });
 
+// const targetNode = document.getElementById('character-image');
+// const config = { attributes: true, childList: true, characterData: true};
+// let nodeChange;
+
+// const callback = function(mutationsList, observer) {
+//   for(const mutation of mutationsList) {
+//     if (mutation.type === 'childList') nodeChange = mutation.addedNodes[0].style.backgroundImage;
+//   }
+// };
+
+// const observer = new MutationObserver(callback);
+// observer.observe(targetNode, config);
 
 /* equip and unequip items back-side */
 
-function equipUnequip(id, ownInfo) {
+function equipUnequip(id) {
   fetch("/inventory", {
     method: 'PATCH',
     body: JSON.stringify({id}),
     headers: {
       'Content-type': 'application/json'
     }
-  })/* .then(setTimeout(() => {
-    removeImg(`url("${ownInfo.parentElement.childNodes[1].src.substring(21)}")`)
-  }, 100)) */
+  })
   .catch(console.log);
 }
