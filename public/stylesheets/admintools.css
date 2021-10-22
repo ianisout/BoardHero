@@ -1,0 +1,19 @@
+main {
+  margin-left: 20px;
+}
+
+.workspaces {
+  width: fit-content;
+  padding: 5px;
+}
+
+.workspace {
+  border: 1px solid black;
+  width: fit-content;
+  padding: 5px;
+  margin: 5px;
+}
+
+p {
+  margin: 0;
+}

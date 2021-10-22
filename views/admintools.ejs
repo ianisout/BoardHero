@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- General Settings and Fonts -->
+    <%- include('./partials/head-general-settings') %>
+    <!-- CSS Links -->
+    <%- include('./partials/bootstrap-css-head') %>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css" />
+    <link rel="stylesheet" href="/stylesheets/admintools.css" />
+    <title>Managing workspaces</title>
+  </head>
+
+  <body>
+    <div>
+      <%- include('./partials/sidebar') %>
+      <div class="home-section">
+        <%- include('./partials/navbar') %>
+        <main>
+          <h3>Workspaces</h3>
+          <div class="workspaces">
+            <% workspaces.forEach(workspace => { %>
+            <div class="workspace">
+              <p><%= workspace.workspaceName %></p>
+              <p>Admin: <%= workspace.isAdmin %></p>
+            </div>
+            <% }) %>
+          </div>
+          <br />
+          <br />
+          <div>
+            <h3>Manage workspace</h3>
+            <form action="#" method="post">
+              <p>Insert email</p>
+              <input type="email" name="newUser" id="newUser" />
+              <!-- <input type="number" name="isAdmin" id="isAdmin"> -->
+              <label for="isAdmin">isAdmin:</label>
+              <select name="isAdmin" id="isAdmin">
+                <option value="True">True</option>
+                <option value="False">False</option>
+              </select>
+              <button type="submit">Click me</button>
+            </form>
+          </div>
+
+          <div>
+            Users in this workspace:
+            <ul>
+              <% workspaceUsers.forEach(user => { %>
+              <li><%= user.name %></li>
+              <% }) %>
+            </ul>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <%- include('./partials/bootstrap-js-scripts') %>
+  </body>
+</html>

@@ -4,6 +4,7 @@ const router = express.Router();
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const TaskController = require("../controllers/TaskController");
 const WorkspaceController = require("../controllers/WorkspaceController");
+const UserController = require('../controllers/UserController');
 
 const fs = require("fs");
 const os = require("os");
@@ -125,7 +126,26 @@ router.get("/users-list", async function (req, res, next) {
   const workspaceUsers = await WorkspaceController.getWorkspaceUsers(
     workspace_id
   );
-  res.json(workspaceUsers);
+  const workspaces = await WorkspaceController.getWorkspaces(userSession.id);
+
+  res.render("admintools", { user: userSession, workspaceUsers, workspaces });
+});
+
+router.post("/users-list", async function (req, res, next) {
+  const userSession = req.session.user;
+  const { newUser, isAdmin } = req.body;
+  const workspace_id = userSession.activeWorkspace.id;
+  const workspaceUsers = await WorkspaceController.getWorkspaceUsers(
+    workspace_id
+  );
+
+  const existingUser = await UserController.getUserIfExists(newUser)
+
+  if (!existingUser) res.json({ emailExists: false });
+
+  await WorkspaceController.updateWorkspaceUsers(existingUser.dataValues.email, workspace_id, isAdmin);
+  
+  res.render("admintools", { user: userSession, workspaceUsers });
 });
 
 router.get("/tag", async function (req, res) {

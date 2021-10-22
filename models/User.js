@@ -14,4 +14,13 @@ exports.getUserByEmail = async (email) => {
 
 exports.findAllUsers = async () => await User.findAll();
 
-exports.findByPk = async (id) => await User.findByPk(id)
+exports.findByPk = async (id) => await User.findByPk(id);
+
+exports.getUserIfExists = async email => {
+  const userFound = await User.findOne({
+    where: {
+      email
+    }});
+
+  return userFound;
+}
