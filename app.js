@@ -10,6 +10,7 @@ const indexRouter = require("./routes/index");
 const validationMessage = require("./middlewares/validationMessage")
 const userRouter = require("./routes/users");
 const taskRouter = require("./routes/tasks");
+const workspaceRouter = require("./routes/workspaces");
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use("/", indexRouter);
 app.use("/", validationMessage);
 app.use("/user", userRouter);
 app.use("/task", taskRouter);
+app.use("/workspace", workspaceRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

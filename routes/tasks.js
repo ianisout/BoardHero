@@ -119,35 +119,6 @@ router.patch("/details/:id&:task_status_id", async function (req, res) {
   return res.redirect("/homepage");
 });
 
-/* GET workspace users */
-router.get("/users-list", async function (req, res, next) {
-  const userSession = req.session.user;
-  const workspace_id = userSession.activeWorkspace.id;
-  const workspaceUsers = await WorkspaceController.getWorkspaceUsers(
-    workspace_id
-  );
-  const workspaces = await WorkspaceController.getWorkspaces(userSession.id);
-
-  res.render("admintools", { user: userSession, workspaceUsers, workspaces });
-});
-
-router.post("/users-list", async function (req, res, next) {
-  const userSession = req.session.user;
-  const { newUser, isAdmin } = req.body;
-  const workspace_id = userSession.activeWorkspace.id;
-  const workspaceUsers = await WorkspaceController.getWorkspaceUsers(
-    workspace_id
-  );
-
-  const existingUser = await UserController.getUserIfExists(newUser)
-
-  if (!existingUser) res.json({ emailExists: false });
-
-  await WorkspaceController.updateWorkspaceUsers(existingUser.dataValues.email, workspace_id, isAdmin);
-  
-  res.render("admintools", { user: userSession, workspaceUsers });
-});
-
 router.get("/tag", async function (req, res) {
   const { user } = req.session;
 });

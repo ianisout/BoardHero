@@ -28,41 +28,22 @@
       <div class="home-section">
         <%- include('./partials/navbar') %>
         <main>
-          <h3>Workspaces</h3>
-          <div class="workspaces">
-            <% workspaces.forEach(workspace => { %>
-            <div class="workspace">
-              <p><%= workspace.workspaceName %></p>
-              <p>Admin: <%= workspace.isAdmin %></p>
-            </div>
-            <% }) %>
-          </div>
-          <br />
-          <a href="create">Create workspace</a>
-          <br />
           <div>
-            <h3>Manage workspace</h3>
+            <h3>Create workspace</h3>
             <form action="#" method="post">
-              <p>Insert email</p>
-              <input type="email" name="newUser" id="newUser" />
-              <!-- <input type="number" name="isAdmin" id="isAdmin"> -->
+              <label for="workspaceName">Name:</label>
+              <input type="text" name="workspaceName" id="workspaceName"><br><br>
+              <label for="newUser">Participants:</label>
+              <input type="email" name="newUser" id="newUser" /><br><br>
               <label for="isAdmin">isAdmin:</label>
               <select name="isAdmin" id="isAdmin">
                 <option value="True">True</option>
                 <option value="False">False</option>
-              </select>
-              <button type="submit">Click me</button>
+              </select><br><br>
+              <button type="submit">Create</button>
             </form>
           </div>
 
-          <div>
-            Users in this workspace:
-            <ul>
-              <% workspaceUsers.forEach(user => { %>
-              <li><%= user.name %></li>
-              <% }) %>
-            </ul>
-          </div>
         </main>
       </div>
     </div>
