@@ -15,19 +15,22 @@ router.get("/create", verifyLoggedUser, async function (req, res, next) {
   );
   const workspaces = await WorkspaceController.getWorkspaces(userSession.id);
 
-  res.render("workspace-creation", { user: userSession, workspaceUsers, workspaces });
+  let activeWorkspace;
+  workspaces.map(workspace => workspace.workspaceId === userSession.activeWorkspace.id ? activeWorkspace = workspace : null);
+
+  res.render("workspace-creation", { user: userSession, workspaceUsers, workspaces, activeWorkspace });
 });
 
 router.post("/create", async function (req, res, next) {
   const userSession = req.session.user;
   const { workspaceName, newUser, isAdmin } = req.body;
   const workspace_id = userSession.activeWorkspace.id;
+
   const workspaceUsers = await WorkspaceController.getWorkspaceUsers(
     workspace_id
   );
   const workspaces = await WorkspaceController.getWorkspaces(userSession.id);
-  const existingUser = await UserController.getUserIfExists(newUser);
-
+  
   const workspaceCreated = await WorkspaceController.createWorkspace({
     workspace: {
       name: workspaceName,
@@ -36,11 +39,14 @@ router.post("/create", async function (req, res, next) {
     isAdmin: true,
   });
 
+  let activeWorkspace;
+  workspaces.map(workspace => workspace.workspaceId === userSession.activeWorkspace.id ? activeWorkspace = workspace : null);
+  
+  const existingUser = await UserController.getUserIfExists(newUser);
   if (!existingUser) res.json({ emailExists: false });
-
   await WorkspaceController.updateWorkspaceUsers(existingUser.dataValues.email, workspaceCreated.id, isAdmin);
 
-  res.render("admintools", { user: userSession, workspaces, workspaceUsers });
+  res.render("admintools", { user: userSession, workspaces, workspaceUsers, activeWorkspace });
 });
 
 router.get("/admintools", verifyLoggedUser, async function (req, res, next) {
@@ -51,7 +57,10 @@ router.get("/admintools", verifyLoggedUser, async function (req, res, next) {
   );
   const workspaces = await WorkspaceController.getWorkspaces(userSession.id);
 
-  res.render("admintools", { user: userSession, workspaceUsers, workspaces });
+  let activeWorkspace;
+  workspaces.map(workspace => workspace.workspaceId === userSession.activeWorkspace.id ? activeWorkspace = workspace : null);
+
+  res.render("admintools", { user: userSession, workspaceUsers, workspaces, activeWorkspace });
 });
 
 router.post("/admintools", async function (req, res, next) {
@@ -62,13 +71,15 @@ router.post("/admintools", async function (req, res, next) {
     workspace_id
   );
   const workspaces = await WorkspaceController.getWorkspaces(userSession.id);
+
   const existingUser = await UserController.getUserIfExists(newUser)
-
   if (!existingUser) res.json({ emailExists: false });
-
   await WorkspaceController.updateWorkspaceUsers(existingUser.dataValues.email, workspace_id, isAdmin);
-  
-  res.render("admintools", { user: userSession, workspaces, workspaceUsers });
+
+  let activeWorkspace;
+  workspaces.map(workspace => workspace.workspaceId === userSession.activeWorkspace.id ? activeWorkspace = workspace : null);
+
+  res.render("admintools", { user: userSession, workspaces, workspaceUsers, activeWorkspace });
 });
 
 module.exports = router;

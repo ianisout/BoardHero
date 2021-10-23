@@ -29,6 +29,7 @@
         <%- include('./partials/navbar') %>
         <main>
           <h3>Workspaces</h3>
+          <p>Workspace active now: <strong><%= activeWorkspace.workspaceName %></strong></p>
           <div class="workspaces">
             <% workspaces.forEach(workspace => { %>
             <div class="workspace">
