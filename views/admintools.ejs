@@ -26,7 +26,6 @@
     <div>
       <%- include('./partials/sidebar') %>
       <div class="home-section">
-        <%- include('./partials/navbar') %>
         <main>
           <h3>Workspaces</h3>
           <p>Workspace active now: <strong><%= activeWorkspace.workspaceName %></strong></p>
@@ -46,7 +45,6 @@
             <form action="#" method="post">
               <p>Insert email</p>
               <input type="email" name="newUser" id="newUser" />
-              <!-- <input type="number" name="isAdmin" id="isAdmin"> -->
               <label for="isAdmin">isAdmin:</label>
               <select name="isAdmin" id="isAdmin">
                 <option value="True">True</option>
@@ -60,7 +58,7 @@
             Users in this workspace:
             <ul>
               <% workspaceUsers.forEach(user => { %>
-              <li><%= user.name %></li>
+              <li><%= user.name %> (<%= user.email %>)</li>
               <% }) %>
             </ul>
           </div>

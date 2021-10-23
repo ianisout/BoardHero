@@ -119,6 +119,16 @@ router.patch("/details/:id&:task_status_id", async function (req, res) {
   return res.redirect("/homepage");
 });
 
+/* GET workspace users - Tagify participants */
+router.get("/users-list", async function (req, res, next) {
+  const userSession = req.session.user;
+  const workspace_id = userSession.activeWorkspace.id;
+  const workspaceUsers = await WorkspaceController.getWorkspaceUsers(
+    workspace_id
+  );
+  res.json(workspaceUsers);
+});
+
 router.get("/tag", async function (req, res) {
   const { user } = req.session;
 });

@@ -27,11 +27,10 @@ exports.getWorkspaceUsers = async (workspace_id) => {
   return userList;
 }
   
-exports.updateWorkspaceUsers = async (email, workspace_id, isAdmin) => {
-  let is_admin = false;
-  if (isAdmin === 'True') is_admin === true;
-
+exports.updateWorkspaceUsers = async ({ email, workspace_id, isAdmin }) => {
+  let is_admin = (isAdmin === 'True') ? true : false;
+  
   await WorkspaceModel.updateWorkspaceUsers(email, workspace_id, is_admin);
 }
 
-exports.getWorkspaces = async user_id => await WorkspaceModel.getWorkspaces(user_id);
+exports.getWorkspaces = async (user_id) => await WorkspaceModel.getWorkspaces(user_id);
