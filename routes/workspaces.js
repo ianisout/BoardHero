@@ -61,8 +61,6 @@ router.post("/admintools", async function (req, res, next) {
   const workspace_id = userSession.activeWorkspace.id;
   const { newUser, isAdmin } = req.body;
 
-  const workspaces = await WorkspaceController.getWorkspaces(userSession.id);
-
   const existingUser = await UserController.getUserIfExists(newUser);
   if (!existingUser) 
     res.json({ emailExists: false });
@@ -72,11 +70,6 @@ router.post("/admintools", async function (req, res, next) {
     workspace_id: workspace_id, 
     isAdmin 
   });
-
-  let activeWorkspace;
-  workspaces.map((workspace) =>
-    workspace.workspaceId === userSession.activeWorkspace.id ? (activeWorkspace = workspace) : null
-  );
 
   res.redirect("admintools");
 });
