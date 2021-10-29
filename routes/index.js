@@ -82,7 +82,7 @@ router.post("/inventory", async function (req, res) {
 
   CharacterController.purchaseEquipment(characterId, Number(element_id))
 
-  res.render("inventory-store", { user: req.session.user });
+  res.status(200).end();
 });
 
 router.patch("/inventory", async function (req, res) {

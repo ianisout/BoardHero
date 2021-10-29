@@ -12,13 +12,14 @@ for (let i = 0; i < itemsForSale.length; i++) {
 // ONLY FUNCTION NOT WORKING PROPERLY YET
 
 function makePurchase(element_id) {
+  // debugger;
   fetch("/inventory", {
     method: 'POST',
     body: JSON.stringify({element_id}),
     headers: {
       'Content-type': 'application/json'
     }
-  }).then(() => window.location.href = window.location.href) 
+  }).then(() => location.reload()) 
   .catch(console.log);
 }
 

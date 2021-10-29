@@ -226,7 +226,6 @@ input[type="checkbox"] {
 }
 
 #new-comment {
-  margin-left: 60px;
   width: 300px;
 }
 
@@ -255,6 +254,10 @@ input[type="checkbox"] {
 
 .comment-text p {
   margin: 0;
+}
+
+.comment-text:focus {
+  font-style: normal;
 }
 
 @media screen and (max-width: 768px) {
