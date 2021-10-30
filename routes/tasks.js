@@ -4,7 +4,6 @@ const router = express.Router();
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const TaskController = require("../controllers/TaskController");
 const WorkspaceController = require("../controllers/WorkspaceController");
-const UserController = require('../controllers/UserController');
 
 const fs = require("fs");
 const os = require("os");
@@ -54,11 +53,11 @@ router.post("/create", upload.array("task_files"), function (req, res, next) {
   };
 
   const participantIds = !participants
-    ? undefined
+    ? []
     : JSON.parse(participants).map((participant) => Number(participant.value));
 
   const tagValues = !tags
-    ? undefined
+    ? []
     : JSON.parse(tags).map((tag) => tag.value);
 
   TaskController.createTask({
@@ -87,18 +86,16 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   res.render("task-details", { user, taskDetails: taskDetailsGotbyId, taskComments });
 });
 
+/* POST task details - add comment */
 router.post("/details/:id", async function (req, res) {
   const { id } = req.params;
   const { user } = req.session;
   const { text } = req.body;
-  const taskDetailsGotbyId = await TaskController.getTaskById(id);
   const userId = user.id;
 
   await TaskController.addComment(userId, id, text);
 
-  const taskComments = await TaskController.findAllComments(id);
-
-  res.render("task-details", { user, taskDetails: taskDetailsGotbyId, taskComments });
+  res.redirect(`/task/details/${id}`);
 });
 
 /* DELETE task */
@@ -109,17 +106,18 @@ router.delete("/details/:id", async function (req, res) {
   return res.redirect("/homepage");
 });
 
+/* PATCH task details - change status */
 router.patch("/details/:id&:task_status_id", async function (req, res) {
   const { id, task_status_id } = req.params;
-  console.log(id)
-  console.log(task_status_id)
-  
+  console.log(id);
+  console.log(task_status_id);
+
   await TaskController.updateStatus(id, task_status_id);
 
   return res.redirect("/homepage");
 });
 
-/* GET workspace users - Tagify participants */
+/* GET workspace users - Tagify participants whitelist */
 router.get("/users-list", async function (req, res, next) {
   const userSession = req.session.user;
   const workspace_id = userSession.activeWorkspace.id;
@@ -129,34 +127,35 @@ router.get("/users-list", async function (req, res, next) {
   res.json(workspaceUsers);
 });
 
+/* GET task tags - Tagify tags whitelist */
+router.get("/tags-list", async function (req, res) {
+  const tags = await TaskController.getAllTags();
+  res.json(tags);
+});
+
+/* PATCH task details - update participants */
 router.patch("/participants/:taskId", async function (req, res, next) {
   const { taskId } = req.params;
   const { participants } = req.body;
 
-  const participantIds = !participants
-    ? undefined
+  log(taskId, participants);
+
+  const participantIds = (!participants)
+    ? []
     : JSON.parse(participants).map((participant) => Number(participant.value));
 
   await TaskController.setParticipants({ taskId, participantIds });
 
-  log(taskId, participants);
-
   res.status(200).end();
 });
 
-router.get("/tags-list", async function (req, res) {
-  const tags = await TaskController.getAllTaskTags();
-  res.json(tags);
-});
-
+/* PATCH task details - update tags */
 router.patch("/tags/:taskId", async function (req, res, next) {
   const { taskId } = req.params;
   const { tags } = req.body;
 
-  const tagValues = !tags
-    ? undefined
-    : JSON.parse(tags).map((tag) => tag.value);
-  
+  const tagValues = (!tags) ? [] : JSON.parse(tags).map((tag) => tag.value);
+
   await TaskController.setTags({ taskId, tagValues });
 
   res.status(200).end();

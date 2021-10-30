@@ -92,16 +92,13 @@ exports.findAllComments = async (taskId) => {
   return commentsData;
 };
 
-exports.getAllTaskTags = async () => {
-  const tagsList = await TaskModel.getAllTaskTags();
+exports.getAllTags = async () => {
+  const tagsArray = [];
 
-  const tags = tagsList.map(tag => {
-    return {
-        value: tag.label,
-    };
-  });
+  const tags = await TaskModel.getAllTags();
+  tags.forEach(tag => tagsArray.push(tag.label));
 
-  return tags;
+  return tagsArray;
 }
 
 exports.setParticipants = async ({ taskId, participantIds }) => 
