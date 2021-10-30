@@ -65,18 +65,31 @@ exports.updateStatus = async (id, task_status_id) => {
   return taskFound;
 };
 
-exports.destroy = (id) =>
-  Task.destroy({
-    where: {
-      id,
-    },
-  });
+exports.setParticipants = async ({ taskId, participantIds }) => {
+  if (!participantIds) participantIds = [];
+  const task = await Task.findByPk(taskId);
+  await task.setUserParticipants(participantIds);
+}
 
+exports.setTags = async ({ taskId, tagValues }) => {
+  let tagIds = [];
+
+  if (tagValues) {
+    for (let i = 0; i < tagValues.length; i++) {
+      let tagInfo = await Task_tag.findOne({ where: { label: tagValues[i] } });
+      if (!tagInfo) tagInfo = await Task_tag.create({ label: tagValues[i] });
+      
+      tagIds.push(tagInfo.dataValues.id);
+    }
+  }
+
+  const task = await Task.findByPk(taskId);
+  await task.setTags(tagIds);
+}
 
 exports.addComment = async (comment) => {
   await Comment.create(comment)
 }
-
 
 exports.findAllComments = async(taskId) => {
   const comments = await Comment.findAll({
@@ -84,6 +97,12 @@ exports.findAllComments = async(taskId) => {
       task_id: taskId
     }
   })
-
   return comments;
 } 
+
+exports.destroy = (id) =>
+  Task.destroy({
+    where: {
+      id,
+    }
+});

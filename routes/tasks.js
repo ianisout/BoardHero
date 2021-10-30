@@ -129,8 +129,37 @@ router.get("/users-list", async function (req, res, next) {
   res.json(workspaceUsers);
 });
 
-router.get("/tag", async function (req, res) {
-  const { user } = req.session;
+router.patch("/participants/:taskId", async function (req, res, next) {
+  const { taskId } = req.params;
+  const { participants } = req.body;
+
+  const participantIds = !participants
+    ? undefined
+    : JSON.parse(participants).map((participant) => Number(participant.value));
+
+  await TaskController.setParticipants({ taskId, participantIds });
+
+  log(taskId, participants);
+
+  res.status(200).end();
+});
+
+router.get("/tags-list", async function (req, res) {
+  const tags = await TaskController.getAllTaskTags();
+  res.json(tags);
+});
+
+router.patch("/tags/:taskId", async function (req, res, next) {
+  const { taskId } = req.params;
+  const { tags } = req.body;
+
+  const tagValues = !tags
+    ? undefined
+    : JSON.parse(tags).map((tag) => tag.value);
+  
+  await TaskController.setTags({ taskId, tagValues });
+
+  res.status(200).end();
 });
 
 module.exports = router;

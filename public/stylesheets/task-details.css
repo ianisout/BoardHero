@@ -155,7 +155,6 @@ input[type="checkbox"] {
 }
 
 .actions {
-  margin-top: 10px;
   padding-right: 30px;
 }
 
@@ -241,6 +240,7 @@ input[type="checkbox"] {
 
 #description span {
   font-style: italic;
+  color: #757575;
 }
 
 .form-subtitle {
@@ -251,6 +251,10 @@ input[type="checkbox"] {
 
 .comment-section {
   margin: 10px 0;
+}
+
+.comments {
+  margin-top: 10px;
 }
 
 #new-comment {
