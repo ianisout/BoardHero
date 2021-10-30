@@ -9,7 +9,7 @@
       <!-- CSS Links -->
       <%- include('./partials/bootstrap-css-head') %>
         <link rel="stylesheet" href="/stylesheets/task-details.css" />
-        <link rel="stylesheet" href="/stylesheets/tagify-task-participants.css" />
+        <link rel="stylesheet" href="/stylesheets/tagify-task.css" />
         <title>Task Details | Board Hero</title>
 </head>
 
@@ -44,17 +44,19 @@
                               Return to <br /> in progress
                               <% } %>
                       </button>
-
-
                     </form>
                   </div>
                 </div>
+                
                 <div class="form-details">
                   <div class="left-container">
                     <label for="tags">Participants</label>
                     <input id="participants" name="participants" value="<%= taskDetails.participants %>" />
+                    <button class="btn-participants" onclick="updateParticipants()">Update</button>
+
                     <label for="tags">Tags</label>
                     <input id="tags" name="tags" value="<%= taskDetails.tags %>" />
+                    <button class="btn-tags" onclick="updateTags()">Update</button>
 
                     <div class="due-date">
                       <label>Start date: <strong>
@@ -82,8 +84,8 @@
                       </a>
                     </div>
                   </div>
+                  
                   <div class="form-actions">
-
                     <div class="actions">
                       <label>Actions:</label>
                       <div class="flag">
@@ -109,10 +111,15 @@
 
               <div class="description-section">
                 <h3 class="form-subtitle">Description</label>
-                  <p id="description" cols="30" rows="10">
+                <p id="description" cols="30" rows="10">
+                  <% if (taskDetails.description) { %> 
                     <%= taskDetails.description %>
-                  </p>
-              </div>
+                  <% } else { %>
+                    <span> Click to add a description</span>
+                  <% } %> 
+                </p>
+                <!-- <button class="btn-edit-description" onclick="editDescription()">Edit</button> -->
+                </div>
 
               <div class="comment-section">
                 <h3 class="form-subtitle">Comments</h3>
@@ -131,13 +138,11 @@
                     <% }) %>
                     <form method="POST" id="form-comment">
                       <input name="text" id="new-comment" type="textarea" class="comment-text"
-                        placeholder="Write a comment">
-                      <button type="submit" class="button create-comment" for="form-comment">Add a comment</button>
+                        placeholder="Write something down...">
+                      <button type="submit" class="btn-create-comment" for="form-comment">Add comment</button>
                     </form>
-
                 </div>
               </div>
-
             </div>
           </section>
         </main>
@@ -145,10 +150,9 @@
   </div>
 
   <%- include('./partials/bootstrap-js-scripts') %>
-
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/javascripts/tagifyTaskParticipants.js"></script>
-    <script src="/javascripts/tagifyTaskTags.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/javascripts/tagifyTaskParticipants.js"></script>
+  <script src="/javascripts/tagifyTaskTags.js"></script>
 
 </body>
 
