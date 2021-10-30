@@ -16,7 +16,7 @@ main {
   flex-direction: column;
   background: rgba(200, 200, 200, 25%);
   border-radius: 0.5rem;
-  padding: 0.75rem;
+  padding: 0.5rem;
 }
 
 .top-content {
@@ -52,6 +52,7 @@ main {
   border-radius: 5px;
   color: #fafafa;
   background-color: #8929bb;
+  margin-bottom: 4px;
 }
 
 .task-info a {
@@ -60,7 +61,23 @@ main {
   font-size: 16px;
   font-weight: 600;
   color: #fafafa;
-  padding-bottom: 4px;
+}
+
+.task-tags {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.task-tags p {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  color: #8929bb;
+  font-size: 12px;
+  padding: 2px;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 .card-text {

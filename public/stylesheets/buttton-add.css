@@ -1,7 +1,6 @@
-/* .btn-add {
-    position: absolute;
+.btn-add {
+    position: fixed;
     z-index: 998;
-    right: 2.5rem;
-    top: 4.5rem;
-    
-}    */
+    right: 5vw;
+    bottom: 8vh;
+}

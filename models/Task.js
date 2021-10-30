@@ -36,6 +36,7 @@ exports.getAllTasks = (workspaceId) =>
     where: {
       workspace_id: workspaceId,
     },
+    include: ["tags"]
   });
 
 exports.getTaskById = async (id) => {
