@@ -18,61 +18,36 @@
           alt="Board Hero logo"
         />
       </a>
-      <form action="/User/signup" method="POST">
+      <form action="/User/signup" method="POST" class="form-auth">
         <label for="first_name">Name</label>
-        <input
-          type="text"
-          id="first_name"
-          name="first_name"
-          value="<%= locals.old && old.first_name %>"
-        />
+        <input type="text" id="first_name" name="first_name" />
+        <span class="error-message"></span>
         <label for="last_name">Last Name</label>
-        <input
-          type="text"
-          id="last_name"
-          name="last_name"
-          value="<%= locals.old && old.last_name %>"
-        />
+        <input type="text" id="last_name" name="last_name" />
+        <span class="error-message"></span>
         <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value="<%= locals.old && old.email %>"
-        />
+        <input type="email" id="email" name="email" />
+        <span class="error-message"></span>
         <label for="re-email">Confirm Email</label>
         <input type="email" id="confirmEmail" name="confirmEmail" />
+        <span class="error-message"></span>
         <label for="password">Password</label>
         <input type="password" id="password" name="password" />
+        <span class="error-message"></span>
         <label for="re-password">Confirm password</label>
         <input type="password" id="confirmPassword" name="confirmPassword" />
+        <span class="error-message"></span>
         <label for="position">Position</label>
-        <input
-          type="text"
-          id="position"
-          name="position"
-          value="<%= locals.old && old.position %>"
-        />
+        <input type="text" id="position" name="position" />
+        <span class="error-message"></span>
         <label for="company">Company</label>
-        <input
-          type="text"
-          id="company"
-          name="company"
-          value="<%= locals.old && old.company %>"
-        />
+        <input type="text" id="company" name="company" />
 
         <button type="submit" id="submit">Confirm</button>
       </form>
-
-      <% if(typeof errors !='undefined' ) { %> <% errors.forEach(error=> { %>
-      <div class="alert-danger">
-        <div>
-          <span class="feedback"> <%= error.msg %> </span>
-        </div>
-      </div>
-      <% }) %> <% } %>
     </main>
 
     <script src="/javascripts/bootstrap.bundle.min.js"></script>
+    <script src="/javascripts/signupValidation.js"></script>
   </body>
 </html>

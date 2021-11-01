@@ -109,6 +109,10 @@ button#submit {
   margin-bottom: 12px;
 }
 
+.form-auth .error-message {
+  font-size: 12px;
+}
+
 @media (max-width: 460px) {
   img.logo {
     width: 150px;
