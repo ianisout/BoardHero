@@ -51,6 +51,7 @@ body {
   background-color: #fafafa;
   align-self: center;
   justify-self: center;
+  border: 1px solid #8929bb;
 }
 
 .character-visual {
@@ -155,6 +156,10 @@ body {
   color: #8929bb;
 }
 
+#intro-phrase {
+  color: #8929bb;
+}
+
 #skincolor3 {
   display: none;
 }
@@ -243,18 +248,45 @@ body {
   background-color: #fafafa;
 }
 
-@media (max-width: 460px) {
+@media only screen and (max-width: 780px) {
   body {
     justify-content: center;
-    text-align: center;
+    align-items: center;
     height: 100vh;
     background-image: none;
+    background-color: #8929bb;
+    margin-top: 0;
+    max-width: 90vw;
+    overflow-y: hidden;
+  }
+
+  .container {
+    text-align: center;
+    max-width: 95vw;
+    width: 95vw;
+    overflow: hidden;
+    margin-left: calc(100vw - 90vw);
+    margin-bottom: 20px;
+  }
+
+  #character-visual-background {
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .btn-undo {
+    width: 80px !important;
+  }
+
+  #call-index {
+    max-width: 140px;
+    align-self: center;
   }
 
   .logo {
     width: 130px;
     justify-self: center;
-    margin: 0;
+    margin-bottom: 20px;
     background-image: url('/images/logo/logo-purple.svg');
   }
 
@@ -266,12 +298,12 @@ body {
   }
 
   #categories {
-    width: 50%;
-    overflow-x: scroll;
+    width: 90%;
+    overflow-y: hidden;
   }
 
   #categories button {
-    padding: 6px 12px; /* para bater com os mesmos 10px do tamanho do outro botao -- esse tem borda de 1px */
+    padding: 6px 12px;
     font-size: 16px;
     font-weight: 400;
     border-radius: 4px;
@@ -279,8 +311,12 @@ body {
   }
 
   .option-list {
-    width: calc(100% - 15px);
+    display: block;
+    max-width: calc(100% - 40px) !important;
+    width: fit-content !important;
     font-size: 12px;
+    overflow-y: hidden;
+    margin: 0 80px;
   }
 
   .item-description {
@@ -297,6 +333,7 @@ body {
 
   ::-webkit-scrollbar {
     height: 3px;
+    width: 100px;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -307,7 +344,7 @@ body {
     width: fit-content;
     height: fit-content;
     white-space: nowrap;
-    padding: 6px 16px; /* para bater com os mesmos 10px do tamanho do outro botao -- esse tem borda de 1px */
+    padding: 6px 16px;
     font-size: 16px;
     margin: 12px;
   }

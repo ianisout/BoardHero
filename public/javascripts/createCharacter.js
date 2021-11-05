@@ -83,6 +83,9 @@ function generateUndoButton() {
 // GETTING ID OF CATEGORY BUTTON CLICKED + FETCH URL
 const getImages = async (id) => {
   manipulateElementsDiv();
+  const existingBtn = document.querySelector(".btn-undo");
+
+  if (existingBtn) existingBtn.remove();
 
   for (let i = 1; i < 5; i++) {
     try {
