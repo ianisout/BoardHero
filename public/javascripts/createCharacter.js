@@ -1,17 +1,3 @@
-const getElementsById = {
-  skincolor: 1,
-  dress: 2,
-  eyes: 4,
-  glasses: 5,
-  hairback: 6,
-  hairfront: 7,
-  mouth: 8,
-  pants: 9,
-  shirt: 11,
-  shoe: 12,
-  tie: 14,
-};
-
 // CHARACTER SET
 const characterElements = {
   "skincolor": "3",
@@ -53,19 +39,53 @@ function manipulateElementsDiv() {
 // LIST CATEGORIES
 function loadElementOptions(source) {
   const optionsList = document.getElementById('option-list');
+
   const element = document.createElement('div');
   element.setAttribute('class', 'choice');
   element.setAttribute('id', source.substr(source.lastIndexOf('/') + 1).slice(0, -4));
+
   const elementImage = document.createElement('img');
   elementImage.setAttribute('class', 'item-of-choice');
   elementImage.src = source;
+
   element.appendChild(elementImage);
   optionsList.appendChild(element);
+}
+
+
+// REMOVING A PREVIOUSLY SELECTEC ELEMENT
+function removeSelection(btnUndo) {
+  const classElementToBeDelete = btnUndo.previousSibling.id.slice(0, -1);
+  const element = document.querySelector(`.${classElementToBeDelete}`);
+
+  if (element) element.remove();
+  
+  btnUndo.remove()
+
+  return null;
+}
+
+function generateUndoButton() {
+  const existingBtn = document.querySelector(".btn-undo");
+
+  if (existingBtn) existingBtn.remove();
+
+  const optionsList = document.getElementById('option-list');
+  const btnUndo = document.createElement('button');
+  btnUndo.setAttribute('class', 'btn-undo');
+  btnUndo.innerText = "Undo\nselection";
+  btnUndo.style.width = "100px"
+  optionsList.appendChild(btnUndo);
+
+  btnUndo.addEventListener("click", function() {removeSelection(btnUndo)});
 }
 
 // GETTING ID OF CATEGORY BUTTON CLICKED + FETCH URL
 const getImages = async (id) => {
   manipulateElementsDiv();
+  const existingBtn = document.querySelector(".btn-undo");
+
+  if (existingBtn) existingBtn.remove();
 
   for (let i = 1; i < 5; i++) {
     try {
@@ -73,9 +93,9 @@ const getImages = async (id) => {
           const source = res.config.url;
           loadElementOptions(source);
         });
-    } catch (err) { console.error(err) };
-  }
-
+      } catch (err) { null };
+    }
+  
   const choice = document.getElementsByClassName('item-of-choice');
   setElementByChoice(choice)
 };
@@ -95,6 +115,8 @@ const userCharacter = document.querySelector('#character-visual-background');
 function setElementByChoice(choice) {
   for (let i = 0; i < choice.length; i++) {
     choice[i].addEventListener('click', (event) => {
+      generateUndoButton()
+
       const selectedCategory = event.target.nodeName === 'IMG';
       if (!selectedCategory) return;
       
@@ -121,8 +143,10 @@ function saveData() {
   const characterDataInForm = document.createElement("input");
   characterDataInForm.setAttribute("type", "text");
   characterDataInForm.setAttribute("name", "CHARACTER_SET");
+
   const form = document.getElementById("createdCharacter");
   characterDataInForm.style.display = "none";
   characterDataInForm.value = JSON.stringify(characterElements);
+
   form.appendChild(characterDataInForm);
 }

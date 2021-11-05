@@ -34,3 +34,13 @@ exports.updateWorkspaceUsers = async ({ email, workspace_id, isAdmin }) => {
 }
 
 exports.getWorkspaces = async (user_id) => await WorkspaceModel.getWorkspaces(user_id);
+
+exports.findWorkspaceByUser = async (user_id, workspace_id) => {
+  const workspace = await WorkspaceModel.findWorkspaceByUser(user_id, workspace_id);
+
+  const teste = await WorkspaceModel.findByPk(workspace_id);
+
+  workspace.workspaceName = teste.dataValues.name;
+
+  return workspace;
+};

@@ -41,6 +41,9 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   const { user } = req.session;
   const userId = user.id;
   const workspaceId = user.activeWorkspace.id;
+  console.log('workspaceId --------------------------------------------------------')
+  console.log(workspaceId)
+  console.log('workspaceId --------------------------------------------------------')
   const allTasks = await TaskController.getAllTasks(workspaceId);
   const character = await CharacterController.getCharacterByUserId(userId);
   const characterVisualElements = await EquipController.findCharacterElements(character.id);
