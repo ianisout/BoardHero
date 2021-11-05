@@ -58,6 +58,27 @@ router.get("/admintools", verifyLoggedUser, async function (req, res, next) {
 /* POST admin tools - manage workspace */
 router.post("/admintools", async function (req, res, next) {
   const userSession = req.session.user;
+  const { workspaceChosen } = req.body;
+  
+  const changedWorkspace = await WorkspaceController.findWorkspaceByUser(userSession.id, workspaceChosen);
+
+  userSession.activeWorkspace = {
+    id: changedWorkspace.workspace_id,
+    isAdmin: changedWorkspace.is_admin,
+    workspaceName: changedWorkspace.workspaceName
+  }
+  
+  res.redirect("/homepage");
+});
+
+
+
+/* IMPORTANTE!!!!!!!!!!!!!!! */
+
+/* NÃO APAGAR, FUNCIONANDO, OUTROS TESTES SENDO FEITOS NESSE POST */
+
+/* router.post("/admintools", async function (req, res, next) {
+  const userSession = req.session.user;
   const workspace_id = userSession.activeWorkspace.id;
   const { newUser, isAdmin } = req.body;
 
@@ -72,6 +93,6 @@ router.post("/admintools", async function (req, res, next) {
   });
 
   res.redirect("admintools");
-});
+}); */
 
 module.exports = router;

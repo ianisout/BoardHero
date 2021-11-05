@@ -28,20 +28,30 @@
       <div class="home-section">
         <main>
           <h3>Workspaces</h3>
-          <p>Workspace active now: <strong><%= activeWorkspace.workspaceName %></strong></p>
-          <div class="workspaces">
-            <% workspaces.forEach(workspace => { %>
-            <div class="workspace">
-              <p><%= workspace.workspaceName %></p>
-              <p>Admin: <%= workspace.isAdmin %></p>
+          <p>
+            Workspace active now:
+            <strong><%= activeWorkspace.workspaceName %></strong>
+          </p>
+          <form action="#" method="post">
+            <div class="workspaces">
+              <select name="workspaceChosen" id="workspaceChosen">
+              <% workspaces.forEach(workspace => { %> <%
+              console.log() %>
+                <option value="<%= workspace.workspaceId %>"><%= workspace.workspaceName %></option>
+                <% }) %>
+              </select>
             </div>
-            <% }) %>
-          </div>
+            <button type="submit">Vai</button>
+          </form>
+
+          <!-- NAO APAGAR -->
           <a href="create">Create workspace</a>
 
           <br />
           <br />
-          
+
+          <!-- NAO APAGAR -->
+
           <div>
             <h3>Manage workspace</h3>
             <form action="#" method="post">

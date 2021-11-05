@@ -53,3 +53,18 @@ exports.getWorkspaces = async user_id => {
 
   return workspaces;
 }
+
+
+exports.findWorkspaceByUser = async (user_id, workspace_id) => {
+  const workspace = await Users_has_workspace.findOne({
+    where: {
+      user_id,
+      workspace_id
+    },
+    attributes: ["is_admin", "workspace_id"]
+  })
+
+  return workspace.dataValues;
+}
+
+exports.findByPk = async id => await Workspace.findByPk(id);
