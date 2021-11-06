@@ -10,11 +10,62 @@ main {
   display: flex;
 }
 
+.home-section {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h2 {
+  color: #8929bb;
+  /* font-weight: 600; */
+  /* text-shadow: -0.8px 0 #fafafa, 0 0.8px #fafafa, 0.8px 0 #fafafa, 0 -0.8px #fafafa; */
+}
+
+.background-selection {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 48px;
+  right: 30px;
+  background-color: #fafafa;
+  border: #8929bb 1px solid;
+  border-radius: 4px;
+  z-index: 50;
+  display: none;
+  padding: 10px;
+}
+
+.background-selection p {
+  font-size: 18px;
+  color: #8929bb;
+  margin-bottom: 5px;
+}
+
+.backgroundimg-preview {
+  width: 150px;
+  margin: 5px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.background-selection button {
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fafafa;
+  background-color: #8929bb;
+  padding: 3px 10px;
+  margin-bottom: 20px;
+}
+
 .tasks-dashboard {
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
-  background: rgba(200, 200, 200, 25%);
+  background: #f1f1f1d8;
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
@@ -23,6 +74,16 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+.create-workspace {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #5a0688;
+  border-radius: 5px;
+  position: absolute;
+  top: 40%;
+  left: 30%;
 }
 
 .card-body {
