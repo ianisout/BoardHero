@@ -29,9 +29,14 @@ exports.updateCoinsExp = async (userId, amountCoins, amountExp) => {
   });
 
   try {
-    character.coins += amountCoins,
-    character.experience += amountExp,
+    character.coins += amountCoins;
+    character.experience += amountExp;
 
+    if (character.experience >= 100) {
+      character.char_level++;
+      character.experience = character.experience-100;
+    }
+    
     await character.save();
   } catch(err) {
     console.log(err)
