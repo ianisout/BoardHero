@@ -44,14 +44,12 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   const allTasks = await TaskController.getAllTasks(workspaceId);
   const character = await CharacterController.getCharacterByUserId(userId);
   const characterVisualElements = await EquipController.findCharacterElements(character.id);
-  const alert = req.session.alert;
+  const alert = req.cookies.alertCookie;
 
   user.character = character;
   user.elements = characterVisualElements;
 
   res.render("homepage", { allTasks, user, alert });
-
-  req.session.alert = 'false';
 });
 
 /* GET dashboard page */

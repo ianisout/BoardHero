@@ -35,9 +35,13 @@ async function getImage () {
 function setAlert() {
   const alertDiv = document.querySelector('.alert-change');
   
-  if (alertDiv.style.display = "unset !important") {
+  if (alertDiv.style.display = "unset") {
     setTimeout(() => {
       alertDiv.style.display = "none"
-    }, 10000)
+    }, 5000)
   }
+}
+
+function dismissAlert() {
+  document.querySelector('.alert-change').style.display = "none";
 }

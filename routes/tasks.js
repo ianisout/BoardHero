@@ -111,13 +111,12 @@ router.delete("/details/:id", async function (req, res) {
 router.patch("/details/:id&:task_status_id", async function (req, res) {
   const { id, task_status_id } = req.params;
   const userId = req.session.user.id;
-
   const alert = await CharacterController.updateCoinsExp(userId, 5, 50);
-  req.session.alert = alert;
-  
+
   await TaskController.updateStatus(id, task_status_id);
 
-  return res.redirect("/homepage");
+  res.cookie('alertCookie', alert, { expires: new Date(Date.now() + 5000), httpOnly: true })
+  res.redirect("/homepage");
 });
 
 /* GET workspace users - Tagify participants whitelist */

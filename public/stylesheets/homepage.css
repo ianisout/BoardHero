@@ -58,6 +58,18 @@ h2 {
   font-size: 18px;
   color: #8929bb;
   margin: 0;
+  margin-bottom: 20px;
+}
+
+.dismiss-alert {
+  cursor: pointer;
+  color: #8929bb;
+  text-decoration: none;
+}
+
+.dismiss-alert:hover {
+  text-decoration: none;
+  color:#8929bb
 }
 
 .background-selection p {
