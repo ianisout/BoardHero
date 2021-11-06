@@ -8,7 +8,7 @@ exports.getCharacterByUserId = id => CharacterModel.getCharacterByUserId(id);
 
 exports.getCharacterElements = id => CharacterHasElementsModel.getCharacterElements(id);
 
-exports.purchaseEquipment = (characterId, element_id) => CharacterHasElementsModel.purchaseEquipment(characterId, element_id);
+exports.purchaseEquipment = (character, characterId, elementId) => CharacterHasElementsModel.purchaseEquipment(character, characterId, elementId);
 
 exports.getOwnedEquipments = async characterId => {
   const ownedElements = [];

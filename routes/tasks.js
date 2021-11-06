@@ -112,7 +112,7 @@ router.patch("/details/:id&:task_status_id", async function (req, res) {
   const { id, task_status_id } = req.params;
   const userId = req.session.user.id;
 
-  await CharacterController.updateCoinsExp(userId, 10, 12);
+  await CharacterController.updateCoinsExp(userId, 5, 50);
   await TaskController.updateStatus(id, task_status_id);
 
   return res.redirect("/homepage");

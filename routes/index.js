@@ -78,9 +78,13 @@ router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
 
 router.post("/inventory", async function (req, res) {
   const { element_id } = req.body;
-  const characterId = req.session.user.character.id;
+  const character = req.session.user.character;
+  const characterId = character.id;
 
-  CharacterController.purchaseEquipment(characterId, Number(element_id))
+  const statusMessage = await CharacterController.purchaseEquipment(character, characterId, Number(element_id));
+
+  console.log('statusMessage ----------------------------------------')
+  console.log(statusMessage)
 
   res.status(200).end();
 });
