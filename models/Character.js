@@ -42,6 +42,5 @@ exports.updateCoinsExp = async (userId, amountCoins, amountExp) => {
     console.log(err)
   }
 
-  
   return character;
 }

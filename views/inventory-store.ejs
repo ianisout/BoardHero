@@ -92,7 +92,10 @@
                     <img class="item-img" src="<%=elem.image_path%> " alt="<%=elem.name%>" />
                     <div class="item-info">
                       <div class="item-name-and-price">
-                        <p class="item-name"><%=elem.name%></p>
+                        <div>
+                          <p class="item-name"><%=elem.name%></p>
+                          <p>Lv. <%=elem.level%></p>
+                        </div>
                         <div class="item-price">
                           <i class="bi bi-coin"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-coin" viewBox="0 0 16 16">
@@ -103,6 +106,7 @@
                             d="M8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
                           </svg></i>
                           <p><%=elem.price%></p>
+
                           
                           <button class="btn-buy" onclick="makePurchase('<%=elem.id%>')"><% if(elem.is_owned === 'owned') { %>Owned<% } else { %>Buy<% } %></button>
                         </div>

@@ -145,6 +145,10 @@ h3 {
   cursor: pointer;
 }
 
+.item-info {
+  flex-grow: 2;
+}
+
 .badge {
   display: flex;
   flex-direction: column;
@@ -205,6 +209,7 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-grow: 2;
 }
 
 .item-name {
@@ -216,6 +221,7 @@ h3 {
 .item-price {
   display: flex;
   align-items: baseline;
+  justify-self: flex-end;
   margin-right: 10px;
   font-size: 19px;
   font-weight: 600;

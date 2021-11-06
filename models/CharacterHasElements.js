@@ -50,7 +50,7 @@ exports.purchaseEquipment = async (character, characterId, id) => {
     console.log(err)
   }
 
-  return 'SUCCESS'
+  return 'SUCCESS';
 }
 
 exports.setEquipmentStatus = async (id) => {
