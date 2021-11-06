@@ -83,8 +83,19 @@ router.post("/inventory", async function (req, res) {
 
   const statusMessage = await CharacterController.purchaseEquipment(character, characterId, Number(element_id));
 
-  console.log('statusMessage ----------------------------------------')
-  console.log(statusMessage)
+  if (statusMessage === 'COINS_ERROR') {
+    return res.status(402).send({
+        error: statusMessage,
+        statusCode: 402
+    });
+  }
+
+  if (statusMessage === 'LVL_ERROR') {
+    return res.status(401).send({
+      error: statusMessage,
+      statusCode: 401
+  });
+  }
 
   res.status(200).end();
 });
