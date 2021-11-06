@@ -41,9 +41,6 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   const { user } = req.session;
   const userId = user.id;
   const workspaceId = user.activeWorkspace.id;
-  console.log('workspaceId --------------------------------------------------------')
-  console.log(workspaceId)
-  console.log('workspaceId --------------------------------------------------------')
   const allTasks = await TaskController.getAllTasks(workspaceId);
   const character = await CharacterController.getCharacterByUserId(userId);
   const characterVisualElements = await EquipController.findCharacterElements(character.id);
@@ -81,9 +78,13 @@ router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
 
 router.post("/inventory", async function (req, res) {
   const { element_id } = req.body;
-  const characterId = req.session.user.character.id;
+  const character = req.session.user.character;
+  const characterId = character.id;
 
-  CharacterController.purchaseEquipment(characterId, Number(element_id))
+  const statusMessage = await CharacterController.purchaseEquipment(character, characterId, Number(element_id));
+
+  console.log('statusMessage ----------------------------------------')
+  console.log(statusMessage)
 
   res.status(200).end();
 });

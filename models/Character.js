@@ -21,3 +21,27 @@ exports.getCharacterByUserId = async (id) => {
 
   return character.dataValues;
 };
+
+exports.updateCoinsExp = async (userId, amountCoins, amountExp) => {
+  const character = await Character.findOne({
+    where: { user_id: userId },
+    attributes: ['user_id', 'id', 'char_level', 'experience', 'coins'],
+  });
+
+  try {
+    character.coins += amountCoins;
+    character.experience += amountExp;
+
+    if (character.experience >= 100) {
+      character.char_level++;
+      character.experience = character.experience-100;
+    }
+    
+    await character.save();
+  } catch(err) {
+    console.log(err)
+  }
+
+  
+  return character;
+}
