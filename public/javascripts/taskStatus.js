@@ -2,7 +2,6 @@ const column = document.querySelectorAll(".col-6 col-md-4");
 const titleColumn = document.querySelectorAll("column-title");
 const createBoard = document.createElement("div");
 createBoard.setAttribute("class", "card tasks-dashboard");
-createBoard.setAttribute("id", /*ID task */);
 
 column.appendChild(createBoard);
 createBoard.insertAdjacentElement("afterend", titleColumn);
