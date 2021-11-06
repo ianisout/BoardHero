@@ -1,4 +1,4 @@
-const { Characters_has_element, Element } = require('../database/models');
+const { Characters_has_element, Element, Character } = require('../database/models');
 
 exports.createCharacter = async (characterId, element_id) => {
   await Characters_has_element.create({
@@ -26,8 +26,8 @@ exports.getCharacterElements = async (characterId) => {
 
 exports.purchaseEquipment = async (character, characterId, id) => {
   const element = await Element.findByPk(id);
-  const elemLv = element.dataValues.level
-  const elemPrice = element.dataValues.price
+  const elemLv = element.dataValues.level;
+  const elemPrice = element.dataValues.price;
 
   if (character.coins < elemPrice) {
     return 'COINS_ERROR'
@@ -37,11 +37,18 @@ exports.purchaseEquipment = async (character, characterId, id) => {
     return "LVL_ERROR"
   }
 
-  await Characters_has_element.create({
-    is_equipped: 0,
-    character_id: characterId,
-    element_id: id,
-  });
+  try {
+    await Characters_has_element.create({
+      is_equipped: 0,
+      character_id: characterId,
+      element_id: id,
+    });
+  
+    character.coins -= elemPrice;
+    await character.save();
+  } catch (err) {
+    console.log(err)
+  }
 
   return 'SUCCESS'
 }
