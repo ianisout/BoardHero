@@ -4,10 +4,10 @@ const CharacterHasElementsModel = require('../models/CharacterHasElements');
 
 exports.findAllEquips = async () => await ElementModel.findAllEquips();
 
-exports.findCharacterElements = async character_id => {
+exports.findCharacterElements = async characterId => {
   const characterVisualElements = [];
   const allElements = await Characters_has_element.findAll({
-    where: { character_id },
+    where: { character_id:characterId },
   });
   
   for (let i = 0; i < allElements.length; i++) {

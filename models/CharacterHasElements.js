@@ -1,17 +1,17 @@
 const { Characters_has_element } = require('../database/models');
 
-exports.createCharacter = async (character_id, element_id) => {
+exports.createCharacter = async (characterId, element_id) => {
   await Characters_has_element.create({
     is_equipped: 1,
-    character_id,
+    character_id: characterId,
     element_id,
   });
 };
 
-exports.getCharacterElements = async (id) => {
+exports.getCharacterElements = async (characterId) => {
   const elements = await Characters_has_element.findAll({
     where: {
-      character_id: id,
+      character_id: characterId,
     },
   });
 
@@ -24,10 +24,10 @@ exports.getCharacterElements = async (id) => {
   return arrayOfIds;
 };
 
-exports.purchaseEquipment = async (character_id, element_id) => {
+exports.purchaseEquipment = async (characterId, element_id) => {
   await Characters_has_element.create({
     is_equipped: 0,
-    character_id,
+    character_id: characterId,
     element_id,
   });
 }
