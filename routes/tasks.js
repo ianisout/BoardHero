@@ -4,6 +4,7 @@ const router = express.Router();
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const TaskController = require("../controllers/TaskController");
 const WorkspaceController = require("../controllers/WorkspaceController");
+const CharacterController = require("../controllers/CharacterController");
 
 const fs = require("fs");
 const os = require("os");
@@ -109,9 +110,9 @@ router.delete("/details/:id", async function (req, res) {
 /* PATCH task details - change status */
 router.patch("/details/:id&:task_status_id", async function (req, res) {
   const { id, task_status_id } = req.params;
-  console.log(id);
-  console.log(task_status_id);
+  const userId = req.session.user.id;
 
+  await CharacterController.updateCoinsExp(userId, 10, 12);
   await TaskController.updateStatus(id, task_status_id);
 
   return res.redirect("/homepage");
