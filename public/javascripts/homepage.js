@@ -14,6 +14,7 @@ function setBackgroundFromStorage() {
   const homeSection = document.querySelector('.home-section');
   const url = localStorage.getItem("background_image");
   homeSection.style.backgroundImage = `url(${url})`;
+  setAlert()
 }
 
 async function getImage () {
@@ -30,3 +31,13 @@ async function getImage () {
     console.error(err);
   }
 };
+
+function setAlert() {
+  const alertDiv = document.querySelector('.alert-change');
+  
+  if (alertDiv.style.display = "unset !important") {
+    setTimeout(() => {
+      alertDiv.style.display = "none"
+    }, 10000)
+  }
+}

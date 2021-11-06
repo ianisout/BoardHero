@@ -37,6 +37,29 @@ h2 {
   padding: 10px;
 }
 
+.alert-change {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  background-color: #ecd1fa;
+  border: #8929bb 1px solid;
+  border-radius: 4px;
+  z-index: 50;
+  display: none;
+  padding: 20px;
+  text-align: center;
+}
+
+.alert-change p {
+  font-weight: 600;
+  font-size: 18px;
+  color: #8929bb;
+  margin: 0;
+}
+
 .background-selection p {
   font-size: 18px;
   color: #8929bb;

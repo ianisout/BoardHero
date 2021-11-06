@@ -28,6 +28,8 @@ exports.updateCoinsExp = async (userId, amountCoins, amountExp) => {
     attributes: ['user_id', 'id', 'char_level', 'experience', 'coins'],
   });
 
+  let levelUp = 'false';
+
   try {
     character.coins += amountCoins;
     character.experience += amountExp;
@@ -35,6 +37,7 @@ exports.updateCoinsExp = async (userId, amountCoins, amountExp) => {
     if (character.experience >= 100) {
       character.char_level++;
       character.experience = character.experience-100;
+      levelUp = 'true';
     }
     
     await character.save();
@@ -42,5 +45,5 @@ exports.updateCoinsExp = async (userId, amountCoins, amountExp) => {
     console.log(err)
   }
 
-  return character;
+  return character, levelUp;
 }

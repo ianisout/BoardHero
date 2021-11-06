@@ -7,7 +7,7 @@
     <!-- CSS Links -->
     <%- include('./partials/bootstrap-css-head') %>
     <link rel="stylesheet" href="/stylesheets/homepage.css" />
-    <script defer src="/javascripts/changeBackground.js"></script>
+    <script defer src="/javascripts/homepage.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Board Hero | Home Page</title>
   </head>
@@ -38,6 +38,12 @@
               <button onclick="getImage()">Random</button>
             </div>
           </div>
+
+          <% if(alert === 'true') { %>
+            <div class="alert-change" style="display: unset;">
+              <p>🌟 You leveled up 🌟<br> Way to go!</p>
+            </div>
+          <% } %> 
 
           <div class="row">
             <div class="all-columns">
