@@ -87,7 +87,7 @@ const getImages = async (id) => {
 
   if (existingBtn) existingBtn.remove();
 
-  for (let i = 1; i < 5; i++) {
+  for (let i = 1; i < 13; i++) {
     try {
       await axios.get(`/images/clothing-items/${id}/${id + i}.png`).then((res) => {
           const source = res.config.url;
