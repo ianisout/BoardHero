@@ -37,6 +37,11 @@ h2 {
   padding: 10px;
 }
 
+@keyframes popUp {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
 .alert-change {
   display: flex;
   width: fit-content;
@@ -51,6 +56,8 @@ h2 {
   display: none;
   padding: 20px;
   text-align: center;
+  animation-name: popUp;
+  animation-duration: 1s;
 }
 
 .alert-change p {
