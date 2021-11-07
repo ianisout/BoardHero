@@ -10,11 +10,12 @@ function setBackgroundFromSystem(url) {
   localStorage.setItem('background_image', url);
 }
 
-function setBackgroundFromStorage() {
+function setupInitialization() {
+  checkLoginCookie()
   const homeSection = document.querySelector('.home-section');
   const url = localStorage.getItem("background_image");
   homeSection.style.backgroundImage = `url(${url})`;
-  setAlert()
+  setAlert();
 }
 
 async function getImage () {
@@ -36,6 +37,7 @@ function setAlert() {
   const alertDiv = document.querySelector('.alert-change');
   
   if (alertDiv.style.display = "unset") {
+    playSound('sound-success');
     setTimeout(() => {
       alertDiv.style.display = "none"
     }, 5000)
@@ -44,4 +46,18 @@ function setAlert() {
 
 function dismissAlert() {
   document.querySelector('.alert-change').style.display = "none";
+}
+
+function playSound(soundObj) {
+  const sound = document.getElementById(soundObj);
+  sound.style.display = "unset";
+}
+
+function checkLoginCookie() {
+  const cookieName = 'loginCookie'
+  const cookies = document.cookie;
+  if (cookies.includes(cookieName)) {
+    const sound = document.getElementById('sound-start');
+    sound.style.display = "unset";
+  }
 }

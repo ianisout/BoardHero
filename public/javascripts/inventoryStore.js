@@ -33,7 +33,8 @@ function makePurchase(element_id) {
   }).then(function(response) {
     console.log(response)
     if (response.ok) () => location.reload();
-        showAlert(response.status)
+        showAlert(response.status);
+        playSound('sound-failure')
     })
   .catch(console.log);
 }
@@ -94,4 +95,9 @@ function equipUnequip(id) {
     }
   })
   .catch(console.log);
+}
+
+function playSound(soundObj) {
+  var sound = document.getElementById(soundObj);
+  sound.style.display = "unset";
 }

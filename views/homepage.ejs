@@ -8,12 +8,15 @@
     <%- include('./partials/bootstrap-css-head') %>
     <link rel="stylesheet" href="/stylesheets/homepage.css" />
     <script defer src="/javascripts/homepage.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Board Hero | Home Page</title>
+    <embed src="/sounds/start.mp3" autostart="false" id="sound-start" enablejavascript="true" style="display: none; position: absolute;">
+    <embed src="/sounds/success.mp3" autostart="false" id="sound-success" enablejavascript="true" style="display: none; position: absolute;">
   </head>
 
-  <body onload="setBackgroundFromStorage()">
+  <body onload="setupInitialization()">
     <%- include('./partials/sidebar') %>
+    <code id="cookies"></code>
 
     <section class="home-section">
       <%- include('./partials/navbar') %>
@@ -24,7 +27,6 @@
         <% } %> 
 
         <div class="container">
-
           <div class="background-selection">
             <div>
               <p>Choose background from system</p>

@@ -46,12 +46,13 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   const character = await CharacterController.getCharacterByUserId(userId);
   const characterVisualElements = await EquipController.findCharacterElements(character.id);
   const alert = req.cookies.alertCookie;
+  const loginSound = req.cookies.loginCookie;
 
   user.character = character;
   user.elements = characterVisualElements;
   user.users = await WorkspaceController.findWorkspaceUsersCharacters(workspaceId);
 
-  res.render("homepage", { allTasks, user, alert });
+  res.render("homepage", { allTasks, user, alert, loginSound });
 });
 
 /* GET dashboard page */
