@@ -29,13 +29,9 @@ exports.purchaseEquipment = async (character, characterId, id) => {
   const elemLv = element.dataValues.level;
   const elemPrice = element.dataValues.price;
 
-  if (character.coins < elemPrice) {
-    return 'COINS_ERROR'
-  }
+  if (character.coins < elemPrice) 'COINS_ERROR';
 
-  if (character.char_level < elemLv) {
-    return "LVL_ERROR"
-  }
+  if (character.char_level < elemLv) "LVL_ERROR";
 
   try {
     await Characters_has_element.create({
