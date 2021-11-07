@@ -80,10 +80,11 @@ exports.addComment = async (user, task_id, text) => {
 exports.findAllComments = async (taskId) => {
   const commentsData = [];
   const comments = await TaskModel.findAllComments(taskId);
-
+  
   for (let i =0; i < comments.length; i++) {
     const userName = await UserModel.findByPk(comments[i].dataValues.user_id);
     commentsData.push({
+      userId: comments[i].dataValues.user_id,
       userName:`${userName.dataValues.first_name} ${userName.dataValues.last_name}`,
       text: comments[i].dataValues.text,
     });

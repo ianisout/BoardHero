@@ -8,6 +8,7 @@ const TaskController = require("../controllers/TaskController");
 const TypeOfElementController = require("../controllers/TypeOfElementController");
 const CharacterController = require("../controllers/CharacterController");
 const EquipController = require("../controllers/EquipController");
+const WorkspaceController = require("../controllers/WorkspaceController");
 
 /* GET home page */
 router.get("/", verifyNotLoggedUser, function (req, res, next) {
@@ -48,6 +49,7 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
 
   user.character = character;
   user.elements = characterVisualElements;
+  user.users = await WorkspaceController.findWorkspaceUsersCharacters(workspaceId);
 
   res.render("homepage", { allTasks, user, alert });
 });

@@ -54,7 +54,6 @@ exports.getWorkspaces = async user_id => {
   return workspaces;
 }
 
-
 exports.findWorkspaceByUser = async (user_id, workspace_id) => {
   const workspace = await Users_has_workspace.findOne({
     where: {
@@ -68,3 +67,18 @@ exports.findWorkspaceByUser = async (user_id, workspace_id) => {
 }
 
 exports.findByPk = async id => await Workspace.findByPk(id);
+
+exports.findWorkspaceUsersCharacters = async (workspace_id) => {
+  const workspace = await Workspace.findByPk(workspace_id);
+  const userList = await workspace.getUsers();
+  const userCharacter = [];
+
+  for (let i = 0; i < userList.length; i++) {
+    userCharacter.push({
+      userId: userList[i].dataValues.id,
+      userElements: await UserModel.findCharacterByUser(userList[i].dataValues.id)
+    })
+  }
+
+  return userCharacter;
+}
