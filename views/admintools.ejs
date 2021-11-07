@@ -26,55 +26,63 @@
     <div>
       <%- include('./partials/sidebar') %>
       <div class="home-section">
-        <main>
-          <h3>Workspaces</h3>
-          <p>
-            Workspace active now:
-            <strong><%= activeWorkspace.workspaceName %></strong>
-          </p>
-          <form action="#" method="post">
-            <div class="workspaces">
-              <select name="workspaceChosen" id="workspaceChosen">
-              <% workspaces.forEach(workspace => { %> <%
-              console.log() %>
-                <option value="<%= workspace.workspaceId %>"><%= workspace.workspaceName %></option>
-                <% }) %>
-              </select>
-            </div>
-            <button type="submit">Vai</button>
-          </form>
-
-          <!-- NAO APAGAR -->
-          <a href="create">Create workspace</a>
-
-          <br />
-          <br />
-
-          <!-- NAO APAGAR -->
-
-          <div>
-            <h3>Manage workspace</h3>
-            <form action="#" method="post">
-              <p>Add user</p>
-              <input type="email" name="newUser" id="newUser" placeholder="Insert email" />
-              <label for="isAdmin">isAdmin:</label>
-              <select name="isAdmin" id="isAdmin">
-                <option value="True">True</option>
-                <option value="False">False</option>
-              </select>
-              <button type="submit">Add</button>
-            </form>
+        <main class="container-grid-workspace">
+          <div class="header-title-workspace">
+            <h3>
+              Workspaces:<strong><%= activeWorkspace.workspaceName %></strong>
+            </h3>
           </div>
-
-          <br />
-
-          <div>
-            Users in this workspace:
-            <ul>
-              <% workspaceUsers.forEach(user => { %>
-              <li><%= user.name %> (<%= user.email %>)</li>
-              <% }) %>
-            </ul>
+          <div class="sub-header-workspace">
+            <div class="workspaces">
+              <h4>Change Workspace:</h4>
+              <form action="#" method="post">
+                <select name="workspaceChosen" id="workspaceChosen">
+                  <% workspaces.forEach(workspace => { %> <% console.log() %>
+                  <option value="<%= workspace.workspaceId %>">
+                    <%= workspace.workspaceName %>
+                  </option>
+                  <% }) %>
+                </select>
+                <button type="submit">Switch</button>
+              </form>
+            </div>
+          </div>
+          <div class="column-left">
+            <div class="title-column-left">
+              <h4>Manage workspace</h4>
+            </div>
+            <div class="form-column-left">
+              <form class="form" action="#" method="post">
+                <p>Add user</p>
+                <input
+                  type="email"
+                  name="newUser"
+                  id="newUser"
+                  placeholder="Insert email"
+                />
+                <label for="isAdmin">isAdmin:</label>
+                <select name="isAdmin" id="isAdmin">
+                  <option value="True">True</option>
+                  <option value="False">False</option>
+                </select>
+                <button type="submit">Add</button>
+              </form>
+            </div>
+          </div>
+          <div class="column-right">
+            <div class="title-column-right">
+              <h4>Users in this workspace:</h4>
+            </div>
+            <div class="list-column-right">
+              <ul>
+                <% workspaceUsers.forEach(user => { %>
+                <li><%= user.name %> (<%= user.email %>)</li>
+                <% }) %>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-workspace">
+            <a href="create">Create workspace</a>
           </div>
         </main>
       </div>

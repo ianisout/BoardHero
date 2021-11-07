@@ -12,7 +12,6 @@ for (let i = 0; i < itemsForSale.length; i++) {
 // ONLY FUNCTION NOT WORKING PROPERLY YET
 
 function makePurchase(element_id) {
-  // debugger;
   fetch("/inventory", {
     method: 'POST',
     body: JSON.stringify({element_id}),

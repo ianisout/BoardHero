@@ -8,12 +8,12 @@ exports.getCharacterByUserId = id => CharacterModel.getCharacterByUserId(id);
 
 exports.getCharacterElements = id => CharacterHasElementsModel.getCharacterElements(id);
 
-exports.purchaseEquipment = (character_id, element_id) => CharacterHasElementsModel.purchaseEquipment(character_id, element_id);
+exports.purchaseEquipment = (character, characterId, elementId) => CharacterHasElementsModel.purchaseEquipment(character, characterId, elementId);
 
-exports.getOwnedEquipments = async character_id => {
+exports.getOwnedEquipments = async characterId => {
   const ownedElements = [];
   const allElements = await Characters_has_element.findAll({
-    where: { character_id },
+    where: { character_id: characterId },
   });
 
   for (let i = 0; i < allElements.length; i++) {
@@ -39,3 +39,5 @@ exports.getOwnedEquipments = async character_id => {
 
   return ownedElements;
 }
+
+exports.updateCoinsExp = (userId, amountCoins, amountExp) => CharacterModel.updateCoinsExp(userId, amountCoins, amountExp);

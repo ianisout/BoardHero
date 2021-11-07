@@ -1,17 +1,17 @@
-const { Characters_has_element } = require('../database/models');
+const { Characters_has_element, Element, Character } = require('../database/models');
 
-exports.createCharacter = async (character_id, element_id) => {
+exports.createCharacter = async (characterId, element_id) => {
   await Characters_has_element.create({
     is_equipped: 1,
-    character_id,
+    character_id: characterId,
     element_id,
   });
 };
 
-exports.getCharacterElements = async (id) => {
+exports.getCharacterElements = async (characterId) => {
   const elements = await Characters_has_element.findAll({
     where: {
-      character_id: id,
+      character_id: characterId,
     },
   });
 
@@ -24,12 +24,33 @@ exports.getCharacterElements = async (id) => {
   return arrayOfIds;
 };
 
-exports.purchaseEquipment = async (character_id, element_id) => {
-  await Characters_has_element.create({
-    is_equipped: 0,
-    character_id,
-    element_id,
-  });
+exports.purchaseEquipment = async (character, characterId, id) => {
+  const element = await Element.findByPk(id);
+  const elemLv = element.dataValues.level;
+  const elemPrice = element.dataValues.price;
+
+  if (character.coins < elemPrice) {
+    return 'COINS_ERROR'
+  }
+
+  if (character.char_level < elemLv) {
+    return "LVL_ERROR"
+  }
+
+  try {
+    await Characters_has_element.create({
+      is_equipped: 0,
+      character_id: characterId,
+      element_id: id,
+    });
+  
+    character.coins -= elemPrice;
+    await character.save();
+  } catch (err) {
+    console.log(err)
+  }
+
+  return 'SUCCESS'
 }
 
 exports.setEquipmentStatus = async (id) => {
