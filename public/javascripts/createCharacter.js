@@ -10,6 +10,7 @@ const characterElements = {
   "pants": "0",
   "shirt": "0",
   "shoe": "0",
+  "beard": "0",
   "tie": "0",
 };
 
@@ -55,14 +56,13 @@ function loadElementOptions(source) {
 
 // REMOVING A PREVIOUSLY SELECTEC ELEMENT
 function removeSelection(btnUndo) {
-  const classElementToBeDelete = btnUndo.previousSibling.id.slice(0, -1);
-  const element = document.querySelector(`.${classElementToBeDelete}`);
-
-  if (element) element.remove();
-  
-  btnUndo.remove()
-
-  return null;
+  const elementClass = btnUndo.previousSibling.id.replace(/[0-9]/g, '');
+  const element = document.getElementsByClassName(`${elementClass}`);
+ 
+  if (element) {
+    element[0].remove()
+    btnUndo.remove();
+  }
 }
 
 function generateUndoButton() {
@@ -87,7 +87,7 @@ const getImages = async (id) => {
 
   if (existingBtn) existingBtn.remove();
 
-  for (let i = 1; i < 5; i++) {
+  for (let i = 1; i < 13; i++) {
     try {
       await axios.get(`/images/clothing-items/${id}/${id + i}.png`).then((res) => {
           const source = res.config.url;
@@ -109,7 +109,7 @@ function removeElementByClass(className){
   }
 }
 
-// SELECTING SKIN COLOR -> ATTACHING TO CHARACTER
+// SELECTING ELEMENT -> ATTACHING TO CHARACTER
 const userCharacter = document.querySelector('#character-visual-background');
 
 function setElementByChoice(choice) {
@@ -121,7 +121,7 @@ function setElementByChoice(choice) {
       if (!selectedCategory) return;
       
       const idChoice = choice[i].src.substr(choice[i].src.lastIndexOf('/') + 1).slice(0, -4);
-      const classType = choice[i].src.substr(choice[i].src.lastIndexOf('/') + 1).slice(0, -5);
+      const classType = choice[i].src.substr(choice[i].src.lastIndexOf('/') + 1).slice(0, -5).replace(/[0-9]/g, '');
       
       const getType = document.querySelectorAll(`.${classType}`);
       

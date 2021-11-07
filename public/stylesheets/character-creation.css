@@ -62,7 +62,6 @@ body {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   position: absolute;
-  border: #8929bb solid 1px;
   background-repeat: no-repeat;
   background-size: contain;
   align-self: center;
@@ -71,9 +70,10 @@ body {
 
 #categories {
   display: flex;
-  width: fit-content;
+  width: 75%;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 #categories button {
@@ -82,12 +82,12 @@ body {
   width: fit-content;
   height: fit-content;
   white-space: nowrap;
-  padding: 7px 18px; /* para bater com os mesmos 10px do tamanho do outro botao -- esse tem borda de 1px */
+  padding: 7px 18px;
   font-size: 18px;
   border-radius: 4px;
   color: #8929bb;
   background-color: #fafafa;
-  margin: 15px;
+  margin: 5px;
   cursor: pointer;
 }
 
@@ -112,8 +112,9 @@ body {
   display: flex;
   border: #8929bb solid 1px;
   max-width: calc(100% - 300px);
+  overflow-x: scroll;
   font-size: 14px;
-  white-space: nowrap; /* nao deixa o texto quebrar dentro do botao - sempre uma linha */
+  white-space: nowrap;
   width: fit-content;
 }
 
@@ -180,7 +181,7 @@ body {
   z-index: 6;
 }
 .hairfront {
-  z-index: 12;
+  z-index: 15;
 }
 .mouth {
   z-index: 8;
@@ -197,8 +198,11 @@ body {
 .shoe {
   z-index: 9;
 }
+.beard {
+  z-index: 13;
+}
 .tie {
-  z-index: 14;
+  z-index: 12;
 }
 
 /* width */
@@ -212,8 +216,8 @@ body {
 }
 
 .container button {
-  white-space: nowrap; /* nao deixa o texto quebrar dentro do botao - sempre uma linha */
-  width: fit-content; /* o botao fica do tamanho do texto dentro */
+  white-space: nowrap;
+  width: fit-content;
   height: fit-content;
 }
 
@@ -298,8 +302,7 @@ body {
   }
 
   #categories {
-    width: 90%;
-    overflow-y: hidden;
+    width: 100%;
   }
 
   #categories button {

@@ -44,6 +44,9 @@ module.exports = {
           type: "sword",
         },
         {
+          type: "beard",
+        },
+        {
           type: "tie",
         },
       ], {}

@@ -9,7 +9,25 @@ for (let i = 0; i < itemsForSale.length; i++) {
   })
 }
 
-// ONLY FUNCTION NOT WORKING PROPERLY YET
+
+/* show alerts when level or coins are not enough */
+
+function showAlert(status) {
+  message = {
+    401: "Your level does not allow \nyou to own this item yet. \nNoob",
+    402: "You don't have enough coins \nto buy this item yet. \nGo to work"
+  }
+  const alert = document.querySelector('.invisible-alert');
+
+  alert.childNodes[1].innerText = message[status]
+  alert.style.display = "unset";
+
+  const allElementsButAlert = document.querySelectorAll('main')
+  allElementsButAlert.forEach(element => {
+    element.style.opacity = '0.8';
+    element.style.pointerEvents = 'none'
+  })
+}
 
 function makePurchase(element_id) {
   fetch("/inventory", {
@@ -18,8 +36,17 @@ function makePurchase(element_id) {
     headers: {
       'Content-type': 'application/json'
     }
-  }).then(() => location.reload()) 
+  }).then(function(response) {
+    if (response.status !== 200) {
+      showAlert(response.status);
+      playSound('sound-failure')
+    };
+    })
   .catch(console.log);
+}
+
+function removeAlert() {
+  location.reload();
 }
 
 
@@ -74,4 +101,9 @@ function equipUnequip(id) {
     }
   })
   .catch(console.log);
+}
+
+function playSound(soundObj) {
+  var sound = document.getElementById(soundObj);
+  sound.style.display = "unset";
 }

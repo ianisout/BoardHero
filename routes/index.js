@@ -8,6 +8,7 @@ const TaskController = require("../controllers/TaskController");
 const TypeOfElementController = require("../controllers/TypeOfElementController");
 const CharacterController = require("../controllers/CharacterController");
 const EquipController = require("../controllers/EquipController");
+const WorkspaceController = require("../controllers/WorkspaceController");
 
 /* GET home page */
 router.get("/", verifyNotLoggedUser, function (req, res, next) {
@@ -44,11 +45,14 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   const allTasks = await TaskController.getAllTasks(workspaceId);
   const character = await CharacterController.getCharacterByUserId(userId);
   const characterVisualElements = await EquipController.findCharacterElements(character.id);
+  const alert = req.cookies.alertCookie;
+  const loginSound = req.cookies.loginCookie;
 
   user.character = character;
   user.elements = characterVisualElements;
+  user.users = await WorkspaceController.findWorkspaceUsersCharacters(workspaceId);
 
-  return res.render("homepage", { allTasks, user });
+  res.render("homepage", { allTasks, user, alert, loginSound });
 });
 
 /* GET dashboard page */
@@ -83,8 +87,19 @@ router.post("/inventory", async function (req, res) {
 
   const statusMessage = await CharacterController.purchaseEquipment(character, characterId, Number(element_id));
 
-  console.log('statusMessage ----------------------------------------')
-  console.log(statusMessage)
+  if (statusMessage === 'COINS_ERROR') {
+    return res.status(402).send({
+        error: statusMessage,
+        statusCode: 402
+    });
+  }
+
+  if (statusMessage === 'LVL_ERROR') {
+    return res.status(401).send({
+      error: statusMessage,
+      statusCode: 401
+  });
+  }
 
   res.status(200).end();
 });

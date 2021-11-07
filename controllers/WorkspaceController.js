@@ -44,3 +44,5 @@ exports.findWorkspaceByUser = async (user_id, workspace_id) => {
 
   return workspace;
 };
+
+exports.findWorkspaceUsersCharacters = (workspaceId) => WorkspaceModel.findWorkspaceUsersCharacters(workspaceId);

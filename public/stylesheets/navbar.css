@@ -26,6 +26,19 @@ body {
   top: 50%;
 }
 
+.btn-background {
+  width: 45px;
+  cursor: pointer;
+}
+
+.btn-background:hover {
+  width: 55px;
+  background-color: #540480;
+  border: 5px solid #540480;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 @media (max-width: 420px) {
   .navbar .navbar-brand{
     visibility: hidden;

@@ -31,26 +31,24 @@ exports.purchaseEquipment = async (character, characterId, id) => {
 
   if (character.coins < elemPrice) {
     return 'COINS_ERROR'
-  }
+  } else if (character.char_level < elemLv) {
+    return "LVL_ERROR";
+  } else {
+    try {
+      await Characters_has_element.create({
+        is_equipped: 0,
+        character_id: characterId,
+        element_id: id,
+      });
+    
+      character.coins -= elemPrice;
+      await character.save();
+      return 'SUCCESS';
+    } catch (err) {
+      console.log(err)
+    }
+  } 
 
-  if (character.char_level < elemLv) {
-    return "LVL_ERROR"
-  }
-
-  try {
-    await Characters_has_element.create({
-      is_equipped: 0,
-      character_id: characterId,
-      element_id: id,
-    });
-  
-    character.coins -= elemPrice;
-    await character.save();
-  } catch (err) {
-    console.log(err)
-  }
-
-  return 'SUCCESS'
 }
 
 exports.setEquipmentStatus = async (id) => {

@@ -8,6 +8,27 @@
   align-items: center;
 }
 
+.invisible-alert {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 5px;
+  border: #8929bb 1px solid;
+  background-color: #fafafa;
+  display: none;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  z-index: 9999;
+  padding: 30px;
+  text-align: center;
+}
+
+.invisible-alert h1{
+  font-size: 28px;
+  color: #8929bb;
+  margin-bottom: 30px;
+}
+
 .character-stats {
   display: flex;
   flex-direction: column;
@@ -145,6 +166,10 @@ h3 {
   cursor: pointer;
 }
 
+.item-info {
+  flex-grow: 2;
+}
+
 .badge {
   display: flex;
   flex-direction: column;
@@ -205,6 +230,7 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-grow: 2;
 }
 
 .item-name {
@@ -216,6 +242,7 @@ h3 {
 .item-price {
   display: flex;
   align-items: baseline;
+  justify-self: flex-end;
   margin-right: 10px;
   font-size: 19px;
   font-weight: 600;
@@ -232,7 +259,7 @@ h3 {
   box-shadow: -2px 2px .5em #8929bb;
 }
 
-.btn-buy {
+.btn-buy, .invisible-alert button {
   color: #fafafa;
   border: none;
   width: fit-content;

@@ -267,9 +267,28 @@ input[type="checkbox"] {
 }
 
 .avatar {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.unique-image {
   border: #8929bb solid 0.5px;
   height: 50px;
+  width: 50px;
   margin-right: 10px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  border: #8929bb solid 1px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  align-self: center;
+  justify-self: center;
+}
+
+.comment-info {
+  margin-left: 60px;
+  margin-bottom: 10px;
 }
 
 .commentator-name {

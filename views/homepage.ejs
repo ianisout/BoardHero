@@ -7,11 +7,16 @@
     <!-- CSS Links -->
     <%- include('./partials/bootstrap-css-head') %>
     <link rel="stylesheet" href="/stylesheets/homepage.css" />
+    <script defer src="/javascripts/homepage.js"></script>
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Board Hero | Home Page</title>
+    <embed src="/sounds/start.mp3" autostart="false" id="sound-start" enablejavascript="true" style="display: none; position: absolute;">
+    <embed src="/sounds/success.mp3" autostart="false" id="sound-success" enablejavascript="true" style="display: none; position: absolute;">
   </head>
 
-  <body>
+  <body onload="setupInitialization()">
     <%- include('./partials/sidebar') %>
+    <code id="cookies"></code>
 
     <section class="home-section">
       <%- include('./partials/navbar') %>
@@ -22,6 +27,27 @@
         <% } %> 
 
         <div class="container">
+          <div class="background-selection">
+            <div>
+              <p>Choose background from system</p>
+              <div>
+                <img src="/images/background/bg-workspace1.png" alt="Background image choice" onclick="setBackgroundFromSystem('/images/background/bg-workspace1.png')" class="backgroundimg-preview">
+                <img src="/images/background/bg-workspace2.png" alt="Background image choice" onclick="setBackgroundFromSystem('/images/background/bg-workspace2.png')" class="backgroundimg-preview">
+              </div>
+            </div>
+            <div>
+              <p>Get a random background from the web</p>
+              <button onclick="getImage()">Random</button>
+            </div>
+          </div>
+
+          <% if(alert === 'true') { %>
+            <div class="alert-change" style="display: unset;">
+              <p>🌟 You leveled up 🌟<br> Way to go!</p>
+              <a class="dismiss-alert" onclick="dismissAlert()">Dismiss</a>
+            </div>
+          <% } %> 
+
           <div class="row">
             <div class="all-columns">
               <div class="col-6 col-md-4 requested">

@@ -109,7 +109,12 @@ router.post('/login', async function (req, res, next) {
       req.session.user = userSession
       log(req.session)
 
+<<<<<<< HEAD
       res.status(201).redirect('/homepage')
+=======
+      res.cookie('loginCookie', 'loginCookie', { expires: new Date(Date.now() + 5000), httpOnly: false })
+      res.status(201).redirect("/homepage");
+>>>>>>> feature
     }
   } catch (error) {
     console.log(error)

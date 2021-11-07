@@ -83,8 +83,10 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   const { id } = req.params;
   const taskDetailsGotbyId = await TaskController.getTaskById(id);
   const taskComments = await TaskController.findAllComments(id);
+  const usersInWorkspace = user.users;
+  console.log(usersInWorkspace)
 
-  res.render("task-details", { user, taskDetails: taskDetailsGotbyId, taskComments });
+  res.render("task-details", { user, taskDetails: taskDetailsGotbyId, taskComments, usersInWorkspace });
 });
 
 /* POST task details - add comment */
@@ -111,11 +113,12 @@ router.delete("/details/:id", async function (req, res) {
 router.patch("/details/:id&:task_status_id", async function (req, res) {
   const { id, task_status_id } = req.params;
   const userId = req.session.user.id;
+  const alert = await CharacterController.updateCoinsExp(userId, 5, 50);
 
-  await CharacterController.updateCoinsExp(userId, 5, 50);
   await TaskController.updateStatus(id, task_status_id);
 
-  return res.redirect("/homepage");
+  res.cookie('alertCookie', alert, { expires: new Date(Date.now() + 5000), httpOnly: true })
+  res.redirect("/homepage");
 });
 
 /* GET workspace users - Tagify participants whitelist */

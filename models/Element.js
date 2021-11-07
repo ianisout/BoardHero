@@ -29,7 +29,9 @@ exports.findAllEquips = async () => {
     attributes: [`id`, `image_path`, `name`, `description`, `level`, `price`]
   })
 
-  const allEquips = [generalEquips.map(equip => equip.dataValues), shields.map(equip => equip.dataValues), swords.map(equip => equip.dataValues)].flat()
+  const allEquips = [generalEquips.map(equip => equip.dataValues), shields.map(equip => equip.dataValues), swords.map(equip => equip.dataValues)]
+    .flat()
+    .sort((a,b) => (a.level > b.level) ? 1 : ((b.level > a.level) ? -1 : 0))
 
   return allEquips;
 }
