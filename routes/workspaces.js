@@ -77,7 +77,7 @@ router.post("/admintools", async function (req, res, next) {
 
 /* NÃO APAGAR, FUNCIONANDO, OUTROS TESTES SENDO FEITOS NESSE POST */
 
-/* router.post("/admintools", async function (req, res, next) {
+router.patch("/admintools", async function (req, res, next) {
   const userSession = req.session.user;
   const workspace_id = userSession.activeWorkspace.id;
   const { newUser, isAdmin } = req.body;
@@ -93,6 +93,6 @@ router.post("/admintools", async function (req, res, next) {
   });
 
   res.redirect("admintools");
-}); */
+});
 
 module.exports = router;
