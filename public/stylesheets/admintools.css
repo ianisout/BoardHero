@@ -50,6 +50,20 @@ a {
   display: flex;
 }
 
+.workspaces > form > select {
+  margin-left: 0.5rem;
+  height: 2rem;
+}
+.workspaces > form > button {
+  width: 8rem;
+  height: 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fafafa;
+  background-color: #8929bb;
+}
+
 .column-left {
   display: flex;
   flex-direction: column;
@@ -72,6 +86,7 @@ a {
 
 .column-left {
   margin: 1.25rem;
+  padding: 1.25rem;
 }
 
 .title-column-left {
@@ -84,4 +99,27 @@ a {
 
 .column-right {
   margin: 1.25rem;
+  padding: 1.25rem;
+}
+.form-column-left {
+  width: 12rem;
+}
+
+.form > p {
+  margin-bottom: 0;
+}
+
+.form > input {
+  margin-bottom: 1rem;
+}
+
+.form > button {
+  margin-top: 1rem;
+  width: 8rem;
+  height: 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fafafa;
+  background-color: #8929bb;
 }
