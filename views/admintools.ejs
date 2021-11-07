@@ -80,9 +80,46 @@
                 <% }) %>
               </ul>
             </div>
+            <button type="submit">Vai</button>
+          </form>
+
+          <!-- NAO APAGAR -->
+          <hr>
+
+          <div>
+            <h3>Manage workspace</h3>
+
+            <form action="/workspace/admintools?_method=PATCH" method="post">
+              <p>Add user</p>
+              <input type="email" name="newUser" id="newUser" placeholder="Insert email" />
+              <label for="isAdmin">isAdmin:</label>
+              <select name="isAdmin" id="isAdmin">
+                <option value="True">True</option>
+                <option value="False">False</option>
+              </select>
+              <button type="submit">Add</button>
+            </form>
           </div>
-          <div class="footer-workspace">
-            <a href="create">Create workspace</a>
+
+          <div>
+            Users in this workspace:
+            <ul>
+              <% workspaceUsers.forEach(user => { %>
+              <li><%= user.name %> (<%= user.email %>)</li>
+              <% }) %>
+            </ul>
+          </div>
+          
+          <hr>
+
+          <div>
+            <h3>Create workspace</h3>
+            <form action="#" method="post">
+              <label for="workspaceName">Name:</label>
+              <input type="text" name="workspaceName" id="workspaceName">
+              </select>
+              <button type="submit">Create</button>
+            </form>
           </div>
         </main>
       </div>

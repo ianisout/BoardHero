@@ -1,17 +1,17 @@
 // CHARACTER SET
 const characterElements = {
   "skincolor": "3",
-  "dress": "0",
-  "eyes": "0",
-  "glasses": "0",
-  "hairback": "0",
-  "hairfront": "0",
-  "mouth": "0",
-  "pants": "0",
-  "shirt": "0",
-  "shoe": "0",
-  "beard": "0",
-  "tie": "0",
+  "dress": null,
+  "eyes": null,
+  "glasses": null,
+  "hairback": null,
+  "hairfront": null,
+  "mouth": null,
+  "pants": null,
+  "shirt": null,
+  "shoe": null,
+  "beard": null,
+  "tie": null,
 };
 
 function setCharacterElements(elementType, elementId) {
@@ -61,6 +61,7 @@ function removeSelection(btnUndo) {
  
   if (element) {
     element[0].remove()
+    characterElements[elementClass] = null;
     btnUndo.remove();
   }
 }
