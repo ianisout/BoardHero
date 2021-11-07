@@ -21,6 +21,12 @@ function showAlert(status) {
 
   alert.childNodes[1].innerText = message[status]
   alert.style.display = "unset";
+
+  const allElementsButAlert = document.querySelectorAll('main')
+  allElementsButAlert.forEach(element => {
+    element.style.opacity = '0.8';
+    element.style.pointerEvents = 'none'
+  })
 }
 
 function makePurchase(element_id) {
@@ -31,10 +37,10 @@ function makePurchase(element_id) {
       'Content-type': 'application/json'
     }
   }).then(function(response) {
-    console.log(response)
-    if (response.ok) () => location.reload();
-        showAlert(response.status);
-        playSound('sound-failure')
+    if (response.status !== 200) {
+      showAlert(response.status);
+      playSound('sound-failure')
+    };
     })
   .catch(console.log);
 }
