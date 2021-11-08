@@ -75,6 +75,7 @@ function changeButtonStatus(btnText) {
 
 ownedItems.forEach(item => item.onclick = () => {
   const srcBtn = item.childNodes[1].src.substr(item.childNodes[1].src.lastIndexOf('/') + 1).slice(0, -4);
+  const soundEquip = new Audio("/sounds/equip.mp3");
   
   for (let i = 0; i < uniqueImages.length; i ++) {
     if (srcBtn === uniqueImages[i].id && uniqueImages[i].classList.contains('show-item')) {
@@ -86,6 +87,7 @@ ownedItems.forEach(item => item.onclick = () => {
     }
   }
 
+  soundEquip.play();
   changeButtonStatus(item.childNodes[5]);
 });
 

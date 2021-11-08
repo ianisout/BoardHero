@@ -76,4 +76,6 @@ function checkWelcomeMessage() {
 
 function closeWelcomeMessage() {
   document.querySelector('.welcome-main').remove();
+  const soundCheer = new Audio("/sounds/hooray.mp3");
+  soundCheer.play();
 }
