@@ -42,7 +42,7 @@ a {
 .header-title-workspace {
   display: flex;
   flex-direction: column;
-  margin: 1.25rem;
+  margin: 1.25rem 1.25rem 0 1.25rem;
   padding: 1.25rem;
   border-bottom: #8929bb solid 0.0625rem;
 }
@@ -53,7 +53,7 @@ a {
 
 .sub-header-workspace {
   margin: 1.25rem;
-  padding: 1.25rem;
+  padding: 0 1.25rem 1.25rem 1.25rem;
   border-bottom: #8929bb solid 0.0625rem;
 }
 
@@ -91,8 +91,74 @@ a {
 .column-right {
   display: flex;
   flex-direction: column;
-  margin: 1.25rem;
-  padding: 1.25rem;
+  margin: 1.25rem 1rem;
+  padding: 1rem;
+}
+
+.column-right ul {
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  overflow: hidden;
+  overflow-x: scroll;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8829bba6;
+}
+
+.column-right li {
+  display: flex;
+  /* width: 200px; */
+  justify-content: center;
+}
+
+.participant {
+  /* flex-direction: column; */
+  width: 200px;
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 150px;
+  align-items: center;
+}
+
+.workspace-users-name {
+  margin-bottom: 5px;
+  color: #8929bb;
+  font-weight: 600;
+}
+
+.workspace-users-email {
+  color: rgb(54, 54, 54);
+  margin-bottom: 0;
+}
+
+.avatar {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.unique-image {
+  margin-left: 25px;
+  height: 150px;
+  width: 150px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  background-repeat: no-repeat;
+  background-size: contain;
+  align-self: center;
+  justify-self: center;
 }
 
 .column-left {
