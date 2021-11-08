@@ -81,7 +81,7 @@ router.post("/signup", async function (request, response, next) {
     }
   } catch (error) {
     console.log(error);
-    return response.render("signup");
+    response.render("signup", { error: error.message });
   }
 });
 
@@ -119,7 +119,7 @@ router.post("/login", async function (req, res, next) {
     }
   } catch (error) {
     console.log(error);
-    return res.render("login", { error: error.message });
+    res.render("login", { error: error.message });
   }
 });
 
