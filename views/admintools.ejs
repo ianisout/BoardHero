@@ -52,7 +52,7 @@
               <h3>Manage workspace</h3>
             </div>
             <div class="form-column-left">
-              <form class="form" action="#" method="post">
+              <form action="/workspace/admintools?_method=PATCH" method="post">
                 <p>Add user</p>
                 <input
                   type="email"
@@ -73,20 +73,30 @@
             <div class="title-column-right">
               <h3>Users in this workspace:</h3>
             </div>
-              <div class="list-column-right">
-                <ul>
-                  <% workspaceUsers.forEach(user => { %>
-                  <li><%= user.name %> (<%= user.email %>)</li>
-                  <% }) %>
-                </ul>
-              </div>
-            </div>     
+            <div class="list-column-right">
+              <ul>
+                <% workspaceUsers.forEach(user => { %>
+                <li><%= user.name %> (<%= user.email %>)</li>
+                <% }) %>
+              </ul>
+            </div>
+          </div>
           <div class="footer-workspace">
             <h3>Create workspace</h3>
-            <form action="#" method="post">
+            <form class="form-footer" action="#" method="POST">
               <label for="workspaceName">Name:</label>
-              <input type="text" name="workspaceName" id="workspaceName">
-              </select>
+              <input
+                type="text"
+                name="workspaceName"
+                id="workspaceName"
+              /><br /><br />
+              <label for="newUser">Participants:</label>
+              <input type="email" name="newUser" id="newUser" /><br /><br />
+              <label for="isAdmin">isAdmin:</label>
+              <select name="isAdmin" id="isAdmin">
+                <option value="True">True</option>
+                <option value="False">False</option></select
+              ><br /><br />
               <button type="submit">Create</button>
             </form>
           </div>

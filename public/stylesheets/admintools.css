@@ -106,6 +106,17 @@ a {
   color: #8929bb;
 }
 
+.column-left button {
+  margin-top: 1rem;
+  width: 8rem;
+  height: 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fafafa;
+  background-color: #8929bb;
+}
+
 .title-column-right {
   margin: 1.25rem;
   color: #8929bb;
@@ -154,4 +165,10 @@ a {
   border-radius: 5px;
   color: #fafafa;
   background-color: #8929bb;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
 }
