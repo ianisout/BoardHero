@@ -5,6 +5,10 @@ a {
   text-decoration: none;
 }
 
+button {
+  border: none;
+}
+
 /* -------------------Grid area--------------------- */
 .header-title-workspace {
   grid-area: header;
