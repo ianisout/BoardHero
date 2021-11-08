@@ -63,42 +63,10 @@ router.post(
         const isAdmin = true;
         const workspaceName = `${first_name}'s Workspace`;
 
-<<<<<<< HEAD
-        const workspaceCreated = await WorkspaceController.createWorkspace({
-          workspace: {
-            name: workspaceName,
-          },
-          userId: userCreated.id,
-          isAdmin: isAdmin,
-        });
-
-        const userSession = {
-          ...userCreated,
-          workspaces: [workspaceCreated],
-          activeWorkspace: {
-            id: workspaceCreated.id,
-            isAdmin: isAdmin,
-          },
-        };
-
-        request.session.user = userSession;
-
-        response.cookie("loginCookie", "loginCookie", {
-          expires: new Date(Date.now() + 5000),
-          httpOnly: false,
-        });
-        response.clearCookie("CHARACTER_SET");
-        response.status(201).redirect("/homepage");
-      }
-    } catch (error) {
-      console.log(error);
-      return response.render("signup");
-=======
       response.cookie('firstLogin', 'firstLogin', { expires: new Date(Date.now() + 3000), httpOnly: false })
       response.cookie('loginCookie', 'loginCookie', { expires: new Date(Date.now() + 5000), httpOnly: false })
       response.clearCookie("CHARACTER_SET");
       response.status(201).redirect("/homepage");
->>>>>>> feature
     }
   }
 );
