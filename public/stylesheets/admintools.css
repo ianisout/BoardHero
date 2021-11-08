@@ -1,5 +1,5 @@
 main {
-  padding: 0;
+  padding: 0 6.25rem 0 6.25rem;
 }
 a {
   text-decoration: none;
@@ -28,7 +28,7 @@ a {
 
 .container-grid-workspace {
   display: grid;
-  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-columns: 15rem 15rem 15rem 15rem;
   grid-template-rows: auto;
   grid-template-areas:
     "header header header header"
@@ -44,10 +44,24 @@ a {
   flex-direction: column;
   margin: 1.25rem;
   padding: 1.25rem;
+  border-bottom: #8929bb solid 0.0625rem;
+}
+
+.header-title-workspace > h1 {
+  color: #8929bb;
+}
+
+.sub-header-workspace {
+  margin: 1.25rem;
+  padding: 1.25rem;
+  border-bottom: #8929bb solid 0.0625rem;
 }
 
 .workspaces {
   display: flex;
+}
+.workspaces h3 {
+  color: #8929bb;
 }
 
 .workspaces > form > select {
@@ -77,9 +91,6 @@ a {
 .column-right {
   display: flex;
   flex-direction: column;
-}
-
-.sub-header-workspace {
   margin: 1.25rem;
   padding: 1.25rem;
 }
@@ -87,20 +98,19 @@ a {
 .column-left {
   margin: 1.25rem;
   padding: 1.25rem;
+  border-right: #8929bb solid 0.0625rem;
 }
 
 .title-column-left {
-  margin: 1.25rem;
+  margin: 1.25rem 1.25rem 1.25rem 0;
+  color: #8929bb;
 }
 
 .title-column-right {
   margin: 1.25rem;
+  color: #8929bb;
 }
 
-.column-right {
-  margin: 1.25rem;
-  padding: 1.25rem;
-}
 .form-column-left {
   width: 12rem;
 }
@@ -114,6 +124,28 @@ a {
 }
 
 .form > button {
+  margin-top: 1rem;
+  width: 8rem;
+  height: 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fafafa;
+  background-color: #8929bb;
+}
+
+.footer-workspace {
+  margin: 1.25rem;
+  padding: 1.25rem;
+  color: #8929bb;
+  border-top: #8929bb solid 0.0625rem;
+}
+
+.footer-workspace h3 {
+  color: #8929bb;
+}
+
+.footer-workspace button {
   margin-top: 1rem;
   width: 8rem;
   height: 2rem;
