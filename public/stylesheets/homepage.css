@@ -37,6 +37,62 @@ h2 {
   padding: 10px;
 }
 
+.welcome-main {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  height: 85%;
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  z-index: 9999;
+  background-color: #fafafa;
+  border: #8929bb 1px solid;
+  border-radius: 5px;
+  color: #8929bb;
+  padding: 30px;
+  text-align: center;
+}
+
+.welcome-main h1 {
+  font-size: 36px;
+}
+
+.welcome-main p {
+  margin-bottom: 0;
+  font-size: 18px;
+}
+
+.badge-img {
+  width: 200px;
+}
+
+.badge-text {
+  font-size: 24px !important;
+  font-weight: 700;
+}
+
+.btn-welcome {
+  border: none;
+  width: fit-content;
+  height: fit-content;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fafafa;
+  background-color: #8929bb;
+  padding: 8px 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-welcome:hover {
+  color: #fafafa;
+}
+
 @keyframes popUp {
   from {opacity: 0;}
   to {opacity: 1;}

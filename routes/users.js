@@ -63,6 +63,7 @@ router.post(
         const isAdmin = true;
         const workspaceName = `${first_name}'s Workspace`;
 
+<<<<<<< HEAD
         const workspaceCreated = await WorkspaceController.createWorkspace({
           workspace: {
             name: workspaceName,
@@ -92,6 +93,12 @@ router.post(
     } catch (error) {
       console.log(error);
       return response.render("signup");
+=======
+      response.cookie('firstLogin', 'firstLogin', { expires: new Date(Date.now() + 3000), httpOnly: false })
+      response.cookie('loginCookie', 'loginCookie', { expires: new Date(Date.now() + 5000), httpOnly: false })
+      response.clearCookie("CHARACTER_SET");
+      response.status(201).redirect("/homepage");
+>>>>>>> feature
     }
   }
 );

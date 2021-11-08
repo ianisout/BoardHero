@@ -11,7 +11,8 @@ function setBackgroundFromSystem(url) {
 }
 
 function setupInitialization() {
-  checkLoginCookie()
+  checkLoginCookie();
+  checkWelcomeMessage();
   const homeSection = document.querySelector('.home-section');
   const url = localStorage.getItem("background_image");
   homeSection.style.backgroundImage = `url(${url})`;
@@ -60,4 +61,21 @@ function checkLoginCookie() {
     const sound = document.getElementById('sound-start');
     sound.style.display = "unset";
   }
+}
+
+function checkWelcomeMessage() {
+  const cookieName = 'firstLogin'
+  const cookies = document.cookie;
+  if (cookies.includes(cookieName)) {
+    const welcomeDivMain = document.querySelector('.welcome-main');
+    welcomeDivMain.style.visibility = "visible";
+    const url = localStorage.getItem("background_image");
+    if (url) localStorage.clear();
+  }
+}
+
+function closeWelcomeMessage() {
+  document.querySelector('.welcome-main').remove();
+  const soundCheer = new Audio("/sounds/hooray.mp3");
+  soundCheer.play();
 }

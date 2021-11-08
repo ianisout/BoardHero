@@ -403,6 +403,7 @@ summary {
 }
 progress {
   vertical-align: baseline;
+  display: flex;
 }
 [hidden] {
   display: none !important;

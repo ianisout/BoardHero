@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+.progress-inventory span{
+  padding-left: 40px;
+}
+
 .invisible-alert {
   width: fit-content;
   height: fit-content;
@@ -63,6 +67,10 @@ h3 {
 
 .badges h3 {
   margin-top: 25px;
+}
+
+.tackler {
+  width: 90px !important;
 }
 
 .container-inventory {

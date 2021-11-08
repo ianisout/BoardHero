@@ -39,7 +39,12 @@ function makePurchase(element_id) {
   }).then(function(response) {
     if (response.status !== 200) {
       showAlert(response.status);
-      playSound('sound-failure')
+      playSound('sound-failure');
+      setTimeout(() => {
+      () => location.reload()
+    }, 10000)
+  } else {
+      location.reload()
     };
     })
   .catch(console.log);
@@ -75,6 +80,7 @@ function changeButtonStatus(btnText) {
 
 ownedItems.forEach(item => item.onclick = () => {
   const srcBtn = item.childNodes[1].src.substr(item.childNodes[1].src.lastIndexOf('/') + 1).slice(0, -4);
+  const soundEquip = new Audio("/sounds/equip.mp3");
   
   for (let i = 0; i < uniqueImages.length; i ++) {
     if (srcBtn === uniqueImages[i].id && uniqueImages[i].classList.contains('show-item')) {
@@ -86,6 +92,7 @@ ownedItems.forEach(item => item.onclick = () => {
     }
   }
 
+  soundEquip.play();
   changeButtonStatus(item.childNodes[5]);
 });
 
@@ -107,3 +114,7 @@ function playSound(soundObj) {
   var sound = document.getElementById(soundObj);
   sound.style.display = "unset";
 }
+
+const exp = document.querySelector(".char-exp");
+const expBar = document.getElementById("progress-bar");
+expBar.style.width = `${exp.innerText.split(" ")[1].split("/")[0]}%`;

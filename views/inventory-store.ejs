@@ -40,9 +40,10 @@
                 </div>
   
                 <div class="character-progress">
-                  <div class="progress mb-2">
-                    <div class="progress-bar progress-bar-striped bg-bhpurple" role="progressbar" style="width: 50%"
-                      aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"><span class="char-exp">EXP <%= user.character.experience %>/100</span></div>
+                  <div class="progress mb-2 progress-inventory">
+                    <span class="char-exp">EXP <%= user.character.experience %>/100</span>
+                    <div class="progress-bar progress-bar-striped bg-bhpurple" id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    </div>
                   </div>
                 <div id="character_coins">
                   <span> Hero Coins</span>
