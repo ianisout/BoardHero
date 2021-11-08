@@ -84,7 +84,6 @@ router.get("/details/:id", verifyLoggedUser, async function (req, res, next) {
   const taskDetailsGotbyId = await TaskController.getTaskById(id);
   const taskComments = await TaskController.findAllComments(id);
   const usersInWorkspace = user.users;
-  console.log(usersInWorkspace)
 
   res.render("task-details", { user, taskDetails: taskDetailsGotbyId, taskComments, usersInWorkspace });
 });
