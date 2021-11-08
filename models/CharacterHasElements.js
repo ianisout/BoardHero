@@ -28,27 +28,31 @@ exports.purchaseEquipment = async (character, characterId, id) => {
   const element = await Element.findByPk(id);
   const elemLv = element.dataValues.level;
   const elemPrice = element.dataValues.price;
+  let checkStat = 0;
 
   if (character.coins < elemPrice) {
+    checkStat = 1;
     return 'COINS_ERROR'
   } else if (character.char_level < elemLv) {
+    checkStat = 1;
     return "LVL_ERROR";
-  } else {
-    try {
+  }
+
+  try {
       await Characters_has_element.create({
         is_equipped: 0,
         character_id: characterId,
         element_id: id,
       });
-    
-      character.coins -= elemPrice;
-      await character.save();
-      return 'SUCCESS';
     } catch (err) {
       console.log(err)
     }
-  } 
 
+  if (checkStat !== 0) {
+    character.coins -= elemPrice;
+    await character.save();
+    return 'SUCCESS';
+  }
 }
 
 exports.setEquipmentStatus = async (id) => {
