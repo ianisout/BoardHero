@@ -19,7 +19,7 @@ exports.getCharacterByUserId = async (id) => {
     attributes: ['user_id', 'id', 'char_level', 'experience', 'coins'],
   });
 
-  return character.dataValues;
+  return character;
 };
 
 exports.updateCoinsExp = async (userId, amountCoins, amountExp) => {
