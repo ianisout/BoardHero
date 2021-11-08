@@ -26,59 +26,92 @@
     <div>
       <%- include('./partials/sidebar') %>
       <div class="home-section">
-        <main>
-          <h3>Workspaces</h3>
-          <p>
-            Workspace active now:
-            <strong><%= activeWorkspace.workspaceName %></strong>
-          </p>
-          <form action="#" method="post">
+        <main class="container-grid-workspace">
+          <div class="header-title-workspace">
+            <h1>
+              Workspace: <strong><%= activeWorkspace.workspaceName %></strong>
+            </h1>
+          </div>
+          <div class="sub-header-workspace">
             <div class="workspaces">
-              <select name="workspaceChosen" id="workspaceChosen">
-              <% workspaces.forEach(workspace => { %> <%
-              console.log() %>
-                <option value="<%= workspace.workspaceId %>"><%= workspace.workspaceName %></option>
-                <% }) %>
-              </select>
+              <h3>Change Workspace:</h3>
+              <form action="/workspace/admintools?_method=PUT" method="post">
+                <select name="workspaceChosen" id="workspaceChosen">
+                  <% workspaces.forEach(workspace => { %> <% console.log() %>
+                  <option value="<%= workspace.workspaceId %>">
+                    <%= workspace.workspaceName %>
+                  </option>
+                  <% }) %>
+                </select>
+                <button type="submit">Switch</button>
+              </form>
             </div>
-            <button type="submit">Vai</button>
-          </form>
-
-          <!-- NAO APAGAR -->
-          <hr>
-
-          <div>
-            <h3>Manage workspace</h3>
-
-            <form action="/workspace/admintools?_method=PATCH" method="post">
-              <p>Add user</p>
-              <input type="email" name="newUser" id="newUser" placeholder="Insert email" />
+          </div>
+          <div class="column-left">
+            <div class="title-column-left">
+              <h3>Manage workspace</h3>
+            </div>
+            <div class="form-column-left">
+              <form action="/workspace/admintools?_method=PATCH" method="post">
+                <p>Add user</p>
+                <input
+                  type="email"
+                  name="newUser"
+                  id="newUser"
+                  placeholder="Insert email"
+                />
+                <label for="isAdmin">Administrative privileges: </label>
+                <select name="isAdmin" id="isAdmin">
+                  <option value="True">True</option>
+                  <option value="False">False</option>
+                </select>
+                <button type="submit">Add User</button>
+              </form>
+            </div>
+          </div>
+          <div class="column-right">
+            <div class="title-column-right">
+              <h3>Users in this workspace:</h3>
+            </div>
+            <div class="list-column-right">
+              <ul>
+                <% workspaceUsers.forEach(user => { %>
+                  <% usersCharacters.forEach(character => { %> 
+                  <% if (user.value === character.userId) { %>
+                    <li>
+                      <div class="participant">
+                      
+                    <% for (let i = 0; i < character.userElements.length; i++) { %> 
+                    <div class="avatar">
+                      <div class="unique-image" style="background-image: url('<%= character.userElements[i] %>');"></div>
+                    </div>
+                    <% }}}) %>
+                    <div class="user-text">
+                    <p class="workspace-users-name"><%= user.name %></p>
+                    <p class="workspace-users-email"><%= user.email %></p>
+                  </div>
+                </div>
+                  </li>
+                  <% }) %>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-workspace">
+            <h3>Create workspace</h3>
+            <form class="form-footer" action="/workspace/admintools" method="POST">
+              <label for="workspaceName">Name:</label>
+              <input
+                type="text"
+                name="workspaceName"
+                id="workspaceName"
+              /><br /><br />
+              <label for="newUser">Participants:</label>
+              <input type="email" name="newUser" id="newUser" /><br /><br />
               <label for="isAdmin">isAdmin:</label>
               <select name="isAdmin" id="isAdmin">
                 <option value="True">True</option>
-                <option value="False">False</option>
-              </select>
-              <button type="submit">Add</button>
-            </form>
-          </div>
-
-          <div>
-            Users in this workspace:
-            <ul>
-              <% workspaceUsers.forEach(user => { %>
-              <li><%= user.name %> (<%= user.email %>)</li>
-              <% }) %>
-            </ul>
-          </div>
-          
-          <hr>
-
-          <div>
-            <h3>Create workspace</h3>
-            <form action="#" method="post">
-              <label for="workspaceName">Name:</label>
-              <input type="text" name="workspaceName" id="workspaceName">
-              </select>
+                <option value="False">False</option></select
+              ><br /><br />
               <button type="submit">Create</button>
             </form>
           </div>

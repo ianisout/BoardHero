@@ -4,10 +4,6 @@ const router = express.Router();
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
 
-const { validationResult } = require("express-validator");
-const signupValidations = require("../middlewares/signupValidation");
-const validationErrorMessage = require("../middlewares/validationMessage");
-
 const UserController = require("../controllers/UserController");
 const WorkspaceController = require("../controllers/WorkspaceController");
 
@@ -26,11 +22,11 @@ router.get("/signup", verifyNotLoggedUser, function (request, response, next) {
 });
 
 /* POST signup form */
-router.post("/signup", /*signupValidations, validationErrorMessage,*/ async function (request, response, next) {
-  console.log(validationErrorMessage)
+router.post("/signup", async function (request, response, next) {
   try {
     const { CHARACTER_SET } = request.cookies;
-    const characterChoices = (CHARACTER_SET !== "undefined") ? JSON.parse(CHARACTER_SET) : undefined;
+    const characterChoices =
+      CHARACTER_SET !== "undefined" ? JSON.parse(CHARACTER_SET) : undefined;
 
     const {
       first_name,
@@ -52,7 +48,7 @@ router.post("/signup", /*signupValidations, validationErrorMessage,*/ async func
       confirmPassword,
       position,
       company,
-      characterChoices
+      characterChoices,
     });
 
     if (userCreated) {
@@ -85,7 +81,7 @@ router.post("/signup", /*signupValidations, validationErrorMessage,*/ async func
     }
   } catch (error) {
     console.log(error);
-    return response.render('signup');
+    return response.render("signup");
   }
 });
 
@@ -115,12 +111,15 @@ router.post("/login", async function (req, res, next) {
       req.session.user = userSession;
       log(req.session);
 
-      res.cookie('loginCookie', 'loginCookie', { expires: new Date(Date.now() + 5000), httpOnly: false })
+      res.cookie("loginCookie", "loginCookie", {
+        expires: new Date(Date.now() + 5000),
+        httpOnly: false,
+      });
       res.status(201).redirect("/homepage");
     }
   } catch (error) {
     console.log(error);
-    return res.render('login', { error: error.message });
+    return res.render("login", { error: error.message });
   }
 });
 

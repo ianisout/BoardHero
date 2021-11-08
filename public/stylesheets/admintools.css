@@ -1,23 +1,240 @@
 main {
-  margin-left: 20px;
+  padding: 0 6.25rem 0 6.25rem;
+}
+a {
+  text-decoration: none;
+}
+
+/* -------------------Grid area--------------------- */
+.header-title-workspace {
+  grid-area: header;
+}
+
+.sub-header-workspace {
+  grid-area: subheader;
+}
+
+.column-left {
+  grid-area: column-left;
+}
+
+.column-right {
+  grid-area: column-right;
+}
+
+.footer-workspace {
+  grid-area: footer-workspace;
+}
+
+.container-grid-workspace {
+  display: grid;
+  grid-template-columns: 15rem 15rem 15rem 15rem;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header header"
+    "subheader subheader subheader subheader"
+    "column-left column-left column-right column-right"
+    "footer-workspace footer-workspace footer-workspace footer-workspace";
+}
+
+/* -------------------Grid area--------------------- */
+
+.header-title-workspace {
+  display: flex;
+  flex-direction: column;
+  margin: 1.25rem 1.25rem 0 1.25rem;
+  padding: 1.25rem;
+  border-bottom: #8929bb solid 0.0625rem;
+}
+
+.header-title-workspace > h1 {
+  color: #8929bb;
+}
+
+.sub-header-workspace {
+  margin: 1.25rem;
+  padding: 0 1.25rem 1.25rem 1.25rem;
+  border-bottom: #8929bb solid 0.0625rem;
 }
 
 .workspaces {
-  width: fit-content;
-  padding: 5px;
+  display: flex;
+}
+.workspaces h3 {
+  color: #8929bb;
 }
 
-.workspace {
-  border: 1px solid black;
-  width: fit-content;
-  padding: 5px;
-  margin: 5px;
+.workspaces > form > select {
+  margin-left: 0.5rem;
+  height: 2rem;
+}
+.workspaces > form > button {
+  width: 8rem;
+  height: 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fafafa;
+  background-color: #8929bb;
 }
 
-p {
+.column-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.column-right {
+  display: flex;
+  flex-direction: column;
+  margin: 1.25rem 1rem;
+  padding: 1rem;
+}
+
+.column-right ul {
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  overflow: hidden;
+  overflow-x: scroll;
   margin: 0;
+  padding: 0;
 }
 
-.home-section {
-  padding: 50px 100px;
+::-webkit-scrollbar {
+  height: 10px;
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8829bba6;
+}
+
+.column-right li {
+  display: flex;
+  /* width: 200px; */
+  justify-content: center;
+}
+
+.participant {
+  /* flex-direction: column; */
+  width: 200px;
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 150px;
+  align-items: center;
+}
+
+.workspace-users-name {
+  margin-bottom: 5px;
+  color: #8929bb;
+  font-weight: 600;
+}
+
+.workspace-users-email {
+  color: rgb(54, 54, 54);
+  margin-bottom: 0;
+}
+
+.avatar {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.unique-image {
+  margin-left: 25px;
+  height: 150px;
+  width: 150px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  background-repeat: no-repeat;
+  background-size: contain;
+  align-self: center;
+  justify-self: center;
+}
+
+.column-left {
+  margin: 1.25rem;
+  padding: 1.25rem;
+  border-right: #8929bb solid 0.0625rem;
+}
+
+.title-column-left {
+  margin: 1.25rem 1.25rem 1.25rem 0;
+  color: #8929bb;
+}
+
+.column-left button {
+  margin-top: 1rem;
+  width: 8rem;
+  height: 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fafafa;
+  background-color: #8929bb;
+}
+
+.title-column-right {
+  margin: 1.25rem;
+  color: #8929bb;
+}
+
+.form-column-left {
+  width: 12rem;
+}
+
+.form > p {
+  margin-bottom: 0;
+}
+
+.form > input {
+  margin-bottom: 1rem;
+}
+
+.form > button {
+  margin-top: 1rem;
+  width: 8rem;
+  height: 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fafafa;
+  background-color: #8929bb;
+}
+
+.footer-workspace {
+  margin: 1.25rem;
+  padding: 1.25rem;
+  color: #8929bb;
+  border-top: #8929bb solid 0.0625rem;
+}
+
+.footer-workspace h3 {
+  color: #8929bb;
+}
+
+.footer-workspace button {
+  margin-top: 1rem;
+  width: 8rem;
+  height: 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fafafa;
+  background-color: #8929bb;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
 }

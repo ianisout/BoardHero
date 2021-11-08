@@ -54,6 +54,13 @@ h3 {
   width: 300px;
 }
 
+.badge {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 15px;
+}
+
 .badges h3 {
   margin-top: 25px;
 }
