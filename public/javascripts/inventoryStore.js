@@ -39,7 +39,12 @@ function makePurchase(element_id) {
   }).then(function(response) {
     if (response.status !== 200) {
       showAlert(response.status);
-      playSound('sound-failure')
+      playSound('sound-failure');
+      setTimeout(() => {
+      () => location.reload()
+    }, 10000)
+  } else {
+      location.reload()
     };
     })
   .catch(console.log);
@@ -109,3 +114,7 @@ function playSound(soundObj) {
   var sound = document.getElementById(soundObj);
   sound.style.display = "unset";
 }
+
+const exp = document.querySelector(".char-exp");
+const expBar = document.getElementById("progress-bar");
+expBar.style.width = `${exp.innerText.split(" ")[1].split("/")[0]}%`;

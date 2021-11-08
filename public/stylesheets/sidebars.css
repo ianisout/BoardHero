@@ -82,6 +82,10 @@
   text-align: center;
   line-height: 60px;
 }
+.char-exp {
+  position: absolute !important;
+  margin-left: 80px !important;
+}
 .sidebar .nav-list {
   margin-top: 20px;
   height: 100%;
