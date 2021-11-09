@@ -21,8 +21,8 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 550px;
-  max-height: 630px;
+  width:  550px !important;
+  max-height: 850px;
   height: 100%;
   background-color: rgba(247, 247, 247, 0.85);
   border-radius: 10px;
@@ -43,6 +43,11 @@ img.logo {
   padding: 10px;
 }
 
+img.signup {
+  max-width: 230px;
+  margin-bottom: 10px;
+}
+
 .login img.logo {
   margin-bottom: 40px;
 }
@@ -51,6 +56,12 @@ form {
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
 }
 
 label {
@@ -109,6 +120,9 @@ button#submit {
   margin-bottom: 12px;
 }
 
+.form-auth .error-message {
+  font-size: 12px;
+}
 
 @media (max-width: 460px) {
   img.logo {

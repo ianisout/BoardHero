@@ -1,30 +1,17 @@
-const getElementsById = {
-  skincolor: 1,
-  dress: 2,
-  eyes: 4,
-  glasses: 5,
-  hairback: 6,
-  hairfront: 7,
-  mouth: 8,
-  pants: 9,
-  shirt: 11,
-  shoe: 12,
-  tie: 14,
-};
-
 // CHARACTER SET
 const characterElements = {
   "skincolor": "3",
-  "dress": "0",
-  "eyes": "0",
-  "glasses": "0",
-  "hairback": "0",
-  "hairfront": "0",
-  "mouth": "0",
-  "pants": "0",
-  "shirt": "0",
-  "shoe": "0",
-  "tie": "0",
+  "dress": null,
+  "eyes": null,
+  "glasses": null,
+  "hairback": null,
+  "hairfront": null,
+  "mouth": null,
+  "pants": null,
+  "shirt": null,
+  "shoe": null,
+  "beard": null,
+  "tie": null,
 };
 
 function setCharacterElements(elementType, elementId) {
@@ -53,29 +40,63 @@ function manipulateElementsDiv() {
 // LIST CATEGORIES
 function loadElementOptions(source) {
   const optionsList = document.getElementById('option-list');
+
   const element = document.createElement('div');
   element.setAttribute('class', 'choice');
   element.setAttribute('id', source.substr(source.lastIndexOf('/') + 1).slice(0, -4));
+
   const elementImage = document.createElement('img');
   elementImage.setAttribute('class', 'item-of-choice');
   elementImage.src = source;
+
   element.appendChild(elementImage);
   optionsList.appendChild(element);
+}
+
+
+// REMOVING A PREVIOUSLY SELECTEC ELEMENT
+function removeSelection(btnUndo) {
+  const elementClass = btnUndo.previousSibling.id.replace(/[0-9]/g, '');
+  const element = document.getElementsByClassName(`${elementClass}`);
+ 
+  if (element) {
+    element[0].remove()
+    characterElements[elementClass] = null;
+    btnUndo.remove();
+  }
+}
+
+function generateUndoButton() {
+  const existingBtn = document.querySelector(".btn-undo");
+
+  if (existingBtn) existingBtn.remove();
+
+  const optionsList = document.getElementById('option-list');
+  const btnUndo = document.createElement('button');
+  btnUndo.setAttribute('class', 'btn-undo');
+  btnUndo.innerText = "Undo\nselection";
+  btnUndo.style.width = "100px"
+  optionsList.appendChild(btnUndo);
+
+  btnUndo.addEventListener("click", function() {removeSelection(btnUndo)});
 }
 
 // GETTING ID OF CATEGORY BUTTON CLICKED + FETCH URL
 const getImages = async (id) => {
   manipulateElementsDiv();
+  const existingBtn = document.querySelector(".btn-undo");
 
-  for (let i = 1; i < 5; i++) {
+  if (existingBtn) existingBtn.remove();
+
+  for (let i = 1; i < 13; i++) {
     try {
       await axios.get(`/images/clothing-items/${id}/${id + i}.png`).then((res) => {
           const source = res.config.url;
           loadElementOptions(source);
         });
-    } catch (err) { console.error(err) };
-  }
-
+      } catch (err) { null };
+    }
+  
   const choice = document.getElementsByClassName('item-of-choice');
   setElementByChoice(choice)
 };
@@ -89,17 +110,19 @@ function removeElementByClass(className){
   }
 }
 
-// SELECTING SKIN COLOR -> ATTACHING TO CHARACTER
+// SELECTING ELEMENT -> ATTACHING TO CHARACTER
 const userCharacter = document.querySelector('#character-visual-background');
 
 function setElementByChoice(choice) {
   for (let i = 0; i < choice.length; i++) {
     choice[i].addEventListener('click', (event) => {
+      generateUndoButton()
+
       const selectedCategory = event.target.nodeName === 'IMG';
       if (!selectedCategory) return;
       
       const idChoice = choice[i].src.substr(choice[i].src.lastIndexOf('/') + 1).slice(0, -4);
-      const classType = choice[i].src.substr(choice[i].src.lastIndexOf('/') + 1).slice(0, -5);
+      const classType = choice[i].src.substr(choice[i].src.lastIndexOf('/') + 1).slice(0, -5).replace(/[0-9]/g, '');
       
       const getType = document.querySelectorAll(`.${classType}`);
       
@@ -121,8 +144,10 @@ function saveData() {
   const characterDataInForm = document.createElement("input");
   characterDataInForm.setAttribute("type", "text");
   characterDataInForm.setAttribute("name", "CHARACTER_SET");
+
   const form = document.getElementById("createdCharacter");
   characterDataInForm.style.display = "none";
   characterDataInForm.value = JSON.stringify(characterElements);
+
   form.appendChild(characterDataInForm);
 }

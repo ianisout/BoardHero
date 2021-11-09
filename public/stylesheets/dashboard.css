@@ -14,10 +14,7 @@
       background: rgba(200, 200, 200, 25%); 
       border-radius: 0.5rem; 
       padding: 0.75rem
-
-      
   }
-
 
   .tasks-dashboard button {
     border: none;
@@ -32,12 +29,10 @@
     margin-top: 18px;
   }
 
-
   .tasks-dashboard input {
     max-width: 75%; 
     height: 1.75rem;
   }
-
 
   .tasks-dashboar-button-align-info {
     display: flex; 
@@ -55,7 +50,6 @@
     #shmenulinks {
        display: none;
     }
- 
  }
  
 

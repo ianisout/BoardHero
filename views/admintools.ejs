@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- General Settings and Fonts -->
+    <%- include('./partials/head-general-settings') %>
+    <!-- CSS Links -->
+    <%- include('./partials/bootstrap-css-head') %>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css" />
+    <link rel="stylesheet" href="/stylesheets/admintools.css" />
+    <title>Managing workspaces</title>
+  </head>
+
+  <body>
+    <div>
+      <%- include('./partials/sidebar') %>
+      <div class="home-section">
+        <main class="container-grid-workspace">
+          <div class="header-title-workspace">
+            <h1>
+              Workspace: <strong><%= activeWorkspace.workspaceName %></strong>
+            </h1>
+          </div>
+          <div class="sub-header-workspace">
+            <div class="workspaces">
+              <h3>Change Workspace:</h3>
+              <form action="/workspace/admintools?_method=PUT" method="post">
+                <select name="workspaceChosen" id="workspaceChosen">
+                  <% workspaces.forEach(workspace => { %> <% console.log() %>
+                  <option value="<%= workspace.workspaceId %>">
+                    <%= workspace.workspaceName %>
+                  </option>
+                  <% }) %>
+                </select>
+                <button type="submit">Switch</button>
+              </form>
+            </div>
+          </div>
+          <div class="column-left">
+            <div class="title-column-left">
+              <h3>Manage workspace</h3>
+            </div>
+            <div class="form-column-left">
+              <form action="/workspace/admintools?_method=PATCH" method="post">
+                <p>Add user</p>
+                <input
+                  type="email"
+                  name="newUser"
+                  id="newUser"
+                  placeholder="Insert email"
+                />
+                <label for="isAdmin">Administrative privileges: </label>
+                <select name="isAdmin" id="isAdmin">
+                  <option value="True">True</option>
+                  <option value="False">False</option>
+                </select>
+                <button type="submit">Add User</button>
+              </form>
+            </div>
+          </div>
+          <div class="column-right">
+            <div class="title-column-right">
+              <h3>Users in this workspace:</h3>
+            </div>
+            <div class="list-column-right">
+              <ul>
+                <% workspaceUsers.forEach(user => { %>
+                  <% usersCharacters.forEach(character => { %> 
+                  <% if (user.value === character.userId) { %>
+                    <li>
+                      <div class="participant">
+                      
+                    <% for (let i = 0; i < character.userElements.length; i++) { %> 
+                    <div class="avatar">
+                      <div class="unique-image" style="background-image: url('<%= character.userElements[i] %>');"></div>
+                    </div>
+                    <% }}}) %>
+                    <div class="user-text">
+                    <p class="workspace-users-name"><%= user.name %></p>
+                    <p class="workspace-users-email"><%= user.email %></p>
+                  </div>
+                </div>
+                  </li>
+                  <% }) %>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-workspace">
+            <h3>Create workspace</h3>
+            <form class="form-footer" action="/workspace/admintools" method="POST">
+              <label for="workspaceName">Name:</label>
+              <input
+                type="text"
+                name="workspaceName"
+                id="workspaceName"
+              /><br /><br />
+              <label for="newUser">Participants:</label>
+              <input type="email" name="newUser" id="newUser" /><br /><br />
+              <label for="isAdmin">isAdmin:</label>
+              <select name="isAdmin" id="isAdmin">
+                <option value="True">True</option>
+                <option value="False">False</option></select
+              ><br /><br />
+              <button type="submit">Create</button>
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <%- include('./partials/bootstrap-js-scripts') %>
+  </body>
+</html>

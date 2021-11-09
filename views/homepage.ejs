@@ -1,150 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <!-- General Settings and Fonts -->
-  <%- include('./partials/head-general-settings') %>
+  <head>
+    <!-- General Settings and Fonts -->
+    <%- include('./partials/head-general-settings') %>
     <script defer src="/javascripts/taskStatus.js"></script>
     <!-- CSS Links -->
     <%- include('./partials/bootstrap-css-head') %>
-      <link rel="stylesheet" href="/stylesheets/homepage.css" />
-      <title>Board Hero | Home Page</title>
-</head>
+    <link rel="stylesheet" href="/stylesheets/homepage.css" />
+    <script defer src="/javascripts/homepage.js"></script>
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Board Hero | Home Page</title>
+    <embed src="/sounds/start.mp3" autostart="false" id="sound-start" enablejavascript="true" style="display: none; position: absolute;">
+    <embed src="/sounds/success.mp3" autostart="false" id="sound-success" enablejavascript="true" style="display: none; position: absolute;">
+  </head>
 
-<body>
-  <%- include('./partials/sidebar') %>
+  <body onload="setupInitialization()">
+    <%- include('./partials/sidebar') %>
+    <code id="cookies"></code>
 
     <section class="home-section">
       <%- include('./partials/navbar') %>
-        <div class="home-content">
+
+      <div class="home-content">
+        <% if (user.activeWorkspace.isAdmin) { %> 
           <%- include('./partials/button-add') %>
-            <div class="container">
-              <div class="row">
-                <div class="all-columns">
+        <% } %> 
 
-                  <div class="col-6 col-md-4 requested">
-                    <h2>Requested</h2>
-                  <% allTasks.forEach(task=> { %>
-                    <% if (task.task_status_id === 1) {%>
-                        <div class="card tasks-dashboard" id="<%= task.id %>" style="width: 18rem;">
-                          <div class="card-body">
-
-                            <div class="top-content">
-                              <div class="task-title">
-                                <h5>
-                                  <%= task.name %>
-
-                                </h5>
-                              </div>
-                              <div class="task-info">
-                                <a href="/task/details/<%= task.id %>">
-                                  <span class="d-block d-lg-none">+</span>
-                                  <span class="d-none d-lg-block">+ Info</span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div>
-                              <p>tags</p>
-                            </div>
-
-                            <div>
-                              <p class="card-text">
-                                <%= task.description %>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <% }%>
-                        <% }) %>
-                      </div>
-
-
-
-                        <div class="col-6 col-md-4 in-progress">
-                          <h2>In progress</h2>
-                        <% allTasks.forEach(task=> { %>
-                          <% if (task.task_status_id === 2) {%>
-                            <div class="card tasks-dashboard" id="<%= task.id %>" style="width: 18rem;">
-                              <div class="card-body">
-    
-                                <div class="top-content">
-                                  <div class="task-title">
-                                    <h5>
-                                      <%= task.name %>
-    
-                                    </h5>
-                                  </div>
-                                  <div class="task-info">
-                                    <a href="/task/details/<%= task.id %>">
-                                      <span class="d-block d-lg-none">+</span>
-                                      <span class="d-none d-lg-block">+ Info</span>
-                                    </a>
-                                  </div>
-                                </div>
-    
-                                <div>
-                                  <p>tags</p>
-                                </div>
-    
-                                <div>
-                                  <p class="card-text">
-                                    <%= task.description %>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <% }%>
-                            <% }) %>
-                          </div>
-
-
-                          <div class="col-6 col-md-4 done">
-                            <h2>Done</h2>
-                          <% allTasks.forEach(task=> { %>
-                            <% if (task.task_status_id === 3) {%>
-                            <div class="card tasks-dashboard" id="<%= task.id %>" style="width: 18rem;">
-                              <div class="card-body">
-    
-                                <div class="top-content">
-                                  <div class="task-title">
-                                    <h5>
-                                      <%= task.name %>
-    
-                                    </h5>
-                                  </div>
-                                  <div class="task-info">
-                                    <a href="/task/details/<%= task.id %>">
-                                      <span class="d-block d-lg-none">+</span>
-                                      <span class="d-none d-lg-block">+ Info</span>
-                                    </a>
-                                  </div>
-                                </div>
-    
-                                <div>
-                                  <p>tags</p>
-                                </div>
-    
-                                <div>
-                                  <p class="card-text">
-                                    <%= task.description %>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <% }%>
-                            <% }) %>
-                          </div>
-
-                </div>
+        <div class="container">
+          <div class="background-selection">
+            <div>
+              <p>Choose background from system</p>
+              <div>
+                <img src="/images/background/bg-workspace1.png" alt="Background image choice" onclick="setBackgroundFromSystem('/images/background/bg-workspace1.png')" class="backgroundimg-preview">
+                <img src="/images/background/bg-workspace2.png" alt="Background image choice" onclick="setBackgroundFromSystem('/images/background/bg-workspace2.png')" class="backgroundimg-preview">
               </div>
             </div>
-        </div>
+            <div>
+              <p>Get a random background from the web</p>
+              <button onclick="getImage()">Random</button>
+            </div>
+            <p class="background-reset" onclick="resetBackground()">Reset background</p>
+          </div>
 
+          <% if(alert === 'true') { %>
+            <div class="alert-change" style="display: unset;">
+              <p>🌟 You leveled up 🌟<br> Way to go!</p>
+              <a class="dismiss-alert" onclick="dismissAlert()">Dismiss</a>
+            </div>
+          <% } %>
+
+          <div class="welcome-main">
+              <h1>Welcome to <strong>Board Hero</strong>!</h1>
+              <h4>You've started a great journey that will help you have fun while being productive</h4>
+              <div>
+                <p>For taking up this challenge, you've alread earned a badge:</p>
+                <img class="badge-img" src="/images/badges/badge_firstlogin.png" alt="">
+                <p class="badge-text">Early Hero</p>
+              </div>
+              <div>
+               <p>On Board Hero you earn badges, experience, and <strong>coins</strong> when you take up or finish a task <br> You can then exchange them for items to make your caracter look even awesomer! <br> Check out the <strong>inventory</strong> section on on your side menu to explore those features</p>
+              </div>
+              <div><h5>Are you ready to start your adventure?</h5>
+                <br>
+              <a class="btn-welcome" id="btn-welcome" onclick="closeWelcomeMessage()">RAWRRRR!</a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="all-columns">
+              <div class="col-6 col-md-4 requested">
+                <h2>Requested</h2>
+                <% allTasks.forEach(task=> { %> 
+                  <% if (task.task_status_id === 1) { %>
+                    <div class="card tasks-dashboard" id="<%= task.id %>" style="width: 18rem">
+                      <div class="card-body">
+                        <div class="top-content">
+                          <div class="task-title">
+                            <h5><%= task.name %></h5>
+                          </div>
+                          <div class="task-info">
+                            <a href="/task/details/<%= task.id %>">
+                              <span class="d-block d-lg-none">+</span>
+                              <span class="d-none d-lg-block">+ Info</span>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="task-tags">
+                          <% task.tags.forEach(tag => { %>
+                            <p><%= tag.label %></p>
+                          <% }) %> 
+                        </div>
+                        <div>
+                          <p class="card-text"><%= task.description %></p>
+                        </div>
+                      </div>
+                    </div>
+                  <% }%> 
+                <% }) %>
+              </div>
+
+              <div class="col-6 col-md-4 in-progress">
+                <h2>In progress</h2>
+                <% allTasks.forEach(task=> { %> 
+                  <% if (task.task_status_id === 2) { %>
+                    <div class="card tasks-dashboard" id="<%= task.id %>" style="width: 18rem">
+                      <div class="card-body">
+                        <div class="top-content">
+                          <div class="task-title">
+                            <h5><%= task.name %></h5>
+                          </div>
+                          <div class="task-info">
+                            <a href="/task/details/<%= task.id %>">
+                              <span class="d-block d-lg-none">+</span>
+                              <span class="d-none d-lg-block">+ Info</span>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="task-tags">
+                          <% task.tags.forEach(tag => { %>
+                            <p><%= tag.label %></p>
+                          <% }) %> 
+                        </div>
+                        <div>
+                          <p class="card-text"><%= task.description %></p>
+                        </div>
+                      </div>
+                    </div>
+                  <% }%> 
+                <% }) %>
+              </div>
+
+              <div class="col-6 col-md-4 done">
+                <h2>Done</h2>
+                <% allTasks.forEach(task=> { %> 
+                  <% if (task.task_status_id === 3) { %>
+                    <div class="card tasks-dashboard" id="<%= task.id %>" style="width: 18rem">
+                      <div class="card-body">
+                        <div class="top-content">
+                          <div class="task-title">
+                            <h5><%= task.name %></h5>
+                          </div>
+                          <div class="task-info">
+                            <a href="/task/details/<%= task.id %>">
+                              <span class="d-block d-lg-none">+</span>
+                              <span class="d-none d-lg-block">+ Info</span>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="task-tags">
+                          <% task.tags.forEach(tag => { %>
+                            <p><%= tag.label %></p>
+                          <% }) %> 
+                        </div>
+                        <div>
+                          <p class="card-text"><%= task.description %></p>
+                        </div>
+                      </div>
+                    </div>
+                  <% }%>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <%- include('./partials/bootstrap-js-scripts') %>
-
-</body>
-
+  </body>
 </html>

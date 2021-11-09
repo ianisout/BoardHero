@@ -1,56 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <!-- General Settings and Fonts -->
-  <%- include('./partials/head-general-settings') %>
+  <head>
+    <!-- General Settings and Fonts -->
+    <%- include('./partials/head-general-settings') %>
     <!-- CSS Links -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
     <link rel="stylesheet" href="/stylesheets/signup-login.css" />
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <title>Sign up | Board Hero</title>
-</head>
+  </head>
 
-<body>
-  <main class="container">
-    <a href="/index" class="logo">
-      <img src="/images/logo/logo-purple.svg" class="logo" alt="Board Hero logo" />
-    </a>
-    <form action="/User/signup" method="POST">
-
-      <% if(typeof errors !='undefined' ) { %>
-        <% errors.forEach(error=> { %>
-          <div class="alert alert-danger d-flex align-items-center" role="alert">
-            <div>
-              <span class="feedback">
-                <%= error.msg %>
-              </span>
-            </div>
+  <body>
+    <main class="container">
+      <a href="/index" class="logo">
+        <img src="/images/logo/logo-purple.svg" class="logo signup" alt="Board Hero logo" />
+      </a>
+      <form action="/User/signup" method="POST" class="form-auth">
+        <% if (typeof error !='undefined' ) { %>
+          <div class="error">
+            <%= error %>
           </div>
-          <% }) %>
-            <% } %>
+        <% } %>
 
-              <label for="first_name">Name</label>
-              <input type="text" id="first_name" name="first_name" value="<%= locals.old && old.first_name %>">
-              <label for="last_name">Last Name</label>
-              <input type="text" id="last_name" name="last_name" value="<%= locals.old && old.last_name %>">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" value="<%= locals.old && old.email %>">
-              <label for="re-email">Confirm Email</label>
-              <input type="email" id="confirmEmail" name="confirmEmail" />
-              <label for="password">Password</label>
-              <input type="password" id="password" name="password" />
-              <label for="re-password">Confirm password</label>
-              <input type="password" id="confirmPassword" name="confirmPassword" />
-              <label for="position">Position</label>
-              <input type="text" id="position" name="position" value="<%= locals.old && old.position %>">
-              <label for="company">Company</label>
-              <input type="text" id="company" name="company" value="<%= locals.old && old.company %>">
+        <label for="first_name">Name</label>
+        <input type="text" id="first_name" name="first_name" required />
+        <span class="error-message"></span>
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" required />
+        <span class="error-message"></span>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+        <span class="error-message"></span>
+        <label for="re-email">Confirm Email</label>
+        <input type="email" id="confirmEmail" name="confirmEmail" required />
+        <span class="error-message"></span>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+        <span class="error-message"></span>
+        <label for="re-password">Confirm password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required />
+        <span class="error-message"></span>
+        <label for="position">Position</label>
+        <input type="text" id="position" name="position" />
+        <span class="error-message"></span>
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company" />
 
-              <button type="submit" id="submit">Confirm</button>
-    </form>
-  </main>
+        <button type="submit" id="submit">Confirm</button>
+      </form>
+    </main>
 
-  <script src="/javascripts/bootstrap.bundle.min.js"></script>
-</body>
-
+    <script src="/javascripts/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

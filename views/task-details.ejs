@@ -9,7 +9,7 @@
       <!-- CSS Links -->
       <%- include('./partials/bootstrap-css-head') %>
         <link rel="stylesheet" href="/stylesheets/task-details.css" />
-        <link rel="stylesheet" href="/stylesheets/tagify-task-participants.css" />
+        <link rel="stylesheet" href="/stylesheets/tagify-task.css" />
         <title>Task Details | Board Hero</title>
 </head>
 
@@ -24,7 +24,7 @@
           <section class="container-view-task">
 
             <div class="form-content">
-              <div class="go-back"><a href="/dashboard">&lt</a></div>
+              <div class="go-back"><a href="/homepage">&lt</a></div>
 
               <div class="form-columns">
                 <div class="dialog-heading">
@@ -32,28 +32,31 @@
                     <%= taskDetails.name %>
                   </h2>
                   <div class="action-buttons">
-                    <form action="/task/details/<%= taskDetails.id %>&<%= taskDetails.task_status_id %>?_method=PATCH" method="POST">
-                      
+                    <form action="/task/details/<%= taskDetails.id %>&<%= taskDetails.task_status_id %>?_method=PATCH"
+                      method="POST">
+
                       <button id="finish-task" class="task-action" type="submit">
-                        <% if (taskDetails.task_status_id === 1) { %>
+                        <% if (taskDetails.task_status_id===1) { %>
                           Start task
-                          <% } else if (taskDetails.task_status_id === 2) { %>
-                          Finish task
-                          <% } else { %>
-                          Return to <br/> in progress
-                          <% } %>
-                        </button>
-
-
+                          <% } else if (taskDetails.task_status_id===2) { %>
+                            Finish task
+                            <% } else { %>
+                              Return to <br /> in progress
+                              <% } %>
+                      </button>
                     </form>
                   </div>
                 </div>
+                
                 <div class="form-details">
                   <div class="left-container">
                     <label for="tags">Participants</label>
                     <input id="participants" name="participants" value="<%= taskDetails.participants %>" />
+                    <button class="btn-participants" onclick="updateParticipants('<%= taskDetails.id %>')">Update</button>
+
                     <label for="tags">Tags</label>
                     <input id="tags" name="tags" value="<%= taskDetails.tags %>" />
+                    <button class="btn-tags" onclick="updateTags('<%= taskDetails.id %>')">Update</button>
 
                     <div class="due-date">
                       <label>Start date: <strong>
@@ -77,12 +80,12 @@
                       </a>
                       <a class="attachments-reminders-flags-button" href="">
                         <img src="/images/icons/flag.svg" style="width: 20px" alt="">
-                        <p>Flags</p>
+                        <p>Flag</p>
                       </a>
                     </div>
                   </div>
+                  
                   <div class="form-actions">
-
                     <div class="actions">
                       <label>Actions:</label>
                       <div class="flag">
@@ -108,46 +111,47 @@
 
               <div class="description-section">
                 <h3 class="form-subtitle">Description</label>
-                  <p id="description" cols="30" rows="10">
+                <p id="description" cols="30" rows="10">
+                  <% if (taskDetails.description) { %> 
                     <%= taskDetails.description %>
-                  </p>
-              </div>
+                  <% } else { %>
+                    <span> Click to add a description...</span>
+                  <% } %> 
+                </p>
+                <!-- <button class="btn-edit-description" onclick="editDescription()">Edit</button> -->
+                </div>
 
               <div class="comment-section">
                 <h3 class="form-subtitle">Comments</h3>
                 <div class="comments">
-                  <div class="single-comment">
-                    <img class="avatar" src="/images/characters/naked-brown.svg" alt="">
-                    <div class="comment-text">
-                      <p class="commentator-name">Jeff Lebowski</p>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam odit unde sequi distinctio
-                        ipsum non facilis voluptas? Obcaecati quo assumenda porro. Doloremque soluta magnam excepturi
-                        facilis voluptate optio aperiam molestiae!</p>
+                  <% taskComments.forEach(comment=> { %>
+                    <div class="single-comment">
+                      <div class="comment-text">
+                        <% usersInWorkspace.forEach(user => { %> 
+                        <% if (comment.userId === user.userId) { %>
+                          <% for (let i = 0; i < user.userElements.length; i++) { %> 
+                          <div class="avatar">
+                            <div class="unique-image" style="background-image: url('<%= user.userElements[i] %>');"></div>
+                          </div>
+                        <% }}}) %> 
+                        <div class="comment-info">
+                          <p class="commentator-name">
+                            <%= comment.userName%>
+                          </p>
+                          <p>
+                            <%= comment.text %>
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="single-comment">
-                    <img class="avatar" src="/images/characters/naked-brown.svg" alt="">
-                    <div class="comment-text">
-                      <p class="commentator-name">Jeff Lebowski</p>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam odit unde sequi distinctio
-                        ipsum non facilis voluptas? Obcaecati quo assumenda porro. Doloremque soluta magnam excepturi
-                        facilis voluptate optio aperiam molestiae!</p>
-                    </div>
-                  </div>
-                  <div class="single-comment">
-                    <img class="avatar" src="/images/characters/naked-brown.svg" alt="">
-                    <div class="comment-text">
-                      <p class="commentator-name">Jeff Lebowski</p>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam odit unde sequi distinctio
-                        ipsum non facilis voluptas? Obcaecati quo assumenda porro. Doloremque soluta magnam excepturi
-                        facilis voluptate optio aperiam molestiae!</p>
-                    </div>
-                  </div>
-                  <input id="new-comment" type="text" class="comment-text" placeholder="Write a comment">
-
+                    <% }) %>
+                    <form method="POST" id="form-comment">
+                      <input name="text" id="new-comment" type="textarea" class="comment-text"
+                        placeholder="Write something down...">
+                      <button type="submit" class="btn-create-comment" for="form-comment">Add comment</button>
+                    </form>
                 </div>
               </div>
-
             </div>
           </section>
         </main>
@@ -155,10 +159,10 @@
   </div>
 
   <%- include('./partials/bootstrap-js-scripts') %>
-
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/javascripts/tagifyTaskParticipants.js"></script>
-    <script src="/javascripts/tagifyTaskTags.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/javascripts/taskDetails.js"></script>
+  <script src="/javascripts/tagifyTaskParticipants.js"></script>
+  <script src="/javascripts/tagifyTaskTags.js"></script>
 
 </body>
 

@@ -403,6 +403,7 @@ summary {
 }
 progress {
   vertical-align: baseline;
+  display: flex;
 }
 [hidden] {
   display: none !important;
@@ -4419,13 +4420,7 @@ fieldset:disabled .btn {
   position: relative;
   top: -1px;
 }
-.alert {
-  position: relative;
-  padding: 1rem 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-}
+
 .alert-heading {
   color: inherit;
 }
@@ -4481,17 +4476,6 @@ fieldset:disabled .btn {
 }
 .alert-warning .alert-link {
   color: #523e02;
-}
-.alert-danger {
-  color: #ffffff;
-  background-color: #8929bb;
-  border-color: #aaa8a8;
-  width: 25%;
-  font-size: 12px;
-}
-
-.alert-danger .alert-link {
-  color: #6a1a21;
 }
 .alert-light {
   color: #636464;

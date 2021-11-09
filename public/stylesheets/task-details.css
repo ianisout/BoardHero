@@ -39,6 +39,7 @@ main {
   justify-content: space-between;
   width: 100%;
   flex-grow: 5;
+  margin-bottom: 15px;
 }
 
 .dialog-heading h2 {
@@ -55,7 +56,7 @@ main {
 }
 
 .container-view-task label {
-  font-size: 14px;
+  font-size: 16px;
   padding-bottom: 3px;
 }
 
@@ -113,6 +114,29 @@ main {
   display: flex;
   flex-direction: column;
   flex-grow: 5;
+  max-width: 525px;
+}
+
+.btn-participants, .btn-tags, .btn-edit-description, .btn-create-comment {
+  border: none;
+  width: fit-content;
+  height: fit-content;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 1px solid #8929bb;
+  color: #8929bb;
+  background-color: #fafafa;
+  padding: 5px 8px;
+  margin-bottom: 8px;
+}
+
+.due-date {
+  margin: 5px 0;
+}
+
+.due-date strong {
+  color: #8929bb;
 }
 
 input[type="checkbox"] {
@@ -128,12 +152,10 @@ input[type="checkbox"] {
   flex-direction: column;
   flex-grow: 1;
   align-items: flex-end;
-  justify-content: center;
 }
 
 .actions {
-  margin-top: 10px;
-  padding-right: 55px;
+  padding-right: 30px;
 }
 
 .actions > label {
@@ -213,20 +235,29 @@ input[type="checkbox"] {
   background-color: #fafafa;
   padding: 10px;
   color: black;
-  margin: 10px 0;
+  margin-bottom: 0;
+}
+
+#description span {
+  font-style: italic;
+  color: #757575;
 }
 
 .form-subtitle {
   color: #8929bb;
   font-size: 18px;
+  margin-bottom: 0;
 }
 
 .comment-section {
   margin: 10px 0;
 }
 
+.comments {
+  margin-top: 10px;
+}
+
 #new-comment {
-  margin-left: 60px;
   width: 300px;
 }
 
@@ -236,9 +267,27 @@ input[type="checkbox"] {
 }
 
 .avatar {
-  border: #8929bb solid 0.5px;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.comments .unique-image {
   height: 50px;
+  width: 50px;
   margin-right: 10px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  border: #8929bb solid 1px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  align-self: center;
+  justify-self: center;
+}
+
+.comment-info {
+  margin-left: 60px;
+  margin-bottom: 10px;
 }
 
 .commentator-name {
@@ -255,6 +304,10 @@ input[type="checkbox"] {
 
 .comment-text p {
   margin: 0;
+}
+
+.comment-text:focus {
+  font-style: normal;
 }
 
 @media screen and (max-width: 768px) {

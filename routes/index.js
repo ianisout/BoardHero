@@ -8,6 +8,7 @@ const TaskController = require("../controllers/TaskController");
 const TypeOfElementController = require("../controllers/TypeOfElementController");
 const CharacterController = require("../controllers/CharacterController");
 const EquipController = require("../controllers/EquipController");
+const WorkspaceController = require("../controllers/WorkspaceController");
 
 /* GET home page */
 router.get("/", verifyNotLoggedUser, function (req, res, next) {
@@ -44,11 +45,14 @@ router.get("/homepage", verifyLoggedUser, async function (req, res, next) {
   const allTasks = await TaskController.getAllTasks(workspaceId);
   const character = await CharacterController.getCharacterByUserId(userId);
   const characterVisualElements = await EquipController.findCharacterElements(character.id);
+  const alert = req.cookies.alertCookie;
+  const loginSound = req.cookies.loginCookie;
 
   user.character = character;
   user.elements = characterVisualElements;
+  user.users = await WorkspaceController.findWorkspaceUsersCharacters(workspaceId);
 
-  return res.render("homepage", { allTasks, user });
+  res.render("homepage", { allTasks, user, alert, loginSound });
 });
 
 /* GET dashboard page */
@@ -62,28 +66,42 @@ router.get("/inventory", verifyLoggedUser, async function (req, res, next) {
   const allElements = await EquipController.findAllEquips();
   const ownedEquips = await CharacterController.getOwnedEquipments(user.character.id);
 
-  for(let i = 0; i < allElements.length; i++) { // NOT WORKING PROPERLY
-    for (let j = 0; j < ownedEquips.length; j++) {
-      if (allElements[i].id === ownedEquips[j].elementId) {
-        allElements[i].is_owned = 'owned';
-        console.log(allElements[i])
-      } else {
-        allElements[i].is_owned = 'notOwned';
-        
+  for(let i = 0; i < ownedEquips.length; i++) { // NOT WORKING PROPERLY
+    checkIfOwned: {
+      for (let j = 0; j < allElements.length; j++) {
+        if (allElements[j].id === ownedEquips[i].elementId) {
+          allElements[j].is_owned = 'owned';
+          break checkIfOwned;
+        }
       }
     }
   }
-
+  
   res.render("inventory-store", { user, allElements, ownedEquips });
 });
 
 router.post("/inventory", async function (req, res) {
   const { element_id } = req.body;
-  const characterId = req.session.user.character.id;
+  const character = req.session.user.character;
+  const characterId = character.id;
 
-  CharacterController.purchaseEquipment(characterId, Number(element_id))
+  const statusMessage = await CharacterController.purchaseEquipment(character, characterId, Number(element_id));
 
-  res.render("inventory-store", { user: req.session.user });
+  if (statusMessage === 'COINS_ERROR') {
+    return res.status(402).send({
+        error: statusMessage,
+        statusCode: 402
+    });
+  }
+
+  if (statusMessage === 'LVL_ERROR') {
+    return res.status(401).send({
+      error: statusMessage,
+      statusCode: 401
+  });
+  }
+
+  res.status(200).end();
 });
 
 router.patch("/inventory", async function (req, res) {

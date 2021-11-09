@@ -9,6 +9,26 @@ for (let i = 0; i < itemsForSale.length; i++) {
   })
 }
 
+
+/* show alerts when level or coins are not enough */
+
+function showAlert(status) {
+  message = {
+    401: "Your level does not allow \nyou to own this item yet. \nNoob",
+    402: "You don't have enough coins \nto buy this item yet. \nGo to work"
+  }
+  const alert = document.querySelector('.invisible-alert');
+
+  alert.childNodes[1].innerText = message[status]
+  alert.style.display = "unset";
+
+  const allElementsButAlert = document.querySelectorAll('main')
+  allElementsButAlert.forEach(element => {
+    element.style.opacity = '0.8';
+    element.style.pointerEvents = 'none'
+  })
+}
+
 function makePurchase(element_id) {
   fetch("/inventory", {
     method: 'POST',
@@ -16,9 +36,22 @@ function makePurchase(element_id) {
     headers: {
       'Content-type': 'application/json'
     }
-  }).catch(console.log);
+  }).then(function(response) {
+    if (response.status !== 200) {
+      showAlert(response.status);
+      playSound('sound-failure');
+      setTimeout(() => {
+      () => location.reload()
+    }, 10000)
+  } else {
+      location.reload()
+    };
+    })
+  .catch(console.log);
+}
 
-  window.location.reload();
+function removeAlert() {
+  location.reload();
 }
 
 
@@ -31,12 +64,11 @@ if (itemList.childNodes.length === 3) {
   introPhrase.style.display = 'unset'
 }
 
+
 /* equip and unequip items front-side */
 
-const ownedItem = document.querySelectorAll(".item");
+const ownedItems = document.querySelectorAll(".item");
 const uniqueImages = document.querySelectorAll(".unique-image");
-const imageToBeInsertedAfter = uniqueImages[uniqueImages.length -1];
-const btnEquip = document.querySelectorAll('.btnEquip');
 
 function changeButtonStatus(btnText) {
   if (btnText.innerText === "Equip") {
@@ -46,68 +78,43 @@ function changeButtonStatus(btnText) {
   }
 }
 
-/* 
-  UNDER DEVELOPMENT - IAN
-
-  function removeImg(url) {
-  console.log('here i received the url: ' + url)
-  divsToBeDeleted = []
-
-  uniqueImages.forEach(item => {
-    if (item.style.backgroundImage === url) {
-      console.log('item addded to the divsToBeDeleted' + item)
-      divsToBeDeleted.push(item);
-      console.log('divs to be deleted = ' + divsToBeDeleted[0])
-    }
-  });
-
-  for (let i = 0; i < divsToBeDeleted.length; i++) {
-    console.log('i should be deleting this: ' + divsToBeDeleted[i])
-    divsToBeDeleted[i].remove();
-  }
-}
-
-btnEquip.forEach(item => item.onclick = () => {
-    const urlImg = `url("${item.parentElement.childNodes[1].currentSrc.substring(21)}")`
-    console.log(item.parentElement.childNodes[1].src)
-
-    removeImg(urlImg)
-})
-
-
-function getNumberOfImgs() {
-  const equipIds = [];
-  const numberNow = document.querySelectorAll(".unique-image");
-  for (let i = 0; i < numberNow.length; i ++) {
-    if(numberNow[i].id) equipIds.push(numberNow[i].id);
-  }
-
-  console.log(equipIds)
-} */
-
-ownedItem.forEach(item => item.onclick = () => {
-  const equipItemDiv = document.createElement("div");
-  const imageUrl = item.childNodes[1].currentSrc;
-  equipItemDiv.classList = "unique-image";
-  equipItemDiv.style.backgroundImage = `url('${imageUrl.substring(21)}')`;
+ownedItems.forEach(item => item.onclick = () => {
+  const srcBtn = item.childNodes[1].src.substr(item.childNodes[1].src.lastIndexOf('/') + 1).slice(0, -4);
+  const soundEquip = new Audio("/sounds/equip.mp3");
   
-  imageToBeInsertedAfter.insertAdjacentElement('afterend', equipItemDiv);
+  for (let i = 0; i < uniqueImages.length; i ++) {
+    if (srcBtn === uniqueImages[i].id && uniqueImages[i].classList.contains('show-item')) {
+      uniqueImages[i].classList.remove('show-item');
+      break;
+    } else if (srcBtn === uniqueImages[i].id) {
+      uniqueImages[i].classList.toggle('equipToggle');
+      break;
+    }
+  }
 
-  changeButtonStatus(item.lastChild);
+  soundEquip.play();
+  changeButtonStatus(item.childNodes[5]);
 });
 
 
 /* equip and unequip items back-side */
 
-function equipUnequip(id, ownInfo) {
+function equipUnequip(id) {
   fetch("/inventory", {
     method: 'PATCH',
     body: JSON.stringify({id}),
     headers: {
       'Content-type': 'application/json'
     }
-  })/* .then(setTimeout(() => {
-    removeImg(`url("${ownInfo.parentElement.childNodes[1].src.substring(21)}")`)
-  }, 100)) */
+  })
   .catch(console.log);
 }
+
+function playSound(soundObj) {
+  var sound = document.getElementById(soundObj);
+  sound.style.display = "unset";
+}
+
+const exp = document.querySelector(".char-exp");
+const expBar = document.getElementById("progress-bar");
+expBar.style.width = `${exp.innerText.split(" ")[1].split("/")[0]}%`;

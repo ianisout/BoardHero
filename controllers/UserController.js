@@ -77,3 +77,7 @@ exports.loginUser = async ({ email, password }) => {
     throw (error);
   }
 };
+
+exports.getUserIfExists = email => UserModel.getUserIfExists(email);
+
+exports.findCharacterByUser = id => UserModel.findCharacterByUser(id);
