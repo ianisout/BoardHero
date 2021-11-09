@@ -147,6 +147,8 @@ h3 {
   color: #8929bb;
   font-weight: 500;
   padding: 5px;
+  max-width: 90px;
+  justify-content: center;
 }
 
 .item p {

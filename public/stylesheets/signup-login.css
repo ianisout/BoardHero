@@ -43,6 +43,11 @@ img.logo {
   padding: 10px;
 }
 
+img.signup {
+  max-width: 230px;
+  margin-bottom: 10px;
+}
+
 .login img.logo {
   margin-bottom: 40px;
 }
@@ -51,6 +56,12 @@ form {
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
 }
 
 label {

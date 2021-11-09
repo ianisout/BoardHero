@@ -94,6 +94,12 @@ router.post(
       console.log(error);
       return response.render("signup");
     }
+<<<<<<< HEAD
+=======
+  } catch (error) {
+    console.log(error);
+    response.render("signup", { error: error.message });
+>>>>>>> d614b476e695fc868e16f73f0b9985ad58226217
   }
 );
 
@@ -131,7 +137,7 @@ router.post("/login", async function (req, res, next) {
     }
   } catch (error) {
     console.log(error);
-    return res.render("login", { error: error.message });
+    res.render("login", { error: error.message });
   }
 });
 

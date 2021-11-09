@@ -79,3 +79,9 @@ function closeWelcomeMessage() {
   const soundCheer = new Audio("/sounds/hooray.mp3");
   soundCheer.play();
 }
+
+function resetBackground() {
+  document.querySelector('.home-section').style.backgroundImage = '';
+  localStorage.clear();
+  document.querySelector('.background-selection').style.display = "none";
+}
