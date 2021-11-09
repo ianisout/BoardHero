@@ -90,16 +90,10 @@ router.post(
         response.clearCookie("CHARACTER_SET");
         response.status(201).redirect("/homepage");
       }
-    } catch (error) {
+    } catch {(error) 
       console.log(error);
-      return response.render("signup");
-    }
-<<<<<<< HEAD
-=======
-  } catch (error) {
-    console.log(error);
-    response.render("signup", { error: error.message });
->>>>>>> d614b476e695fc868e16f73f0b9985ad58226217
+      response.render("signup", { error: error.message });
+  } 
   }
 );
 
