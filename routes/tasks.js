@@ -141,8 +141,6 @@ router.patch("/participants/:taskId", async function (req, res, next) {
   const { taskId } = req.params;
   const { participants } = req.body;
 
-  log(taskId, participants);
-
   const participantIds = (!participants)
     ? []
     : JSON.parse(participants).map((participant) => Number(participant.value));
@@ -163,5 +161,14 @@ router.patch("/tags/:taskId", async function (req, res, next) {
 
   res.status(200).end();
 });
+
+/* PATCH task details - update description */
+router.patch("/description/:taskId", async function (req, res, next) {
+  const { taskId } = req.params;
+  const { description } = req.body;
+  await TaskController.setDescription({ taskId, description });
+  res.status(200).end();
+});
+
 
 module.exports = router;

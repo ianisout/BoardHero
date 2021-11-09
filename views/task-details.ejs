@@ -41,7 +41,7 @@
                           <% } else if (taskDetails.task_status_id===2) { %>
                             Finish task
                             <% } else { %>
-                              Return to <br /> in progress
+                              Reopen task
                               <% } %>
                       </button>
                     </form>
@@ -111,15 +111,9 @@
 
               <div class="description-section">
                 <h3 class="form-subtitle">Description</label>
-                <p id="description" cols="30" rows="10">
-                  <% if (taskDetails.description) { %> 
-                    <%= taskDetails.description %>
-                  <% } else { %>
-                    <span> Click to add a description...</span>
-                  <% } %> 
-                </p>
-                <!-- <button class="btn-edit-description" onclick="editDescription()">Edit</button> -->
-                </div>
+                <textarea name="description" id="description" placeholder="Click to add a description..."><%=taskDetails.description%></textarea>
+                <button class="btn-edit-description" onclick="editDescription('<%= taskDetails.id %>')">Edit</button>
+              </div>
 
               <div class="comment-section">
                 <h3 class="form-subtitle">Comments</h3>
@@ -134,10 +128,15 @@
                             <div class="unique-image" style="background-image: url('<%= user.userElements[i] %>');"></div>
                           </div>
                         <% }}}) %> 
-                        <div class="comment-info">
-                          <p class="commentator-name">
-                            <%= comment.userName%>
-                          </p>
+                        <div class="comment">
+                          <div class="comment-info">
+                            <p class="commentator-name">
+                              <%= comment.userName %>
+                            </p>
+                            <p class="last-update">
+                              <%= comment.updatedAt %>
+                            </p>
+                          </div>
                           <p>
                             <%= comment.text %>
                           </p>

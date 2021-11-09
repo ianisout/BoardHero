@@ -80,13 +80,19 @@ exports.addComment = async (user, task_id, text) => {
 exports.findAllComments = async (taskId) => {
   const commentsData = [];
   const comments = await TaskModel.findAllComments(taskId);
-  
-  for (let i =0; i < comments.length; i++) {
+
+  for (let i = 0; i < comments.length; i++) {
     const userName = await UserModel.findByPk(comments[i].dataValues.user_id);
+    const dateTime = new Date(comments[i].dataValues.updatedAt).toLocaleString().split(' ');
+    const date = dateTime[0].split('/').reverse();
+    const time = dateTime[1].split(':');
+    const updatedAt = `${date[0]}/${date[1]}/${date[2]} ${time[0]}:${time[1]}`;
+
     commentsData.push({
       userId: comments[i].dataValues.user_id,
-      userName:`${userName.dataValues.first_name} ${userName.dataValues.last_name}`,
+      userName: `${userName.dataValues.first_name} ${userName.dataValues.last_name}`,
       text: comments[i].dataValues.text,
+      updatedAt: updatedAt,
     });
   }
 
@@ -97,13 +103,16 @@ exports.getAllTags = async () => {
   const tagsArray = [];
 
   const tags = await TaskModel.getAllTags();
-  tags.forEach(tag => tagsArray.push(tag.label));
+  tags.forEach((tag) => tagsArray.push(tag.label));
 
   return tagsArray;
-}
+};
 
-exports.setParticipants = async ({ taskId, participantIds }) => 
+exports.setParticipants = async ({ taskId, participantIds }) =>
   await TaskModel.setParticipants({ taskId, participantIds });
 
-exports.setTags = async ({ taskId, tagValues }) => 
+exports.setTags = async ({ taskId, tagValues }) =>
   await TaskModel.setTags({ taskId, tagValues });
+
+exports.setDescription = async ({ taskId, description }) =>
+  await TaskModel.setDescription({ taskId, description });

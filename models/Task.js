@@ -1,9 +1,7 @@
 const {
   Task,
-  User,
   Attachment,
   Comment,
-  Participant,
   Task_tag,
   Task_action,
 } = require("../database/models");
@@ -95,6 +93,15 @@ exports.findAllComments = async(taskId) => {
   })
   return comments;
 } 
+
+exports.setDescription = async({ taskId, description }) => {
+  await Task.update({ 
+    description: description
+  }, 
+  { 
+    where: { id: taskId }, 
+  })
+}
 
 exports.destroy = (id) =>
   Task.destroy({

@@ -25,3 +25,17 @@ function updateTags(taskId) {
     })
     .catch(console.log);
 }
+
+function editDescription(taskId) {
+  const description = document.querySelector("#description").value;
+  console.log(description);
+
+  fetch(`/task/description/${taskId}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ description }),
+    headers: {
+      'Content-type': 'application/json'
+    }
+  })
+  .catch(console.log);
+}

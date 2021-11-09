@@ -29,7 +29,7 @@ main {
   display: flex;
   flex-direction: column;
   width: 800px;
-  padding-right: 5px;
+  padding: 5px;
   margin-top: 5px;
 }
 
@@ -47,6 +47,14 @@ main {
   font-weight: 600;
   color: #8929bb;
   margin-top: 10px;
+}
+
+.action-buttons {
+  padding-right: 40px;
+}
+
+button#finish-task {
+  width: 116px;
 }
 
 .container-view-task form {
@@ -73,7 +81,7 @@ main {
 
 .container-view-task textarea {
   font-size: 14px;
-  min-height: 142px;
+  min-height: 70px;
 }
 
 .form-content {
@@ -235,12 +243,17 @@ input[type="checkbox"] {
   background-color: #fafafa;
   padding: 10px;
   color: black;
-  margin-bottom: 0;
+  margin-bottom: 5px;
+  width: 100%;
 }
 
-#description span {
+#description:placeholder-shown {
   font-style: italic;
-  color: #757575;
+}
+
+.btn-edit-description {
+  width: 60.5px;
+  height: 30px;
 }
 
 .form-subtitle {
@@ -285,9 +298,20 @@ input[type="checkbox"] {
   justify-self: center;
 }
 
-.comment-info {
+.comment {
   margin-left: 60px;
   margin-bottom: 10px;
+}
+
+.comment-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.last-update {
+  padding-left: 10px;
+  font-size: 12px;
+  align-self: center;
 }
 
 .commentator-name {
@@ -354,7 +378,6 @@ input[type="checkbox"] {
   }
 
   .container-view-task form,
-  #finish-task,
   .form-details {
     padding: 0;
   }
@@ -384,10 +407,17 @@ input[type="checkbox"] {
   ::-webkit-scrollbar {
     width: 4px;
   }
-}
 
-@media screen and (max-width: 768px) {
-  .left-container {
+.left-container {
     padding-right: 25px;
+  }
+
+  .action-buttons {
+    width: 80px;
+    margin-right: 15px;
+  }
+
+  #finish-task {
+    font-size: 14px;
   }
 }
