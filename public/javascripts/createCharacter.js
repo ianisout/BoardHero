@@ -18,7 +18,7 @@ function setCharacterElements(elementType, elementId) {
   const obj = {}
   obj[elementType] = elementId;
   if (elementType in characterElements) {
-    characterElements[elementType] = elementId.substr(elementId.length - 1);
+    characterElements[elementType] = elementId.replace(/\D/g, '');
   }
   return characterElements;
 }
