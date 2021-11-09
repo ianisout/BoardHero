@@ -68,8 +68,10 @@ router.post(
       response.clearCookie("CHARACTER_SET");
       response.status(201).redirect("/homepage");
     }
+  } catch (error) {
+
   }
-);
+  });
 
 /* GET login page */
 router.get("/login", verifyNotLoggedUser, function (req, res, next) {
