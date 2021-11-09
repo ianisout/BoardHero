@@ -334,7 +334,7 @@ input[type="checkbox"] {
   font-style: normal;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 870px) {
   .sidebar,
   .background-effect {
     display: none;
