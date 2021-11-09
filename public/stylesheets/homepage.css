@@ -52,11 +52,12 @@ h2 {
   align-items: center;
   width: 70%;
   height: fit-content;
+  min-height: 70%;
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 15%;
   z-index: 9999;
-  background-color: #fafafa;
+  background-color: #fefbff;
   border: #8929bb 1px solid;
   border-radius: 5px;
   color: #8929bb;
