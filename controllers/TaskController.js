@@ -83,10 +83,12 @@ exports.findAllComments = async (taskId) => {
 
   for (let i = 0; i < comments.length; i++) {
     const userName = await UserModel.findByPk(comments[i].dataValues.user_id);
-    const dateTime = new Date(comments[i].dataValues.updatedAt).toLocaleString().split(' ');
-    const date = dateTime[0].split('/').reverse();
-    const time = dateTime[1].split(':');
-    const updatedAt = `${date[0]}/${date[1]}/${date[2]} ${time[0]}:${time[1]}`;
+    let updatedAt = new Date(comments[i].dataValues.updatedAt).toLocaleString();
+
+    if (updatedAt.includes(",")) {
+      const dateBreakdown = updatedAt.split(',');
+      updatedAt = `${dateBreakdown[0]}  ${dateBreakdown[2]} ${dateBreakdown[3]}`;
+    }
 
     commentsData.push({
       userId: comments[i].dataValues.user_id,
