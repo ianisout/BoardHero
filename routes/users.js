@@ -4,6 +4,9 @@ const router = express.Router();
 const verifyLoggedUser = require("../middlewares/VerifyLoggedUser");
 const verifyNotLoggedUser = require("../middlewares/VerifyNotLoggedUser");
 
+// const signupValidations = require("../middlewares/signupValidation");
+// const validationErrorMessage = require("../middlewares/validationMessage");
+
 const UserController = require("../controllers/UserController");
 const WorkspaceController = require("../controllers/WorkspaceController");
 
@@ -22,68 +25,77 @@ router.get("/signup", verifyNotLoggedUser, function (request, response, next) {
 });
 
 /* POST signup form */
-router.post("/signup", async function (request, response, next) {
-  try {
-    const { CHARACTER_SET } = request.cookies;
-    const characterChoices =
-      CHARACTER_SET !== "undefined" ? JSON.parse(CHARACTER_SET) : undefined;
+router.post(
+  "/signup",
+  async function (request, response, next) {
+    try {
+      const { CHARACTER_SET } = request.cookies;
+      const characterChoices =
+        CHARACTER_SET !== "undefined" ? JSON.parse(CHARACTER_SET) : undefined;
 
-    const {
-      first_name,
-      last_name,
-      email,
-      confirmEmail,
-      password,
-      confirmPassword,
-      position,
-      company,
-    } = request.body;
+      const {
+        first_name,
+        last_name,
+        email,
+        confirmEmail,
+        password,
+        confirmPassword,
+        position,
+        company,
+      } = request.body;
 
-    const userCreated = await UserController.createUser({
-      first_name,
-      last_name,
-      email,
-      confirmEmail,
-      password,
-      confirmPassword,
-      position,
-      company,
-      characterChoices,
-    });
-
-    if (userCreated) {
-      const isAdmin = true;
-      const workspaceName = `${first_name}'s Workspace`;
-
-      const workspaceCreated = await WorkspaceController.createWorkspace({
-        workspace: {
-          name: workspaceName,
-        },
-        userId: userCreated.id,
-        isAdmin: isAdmin,
+      const userCreated = await UserController.createUser({
+        first_name,
+        last_name,
+        email,
+        confirmEmail,
+        password,
+        confirmPassword,
+        position,
+        company,
+        characterChoices,
       });
 
-      const userSession = {
-        ...userCreated,
-        workspaces: [workspaceCreated],
-        activeWorkspace: {
-          id: workspaceCreated.id,
+      if (userCreated) {
+        const isAdmin = true;
+        const workspaceName = `${first_name}'s Workspace`;
+
+        const workspaceCreated = await WorkspaceController.createWorkspace({
+          workspace: {
+            name: workspaceName,
+          },
+          userId: userCreated.id,
           isAdmin: isAdmin,
-        },
-      };
+        });
 
-      request.session.user = userSession;
+        const userSession = {
+          ...userCreated,
+          workspaces: [workspaceCreated],
+          activeWorkspace: {
+            id: workspaceCreated.id,
+            isAdmin: isAdmin,
+          },
+        };
 
-      response.cookie('firstLogin', 'firstLogin', { expires: new Date(Date.now() + 3000), httpOnly: false })
-      response.cookie('loginCookie', 'loginCookie', { expires: new Date(Date.now() + 5000), httpOnly: false })
-      response.clearCookie("CHARACTER_SET");
-      response.status(201).redirect("/homepage");
+        request.session.user = userSession;
+
+        response.cookie("firstLogin", "firstLogin", {
+          expires: new Date(Date.now() + 3000),
+          httpOnly: false,
+        });
+        response.cookie("loginCookie", "loginCookie", {
+          expires: new Date(Date.now() + 5000),
+          httpOnly: false,
+        });
+        response.clearCookie("CHARACTER_SET");
+        response.status(201).redirect("/homepage");
+      }
+    } catch (error) {
+      console.log(error);
+      return response.render("signup");
     }
-  } catch (error) {
-    console.log(error);
-    return response.render("signup");
   }
-});
+);
 
 /* GET login page */
 router.get("/login", verifyNotLoggedUser, function (req, res, next) {
