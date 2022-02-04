@@ -23,4 +23,4 @@ More previews to come 🤺
 
 ____
 
-This project is intended as an experiment for the Full Stack Web Development course at Digital House from Brazil
+This is a project for the Full Stack Web Development course at Digital House Brazil
